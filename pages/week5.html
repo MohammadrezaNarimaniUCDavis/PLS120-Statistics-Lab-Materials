@@ -1,0 +1,161 @@
+<h1 class="page-title">Week 5: t-Tests</h1>
+<p class="page-subtitle">One-sample, two-sample, and paired t-tests for agricultural data</p>
+
+<div class="section">
+    <h2 class="section-title">Learning Objectives</h2>
+    <div class="card">
+        <ul>
+            <li>Understand when to use different types of t-tests</li>
+            <li>Perform one-sample t-tests to compare sample means to known values</li>
+            <li>Conduct two-sample t-tests for independent groups</li>
+            <li>Apply paired t-tests for before/after comparisons</li>
+            <li>Check assumptions and interpret results correctly</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Tutorial: t-Tests in R</h2>
+    <div class="card">
+        <h3 class="card-title">One-Sample t-Test</h3>
+        <p>Use when comparing a sample mean to a known population value.</p>
+        <pre><code># Example: Testing if average wheat yield differs from 4.0 tons/ha
+wheat_yields <- c(3.8, 4.2, 3.9, 4.1, 3.7, 4.3, 4.0, 3.9, 4.2, 4.1)
+
+# One-sample t-test
+t.test(wheat_yields, mu = 4.0)
+
+# Check assumptions
+hist(wheat_yields)  # Check normality
+shapiro.test(wheat_yields)  # Formal normality test</code></pre>
+        
+        <h3 class="card-title">Two-Sample t-Test (Independent Groups)</h3>
+        <p>Use when comparing means between two independent groups.</p>
+        <pre><code># Example: Comparing yields between two fertilizer treatments
+fertilizer_A <- c(145, 152, 148, 151, 147, 149, 153, 146)
+fertilizer_B <- c(158, 162, 159, 161, 157, 160, 163, 156)
+
+# Two-sample t-test (assuming equal variances)
+t.test(fertilizer_A, fertilizer_B, var.equal = TRUE)
+
+# Welch's t-test (unequal variances)
+t.test(fertilizer_A, fertilizer_B, var.equal = FALSE)
+
+# Check equal variance assumption
+var.test(fertilizer_A, fertilizer_B)</code></pre>
+        
+        <h3 class="card-title">Paired t-Test</h3>
+        <p>Use when comparing measurements from the same subjects before and after treatment.</p>
+        <pre><code># Example: Plant growth before and after fertilizer application
+before <- c(12, 15, 13, 16, 14, 17, 13, 15, 14, 16)
+after <- c(18, 22, 19, 24, 20, 25, 19, 22, 21, 23)
+
+# Paired t-test
+t.test(before, after, paired = TRUE)
+
+# Alternative: test the differences
+differences <- after - before
+t.test(differences, mu = 0)
+
+# Visualize the differences
+plot(before, after)
+abline(0, 1, col = "red")  # Line of equality</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Class Activity: Seed Germination Study</h2>
+    <div class="card">
+        <h3 class="card-title">Activity 5.1: Comparing Germination Rates</h3>
+        <p>A seed company claims their new variety has a 90% germination rate. Test this claim and compare with a competitor's variety.</p>
+        
+        <h4>Dataset:</h4>
+        <pre><code># Germination percentages from 12 test plots
+new_variety <- c(88, 92, 89, 91, 87, 93, 90, 89, 92, 88, 91, 90)
+competitor <- c(85, 87, 84, 88, 86, 89, 85, 87, 86, 88, 84, 87)</code></pre>
+        
+        <h4>Tasks:</h4>
+        <ol>
+            <li>Test if the new variety achieves the claimed 90% germination rate</li>
+            <li>Compare germination rates between the two varieties</li>
+            <li>Check all assumptions for your chosen tests</li>
+            <li>Interpret results in practical terms</li>
+        </ol>
+        
+        <h4>Solution Framework:</h4>
+        <pre><code># 1. One-sample t-test for new variety
+t.test(new_variety, mu = 90)
+
+# 2. Two-sample t-test comparing varieties
+t.test(new_variety, competitor)
+
+# 3. Check assumptions
+shapiro.test(new_variety)
+shapiro.test(competitor)
+var.test(new_variety, competitor)
+
+# 4. Effect size (Cohen's d)
+pooled_sd <- sqrt(((length(new_variety)-1)*var(new_variety) + 
+                   (length(competitor)-1)*var(competitor)) / 
+                  (length(new_variety) + length(competitor) - 2))
+cohens_d <- (mean(new_variety) - mean(competitor)) / pooled_sd</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Homework Assignment 5</h2>
+    <div class="card">
+        <h3 class="card-title">Due: Next Class</h3>
+        
+        <h4>Problem 1: Soil pH Testing (25 points)</h4>
+        <p>A farmer wants to know if the pH of their soil differs significantly from the optimal pH of 6.5 for corn production. They collect soil samples from 15 locations:</p>
+        <p>pH values: 6.2, 6.7, 6.4, 6.8, 6.3, 6.6, 6.1, 6.9, 6.5, 6.4, 6.7, 6.2, 6.8, 6.3, 6.6</p>
+        <ol>
+            <li>Perform the appropriate t-test</li>
+            <li>State your null and alternative hypotheses</li>
+            <li>Check assumptions and report your findings</li>
+        </ol>
+        
+        <h4>Problem 2: Irrigation Methods (30 points)</h4>
+        <p>Compare crop yields (tons/hectare) between drip irrigation and sprinkler irrigation:</p>
+        <ul>
+            <li>Drip: 8.2, 8.7, 8.4, 8.9, 8.1, 8.6, 8.3, 8.8</li>
+            <li>Sprinkler: 7.8, 8.1, 7.9, 8.3, 7.7, 8.0, 7.8, 8.2</li>
+        </ul>
+        <ol>
+            <li>Test if there's a significant difference between methods</li>
+            <li>Check the equal variance assumption</li>
+            <li>Calculate and interpret the effect size</li>
+            <li>Which irrigation method would you recommend?</li>
+        </ol>
+        
+        <h4>Problem 3: Before/After Treatment (25 points)</h4>
+        <p>A plant growth regulator is tested on 10 plants. Heights (cm) are measured before and after treatment:</p>
+        <table>
+            <tr><th>Plant</th><th>Before</th><th>After</th></tr>
+            <tr><td>1</td><td>25</td><td>28</td></tr>
+            <tr><td>2</td><td>30</td><td>35</td></tr>
+            <tr><td>3</td><td>28</td><td>32</td></tr>
+            <tr><td>4</td><td>32</td><td>38</td></tr>
+            <tr><td>5</td><td>27</td><td>31</td></tr>
+            <tr><td>6</td><td>29</td><td>33</td></tr>
+            <tr><td>7</td><td>31</td><td>36</td></tr>
+            <tr><td>8</td><td>26</td><td>29</td></tr>
+            <tr><td>9</td><td>33</td><td>39</td></tr>
+            <tr><td>10</td><td>28</td><td>32</td></tr>
+        </table>
+        <ol>
+            <li>Perform the appropriate paired analysis</li>
+            <li>Calculate the mean difference and 95% confidence interval</li>
+            <li>Is the growth regulator effective?</li>
+        </ol>
+        
+        <h4>Problem 4: Power Analysis (20 points)</h4>
+        <p>A researcher wants to detect a 5% difference in germination rates between two seed varieties, with 80% power and α = 0.05. If the standard deviation is expected to be 3%:</p>
+        <ol>
+            <li>Calculate the required sample size per group</li>
+            <li>What would happen to the required sample size if they wanted 90% power instead?</li>
+            <li>Use R's power.t.test() function to verify your calculations</li>
+        </ol>
+    </div>
+</div>

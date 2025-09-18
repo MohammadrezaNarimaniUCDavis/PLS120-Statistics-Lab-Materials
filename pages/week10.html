@@ -1,0 +1,197 @@
+<h1 class="page-title">Week 10: Final Project</h1>
+<p class="page-subtitle">Independent data analysis project applying course concepts</p>
+
+<div class="section">
+    <h2 class="section-title">Project Overview</h2>
+    <div class="card">
+        <p>The final project is an opportunity to apply the statistical methods learned throughout the course to a real agricultural dataset. You will conduct a complete statistical analysis, from data exploration to hypothesis testing and interpretation of results.</p>
+        
+        <h3 class="card-title">Project Requirements</h3>
+        <ul>
+            <li>Choose an agricultural dataset (provided options or instructor-approved alternative)</li>
+            <li>Formulate research questions and hypotheses</li>
+            <li>Conduct appropriate statistical analyses</li>
+            <li>Create meaningful visualizations</li>
+            <li>Write a comprehensive report (8-10 pages)</li>
+            <li>Present findings to the class (10-minute presentation)</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Available Datasets</h2>
+    <div class="card">
+        <h3 class="card-title">Option 1: Crop Yield and Climate Data</h3>
+        <p><strong>Description:</strong> Multi-year data on corn and soybean yields across different counties, including temperature, precipitation, and soil quality variables.</p>
+        <p><strong>Potential Questions:</strong> How do climate factors affect crop yields? Are there regional differences in yield patterns?</p>
+        
+        <h3 class="card-title">Option 2: Fertilizer Trial Results</h3>
+        <p><strong>Description:</strong> Experimental data from field trials testing different fertilizer types, application rates, and timing on various crops.</p>
+        <p><strong>Potential Questions:</strong> Which fertilizer treatment is most effective? How does application timing affect yield?</p>
+        
+        <h3 class="card-title">Option 3: Pest Management Study</h3>
+        <p><strong>Description:</strong> Data on pest populations, control methods, and crop damage across multiple growing seasons.</p>
+        <p><strong>Potential Questions:</strong> Which pest control strategy is most effective? How do environmental factors influence pest populations?</p>
+        
+        <h3 class="card-title">Option 4: Soil Health Assessment</h3>
+        <p><strong>Description:</strong> Soil quality measurements (pH, organic matter, nutrients) from farms using different management practices.</p>
+        <p><strong>Potential Questions:</strong> How do farming practices affect soil health? What soil factors are most important for crop productivity?</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Project Timeline</h2>
+    <div class="card">
+        <table>
+            <tr>
+                <th>Week</th>
+                <th>Milestone</th>
+                <th>Deliverable</th>
+            </tr>
+            <tr>
+                <td>Week 8</td>
+                <td>Project Proposal</td>
+                <td>1-page proposal with dataset choice and research questions</td>
+            </tr>
+            <tr>
+                <td>Week 9</td>
+                <td>Data Exploration</td>
+                <td>Preliminary analysis and descriptive statistics</td>
+            </tr>
+            <tr>
+                <td>Week 10</td>
+                <td>Statistical Analysis</td>
+                <td>Complete analysis with hypothesis testing</td>
+            </tr>
+            <tr>
+                <td>Finals Week</td>
+                <td>Final Report & Presentation</td>
+                <td>Written report and 10-minute class presentation</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Tutorial: Project Analysis Framework</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Data Exploration</h3>
+        <pre><code># Load and examine your dataset
+data <- read.csv("your_dataset.csv")
+str(data)
+summary(data)
+head(data)
+
+# Check for missing values
+sum(is.na(data))
+colSums(is.na(data))
+
+# Basic visualizations
+pairs(data[,c("var1", "var2", "var3")])  # Scatterplot matrix
+hist(data$response_variable)
+boxplot(response ~ treatment, data = data)</code></pre>
+        
+        <h3 class="card-title">Step 2: Descriptive Statistics</h3>
+        <pre><code># Summary statistics by groups
+aggregate(response ~ treatment, data = data, FUN = function(x) {
+  c(n = length(x), mean = mean(x), sd = sd(x), 
+    min = min(x), max = max(x))
+})
+
+# Correlation analysis
+cor(data[,sapply(data, is.numeric)])
+
+# Create publication-quality plots
+library(ggplot2)
+ggplot(data, aes(x = treatment, y = response)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, alpha = 0.6) +
+  labs(title = "Response by Treatment",
+       x = "Treatment", y = "Response Variable") +
+  theme_minimal()</code></pre>
+        
+        <h3 class="card-title">Step 3: Statistical Testing</h3>
+        <pre><code># Choose appropriate test based on your data
+# t-test for comparing two groups
+t.test(response ~ treatment, data = data)
+
+# ANOVA for multiple groups
+model <- aov(response ~ treatment, data = data)
+summary(model)
+TukeyHSD(model)
+
+# Regression analysis
+lm_model <- lm(response ~ predictor1 + predictor2, data = data)
+summary(lm_model)
+plot(lm_model)</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Class Activity: Project Workshop</h2>
+    <div class="card">
+        <h3 class="card-title">Activity 10.1: Peer Review Session</h3>
+        <p>Work in pairs to review each other's project progress and provide feedback.</p>
+        
+        <h4>Review Checklist:</h4>
+        <ol>
+            <li>Are the research questions clearly stated and testable?</li>
+            <li>Is the chosen statistical method appropriate for the data and questions?</li>
+            <li>Are the assumptions of the statistical tests met?</li>
+            <li>Are the visualizations clear and informative?</li>
+            <li>Is the interpretation of results accurate and meaningful?</li>
+        </ol>
+        
+        <h3 class="card-title">Activity 10.2: Presentation Practice</h3>
+        <p>Practice your final presentation with a small group and receive feedback on:</p>
+        <ul>
+            <li>Clarity of research questions and objectives</li>
+            <li>Appropriateness of methods used</li>
+            <li>Quality of visualizations</li>
+            <li>Interpretation and conclusions</li>
+            <li>Overall presentation skills</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Final Report Guidelines</h2>
+    <div class="card">
+        <h3 class="card-title">Report Structure (8-10 pages)</h3>
+        
+        <h4>1. Introduction (1-2 pages)</h4>
+        <ul>
+            <li>Background and context of your research question</li>
+            <li>Literature review (3-5 relevant sources)</li>
+            <li>Specific objectives and hypotheses</li>
+        </ul>
+        
+        <h4>2. Methods (1-2 pages)</h4>
+        <ul>
+            <li>Description of dataset and variables</li>
+            <li>Statistical methods used and justification</li>
+            <li>Software and analysis procedures</li>
+        </ul>
+        
+        <h4>3. Results (3-4 pages)</h4>
+        <ul>
+            <li>Descriptive statistics and data exploration</li>
+            <li>Statistical test results with appropriate tables/figures</li>
+            <li>Clear presentation of findings</li>
+        </ul>
+        
+        <h4>4. Discussion and Conclusions (2-3 pages)</h4>
+        <ul>
+            <li>Interpretation of results in agricultural context</li>
+            <li>Limitations and assumptions</li>
+            <li>Practical implications and recommendations</li>
+            <li>Future research directions</li>
+        </ul>
+        
+        <h4>5. References and Appendices</h4>
+        <ul>
+            <li>Properly formatted citations</li>
+            <li>R code appendix (optional but recommended)</li>
+        </ul>
+    </div>
+</div>

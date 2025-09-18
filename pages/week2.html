@@ -1,0 +1,154 @@
+<h1 class="page-title">Week 2: Descriptive Statistics</h1>
+<p class="page-subtitle">Measures of central tendency, variability, and data visualization</p>
+
+<div class="section">
+    <h2 class="section-title">Learning Objectives</h2>
+    <div class="card">
+        <ul>
+            <li>Calculate and interpret measures of central tendency</li>
+            <li>Understand measures of variability and dispersion</li>
+            <li>Create effective data visualizations in R</li>
+            <li>Identify outliers and unusual observations</li>
+            <li>Apply descriptive statistics to agricultural data</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Tutorial: Descriptive Statistics in R</h2>
+    <div class="card">
+        <h3 class="card-title">Measures of Central Tendency</h3>
+        <pre><code># Sample data: wheat yields (tons per hectare)
+wheat_yields <- c(3.2, 3.8, 4.1, 3.9, 4.5, 3.7, 4.2, 3.6, 4.0, 3.8)
+
+# Mean
+mean(wheat_yields)
+
+# Median
+median(wheat_yields)
+
+# Mode (custom function)
+get_mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+get_mode(wheat_yields)</code></pre>
+        
+        <h3 class="card-title">Measures of Variability</h3>
+        <pre><code># Range
+range(wheat_yields)
+max(wheat_yields) - min(wheat_yields)
+
+# Variance
+var(wheat_yields)
+
+# Standard deviation
+sd(wheat_yields)
+
+# Coefficient of variation
+cv <- (sd(wheat_yields) / mean(wheat_yields)) * 100
+cv</code></pre>
+        
+        <h3 class="card-title">Data Visualization</h3>
+        <pre><code># Histogram
+hist(wheat_yields, 
+     main = "Distribution of Wheat Yields",
+     xlab = "Yield (tons/ha)",
+     col = "lightblue")
+
+# Boxplot
+boxplot(wheat_yields,
+        main = "Wheat Yield Boxplot",
+        ylab = "Yield (tons/ha)")
+
+# Using ggplot2 (install if needed)
+library(ggplot2)
+data <- data.frame(yields = wheat_yields)
+
+ggplot(data, aes(x = yields)) +
+  geom_histogram(bins = 5, fill = "lightblue", color = "black") +
+  labs(title = "Wheat Yield Distribution",
+       x = "Yield (tons/ha)",
+       y = "Frequency")</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Class Activity: Soil pH Analysis</h2>
+    <div class="card">
+        <h3 class="card-title">Activity 2.1: Comparing Soil pH Across Fields</h3>
+        <p>Analyze soil pH measurements from three different agricultural fields.</p>
+        
+        <h4>Dataset:</h4>
+        <pre><code># Soil pH data from three fields
+field_A <- c(6.2, 6.5, 6.3, 6.7, 6.4, 6.6, 6.1, 6.8, 6.3, 6.5)
+field_B <- c(7.1, 7.3, 7.0, 7.2, 7.4, 7.1, 7.3, 7.2, 7.0, 7.1)
+field_C <- c(5.8, 6.0, 5.9, 6.1, 5.7, 6.2, 5.8, 6.0, 5.9, 6.1)</code></pre>
+        
+        <h4>Tasks:</h4>
+        <ol>
+            <li>Calculate descriptive statistics for each field</li>
+            <li>Create side-by-side boxplots</li>
+            <li>Determine which field has the most consistent pH levels</li>
+            <li>Identify any potential outliers</li>
+        </ol>
+        
+        <h4>Solution Framework:</h4>
+        <pre><code># Combine data
+ph_data <- data.frame(
+  pH = c(field_A, field_B, field_C),
+  Field = rep(c("A", "B", "C"), each = 10)
+)
+
+# Summary statistics by field
+aggregate(pH ~ Field, data = ph_data, FUN = function(x) {
+  c(mean = mean(x), sd = sd(x), cv = sd(x)/mean(x)*100)
+})
+
+# Boxplot comparison
+boxplot(pH ~ Field, data = ph_data,
+        main = "Soil pH by Field",
+        ylab = "pH Level",
+        col = c("lightcoral", "lightblue", "lightgreen"))</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Homework Assignment 2</h2>
+    <div class="card">
+        <h3 class="card-title">Due: Next Class</h3>
+        
+        <h4>Problem 1: Fertilizer Effectiveness (30 points)</h4>
+        <p>A farmer tested three different fertilizers on corn plots. The yields (bushels per acre) are:</p>
+        <ul>
+            <li>Fertilizer A: 145, 152, 148, 151, 147, 149, 153, 146</li>
+            <li>Fertilizer B: 158, 162, 159, 161, 157, 160, 163, 156</li>
+            <li>Fertilizer C: 142, 138, 144, 140, 139, 143, 141, 137</li>
+        </ul>
+        <p>Calculate mean, median, standard deviation, and coefficient of variation for each fertilizer.</p>
+        
+        <h4>Problem 2: Data Visualization (25 points)</h4>
+        <p>Using the fertilizer data from Problem 1:</p>
+        <ol>
+            <li>Create a histogram for each fertilizer type</li>
+            <li>Make a side-by-side boxplot comparing all three fertilizers</li>
+            <li>Which fertilizer shows the most consistent results? Explain your reasoning.</li>
+        </ol>
+        
+        <h4>Problem 3: Outlier Detection (20 points)</h4>
+        <p>Plant heights (cm) in a greenhouse experiment: 25, 28, 30, 27, 29, 31, 26, 45, 28, 30</p>
+        <ol>
+            <li>Calculate Q1, Q3, and IQR</li>
+            <li>Identify any outliers using the 1.5×IQR rule</li>
+            <li>How would removing the outlier(s) affect the mean and standard deviation?</li>
+        </ol>
+        
+        <h4>Problem 4: Agricultural Interpretation (25 points)</h4>
+        <p>A seed company claims their new variety has an average germination rate of 85% with a standard deviation of 5%. A farmer tests 20 seed lots and finds a mean germination rate of 82% with a standard deviation of 8%.</p>
+        <ol>
+            <li>Compare the farmer's results to the company's claims</li>
+            <li>Calculate the coefficient of variation for both datasets</li>
+            <li>What might explain the differences observed?</li>
+        </ol>
+    </div>
+</div>
