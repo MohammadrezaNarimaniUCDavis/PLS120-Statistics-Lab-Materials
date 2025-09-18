@@ -160,11 +160,6 @@ class PLS120Website {
         
         const openGitHubIssue = (e) => {
             e?.preventDefault();
-            window.open('https://github.com/MohammadrezaNarimaniUCDavis/TAE30-IoT-Lab-Materials/issues/new', '_blank');
-        };
-        
-        const openGitHubIssue = (e) => {
-            e?.preventDefault();
             window.open('https://github.com/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/issues/new', '_blank');
         };
         
@@ -175,9 +170,22 @@ class PLS120Website {
     setupNavigation() {
         const sections = document.querySelectorAll('#main-content > .section');
         const navLinks = document.querySelectorAll('.sidebar-nav-link');
+        const labCardLinks = document.querySelectorAll('.lab-card-link');
         
         // Add click event listeners to navigation links
         navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                this.showSection(sectionId);
+                
+                // Update URL hash without scrolling
+                history.pushState(null, null, `#${sectionId}`);
+            });
+        });
+        
+        // Add click event listeners to lab card links
+        labCardLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const sectionId = link.getAttribute('href').substring(1);
