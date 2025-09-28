@@ -1,0 +1,336 @@
+<h1 class="page-title">📝 Week 1 Assignment: Apply Your R Skills</h1>
+<p class="page-subtitle">Real-World Data Analysis with Crime Statistics</p>
+
+<div class="section">
+    <h2 class="section-title">🎯 Assignment Overview</h2>
+    <div class="card">
+        <p>Put your new R programming skills to the test with a real-world data analysis assignment! You'll analyze Los Angeles crime data using the statistical techniques you learned in the tutorial and class activity.</p>
+
+        <div class="assignment-details">
+            <div class="assignment-item">
+                <span class="assignment-icon">📊</span>
+                <div>
+                    <h4>Crime Statistics Analysis</h4>
+                    <p>Analyze Los Angeles crime data from September 1, 2023, using frequency tables and histograms</p>
+                </div>
+            </div>
+            <div class="assignment-item">
+                <span class="assignment-icon">👥</span>
+                <div>
+                    <h4>Gender-Based Comparison</h4>
+                    <p>Compare crime patterns between male and female victims using data filtering</p>
+                </div>
+            </div>
+            <div class="assignment-item">
+                <span class="assignment-icon">📈</span>
+                <div>
+                    <h4>Data Visualization</h4>
+                    <p>Create and interpret histograms with different bin sizes to understand data patterns</p>
+                </div>
+            </div>
+            <div class="assignment-item">
+                <span class="assignment-icon">✍️</span>
+                <div>
+                    <h4>Statistical Interpretation</h4>
+                    <p>Answer analytical questions about age distributions and data trends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📋 What You'll Do</h2>
+    <div class="card">
+        <h3 class="card-title">Assignment Tasks:</h3>
+        <div class="assignment-tasks">
+            <div class="task-item">
+                <span class="task-number">1</span>
+                <div>
+                    <h4>Load and Explore Dataset</h4>
+                    <p>Load the LA Crime dataset and examine its structure using <code>str()</code> function</p>
+                </div>
+            </div>
+            <div class="task-item">
+                <span class="task-number">2</span>
+                <div>
+                    <h4>Create Frequency Tables</h4>
+                    <p>Generate frequency tables for victim ages divided into groups using <code>table()</code> and <code>cut()</code></p>
+                </div>
+            </div>
+            <div class="task-item">
+                <span class="task-number">3</span>
+                <div>
+                    <h4>Generate Histograms</h4>
+                    <p>Create histograms to visualize age distributions with 10 bins using <code>hist()</code></p>
+                </div>
+            </div>
+            <div class="task-item">
+                <span class="task-number">4</span>
+                <div>
+                    <h4>Filter Data by Gender</h4>
+                    <p>Separate data into male and female victim subsets using <code>filter()</code> function</p>
+                </div>
+            </div>
+            <div class="task-item">
+                <span class="task-number">5</span>
+                <div>
+                    <h4>Compare Visualizations</h4>
+                    <p>Create histograms for both gender groups and compare with different bin sizes (10 vs 20)</p>
+                </div>
+            </div>
+            <div class="task-item">
+                <span class="task-number">6</span>
+                <div>
+                    <h4>Answer Questions</h4>
+                    <p>Provide written analysis of data patterns and interpretation of results</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📊 Dataset Information</h2>
+    <div class="card">
+        <h3 class="card-title">LA Crime Dataset</h3>
+        <p>You'll work with crime statistics from Los Angeles on <strong>September 1, 2023</strong>. The original dataset contains over 800,000 entries, but has been filtered to focus on one day with clear gender identification.</p>
+        
+        <div class="dataset-info">
+            <div class="info-item">
+                <h4>📁 File Name</h4>
+                <p><code>LA_Data.csv</code></p>
+            </div>
+            <div class="info-item">
+                <h4>📏 Size</h4>
+                <p>555 rows (observations)</p>
+            </div>
+            <div class="info-item">
+                <h4>📊 Columns</h4>
+                <p><strong>Vict.Age</strong> - Age of victim<br>
+                <strong>Vict.Sex</strong> - Gender (F/M)</p>
+            </div>
+            <div class="info-item">
+                <h4>🌐 Source</h4>
+                <p><a href="https://catalog.data.gov/dataset/crime-data-from-2020-to-present" target="_blank">Data.gov Crime Database</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Questions You'll Answer</h2>
+    <div class="card">
+        <div class="questions-list">
+            <div class="question-item">
+                <span class="question-icon">❓</span>
+                <div>
+                    <h4>Data Structure Questions</h4>
+                    <ul>
+                        <li>What type of data is "Vict.Age"? How many observations does it have?</li>
+                        <li>What type of data is "Vict.Sex"? What are the unique values?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="question-item">
+                <span class="question-icon">❓</span>
+                <div>
+                    <h4>Data Analysis Questions</h4>
+                    <ul>
+                        <li>What do the frequency tables tell you about victim ages?</li>
+                        <li>At what age range is someone most commonly a victim of crime?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="question-item">
+                <span class="question-icon">❓</span>
+                <div>
+                    <h4>Comparative Analysis Questions</h4>
+                    <ul>
+                        <li>How do trends change when data is separated by gender?</li>
+                        <li>What new inferences can you make from gender-separated data?</li>
+                        <li>How does changing bin sizes affect data interpretation?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Start Your Assignment</h2>
+    <div class="card">
+        <p>Ready to tackle your first R programming assignment? The same Binder environment contains your assignment materials!</p>
+        
+        <div class="cta-section">
+            <div class="binder-launch">
+                <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1" 
+                   target="_blank" class="binder-button">
+                    <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                    <span>Launch Assignment Environment</span>
+                </a>
+            </div>
+
+            <div class="assignment-steps">
+                <h3>📝 Assignment Steps:</h3>
+                <ol>
+                    <li><strong>Click the Binder button above</strong> 🖱️</li>
+                    <li><strong>Wait for environment to load</strong> (2-3 minutes) ⏳</li>
+                    <li><strong>Navigate to <code>assignment</code> folder</strong> 📁</li>
+                    <li><strong>Double-click <code>Assignment1.ipynb</code></strong> 📄</li>
+                    <li><strong>Fill in student information</strong> at the top ✍️</li>
+                    <li><strong>Complete all code boxes</strong> with hints provided 💻</li>
+                    <li><strong>Answer all questions</strong> in text boxes ❓</li>
+                    <li><strong>Save your work frequently</strong> 💾</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Instructions</h2>
+    <div class="card">
+        <h3 class="card-title">How to Submit Your Assignment:</h3>
+        
+        <div class="submission-steps">
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <div>
+                    <h4>Complete Your Work</h4>
+                    <p>Fill in all code cells and answer all questions in the text boxes</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <div>
+                    <h4>Save Your Progress</h4>
+                    <p>Go to <strong>File</strong> → <strong>Save</strong> to save your work</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <div>
+                    <h4>Export HTML Report</h4>
+                    <p>Go to <strong>File</strong> → <strong>Save and Export Notebook As</strong> → <strong>HTML</strong></p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">4</span>
+                <div>
+                    <h4>Download Notebook</h4>
+                    <p>Go to <strong>File</strong> → <strong>Download</strong> to get the <code>.ipynb</code> file</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <span class="step-number">5</span>
+                <div>
+                    <h4>Submit to Canvas</h4>
+                    <p>Upload <strong>both</strong> the HTML file and .ipynb file to UC Davis Canvas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="submission-requirements">
+            <h3 class="card-title">📋 Submission Requirements:</h3>
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <span class="req-icon">📄</span>
+                    <div>
+                        <h4>HTML Report</h4>
+                        <p>Your formatted assignment with all outputs visible</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <span class="req-icon">💾</span>
+                    <div>
+                        <h4>.ipynb File</h4>
+                        <p>Your notebook code as backup</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <span class="req-icon">✍️</span>
+                    <div>
+                        <h4>Student Info</h4>
+                        <p>Name and ID filled in at the top</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <span class="req-icon">✅</span>
+                    <div>
+                        <h4>Complete Work</h4>
+                        <p>All code cells and questions answered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="due-date-box">
+            <h3>📅 Due Date: Next Class Session</h3>
+            <p><strong>Submit to:</strong> UC Davis Canvas</p>
+            <p><strong>Late Policy:</strong> Check syllabus for late submission penalties</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💡 Assignment Tips</h2>
+    <div class="card">
+        <div class="tips-grid">
+            <div class="tip-item">
+                <h4>🔍 Read Carefully</h4>
+                <p>Look for ❓ emoji markers indicating questions that need answers</p>
+            </div>
+            <div class="tip-item">
+                <h4>💬 Use Hints</h4>
+                <p>Each code section has helpful comments to guide you</p>
+            </div>
+            <div class="tip-item">
+                <h4>▶️ Run in Order</h4>
+                <p>Execute cells sequentially - later cells depend on earlier ones</p>
+            </div>
+            <div class="tip-item">
+                <h4>💾 Save Often</h4>
+                <p>Download your work regularly - Binder is temporary</p>
+            </div>
+            <div class="tip-item">
+                <h4>🔄 Test Your Code</h4>
+                <p>Make sure all code cells run without errors</p>
+            </div>
+            <div class="tip-item">
+                <h4>📝 Complete Answers</h4>
+                <p>Provide thorough written responses to all questions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🆘 Need Help?</h2>
+    <div class="card">
+        <div class="help-grid">
+            <div class="help-item">
+                <h4>📧 Contact</h4>
+                <p><strong>Mohammadreza Narimani</strong><br>
+                📧 mnarimani@ucdavis.edu<br>
+                🏫 Dept. of Biological and Agricultural Engineering, UC Davis</p>
+            </div>
+            <div class="help-item">
+                <h4>🔧 Technical Issues</h4>
+                <ul>
+                    <li><strong>Binder won't load?</strong> Try refreshing or clearing cache</li>
+                    <li><strong>Code errors?</strong> Check for typos and run previous cells</li>
+                    <li><strong>Can't export?</strong> Try File → Save first, then export</li>
+                </ul>
+            </div>
+            <div class="help-item">
+                <h4>📚 R Help</h4>
+                <ul>
+                    <li>Use <code>?function_name</code> for help</li>
+                    <li>Check tutorial page for examples</li>
+                    <li>Review class activity notebook</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
