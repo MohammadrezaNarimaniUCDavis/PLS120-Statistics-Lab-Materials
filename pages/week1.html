@@ -1,120 +1,312 @@
-<h1 class="page-title">Week 1: Introduction to R and Statistics 🌾</h1>
-<p class="page-subtitle">Learn R Programming with No Installation Required!</p>
+<h1 class="page-title">🌾 PLS 120: Applied Statistics in Agriculture</h1>
+<p class="page-subtitle">Interactive R Programming with Binder - No Installation Required! 🚀</p>
 
 <div class="section">
-    <h2 class="section-title">📚 Learning Objectives</h2>
     <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Interactive R Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to PLS 120!</strong> In this course, we use the <strong>R programming language</strong> for statistical analysis in agriculture. Instead of installing R and RStudio on your computer, we use <strong>Binder</strong> and <strong>Jupyter Notebooks</strong> to provide you with a ready-to-use environment. No software installation needed! 🎉</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Why Use Binder?</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">✅</span>
+                <span><strong>No Installation Required</strong> - Everything runs in your browser</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">⚙️</span>
+                <span><strong>Pre-configured Environment</strong> - All packages already installed</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌐</span>
+                <span><strong>Cross-platform</strong> - Works on Windows, Mac, Linux</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔄</span>
+                <span><strong>Always Updated</strong> - Latest versions of R and packages</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🤝</span>
+                <span><strong>Easy Sharing</strong> - Just click a link to get started</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Binder"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_1.png" alt="Binder Launching" class="tutorial-img">
+            <p class="image-caption">🔄 Binder is launching your environment - please wait patiently!</p>
+        </div>
+
+        <h3 class="card-title">Step 2: Wait for Environment to Load ⏳</h3>
+        <p>After clicking the link, Binder will show progress through several stages:</p>
         <ul>
-            <li>🎯 Understand the role of statistics in agricultural research</li>
-            <li>🔢 Learn R data types (integer, numeric, character, logical, factor)</li>
-            <li>📊 Create and manipulate vectors in R</li>
-            <li>🧮 Use R as a calculator for agricultural computations</li>
-            <li>📋 Work with data frames and explore datasets</li>
-            <li>📈 Create frequency tables and histograms</li>
-            <li>💾 Save and export your work</li>
+            <li><strong>Waiting</strong> 🕐</li>
+            <li><strong>Building</strong> 🔨</li>
+            <li><strong>Pushing</strong> 📤</li>
+            <li><strong>Launching</strong> 🚀</li>
+        </ul>
+        <p>The green progress bar shows Binder is almost ready!</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_2.png" alt="Binder Ready" class="tutorial-img">
+            <p class="image-caption">✅ Green bar means your environment is ready in just a few seconds!</p>
+        </div>
+
+        <h3 class="card-title">Step 3: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see several folders:</p>
+        <ul>
+            <li><code>assignment/</code> - Your homework assignments</li>
+            <li><code>class_activity/</code> - Lab tutorials and exercises</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_3.png" alt="Navigate to Class Activity" class="tutorial-img">
+            <p class="image-caption">👆 Click here to access your lab materials</p>
+        </div>
+
+        <h3 class="card-title">Step 4: Open the Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week1_Introduction.ipynb</code> to open the interactive lab notebook.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_4.png" alt="Open Lab Notebook" class="tutorial-img">
+            <p class="image-caption">👆 Double-click here to open the lab instructions and code</p>
+        </div>
+
+        <h3 class="card-title">Step 5: Explore the Data (Optional) 📊</h3>
+        <p>We've already uploaded the data for this lab! The file <code>LA_Data.csv</code> contains the crime statistics data. You can <strong>double-click</strong> on it to explore the data if you're curious.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_5.png" alt="Explore Data" class="tutorial-img">
+            <p class="image-caption">👆 Click here to view the raw data (optional)</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Go back to main folder</strong> - Click the folder icon in the left panel</li>
+        </ol>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_6.png" alt="Go Back to Main" class="tutorial-img">
+            <p class="image-caption">👆 Click the folder icon to return to the main directory</p>
+        </div>
+
+        <p>2. <strong>Download your notebook</strong> - Right-click on your <code>.ipynb</code> file and select "Download"</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Completing Assignments</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access your homework.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_7.png" alt="Access Assignment" class="tutorial-img">
+            <p class="image-caption">👆 Click here to access assignment materials</p>
+        </div>
+
+        <h3 class="card-title">Step 2: Open Assignment Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment1.ipynb</code> to open your assignment.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_8.png" alt="Open Assignment" class="tutorial-img">
+            <p class="image-caption">👆 Double-click here to open your assignment</p>
+        </div>
+
+        <h3 class="card-title">Step 3: Complete Your Work ✍️</h3>
+        <p>Fill in all <strong>code boxes</strong> and <strong>text boxes</strong> carefully to answer all questions. Look for:</p>
+        <ul>
+            <li>❓ Question mark emojis indicating questions to answer</li>
+            <li>Code cells with hints in comments</li>
+            <li>Raw text cells for your written responses</li>
+        </ul>
+
+        <h3 class="card-title">Step 4: Download Your Completed Work 💾</h3>
+        
+        <h4>Download Code File (.ipynb)</h4>
+        <p>Click <strong>File</strong> → <strong>Download</strong> to save your notebook code.</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_9.png" alt="Download Code" class="tutorial-img">
+            <p class="image-caption">👆 Download your .ipynb file for backup</p>
+        </div>
+
+        <h4>Export HTML/PDF Report 📄</h4>
+        <p>For submission, you also need an HTML or PDF report:</p>
+        <p>Click <strong>File</strong> → <strong>Save and Export Notebook As</strong> → <strong>HTML</strong> (or PDF)</p>
+        
+        <div class="tutorial-image">
+            <img src="../assets/Week_1/Image_10.png" alt="Export Report" class="tutorial-img">
+            <p class="image-caption">👆 Export your completed assignment as HTML or PDF</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For each assignment, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your formatted assignment with outputs</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Technical Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing the page or clearing browser cache</li>
+            <li><strong>Lost your work?</strong> Always download files before closing Binder</li>
+            <li><strong>Code not working?</strong> Check for typos and make sure you've run all previous cells</li>
+        </ul>
+
+        <h3 class="card-title">📚 Learning Resources</h3>
+        <ul>
+            <li><strong>R Documentation:</strong> Use <code>?function_name</code> in code cells for help</li>
+            <li><strong>Course Materials:</strong> All tutorials are in the <code>class_activity</code> folder</li>
+            <li><strong>Practice:</strong> Try modifying the example code to learn more!</li>
         </ul>
     </div>
 </div>
 
 <div class="section">
-    <h2 class="section-title">🎓 This Week's Materials</h2>
+    <h2 class="section-title">📋 What You'll Learn</h2>
     <div class="card">
-        <p>Week 1 is divided into three main components to guide your learning journey:</p>
-        
-        <div class="materials-grid">
-            <div class="material-item">
-                <span class="material-icon">📖</span>
-                <div>
-                    <h4>Tutorial</h4>
-                    <p>Comprehensive guide to R programming basics, data types, and Binder setup</p>
-                    <a href="#" onclick="loadPage('week1-tutorial')" class="material-link">Start Tutorial →</a>
-                </div>
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span><strong>R Programming Basics</strong> - Variables, vectors, data frames</span>
             </div>
-            <div class="material-item">
-                <span class="material-icon">💻</span>
-                <div>
-                    <h4>Class Activity</h4>
-                    <p>Interactive hands-on exercises with real agricultural data in Binder</p>
-                    <a href="#" onclick="loadPage('week1-class-activity')" class="material-link">Start Activity →</a>
-                </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span><strong>Data Visualization</strong> - Histograms, plots, charts</span>
             </div>
-            <div class="material-item">
-                <span class="material-icon">📝</span>
-                <div>
-                    <h4>Assignment</h4>
-                    <p>Apply your R skills to analyze crime statistics data</p>
-                    <a href="#" onclick="loadPage('week1-assignment')" class="material-link">Start Assignment →</a>
-                </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span><strong>Statistical Analysis</strong> - Descriptive statistics, hypothesis testing</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span><strong>Agricultural Applications</strong> - Real-world data analysis</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span><strong>Report Writing</strong> - Professional statistical reports</span>
             </div>
         </div>
     </div>
 </div>
 
 <div class="section">
-    <h2 class="section-title">🚀 Quick Start</h2>
+    <h2 class="section-title">🌟 Tips for Success</h2>
     <div class="card">
-        <p>New to R programming? Follow this recommended learning path:</p>
-        
-        <div class="learning-path">
-            <div class="path-step">
-                <span class="step-number">1</span>
-                <div>
-                    <h4>Read the Tutorial</h4>
-                    <p>Start with the tutorial to understand R basics and how to use Binder</p>
-                </div>
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>📖 Read instructions carefully</strong> before starting each exercise</li>
+            <li><strong>▶️ Run code cells in order</strong> - later cells depend on earlier ones</li>
+            <li><strong>💾 Save frequently</strong> - Download your work regularly</li>
+            <li><strong>🤔 Experiment</strong> - Try modifying code to see what happens</li>
+            <li><strong>❓ Ask questions</strong> - Don't hesitate to reach out for help</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
             </div>
-            <div class="path-arrow">→</div>
-            <div class="path-step">
-                <span class="step-number">2</span>
-                <div>
-                    <h4>Complete Class Activity</h4>
-                    <p>Practice with interactive exercises and real data</p>
-                </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
             </div>
-            <div class="path-arrow">→</div>
-            <div class="path-step">
-                <span class="step-number">3</span>
-                <div>
-                    <h4>Tackle the Assignment</h4>
-                    <p>Apply your skills to complete the homework</p>
-                </div>
+            <div class="shortcut-item">
+                <kbd>A</kbd>
+                <span>Insert cell above</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>B</kbd>
+                <span>Insert cell below</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>DD</kbd>
+                <span>Delete current cell</span>
             </div>
         </div>
     </div>
 </div>
 
 <div class="section">
-    <h2 class="section-title">🌟 Why This Approach Works</h2>
+    <h2 class="section-title">🎉 Ready to Start?</h2>
     <div class="card">
-        <div class="benefits-grid">
-            <div class="benefit-item">
-                <span class="benefit-icon">🌐</span>
-                <div>
-                    <h4>No Installation Required</h4>
-                    <p>Use Binder to run R in your browser - works on any device</p>
-                </div>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">📚</span>
-                <div>
-                    <h4>Progressive Learning</h4>
-                    <p>Build skills step-by-step from basics to real applications</p>
-                </div>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🌾</span>
-                <div>
-                    <h4>Agricultural Focus</h4>
-                    <p>Learn with examples relevant to plant sciences and agriculture</p>
-                </div>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🎮</span>
-                <div>
-                    <h4>Interactive Practice</h4>
-                    <p>Hands-on coding with immediate feedback and results</p>
-                </div>
-            </div>
+        <p>Click the Binder badge below to launch your first R programming session!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Interactive R Environment</span>
+            </a>
         </div>
+        
+        <p class="center-text"><strong>Happy coding! 🚀🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis</em></p>
     </div>
 </div>
