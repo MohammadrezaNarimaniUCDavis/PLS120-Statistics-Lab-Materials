@@ -136,7 +136,7 @@ For each assignment, submit **TWO files** to UC Davis Canvas:
 
 ---
 
-## 🆘 Need Help?
+## ❓ Need Help?
 
 ### 📧 Contact Information
 
@@ -158,24 +158,7 @@ For each assignment, submit **TWO files** to UC Davis Canvas:
 
 ---
 
-## 🎓 Course Structure
-
-### 📅 Weekly Materials
-
-Each week has its own Binder environment:
-
-- **Week 1:** Introduction to R and Statistics [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
-- **Week 2:** Descriptive Statistics *(Coming Soon)*
-- **Week 3:** Probability Distributions *(Coming Soon)*
-- **Week 4:** Hypothesis Testing *(Coming Soon)*
-- **Week 5:** t-Tests *(Coming Soon)*
-- **Week 6:** ANOVA *(Coming Soon)*
-- **Week 7:** Regression Analysis *(Coming Soon)*
-- **Week 8:** Correlation Analysis *(Coming Soon)*
-- **Week 9:** Non-parametric Tests *(Coming Soon)*
-- **Week 10:** Final Project *(Coming Soon)*
-
-### 📋 What You'll Learn
+## 📋 What You'll Learn
 
 ✅ **R Programming Basics** - Variables, vectors, data frames  
 ✅ **Data Visualization** - Histograms, plots, charts  
