@@ -271,8 +271,8 @@ INPUT ../Image_1.png
 INPUT ../Image_1.png
 INPUT ../Image_1.png
 INPUT ../Image_1.png
-INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT ../Image_2.png
 INPUT ../Image_2.png
 INPUT ../Image_2.png
