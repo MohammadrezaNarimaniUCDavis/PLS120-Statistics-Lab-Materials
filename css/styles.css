@@ -695,20 +695,38 @@ code {
 }
 
 .image-container {
-    margin: 20px 0;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     text-align: center;
-}
-
-.image-container img {
-    max-width: 100%;
-    border-radius: 4px;
     box-shadow: 0 2px 4px var(--shadow-color);
 }
 
+.dark-mode .image-container {
+    background-color: #2d2d2d;
+}
+
+.tutorial-image {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.tutorial-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+}
+
 .image-caption {
-    margin-top: 8px;
+    margin-top: 12px;
     font-size: 14px;
     color: #666;
+    font-style: italic;
+    font-weight: 500;
 }
 
 .dark-mode .image-caption {
