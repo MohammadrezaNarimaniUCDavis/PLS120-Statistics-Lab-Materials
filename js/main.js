@@ -279,12 +279,26 @@ class PLS120Website {
         const sectionElement = document.createElement('div');
         sectionElement.id = sectionId;
         sectionElement.className = 'section';
-        sectionElement.innerHTML = `
-            <h1 class="page-title">${this.getSectionTitle(sectionId)}</h1>
-            <div class="card">
-                <p>This content is under development. Check back soon for the complete tutorial.</p>
-            </div>
-        `;
+        
+        if (sectionId.startsWith('week') && sectionId !== 'week1') {
+            sectionElement.innerHTML = `
+                <div style="text-align: center; padding: 100px 20px;">
+                    <div style="font-size: 120px; margin-bottom: 30px;">🔒</div>
+                    <h1 class="page-title" style="margin-bottom: 20px;">${this.getSectionTitle(sectionId)}</h1>
+                    <div class="card" style="max-width: 500px; margin: 0 auto;">
+                        <h2 style="color: #666; margin-bottom: 15px;">Content will be added soon!</h2>
+                        <p>This week's materials are currently being developed. Please check back later for tutorials, activities, and assignments.</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            sectionElement.innerHTML = `
+                <h1 class="page-title">${this.getSectionTitle(sectionId)}</h1>
+                <div class="card">
+                    <p>This content is under development. Check back soon for the complete tutorial.</p>
+                </div>
+            `;
+        }
         
         mainContent.appendChild(sectionElement);
         sectionElement.style.display = 'block';
@@ -292,16 +306,16 @@ class PLS120Website {
 
     getSectionTitle(sectionId) {
         const titles = {
-            'week1': 'Week 1: Introduction to Statistics',
-            'week2': 'Week 2: Descriptive Statistics',
-            'week3': 'Week 3: Probability Distributions',
-            'week4': 'Week 4: Hypothesis Testing',
-            'week5': 'Week 5: t-Tests',
-            'week6': 'Week 6: ANOVA',
-            'week7': 'Week 7: Regression Analysis',
-            'week8': 'Week 8: Correlation Analysis',
-            'week9': 'Week 9: Non-parametric Tests',
-            'week10': 'Week 10: Final Project',
+            'week1': 'Week 1: Applied Statistics in Agriculture',
+            'week2': 'Week 2 🔒',
+            'week3': 'Week 3 🔒',
+            'week4': 'Week 4 🔒',
+            'week5': 'Week 5 🔒',
+            'week6': 'Week 6 🔒',
+            'week7': 'Week 7 🔒',
+            'week8': 'Week 8 🔒',
+            'week9': 'Week 9 🔒',
+            'week10': 'Week 10 🔒',
             'syllabus': 'Course Syllabus',
             'resources': 'Resources',
             'faq': 'Frequently Asked Questions'
