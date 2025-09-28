@@ -28,7 +28,7 @@ class PLS120Website {
                 if (sidebar.classList.contains('collapsed')) {
                     footer.style.marginLeft = '0';
                 } else {
-                    footer.style.marginLeft = '280px';
+                    footer.style.marginLeft = '360px';
                 }
             }
         });
