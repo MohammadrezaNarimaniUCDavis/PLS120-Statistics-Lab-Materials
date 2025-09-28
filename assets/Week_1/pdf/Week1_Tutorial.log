@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  28 SEP 2025 15:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  28 SEP 2025 15:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -549,10 +549,10 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.89 \newpage
               [1]
-Overfull \hbox (100.0642pt too wide) in paragraph at lines 101--102
- [][]\OT1/cmr/bx/n/14.4 https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120- 
- []
-
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 97.
 <../Image_1.png, id=164, 904.88063pt x 499.11469pt>
 File: ../Image_1.png Graphic file (type png)
 <use ../Image_1.png>
@@ -568,14 +568,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [2{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<../Image_2.png, id=173, 880.03781pt x 424.58624pt>
+<../Image_2.png, id=171, 880.03781pt x 424.58624pt>
 File: ../Image_2.png Graphic file (type png)
 <use ../Image_2.png>
 Package pdftex.def Info: ../Image_2.png  used on input line 145.
 (pdftex.def)             Requested size: 362.37569pt x 174.83301pt.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 158.
-<../Image_3.png, id=174, 910.90312pt x 500.62032pt>
+<../Image_3.png, id=172, 910.90312pt x 500.62032pt>
 File: ../Image_3.png Graphic file (type png)
 <use ../Image_3.png>
 Package pdftex.def Info: ../Image_3.png  used on input line 161.
@@ -590,12 +590,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [3 <../Image_1.png> <../Image_2.png>]
-<../Image_4.png, id=183, 1023.07219pt x 550.30594pt>
+<../Image_4.png, id=181, 1023.07219pt x 550.30594pt>
 File: ../Image_4.png Graphic file (type png)
 <use ../Image_4.png>
 Package pdftex.def Info: ../Image_4.png  used on input line 170.
 (pdftex.def)             Requested size: 362.37569pt x 194.91913pt.
-<../Image_5.png, id=184, 807.015pt x 258.9675pt>
+<../Image_5.png, id=182, 807.015pt x 258.9675pt>
 File: ../Image_5.png Graphic file (type png)
 <use ../Image_5.png>
 Package pdftex.def Info: ../Image_5.png  used on input line 179.
@@ -610,12 +610,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [4 <../Image_3.png> <../Image_4.png>]
-<../Image_6.png, id=191, 825.83531pt x 429.85594pt>
+<../Image_6.png, id=189, 825.83531pt x 429.85594pt>
 File: ../Image_6.png Graphic file (type png)
 <use ../Image_6.png>
 Package pdftex.def Info: ../Image_6.png  used on input line 198.
 (pdftex.def)             Requested size: 362.37569pt x 188.61903pt.
-<../Image_7.png, id=192, 782.925pt x 356.83313pt>
+<../Image_7.png, id=190, 782.925pt x 356.83313pt>
 File: ../Image_7.png Graphic file (type png)
 <use ../Image_7.png>
 Package pdftex.def Info: ../Image_7.png  used on input line 213.
@@ -630,12 +630,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [5 <../Image_5.png> <../Image_6.png>]
-<../Image_8.png, id=201, 1101.36469pt x 538.26094pt>
+<../Image_8.png, id=199, 1101.36469pt x 538.26094pt>
 File: ../Image_8.png Graphic file (type png)
 <use ../Image_8.png>
 Package pdftex.def Info: ../Image_8.png  used on input line 222.
 (pdftex.def)             Requested size: 362.37569pt x 177.10101pt.
-<../Image_9.png, id=202, 785.18344pt x 513.41812pt>
+<../Image_9.png, id=200, 785.18344pt x 513.41812pt>
 File: ../Image_9.png Graphic file (type png)
 <use ../Image_9.png>
 Package pdftex.def Info: ../Image_9.png  used on input line 242.
@@ -650,7 +650,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6 <../Image_7.png> <../Image_8.png>]
-<../Image_10.png, id=210, 822.82407pt x 601.4972pt>
+<../Image_10.png, id=208, 822.82407pt x 601.4972pt>
 File: ../Image_10.png Graphic file (type png)
 <use ../Image_10.png>
 Package pdftex.def Info: ../Image_10.png  used on input line 253.
@@ -691,18 +691,18 @@ Package rerunfilecheck Info: File `Week1_Tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 035DAC9FDC8A40B0EB37079FFE3F1563;4981.
  ) 
 Here is how much of TeX's memory you used:
- 25563 strings out of 473579
- 502852 string characters out of 5732263
+ 25566 strings out of 473579
+ 502871 string characters out of 5732263
  861427 words of memory out of 5000000
- 48076 multiletter control sequences out of 15000+600000
- 563787 words of font info for 55 fonts, out of 8000000 for 9000
+ 48078 multiletter control sequences out of 15000+600000
+ 564402 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,12n,101p,536b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on Week1_Tutorial.pdf (10 pages, 2303112 bytes).
+Output written on Week1_Tutorial.pdf (10 pages, 2302510 bytes).
 PDF statistics:
- 272 PDF objects out of 1000 (max. 8388607)
- 221 compressed objects within 3 object streams
+ 270 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
  42 named destinations out of 1000 (max. 500000)
  292 words of extra memory for PDF output out of 10000 (max. 10000000)
 

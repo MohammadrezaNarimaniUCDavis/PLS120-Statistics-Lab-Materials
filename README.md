@@ -1,103 +1,122 @@
-# PLS 120 – Applied Statistics in Agriculture  
-_Statistical Methods and Data Analysis for Plant Sciences_
+# 🌾 PLS 120: Applied Statistics in Agricultural Sciences
+_Interactive R Programming with Binder - No Installation Required!_
 
 [![Live Site](https://img.shields.io/badge/GitHub%20Pages-live-blue)](https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](#license)
 
-Interactive course website and learning materials for **PLS 120: Applied Statistics in Agriculture** offered by the University of California, Davis (Plant Sciences Department).  
-The goal is to provide a comprehensive, modern learning platform that guides students through statistical concepts and their applications in agricultural research.
+Interactive course website and learning materials for **PLS 120: Applied Statistics in Agricultural Sciences** offered by the University of California, Davis.  
+The goal is to provide a comprehensive, modern learning platform using **Binder** for cloud-based R programming - no software installation required!
+
+---
+
+## 🎯 Course Information
+
+**Instructor:** Mohsen B. Mesgaran (mbmesgaran@ucdavis.edu)  
+**Teaching Assistant:** Mohammadreza Narimani (mnarimani@ucdavis.edu)  
+**Location:** Teaching and Learning Complex 1010  
+**Lab Sessions:** TLC 2212 & 2216  
+
+### 📚 Course Objectives
+- **Acquire Fundamental Competencies:** Essential skills in data collection, organization, analysis, visualization, and interpretation
+- **Develop Statistical Reasoning:** Comprehensive understanding of statistical thinking and reasoning for data analysis
 
 ---
 
 ## ✨ Key Features
+
 | Feature | Description |
 |---------|-------------|
-| 📑 **Modular Architecture** | Separated HTML, CSS, and JavaScript files for professional maintainability. |
-| 🌓 **Light / Dark Theme** | One‑click theme toggle with preference stored in `localStorage`. |
-| 🖨️ **Print / PDF‑ready** | "Download as PDF" button isolates the current section and triggers `window.print()` for clean exports. |
-| 📝 **Markdown Export** | "Download as MD" converts the visible section to Markdown and downloads it as a file. |
-| 📱 **Responsive Design** | Collapsible sidebar and mobile dropdown keep navigation usable on any screen size. |
-| 📊 **Progressive Learning** | 10 weeks of structured content with tutorials, activities, and homework assignments. |
-| 🔬 **R Integration** | Comprehensive R/RStudio tutorials and statistical computing exercises. |
-| 📚 **Course Materials** | Syllabus, resources, FAQ, and all weekly content organized professionally. |
-| 🚀 **Dynamic Loading** | JavaScript dynamically loads page content without page refreshes. |
-| 🌾 **Agricultural Focus** | Real-world statistical applications in plant sciences and agricultural research. |
+| 🌐 **Binder Integration** | Cloud-based R environment - no installation required! |
+| 📱 **Responsive Design** | Works on any device with modern web browser |
+| 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
+| 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
+| 🔒 **Progressive Content** | Week 1 available, additional weeks coming soon |
+| 📝 **Assignment System** | Integrated homework with HTML/PDF export |
+| 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
+| 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
 
 ---
 
-## 🚀 Live Demo
-The production build is automatically published via GitHub Pages:  
-<https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/>
+## 🚀 Quick Access
 
----
+### 🌐 Course Website
+**All course materials:** https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/
 
-## 🖥️ Quick Start
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials.git
-cd PLS120-Statistics-Lab-Materials
-
-# 2. Serve locally (Python 3)
-python -m http.server 8000
-# then visit http://localhost:8000 in your browser
-```
-
-_No dependencies are required—any static file server (or just opening `index.html`) will work._
+### 💻 Interactive R Environment (Week 1)
+**Launch Binder:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1
 
 ---
 
 ## 🔧 Project Structure
+
 ```
 ├── index.html              # main website file
 ├── css/
 │   └── styles.css          # all styling
 ├── js/
 │   └── main.js             # all functionality
-├── pages/                  # individual page content
-│   ├── syllabus.html
-│   ├── resources.html
-│   ├── faq.html
-│   └── week1-week10.html   # weekly materials
+├── pages/                  # course content pages
+│   ├── syllabus.html       # complete course syllabus
+│   ├── resources.html      # learning resources
+│   ├── faq.html           # frequently asked questions
+│   └── week1.html         # week 1 materials
 ├── assets/                 # images and media
-│   └── images/
-│       ├── logos/
-│       └── people/         # instructor photos
-└── README.md               # you're reading it!
+│   ├── images/
+│   │   ├── logos/         # UC Davis logos
+│   │   └── people/        # instructor photos
+│   └── Week_1/            # week 1 specific materials
+│       ├── Image_*.png    # tutorial screenshots
+│       ├── README.md      # binder tutorial
+│       └── pdf/           # LaTeX/PDF materials
+├── assignment/            # homework assignments
+│   ├── Assignment1.ipynb  # week 1 assignment
+│   └── LA_Data.csv       # crime statistics dataset
+├── class_activity/        # interactive tutorials
+│   └── Week1_Introduction.ipynb
+└── README.md             # you're reading it!
 ```
 
 ---
 
-## 📚 Course Overview
+## 📚 Course Content
 
-The course introduces statistical methods essential for agricultural and plant science research using **R/RStudio** for data analysis. Students progress through hands-on tutorials covering fundamental to advanced statistical concepts.
+### 🗓️ Weekly Schedule
+1. **Week 1**: Introduction to Statistics ✅ *Available*
+   - Overview of statistics and applications
+   - Data types and measurement levels
+   - Introduction to R with Binder
+   - Basic data manipulation and visualization
 
-### 📅 Weekly Schedule
-1. **Week 1**: Introduction to Statistics - Basic concepts, data types, R/RStudio setup
-2. **Week 2**: Descriptive Statistics - Central tendency, variability, data visualization  
-3. **Week 3**: Probability Distributions - Normal, binomial, and agricultural applications
-4. **Week 4**: Hypothesis Testing - Null/alternative hypotheses, p-values, significance
-5. **Week 5**: t-Tests - One-sample, two-sample, and paired comparisons
-6. **Week 6**: ANOVA - Analysis of variance for multiple group comparisons
-7. **Week 7**: Regression Analysis - Linear relationships and prediction models
-8. **Week 8**: Correlation Analysis - Relationships between variables
-9. **Week 9**: Non-parametric Tests - Distribution-free statistical methods
-10. **Week 10**: Final Project - Independent data analysis and presentation
+2. **Week 2-10**: 🔒 *Coming Soon*
+   - Descriptive Statistics
+   - Probability and Distributions
+   - Sampling and Estimation
+   - Hypothesis Testing
+   - ANOVA and Regression
+   - Correlation Analysis
 
-### 📊 Course Components
-Each week includes:
-- **Tutorial**: Step-by-step R programming and statistical concepts
-- **Class Activity**: Hands-on exercises with agricultural datasets
-- **Homework Assignment**: Problem sets reinforcing weekly topics
+### 📋 Assessment
+- **Mid-term Exam:** 100 points (22.2%)
+- **Weekly Assignments:** 200 points (44.4%) - 10 assignments @ 20 points each
+- **Final Exam:** 150 points (33.3%)
+- **Total:** 450 points
 
-### 🎯 Final Project
-Students complete an independent statistical analysis project featuring:
-- **Dataset Selection**: Choose from provided agricultural datasets or propose alternative
-- **Research Questions**: Formulate testable hypotheses relevant to agriculture
-- **Statistical Analysis**: Apply appropriate methods learned throughout the course
-- **Visualization**: Create publication-quality graphs and charts
-- **Reporting**: Write comprehensive analysis report (8-10 pages)
-- **Presentation**: Present findings to class (10-minute presentation)
+---
+
+## 🛠️ Technology Stack
+
+### 🌐 No Installation Required!
+- **Binder:** Cloud-based R environment
+- **Jupyter Notebooks:** Interactive coding and documentation
+- **Pre-installed Packages:** tidyverse, ggplot2, dplyr, knitr
+
+### 💻 Optional Local Setup
+```r
+# If you prefer local R installation
+install.packages(c("ggplot2", "dplyr", "tidyr", "readr", 
+                   "knitr", "rmarkdown"))
+```
 
 ---
 
@@ -105,50 +124,76 @@ Students complete an independent statistical analysis project featuring:
 
 By completing this course, students will be able to:
 - Apply fundamental statistical concepts to agricultural research problems
-- Design and analyze experiments using appropriate statistical methods
-- Use R/RStudio for data manipulation, analysis, and visualization
+- Use cloud-based R programming for data analysis (via Binder)
+- Create frequency tables, histograms, and statistical visualizations
 - Interpret statistical results and communicate findings effectively
-- Evaluate assumptions and limitations of statistical analyses
-- Conduct independent statistical research projects
+- Complete assignments using Jupyter notebooks with HTML/PDF export
+- Understand data types, variables, and basic statistical reasoning
 
 ---
 
-## 🛠️ Required Software
+## 📖 Getting Started
 
-- **R Statistical Software** (free from CRAN)
-- **RStudio IDE** (free from RStudio)
-- **Alternative**: RStudio Cloud (browser-based, no installation required)
+### For Students:
+1. **Visit the course website:** [Course Materials](https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/)
+2. **Launch Week 1 Binder:** [Interactive Environment](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
+3. **No software installation needed!**
 
-### Essential R Packages
-```r
-install.packages(c("ggplot2", "dplyr", "tidyr", "readr", 
-                   "agricolae", "car", "lme4", "multcomp"))
+### For Developers:
+```bash
+# Clone the repository
+git clone https://github.com/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials.git
+cd PLS120-Statistics-Lab-Materials
+
+# Serve locally
+python -m http.server 8000
+# Visit http://localhost:8000
 ```
+
+---
+
+## 🆘 Need Help?
+
+### 📧 Contact Information
+**Mohammadreza Narimani** (Teaching Assistant)  
+📧 mnarimani@ucdavis.edu  
+🏫 Department of Biological and Agricultural Engineering, UC Davis  
+⏰ Office Hours: Thursdays 10 AM - 12 PM (Zoom)  
+🔗 [Join Zoom Office Hours](https://ucdavis.zoom.us/j/99533096447)
+
+### 🔧 Technical Support
+- **Binder Issues:** Try refreshing page or clearing browser cache
+- **Assignment Help:** Use Canvas discussion forum or office hours
+- **Course Questions:** Check FAQ page or contact TA
 
 ---
 
 ## 🤝 Contributing
 
-1. **Fork** the repository  
-2. **Create** your feature branch (`git checkout -b feature/new-content`)  
-3. **Commit** your changes (`git commit -m 'Add new statistical tutorial'`)  
-4. **Push** to the branch (`git push origin feature/new-content`)  
+1. **Fork** the repository
+2. **Create** your feature branch (`git checkout -b feature/new-content`)
+3. **Commit** your changes (`git commit -m 'Add new tutorial content'`)
+4. **Push** to the branch (`git push origin feature/new-content`)
 5. **Open a Pull Request**
-
-Please use the **Open Issue** button in the site header or the GitHub "Issues" tab for bugs or enhancement ideas.
 
 ---
 
 ## 📜 License
 
+© 2025 Mohammadreza Narimani, Personal Teaching Website  
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
 ## 🙏 Acknowledgements
 
-* **UC Davis Plant Sciences Department** – course host  
+* **Mohsen B. Mesgaran** – Course Instructor
+* **UC Davis Plant Sciences Department** – Course host
+* **Binder Project** – Cloud-based computing environment
 * **R Core Team** – R statistical computing environment
-* **RStudio Team** – RStudio IDE and educational resources
-* **Previous Course Materials** – Foundation content from earlier course iterations
-* GitHub Pages – free static site hosting  
+* **Jupyter Project** – Interactive notebook platform
+* **GitHub Pages** – Free static site hosting
+
+---
+
+*Last updated: October 2025 | PLS 120 - Applied Statistics in Agricultural Sciences | UC Davis*
