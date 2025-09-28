@@ -243,12 +243,12 @@ OUTPUT Week1_Tutorial.out
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT ../../images/logos/Home_Page_Logo.png
+INPUT ../../images/logos/Home_Page_Logo.png
+INPUT ../../images/logos/Home_Page_Logo.png
+INPUT ../../images/logos/Home_Page_Logo.png
+INPUT ../../images/logos/Home_Page_Logo.png
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT ../Image_1.png
-INPUT ../Image_1.png
-INPUT ../Image_1.png
-INPUT ../Image_1.png
-INPUT ../Image_1.png
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -266,6 +266,7 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 OUTPUT Week1_Tutorial.toc
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
+INPUT ../Image_1.png
 INPUT ../Image_1.png
 INPUT ../Image_1.png
 INPUT ../Image_1.png
