@@ -1,20 +1,18 @@
-# PLS 120 - Applied Statistics in Agriculture
-## Interactive R Notebooks with Binder
+# PLS 120 - Week 1: Introduction to Statistics and R
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder)
 
-Click the "launch binder" button above to run R notebooks in your browser - no installation required!
+Click the "launch binder" button above to run this week's R notebook in your browser!
 
 ## How to Use
 
 1. Click the Binder badge above
-2. Wait for the environment to load (2-3 minutes)
-3. Open `Week_1/Week1_Introduction.Rmd`
-4. Run code chunks by clicking the green play buttons
+2. Wait for environment to load (2-3 minutes)  
+3. Open `Week1_Introduction.ipynb`
+4. Run code cells with Shift+Enter
 
-## Week 1: Introduction to R and Statistics
-
-- Interactive R tutorial
+## Week 1 Topics
 - R as a calculator
-- Agricultural data analysis
-- No installation required!
+- Variables and vectors
+- Agricultural calculations
+- Basic data analysis
