@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLS 120: Applied Statistics in Agriculture</title>
+    <link rel="icon" type="image/png" href="assets/images/logos/Home_Page_Logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button id="menu-toggle" class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">Statistics in Ag</div>
+        </div>
+        <div class="header-right">
+            <a href="https://github.com/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials" target="_blank" class="header-button">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <button id="theme-toggle" class="header-button">
+                <i class="fas fa-moon"></i>
+                <span>Theme</span>
+            </button>
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-dropdown" class="mobile-dropdown">
+        <a href="https://github.com/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials" target="_blank" class="mobile-dropdown-item">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="#" id="mobile-open-issue" class="mobile-dropdown-item">
+            <i class="fas fa-exclamation-circle"></i> Open Issue
+        </a>
+        <a href="#" id="mobile-download-pdf" class="mobile-dropdown-item">
+            <i class="fas fa-file-pdf"></i> Download PDF
+        </a>
+        <a href="#" id="mobile-download-md" class="mobile-dropdown-item">
+            <i class="fas fa-file-alt"></i> Download MD
+        </a>
+        <a href="#" id="mobile-theme-toggle" class="mobile-dropdown-item">
+            <i class="fas fa-moon"></i> Toggle Theme
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <div class="ucd-logo">
+                    <img src="assets/images/logos/Home_Page_Logo.png" alt="UC Davis Logo" class="ucd-logo-img">
+                    <span class="ucd-logo-text">PLS 120</span>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Course Navigation</h3>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav-item">
+                            <a href="#home" class="sidebar-nav-link active">Home</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#syllabus" class="sidebar-nav-link">Syllabus</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#resources" class="sidebar-nav-link">Resources</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#faq" class="sidebar-nav-link">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Weekly Content</h3>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav-item">
+                            <a href="#week1" class="sidebar-nav-link">Week 1: Applied Statistics in Agriculture</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week2" class="sidebar-nav-link">Week 2 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week3" class="sidebar-nav-link">Week 3 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week4" class="sidebar-nav-link">Week 4 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week5" class="sidebar-nav-link">Week 5 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week6" class="sidebar-nav-link">Week 6 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week7" class="sidebar-nav-link">Week 7 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week8" class="sidebar-nav-link">Week 8 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week9" class="sidebar-nav-link">Week 9 🔒</a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#week10" class="sidebar-nav-link">Week 10 🔒</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Sidebar Toggle Button -->
+        <button id="sidebar-toggle" class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+            <!-- Home Section -->
+            <div id="home" class="section">
+                <h1 class="page-title">PLS 120: Applied Statistics in Agriculture</h1>
+                <p class="page-subtitle">Statistical methods and data analysis for agricultural and plant sciences</p>
+
+                <div class="section">
+                    <h2 class="section-title">Course Overview</h2>
+                    <div class="card">
+                        <p>This course provides an introduction to basic statistical concepts and techniques. It aims to equip undergraduate students with the necessary skills to understand and analyze data, make informed decisions, and interpret statistical results. The course will cover fundamental topics such as descriptive statistics, probability, hypothesis testing, and inferential statistics.</p>
+                        <p><strong>Main Objectives:</strong></p>
+                        <ul>
+                            <li><strong>Acquire Fundamental Competencies:</strong> Students will gain essential skills in data collection, organization, analysis, visualization, and interpretation to form a strong foundation in statistical methods.</li>
+                            <li><strong>Develop Statistical Reasoning:</strong> The course aims to cultivate a comprehensive understanding of statistical thinking and reasoning, enabling students to critically evaluate and analyze data in various contexts.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Course Information</h2>
+                    <div class="card">
+                        <h3 class="card-title">📍 Location</h3>
+                        <p><strong>Lectures:</strong> Teaching and Learning Complex 1010</p>
+                        <p><strong>Lab Discussions:</strong></p>
+                        <ul>
+                            <li>Session 1: Wednesdays — Teaching and Learning Complex 2212</li>
+                            <li>Sessions 2, 3, and 4: Thursdays & Fridays — Teaching and Learning Complex 2216</li>
+                        </ul>
+                        
+                        <h3 class="card-title">📹 Lecture Records</h3>
+                        <p><a href="https://ucdavis.box.com/s/zyax5s6kjpeykkf3vii4pe4x4dixcjvy" target="_blank">Access Lecture Recordings</a></p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Instructors</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="instructor-card">
+                                <div class="instructor-avatar">
+                                    <img src="assets/images/people/mohsen_mesgaran.png" alt="Mohsen B. Mesgaran">
+                                </div>
+                                <div class="instructor-info">
+                                    <h3 class="instructor-name">Mohsen B. Mesgaran</h3>
+                                    <p class="instructor-title">Instructor</p>
+                                    <p class="instructor-title">276 Robbins Hall</p>
+                                    <p class="instructor-contact">
+                                        <i class="fas fa-envelope"></i> mbmesgaran@ucdavis.edu
+                                    </p>
+                                    <p class="instructor-contact">
+                                        <i class="fas fa-clock"></i> Office Hours: By appointment (send email to schedule)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="instructor-card">
+                                <div class="instructor-avatar">
+                                    <img src="assets/images/people/Mohammadreza_Narimani.jpg" alt="Mohammadreza Narimani">
+                                </div>
+                                <div class="instructor-info">
+                                    <h3 class="instructor-name">Mohammadreza Narimani</h3>
+                                    <p class="instructor-title">Teaching Assistant</p>
+                                    <p class="instructor-title">Lab Section: A01</p>
+                                    <p class="instructor-contact">
+                                        <i class="fas fa-envelope"></i> mnarimani@ucdavis.edu
+                                    </p>
+                                    <p class="instructor-contact">
+                                        <i class="fas fa-video"></i> Office Hours: Thursdays 10 AM - 12 PM (Zoom)
+                                    </p>
+                                    <p class="instructor-contact">
+                                        <a href="https://ucdavis.zoom.us/j/99533096447" target="_blank">Join Zoom Office Hours</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Weekly Schedule</h2>
+                    <div class="grid">
+                        <div class="lab-card">
+                            <h3 class="lab-card-title">Week 1: Applied Statistics in Agriculture</h3>
+                            <p class="lab-card-description">Overview of statistics, data types, and introduction to R programming with Binder.</p>
+                            <a href="#week1" class="lab-card-link">View Week →</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <p>&copy; 2025 Mohammadreza Narimani, Personal Teaching Website</p>
+        <p>Contact: <a href="mailto:mnarimani@ucdavis.edu">mnarimani@ucdavis.edu</a></p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
