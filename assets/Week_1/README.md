@@ -127,6 +127,33 @@ Click **File** → **Save and Export Notebook As** → **HTML** (or PDF)
 
 ---
 
+## ⚠️ Important: Saving Your Progress
+
+**Do not close Binder if you have not saved your code or all your progress will be gone!**
+
+If you want to take a break and continue your activity or assignment later:
+
+### Save Your Work Before Closing 💾
+
+Right-click on your code (`.ipynb`) file and click "Download" to make sure you have saved your code locally.
+
+![Save Your Code](Assets/Image_11.png)
+*👆 Right-click on your notebook file and download it before closing Binder*
+
+### Continue Your Progress Later 🔄
+
+When you open Binder again and want to continue your work:
+
+1. Click the **Upload** button on the top ribbon
+2. Find your saved code file locally on your computer
+3. Upload your `.ipynb` file
+4. Run your code cells again to see your previous outputs!
+
+![Upload Your Code](Assets/Image_12.png)
+*👆 Use the Upload button to continue your work from where you left off*
+
+---
+
 ## 📤 Submission Requirements
 
 For each assignment, submit **TWO files** to UC Davis Canvas:
