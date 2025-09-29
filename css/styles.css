@@ -1,29 +1,29 @@
 :root {
-    --ucd-blue: #002855;
-    --ucd-gold: #FFD100;
+    --primary-color: #2E7D32;
+    --accent-color: #4CAF50;
     --text-color: #333;
     --bg-color: #fff;
-    --sidebar-bg: #f8f9fa;
-    --header-bg: var(--ucd-blue);
-    --link-color: #0077CC;
-    --border-color: #e5e7eb;
-    --code-bg: #f7f7f7;
-    --table-border: #ddd;
-    --table-header-bg: #f2f2f2;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --sidebar-bg: #f1f8e9;
+    --header-bg: var(--primary-color);
+    --link-color: #388E3C;
+    --border-color: #e8f5e8;
+    --code-bg: #f3f8f3;
+    --table-border: #c8e6c9;
+    --table-header-bg: #e8f5e8;
+    --shadow-color: rgba(46, 125, 50, 0.1);
 }
 
 .dark-mode {
-    --text-color: #e5e7eb;
-    --bg-color: #121212;
-    --sidebar-bg: #1e1e1e;
-    --header-bg: #000;
-    --link-color: #6ea8fe;
-    --border-color: #4b5563;
-    --code-bg: #2d2d2d;
-    --table-border: #444;
-    --table-header-bg: #333;
-    --shadow-color: rgba(0, 0, 0, 0.5);
+    --text-color: #e8f5e8;
+    --bg-color: #1b5e20;
+    --sidebar-bg: #2e7d32;
+    --header-bg: #1b5e20;
+    --link-color: #81c784;
+    --border-color: #388e3c;
+    --code-bg: #263238;
+    --table-border: #4caf50;
+    --table-header-bg: #2e7d32;
+    --shadow-color: rgba(76, 175, 80, 0.3);
 }
 
 * {
@@ -171,8 +171,8 @@ a:hover {
 }
 
 .sidebar-toggle:hover {
-    background-color: var(--ucd-gold);
-    color: var(--ucd-blue);
+    background-color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 .sidebar.collapsed {
@@ -234,23 +234,23 @@ a:hover {
 }
 
 .sidebar-nav-link:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-left-color: var(--ucd-gold);
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left-color: var(--accent-color);
     text-decoration: none;
 }
 
 .sidebar-nav-link.active {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-left-color: var(--ucd-gold);
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left-color: var(--accent-color);
     font-weight: 600;
 }
 
 .dark-mode .sidebar-nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(129, 199, 132, 0.1);
 }
 
 .dark-mode .sidebar-nav-link.active {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(129, 199, 132, 0.1);
 }
 
 /* Main Content Styles */
@@ -275,7 +275,7 @@ a:hover {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
 }
 
 .page-subtitle {
@@ -296,14 +296,14 @@ a:hover {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--ucd-gold);
+    border-bottom: 2px solid var(--accent-color);
 }
 
 .dark-mode .section-title,
 .dark-mode .page-title {
-    color: var(--ucd-gold);
+    color: var(--accent-color);
 }
 
 .card {
@@ -319,11 +319,11 @@ a:hover {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
 }
 
 .dark-mode .card-title {
-    color: var(--ucd-gold);
+    color: var(--accent-color);
 }
 
 .grid {
@@ -351,11 +351,11 @@ a:hover {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
 }
 
 .dark-mode .lab-card-title {
-    color: var(--ucd-gold);
+    color: var(--accent-color);
 }
 
 .lab-card-description {
@@ -374,7 +374,7 @@ a:hover {
 .btn {
     display: inline-block;
     padding: 8px 16px;
-    background-color: var(--ucd-blue);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -385,17 +385,17 @@ a:hover {
 }
 
 .btn:hover {
-    background-color: #001a3a;
+    background-color: #1b5e20;
     text-decoration: none;
 }
 
 .btn-secondary {
-    background-color: var(--ucd-gold);
-    color: var(--ucd-blue);
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #e6bc00;
+    background-color: #388e3c;
 }
 
 /* List Styles */
@@ -622,12 +622,12 @@ code {
 .ucd-logo-text {
     font-size: 24px;
     font-weight: 700;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
     margin-left: 10px;
 }
 
 .dark-mode .ucd-logo-text {
-    color: var(--ucd-gold);
+    color: var(--accent-color);
 }
 
 /* Lab Content Specific Styles */
@@ -644,17 +644,17 @@ code {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--ucd-blue);
+    color: var(--primary-color);
 }
 
 .dark-mode .lab-section-title {
-    color: var(--ucd-gold);
+    color: var(--accent-color);
 }
 
 .step {
     margin-bottom: 20px;
     padding-left: 20px;
-    border-left: 3px solid var(--ucd-gold);
+    border-left: 3px solid var(--accent-color);
 }
 
 .step-title {
@@ -664,7 +664,7 @@ code {
 
 .learning-goals .lab-section-title,
 .materials .lab-section-title {
-    background-color: #008080;
+    background-color: var(--primary-color);
     color: white;
     padding: 10px;
     margin: 0;
@@ -687,7 +687,7 @@ code {
 }
 
 .highlight {
-    background-color: #008080;
+    background-color: var(--primary-color);
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
@@ -697,7 +697,7 @@ code {
 .image-container {
     margin: 30px 0;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #f1f8e9;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     text-align: center;
@@ -705,7 +705,7 @@ code {
 }
 
 .dark-mode .image-container {
-    background-color: #2d2d2d;
+    background-color: #263238;
 }
 
 .tutorial-image {
@@ -810,7 +810,7 @@ code {
     width: 40px;
     height: 40px;
     border-radius: 4px;
-    background-color: var(--ucd-blue);
+    background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
