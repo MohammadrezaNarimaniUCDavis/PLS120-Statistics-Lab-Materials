@@ -510,12 +510,19 @@ code {
     }
 
     .sidebar-toggle {
-        left: 0;
+        left: 10px;
         z-index: 1200;
+        background-color: var(--accent-color);
+        color: white;
     }
 
     .sidebar.active + .sidebar-toggle {
-        left: 280px;
+        left: 290px;
+    }
+
+    .sidebar-toggle:hover {
+        background-color: var(--primary-color);
+        color: white;
     }
 
     .main-content,
