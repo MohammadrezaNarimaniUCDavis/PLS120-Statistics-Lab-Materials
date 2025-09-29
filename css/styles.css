@@ -14,16 +14,16 @@
 }
 
 .dark-mode {
-    --text-color: #e8f5e8;
-    --bg-color: #1b5e20;
-    --sidebar-bg: #2e7d32;
-    --header-bg: #1b5e20;
-    --link-color: #81c784;
-    --border-color: #388e3c;
-    --code-bg: #263238;
-    --table-border: #4caf50;
-    --table-header-bg: #2e7d32;
-    --shadow-color: rgba(76, 175, 80, 0.3);
+    --text-color: #e5e7eb;
+    --bg-color: #121212;
+    --sidebar-bg: #1e1e1e;
+    --header-bg: #000;
+    --link-color: #4CAF50;
+    --border-color: #4b5563;
+    --code-bg: #2d2d2d;
+    --table-border: #444;
+    --table-header-bg: #333;
+    --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -246,11 +246,11 @@ a:hover {
 }
 
 .dark-mode .sidebar-nav-link:hover {
-    background-color: rgba(129, 199, 132, 0.1);
+    background-color: rgba(76, 175, 80, 0.2);
 }
 
 .dark-mode .sidebar-nav-link.active {
-    background-color: rgba(129, 199, 132, 0.1);
+    background-color: rgba(76, 175, 80, 0.2);
 }
 
 /* Main Content Styles */
@@ -510,14 +510,14 @@ code {
     }
 
     .sidebar-toggle {
-        left: 10px;
+        left: 5px;
         z-index: 1200;
         background-color: var(--accent-color);
         color: white;
     }
 
     .sidebar.active + .sidebar-toggle {
-        left: 290px;
+        left: 285px;
     }
 
     .sidebar-toggle:hover {
@@ -712,7 +712,7 @@ code {
 }
 
 .dark-mode .image-container {
-    background-color: #263238;
+    background-color: #2d2d2d;
 }
 
 .tutorial-image {
