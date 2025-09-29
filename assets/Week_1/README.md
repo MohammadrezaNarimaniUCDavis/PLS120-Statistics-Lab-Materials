@@ -23,7 +23,7 @@
 
 Click the **"Launch Binder"** button above to start your R environment. This will take **2-5 minutes** to load.
 
-![Binder Launching](Assets/Image_1.png)
+![Binder Launching](Image_1.png)
 *🔄 Binder is launching your environment - please wait patiently!*
 
 ### Step 2: Wait for Environment to Load ⏳
@@ -36,7 +36,7 @@ After clicking the link, Binder will show progress through several stages:
 
 The green progress bar shows Binder is almost ready!
 
-![Binder Ready](Assets/Image_2.png)
+![Binder Ready](Image_2.png)
 *✅ Green bar means your environment is ready in just a few seconds!*
 
 ### Step 3: Navigate to Class Activity 📚
@@ -48,21 +48,21 @@ Once Binder loads, you'll see the Jupyter Notebook interface. In the **left pane
 
 **Click on the `class_activity` folder** to access this week's content.
 
-![Navigate to Class Activity](Assets/Image_3.png)
+![Navigate to Class Activity](Image_3.png)
 *👆 Click here to access your lab materials*
 
 ### Step 4: Open the Lab Notebook 📖
 
 Inside the `class_activity` folder, **double-click** on `Week1_Introduction.ipynb` to open the interactive lab notebook.
 
-![Open Lab Notebook](Assets/Image_4.png)
+![Open Lab Notebook](Image_4.png)
 *👆 Double-click here to open the lab instructions and code*
 
 ### Step 5: Explore the Data (Optional) 📊
 
 We've already uploaded the data for this lab! The file `LA_Data.csv` contains the crime statistics data. You can **double-click** on it to explore the data if you're curious.
 
-![Explore Data](Assets/Image_5.png)
+![Explore Data](Image_5.png)
 *👆 Click here to view the raw data (optional)*
 
 ---
@@ -77,7 +77,7 @@ When you're done working, save your progress:
 
 1. **Go back to main folder** - Click the folder icon in the left panel
 
-![Go Back to Main](Assets/Image_6.png)
+![Go Back to Main](Image_6.png)
 *👆 Click the folder icon to return to the main directory*
 
 2. **Download your notebook** - Right-click on your `.ipynb` file and select "Download"
@@ -90,14 +90,14 @@ When you're done working, save your progress:
 
 From the main directory, **click on the `assignment` folder** to access your homework.
 
-![Access Assignment](Assets/Image_7.png)
+![Access Assignment](Image_7.png)
 *👆 Click here to access assignment materials*
 
 ### Step 2: Open Assignment Notebook 📄
 
 **Double-click** on `Assignment1.ipynb` to open your assignment.
 
-![Open Assignment](Assets/Image_8.png)
+![Open Assignment](Image_8.png)
 *👆 Double-click here to open your assignment*
 
 ### Step 3: Complete Your Work ✍️
@@ -113,7 +113,7 @@ Fill in all **code boxes** and **text boxes** carefully to answer all questions.
 
 Click **File** → **Download** to save your notebook code.
 
-![Download Code](Assets/Image_9.png)
+![Download Code](Image_9.png)
 *👆 Download your .ipynb file for backup*
 
 #### Export HTML/PDF Report 📄
@@ -122,7 +122,7 @@ For submission, you also need an HTML or PDF report:
 
 Click **File** → **Save and Export Notebook As** → **HTML** (or PDF)
 
-![Export Report](Assets/Image_10.png)
+![Export Report](Image_10.png)
 *👆 Export your completed assignment as HTML or PDF*
 
 ---
@@ -137,7 +137,7 @@ If you want to take a break and continue your activity or assignment later:
 
 Right-click on your code (`.ipynb`) file and click "Download" to make sure you have saved your code locally.
 
-![Save Your Code](Assets/Image_11.png)
+![Save Your Code](Image_11.png)
 *👆 Right-click on your notebook file and download it before closing Binder*
 
 ### Continue Your Progress Later 🔄
@@ -149,7 +149,7 @@ When you open Binder again and want to continue your work:
 3. Upload your `.ipynb` file
 4. Run your code cells again to see your previous outputs!
 
-![Upload Your Code](Assets/Image_12.png)
+![Upload Your Code](Image_12.png)
 *👆 Use the Upload button to continue your work from where you left off*
 
 ---
