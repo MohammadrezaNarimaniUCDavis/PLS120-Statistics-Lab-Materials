@@ -517,7 +517,7 @@ code {
     }
 
     .sidebar.active + .sidebar-toggle {
-        left: 285px;
+        left: 280px;
     }
 
     .sidebar-toggle:hover {
