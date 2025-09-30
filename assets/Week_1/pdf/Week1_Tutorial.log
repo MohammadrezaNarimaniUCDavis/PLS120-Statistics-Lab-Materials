@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  28 SEP 2025 21:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  29 SEP 2025 17:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -514,7 +514,7 @@ Package hyperref Info: Link coloring OFF on input line 54.
 \@outlinefile=\write4
 \openout4 = `Week1_Tutorial.out'.
 
-<../../images/logos/Home_Page_Logo.png, id=119, 1027.84pt x 1027.84pt>
+<../../images/logos/Home_Page_Logo.png, id=131, 1027.84pt x 1027.84pt>
 File: ../../images/logos/Home_Page_Logo.png Graphic file (type png)
 <use ../../images/logos/Home_Page_Logo.png>
 Package pdftex.def Info: ../../images/logos/Home_Page_Logo.png  used on input line 69.
@@ -546,7 +546,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 99.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 99.
-<../Image_1.png, id=164, 904.88063pt x 499.11469pt>
+<../Image_1.png, id=180, 904.88063pt x 499.11469pt>
 File: ../Image_1.png Graphic file (type png)
 <use ../Image_1.png>
 Package pdftex.def Info: ../Image_1.png  used on input line 130.
@@ -554,14 +554,14 @@ Package pdftex.def Info: ../Image_1.png  used on input line 130.
 
 
 [2{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<../Image_2.png, id=171, 880.03781pt x 424.58624pt>
+<../Image_2.png, id=186, 880.03781pt x 424.58624pt>
 File: ../Image_2.png Graphic file (type png)
 <use ../Image_2.png>
 Package pdftex.def Info: ../Image_2.png  used on input line 147.
 (pdftex.def)             Requested size: 362.37569pt x 174.83301pt.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 160.
-<../Image_3.png, id=172, 910.90312pt x 500.62032pt>
+<../Image_3.png, id=187, 910.90312pt x 500.62032pt>
 File: ../Image_3.png Graphic file (type png)
 <use ../Image_3.png>
 Package pdftex.def Info: ../Image_3.png  used on input line 163.
@@ -569,12 +569,12 @@ Package pdftex.def Info: ../Image_3.png  used on input line 163.
 
 
 [3 <../Image_1.png> <../Image_2.png>]
-<../Image_4.png, id=181, 1023.07219pt x 550.30594pt>
+<../Image_4.png, id=196, 1023.07219pt x 550.30594pt>
 File: ../Image_4.png Graphic file (type png)
 <use ../Image_4.png>
 Package pdftex.def Info: ../Image_4.png  used on input line 172.
 (pdftex.def)             Requested size: 362.37569pt x 194.91913pt.
-<../Image_5.png, id=182, 807.015pt x 258.9675pt>
+<../Image_5.png, id=197, 807.015pt x 258.9675pt>
 File: ../Image_5.png Graphic file (type png)
 <use ../Image_5.png>
 Package pdftex.def Info: ../Image_5.png  used on input line 181.
@@ -582,12 +582,12 @@ Package pdftex.def Info: ../Image_5.png  used on input line 181.
 
 
 [4 <../Image_3.png> <../Image_4.png>]
-<../Image_6.png, id=189, 825.83531pt x 429.85594pt>
+<../Image_6.png, id=204, 825.83531pt x 429.85594pt>
 File: ../Image_6.png Graphic file (type png)
 <use ../Image_6.png>
 Package pdftex.def Info: ../Image_6.png  used on input line 200.
 (pdftex.def)             Requested size: 362.37569pt x 188.61903pt.
-<../Image_7.png, id=190, 782.925pt x 356.83313pt>
+<../Image_7.png, id=205, 782.925pt x 356.83313pt>
 File: ../Image_7.png Graphic file (type png)
 <use ../Image_7.png>
 Package pdftex.def Info: ../Image_7.png  used on input line 215.
@@ -595,12 +595,12 @@ Package pdftex.def Info: ../Image_7.png  used on input line 215.
 
 
 [5 <../Image_5.png> <../Image_6.png>]
-<../Image_8.png, id=199, 1101.36469pt x 538.26094pt>
+<../Image_8.png, id=214, 1101.36469pt x 538.26094pt>
 File: ../Image_8.png Graphic file (type png)
 <use ../Image_8.png>
 Package pdftex.def Info: ../Image_8.png  used on input line 224.
 (pdftex.def)             Requested size: 362.37569pt x 177.10101pt.
-<../Image_9.png, id=200, 785.18344pt x 513.41812pt>
+<../Image_9.png, id=215, 785.18344pt x 513.41812pt>
 File: ../Image_9.png Graphic file (type png)
 <use ../Image_9.png>
 Package pdftex.def Info: ../Image_9.png  used on input line 244.
@@ -608,7 +608,7 @@ Package pdftex.def Info: ../Image_9.png  used on input line 244.
 
 
 [6 <../Image_7.png> <../Image_8.png>]
-<../Image_10.png, id=208, 822.82407pt x 601.4972pt>
+<../Image_10.png, id=223, 822.82407pt x 601.4972pt>
 File: ../Image_10.png Graphic file (type png)
 <use ../Image_10.png>
 Package pdftex.def Info: ../Image_10.png  used on input line 255.
@@ -616,30 +616,43 @@ Package pdftex.def Info: ../Image_10.png  used on input line 255.
 
 
 [7 <../Image_9.png> <../Image_10.png>]
+<../Image_11.png, id=232, 1064.47687pt x 683.55376pt>
+File: ../Image_11.png Graphic file (type png)
+<use ../Image_11.png>
+Package pdftex.def Info: ../Image_11.png  used on input line 281.
+(pdftex.def)             Requested size: 362.37569pt x 232.69725pt.
+<../Image_12.png, id=233, 1061.46562pt x 558.58687pt>
+File: ../Image_12.png Graphic file (type png)
+<use ../Image_12.png>
+Package pdftex.def Info: ../Image_12.png  used on input line 297.
+(pdftex.def)             Requested size: 362.37569pt x 190.70117pt.
 
-[8]
 
-[9] (./Week1_Tutorial.aux)
+[8 <../Image_11.png>]
+
+[9 <../Image_12.png>]
+
+[10] (./Week1_Tutorial.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `Week1_Tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 035DAC9FDC8A40B0EB37079FFE3F1563;4981.
+(rerunfilecheck)             Checksum: 704D07D6040DEFCF251E95F5588A0C93;5612.
  ) 
 Here is how much of TeX's memory you used:
- 25566 strings out of 473579
- 502880 string characters out of 5732263
- 861567 words of memory out of 5000000
- 48078 multiletter control sequences out of 15000+600000
+ 25595 strings out of 473579
+ 503385 string characters out of 5732263
+ 862570 words of memory out of 5000000
+ 48099 multiletter control sequences out of 15000+600000
  564402 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,12n,101p,536b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on Week1_Tutorial.pdf (10 pages, 2458416 bytes).
+Output written on Week1_Tutorial.pdf (11 pages, 2582848 bytes).
 PDF statistics:
- 270 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 292 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 326 words of extra memory for PDF output out of 10000 (max. 10000000)
 

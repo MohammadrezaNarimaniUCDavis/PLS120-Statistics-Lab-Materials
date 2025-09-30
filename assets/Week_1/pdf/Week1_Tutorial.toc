@@ -17,12 +17,15 @@
 \contentsline {subsubsection}{\numberline {6.4.1}Download Code File (.ipynb)}{6}{subsubsection.6.4.1}%
 \contentsline {subsubsection}{\numberline {6.4.2}Export HTML/PDF Report}{7}{subsubsection.6.4.2}%
 \contentsline {section}{\numberline {7}Submission Requirements}{7}{section.7}%
-\contentsline {section}{\numberline {8}Need Help?}{8}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Contact Information}{8}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Technical Issues}{8}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Learning Resources}{8}{subsection.8.3}%
-\contentsline {section}{\numberline {9}What You'll Learn}{8}{section.9}%
-\contentsline {section}{\numberline {10}Tips for Success}{8}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Best Practices}{8}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Keyboard Shortcuts}{9}{subsection.10.2}%
-\contentsline {section}{\numberline {11}Ready to Start?}{9}{section.11}%
+\contentsline {section}{\numberline {8}Important: Saving Your Progress}{8}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Save Your Work Before Closing}{8}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Continue Your Progress Later}{8}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Need Help?}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Contact Information}{9}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Technical Issues}{9}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Learning Resources}{9}{subsection.9.3}%
+\contentsline {section}{\numberline {10}What You'll Learn}{9}{section.10}%
+\contentsline {section}{\numberline {11}Tips for Success}{10}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Best Practices}{10}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Keyboard Shortcuts}{10}{subsection.11.2}%
+\contentsline {section}{\numberline {12}Ready to Start?}{10}{section.12}%
