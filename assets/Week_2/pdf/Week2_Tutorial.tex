@@ -11,6 +11,8 @@
 \usepackage{fontawesome5}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
 
 % Colors
 \definecolor{primarygreen}{RGB}{46,125,50}
@@ -128,7 +130,7 @@ This week, we explore \textbf{descriptive statistics} and \textbf{measures of ce
 
 Understanding where the "center" of your data lies is fundamental to statistical analysis.
 
-\subsubsection{Mean ($\mu$ or $\bar{x}$)}
+\subsubsection{\texorpdfstring{Mean ($\mu$ or $\bar{x}$)}{Mean (mu or x-bar)}}
 
 \begin{formulabox}
 \textbf{Definition:} The arithmetic average of all values\\[0.3cm]
@@ -159,7 +161,7 @@ Understanding where the "center" of your data lies is fundamental to statistical
 
 Understanding how spread out your data is from the center.
 
-\subsubsection{Variance ($\sigma^2$)}
+\subsubsection{\texorpdfstring{Variance ($\sigma^2$)}{Variance (sigma-squared)}}
 
 \begin{formulabox}
 \textbf{Definition:} Average squared deviation from the mean\\[0.3cm]
@@ -167,13 +169,13 @@ Understanding how spread out your data is from the center.
 \textbf{Note:} Units are squared, making interpretation less intuitive
 \end{formulabox}
 
-\subsubsection{Standard Deviation ($\sigma$)}
+\subsubsection{\texorpdfstring{Standard Deviation ($\sigma$)}{Standard Deviation (sigma)}}
 
 \begin{formulabox}
 \textbf{Definition:} Square root of variance - average distance from the mean\\[0.3cm]
 \textbf{Formula:} $\sigma = \sqrt{\sigma^2}$\\[0.3cm]
 \textbf{Advantage:} Same units as original data, easier to interpret\\
-\textbf{Rule of thumb:} In normal distributions, ~68\% of data falls within 1$\sigma$ of the mean
+\textbf{Rule of thumb:} In normal distributions, approximately 68\% of data falls within 1$\sigma$ of the mean
 \end{formulabox}
 
 \subsubsection{Coefficient of Variation (CV)}
