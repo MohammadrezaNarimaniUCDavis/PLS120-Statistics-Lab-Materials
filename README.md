@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Week 1 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-2 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -43,8 +43,10 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 ### 🌐 Course Website
 **All course materials:** https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/
 
-### 💻 Interactive R Environment (Week 1)
-**Launch Binder:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1
+### 💻 Interactive R Environment
+**Week 1 - Introduction:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1
+
+**Week 2 - Descriptive Statistics:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2
 
 ---
 
@@ -60,20 +62,25 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── syllabus.html       # complete course syllabus
 │   ├── resources.html      # learning resources
 │   ├── faq.html           # frequently asked questions
-│   └── week1.html         # week 1 materials
+│   ├── week1.html         # week 1 materials
+│   └── week2.html         # week 2 materials
 ├── assets/                 # images and media
 │   ├── images/
 │   │   ├── logos/         # UC Davis logos
 │   │   └── people/        # instructor photos
-│   └── Week_1/            # week 1 specific materials
-│       ├── Image_*.png    # tutorial screenshots
-│       ├── README.md      # binder tutorial
+│   ├── Week_1/            # week 1 specific materials
+│   │   ├── Image_*.png    # tutorial screenshots
+│   │   ├── README.md      # binder tutorial
+│   │   └── pdf/           # LaTeX/PDF materials
+│   └── Week_2/            # week 2 specific materials
 │       └── pdf/           # LaTeX/PDF materials
 ├── assignment/            # homework assignments
 │   ├── Assignment1.ipynb  # week 1 assignment
+│   ├── Assignment2.ipynb  # week 2 assignment
 │   └── LA_Data.csv       # crime statistics dataset
 ├── class_activity/        # interactive tutorials
-│   └── Week1_Introduction.ipynb
+│   ├── Week1_Introduction.ipynb
+│   └── Week2_Descriptive_Statistics.ipynb
 └── README.md             # you're reading it!
 ```
 
@@ -88,8 +95,14 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Introduction to R with Binder
    - Basic data manipulation and visualization
 
-2. **Week 2-10**: 🔒 *Coming Soon*
-   - Descriptive Statistics
+2. **Week 2**: Descriptive Statistics ✅ *Available*
+   - Measures of central tendency (mean, median, mode)
+   - Measures of variability (variance, standard deviation)
+   - Quantiles and data distribution
+   - Coefficient of variation
+   - Interactive statistical analysis with R
+
+3. **Week 3-10**: 🔒 *Coming Soon*
    - Probability and Distributions
    - Sampling and Estimation
    - Hypothesis Testing
@@ -136,7 +149,9 @@ By completing this course, students will be able to:
 
 ### For Students:
 1. **Visit the course website:** [Course Materials](https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/)
-2. **Launch Week 1 Binder:** [Interactive Environment](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
+2. **Launch Interactive Environment:**
+   - [Week 1 - Introduction](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
+   - [Week 2 - Descriptive Statistics](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
 3. **No software installation needed!**
 
 ### For Developers:
