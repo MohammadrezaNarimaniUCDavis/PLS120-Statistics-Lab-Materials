@@ -1,0 +1,369 @@
+<h1 class="page-title">🌾 PLS 120: Week 2 - Descriptive Statistics</h1>
+<p class="page-subtitle">Interactive Learning: Central Tendency and Variability 📊</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 2 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 2!</strong> This week, we explore <strong>descriptive statistics</strong> and <strong>measures of central tendency</strong> - essential tools for summarizing and understanding data in agricultural research. Learn through interactive visualizations and hands-on practice!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📊 Key Concepts: Measures of Central Tendency</h2>
+    <div class="card">
+        <h3 class="card-title">Mean (μ or x̄)</h3>
+        <p><strong>Definition:</strong> The arithmetic average of all values</p>
+        <div class="formula-box">
+            <code>μ = Σx / n</code>
+        </div>
+        <p><strong>When to use:</strong> Most common measure, but sensitive to outliers</p>
+        <p><strong>Example:</strong> Average crop yield across all plots</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Median</h3>
+        <p><strong>Definition:</strong> The middle value when data is ordered</p>
+        <div class="formula-box">
+            <code>Middle value of sorted data</code>
+        </div>
+        <p><strong>When to use:</strong> Better for skewed distributions or data with outliers</p>
+        <p><strong>Example:</strong> Typical rainfall amount (not affected by extreme storms)</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Mode</h3>
+        <p><strong>Definition:</strong> The most frequently occurring value</p>
+        <div class="formula-box">
+            <code>Most common value in dataset</code>
+        </div>
+        <p><strong>When to use:</strong> Useful for categorical data or finding the most common observation</p>
+        <p><strong>Example:</strong> Most common pest species observed</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📏 Measures of Variability</h2>
+    <div class="card">
+        <h3 class="card-title">Variance (σ²)</h3>
+        <p><strong>Definition:</strong> Average squared deviation from the mean</p>
+        <div class="formula-box">
+            <code>σ² = Σ(x - μ)² / n</code>
+        </div>
+        <p><strong>Note:</strong> Units are squared, making interpretation less intuitive</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Standard Deviation (σ)</h3>
+        <p><strong>Definition:</strong> Square root of variance - average distance from the mean</p>
+        <div class="formula-box">
+            <code>σ = √(σ²)</code>
+        </div>
+        <p><strong>Advantage:</strong> Same units as original data, easier to interpret</p>
+        <p><strong>Rule of thumb:</strong> In normal distributions, ~68% of data falls within 1σ of the mean</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Coefficient of Variation (CV)</h3>
+        <p><strong>Definition:</strong> Relative variability measure</p>
+        <div class="formula-box">
+            <code>CV = (σ / μ) × 100%</code>
+        </div>
+        <p><strong>When to use:</strong> Allows comparison of variability across different scales or units</p>
+        <p><strong>Example:</strong> Compare consistency of wheat yield (tons/ha) vs. corn yield (bushels/acre)</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Quantiles and Quartiles</h3>
+        <p><strong>Definition:</strong> Values that divide data into equal parts</p>
+        <ul>
+            <li><strong>Q1 (25th percentile):</strong> 25% of data falls below this value</li>
+            <li><strong>Q2 (50th percentile):</strong> The median</li>
+            <li><strong>Q3 (75th percentile):</strong> 75% of data falls below this value</li>
+            <li><strong>IQR (Interquartile Range):</strong> Q3 - Q1, measures middle 50% spread</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started with Week 2</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 2"</strong> button above. This will take <strong>2-5 minutes</strong> to load your R environment with all necessary packages.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, open the <code>class_activity</code> folder and double-click on <code>Week2_Descriptive_Statistics.ipynb</code></p>
+
+        <h3 class="card-title">Step 3: Work Through the Tutorial 📖</h3>
+        <p>The notebook will guide you through:</p>
+        <ul>
+            <li>Loading and examining the iris dataset</li>
+            <li>Calculating mean, median, and mode</li>
+            <li>Computing variance and standard deviation</li>
+            <li>Finding quantiles and understanding data distribution</li>
+            <li>Using <code>nrow()</code> and <code>ncol()</code> for data dimensions</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Summary Statistics</h3>
+        <div class="code-block">
+            <code>summary(data)          # Comprehensive summary</code><br>
+            <code>mean(data$column)      # Calculate mean</code><br>
+            <code>median(data$column)    # Calculate median</code><br>
+            <code>var(data$column)       # Calculate variance</code><br>
+            <code>sd(data$column)        # Calculate standard deviation</code><br>
+            <code>quantile(data$column)  # Calculate quantiles</code>
+        </div>
+
+        <h3 class="card-title">Data Exploration</h3>
+        <div class="code-block">
+            <code>head(data)             # First 6 rows</code><br>
+            <code>str(data)              # Data structure</code><br>
+            <code>nrow(data)             # Number of rows</code><br>
+            <code>ncol(data)             # Number of columns</code>
+        </div>
+
+        <h3 class="card-title">Custom Mode Function</h3>
+        <div class="code-block">
+            <code>Mode <- function(x) {</code><br>
+            <code>  ux <- unique(x)</code><br>
+            <code>  ux[which.max(tabulate(match(x, ux)))]</code><br>
+            <code>}</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 2: Central Tendency Analysis</h2>
+    <div class="card">
+        <p>Apply your knowledge to the LA crime dataset:</p>
+        
+        <h3 class="card-title">Part 1: Mean, Median, and Mode (7 points)</h3>
+        <ul>
+            <li>Calculate mean arithmetically using <code>sum()</code> and <code>nrow()</code></li>
+            <li>Calculate mean using <code>mean()</code> function</li>
+            <li>Calculate median for all datasets</li>
+            <li>Calculate mode using custom function</li>
+            <li>Compare measures across male/female subgroups</li>
+        </ul>
+
+        <h3 class="card-title">Part 2: Variance and Standard Deviation (5 points)</h3>
+        <ul>
+            <li>Calculate variance for all three datasets</li>
+            <li>Calculate standard deviation</li>
+            <li>Calculate coefficient of variation</li>
+            <li>Interpret variability differences</li>
+        </ul>
+
+        <h3 class="card-title">Part 3: Quantiles (1 point)</h3>
+        <ul>
+            <li>Calculate quantiles for all datasets</li>
+            <li>Interpret Q1 and Q3 values</li>
+        </ul>
+
+        <div class="warning-box">
+            <p><strong>Total Points:</strong> 20 points</p>
+            <p><strong>Submission:</strong> Upload both .ipynb and HTML/PDF files to Canvas</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <p>Descriptive statistics are fundamental in agricultural research:</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Crop Yields:</strong> Compare mean yields across varieties and identify consistent performers</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌍</span>
+                <span><strong>Soil Properties:</strong> Understand variability in soil nutrients across fields</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌧️</span>
+                <span><strong>Weather Data:</strong> Analyze temperature and rainfall patterns for planning</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pest Populations:</strong> Track changes in pest abundance and identify thresholds</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✅</span>
+                <span><strong>Quality Control:</strong> Monitor consistency in agricultural products</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Understanding Variability Helps You:</h3>
+        <ul>
+            <li>Summarize large datasets efficiently</li>
+            <li>Identify typical values and outliers</li>
+            <li>Compare different treatments or groups</li>
+            <li>Make informed management decisions</li>
+            <li>Assess risk and reliability</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Before Closing Binder:</h3>
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">To Continue Later:</h3>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Calculate and interpret mean, median, and mode</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand when to use each measure of central tendency</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compute variance, standard deviation, and coefficient of variation</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Interpret measures of variability in context</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Use quantiles to understand data distribution</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compare statistics across different subgroups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Make data-driven inferences about populations</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Understand the concepts</strong> - Don't just calculate, interpret!</li>
+            <li><strong>Compare measures</strong> - How do mean, median, and mode differ?</li>
+            <li><strong>Consider context</strong> - What do the numbers tell you about the real world?</li>
+            <li><strong>Check your work</strong> - Do your results make sense?</li>
+            <li><strong>Use hints wisely</strong> - They guide you to the solution</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>A</kbd>
+                <span>Insert cell above</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>B</kbd>
+                <span>Insert cell below</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>DD</kbd>
+                <span>Delete current cell</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>Code error?</strong> Check that you've run all previous cells in order</li>
+            <li><strong>Lost work?</strong> Always download files before closing Binder</li>
+            <li><strong>Function not working?</strong> Use <code>?function_name</code> for help documentation</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>R Documentation:</strong> Type <code>?function_name</code> in any code cell</li>
+            <li><strong>Course Materials:</strong> All tutorials in <code>class_activity/</code> folder</li>
+            <li><strong>Practice:</strong> Experiment with the iris dataset to reinforce learning</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 2!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 2 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy analyzing! 📊🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 2: Descriptive Statistics and Central Tendency</em></p>
+    </div>
+</div>
