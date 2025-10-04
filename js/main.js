@@ -307,7 +307,7 @@ class PLS120Website {
     getSectionTitle(sectionId) {
         const titles = {
             'week1': 'Week 1: Applied Statistics in Agriculture',
-            'week2': 'Week 2 🔒',
+            'week2': 'Week 2: Descriptive Statistics',
             'week3': 'Week 3 🔒',
             'week4': 'Week 4 🔒',
             'week5': 'Week 5 🔒',
