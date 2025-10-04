@@ -1,197 +1,184 @@
 # 🌾 PLS 120: Applied Statistics in Agriculture
-## Interactive R Programming with Binder - No Installation Required! 🚀
+## Week 2: Descriptive Statistics and Central Tendency
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
 
-**Welcome to PLS 120!** In this course, we use the **R programming language** for statistical analysis in agriculture. Instead of installing R and RStudio on your computer, we use **Binder** and **Jupyter Notebooks** to provide you with a ready-to-use environment. No software installation needed! 🎉
-
----
-
-## 🎯 Why Use Binder?
-
-✅ **No Installation Required** - Everything runs in your browser  
-✅ **Pre-configured Environment** - All packages already installed  
-✅ **Cross-platform** - Works on Windows, Mac, Linux  
-✅ **Always Updated** - Latest versions of R and packages  
-✅ **Easy Sharing** - Just click a link to get started  
+**Welcome to Week 2!** This week, we explore **descriptive statistics** and **measures of central tendency** - essential tools for summarizing and understanding data in agricultural research.
 
 ---
 
-## 🚀 Getting Started: Step-by-Step Guide
+## 📊 What You'll Learn This Week
 
-### Step 1: Launch Binder Environment 🌐
+### Measures of Central Tendency
+Understanding where the "center" of your data lies:
 
-Click the **"Launch Binder"** button above to start your R environment. This will take **2-5 minutes** to load.
+- **Mean (μ or x̄)** - The arithmetic average
+  - Formula: `μ = Σx / n`
+  - Sensitive to outliers
+  - Most commonly used measure
 
-![Binder Launching](Assets/Image_1.png)
-*🔄 Binder is launching your environment - please wait patiently!*
+- **Median** - The middle value when data is ordered
+  - Less affected by outliers
+  - Better for skewed distributions
 
-### Step 2: Wait for Environment to Load ⏳
+- **Mode** - The most frequently occurring value
+  - Useful for categorical data
+  - Can have multiple modes
 
-After clicking the link, Binder will show progress through several stages:
-- **Waiting** 🕐
-- **Building** 🔨  
-- **Pushing** 📤
-- **Launching** 🚀
+### Measures of Variability
+Understanding how spread out your data is:
 
-The green progress bar shows Binder is almost ready!
+- **Variance (σ²)** - Average squared deviation from the mean
+  - Formula: `σ² = Σ(x - μ)² / n`
+  - Units are squared
 
-![Binder Ready](Assets/Image_2.png)
-*✅ Green bar means your environment is ready in just a few seconds!*
+- **Standard Deviation (σ)** - Square root of variance
+  - Formula: `σ = √(σ²)`
+  - Same units as original data
+  - Most interpretable measure of spread
 
-### Step 3: Navigate to Class Activity 📚
+- **Coefficient of Variation (CV)** - Relative variability
+  - Formula: `CV = (σ / μ) × 100%`
+  - Allows comparison across different scales
 
-Once Binder loads, you'll see the Jupyter Notebook interface. In the **left panel**, you'll see several folders:
-- `assignment/` - Your homework assignments
-- `class_activity/` - Lab tutorials and exercises  
-- Various files (README.md, runtime.txt, etc.)
+### Quantiles and Percentiles
+Understanding data distribution:
 
-**Click on the `class_activity` folder** to access this week's content.
+- **Quartiles** - Divide data into four equal parts
+  - Q1 (25th percentile)
+  - Q2 (50th percentile = median)
+  - Q3 (75th percentile)
+  - Interquartile Range (IQR) = Q3 - Q1
 
-![Navigate to Class Activity](Assets/Image_3.png)
-*👆 Click here to access your lab materials*
+---
 
-### Step 4: Open the Lab Notebook 📖
+## 🚀 Getting Started
 
-Inside the `class_activity` folder, **double-click** on `Week1_Introduction.ipynb` to open the interactive lab notebook.
+### Step 1: Launch Binder 🌐
 
-![Open Lab Notebook](Assets/Image_4.png)
-*👆 Double-click here to open the lab instructions and code*
+Click the **"Launch Binder"** button above. This will take **2-5 minutes** to load your R environment.
 
-### Step 5: Explore the Data (Optional) 📊
+### Step 2: Navigate to Materials 📚
 
-We've already uploaded the data for this lab! The file `LA_Data.csv` contains the crime statistics data. You can **double-click** on it to explore the data if you're curious.
+Once Binder loads, you'll see:
+- `assignment/` - Assignment 2 on descriptive statistics
+- `class_activity/` - Week 2 lab tutorial
 
-![Explore Data](Assets/Image_5.png)
-*👆 Click here to view the raw data (optional)*
+### Step 3: Start with Class Activity 📖
+
+Open `class_activity/Week2_Descriptive_Statistics.ipynb` to begin the tutorial.
+
+---
+
+## 📝 This Week's Materials
+
+### Class Activity: Week2_Descriptive_Statistics.ipynb
+Interactive tutorial covering:
+- Loading and examining the iris dataset
+- Calculating mean, median, and mode
+- Computing variance and standard deviation
+- Finding quantiles
+- Understanding data dimensions with `nrow()` and `ncol()`
+
+### Assignment 2: Central Tendency Analysis
+Apply your knowledge to the LA crime dataset:
+- Calculate measures of central tendency for different subgroups
+- Compare male vs. female victim statistics
+- Analyze variability across datasets
+- Interpret quantiles and draw inferences
+
+**Total Points:** 20 points
+
+---
+
+## 🧮 Key R Functions This Week
+
+### Summary Statistics
+```r
+summary(data)          # Comprehensive summary
+mean(data$column)      # Calculate mean
+median(data$column)    # Calculate median
+var(data$column)       # Calculate variance
+sd(data$column)        # Calculate standard deviation
+quantile(data$column)  # Calculate quantiles
+```
+
+### Data Exploration
+```r
+head(data)             # First 6 rows
+str(data)              # Data structure
+nrow(data)             # Number of rows
+ncol(data)             # Number of columns
+```
+
+### Custom Functions
+```r
+# Mode function (not built-in)
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+```
 
 ---
 
 ## 💾 Saving Your Work
 
-**⚠️ Important:** Binder environments are temporary! Always save your work locally.
+**⚠️ Important:** Binder environments are temporary!
 
-### Download Your Notebook 📥
+### Before Closing Binder:
+1. **Save your notebook:** File → Save
+2. **Download .ipynb file:** File → Download
+3. **Export HTML/PDF:** File → Save and Export Notebook As → HTML
 
-When you're done working, save your progress:
-
-1. **Go back to main folder** - Click the folder icon in the left panel
-
-![Go Back to Main](Assets/Image_6.png)
-*👆 Click the folder icon to return to the main directory*
-
-2. **Download your notebook** - Right-click on your `.ipynb` file and select "Download"
-
----
-
-## 📝 Completing Assignments
-
-### Step 1: Access Assignment Folder 📋
-
-From the main directory, **click on the `assignment` folder** to access your homework.
-
-![Access Assignment](Assets/Image_7.png)
-*👆 Click here to access assignment materials*
-
-### Step 2: Open Assignment Notebook 📄
-
-**Double-click** on `Assignment1.ipynb` to open your assignment.
-
-![Open Assignment](Assets/Image_8.png)
-*👆 Double-click here to open your assignment*
-
-### Step 3: Complete Your Work ✍️
-
-Fill in all **code boxes** and **text boxes** carefully to answer all questions. Look for:
-- ❓ Question mark emojis indicating questions to answer
-- Code cells with hints in comments
-- Raw text cells for your written responses
-
-### Step 4: Download Your Completed Work 💾
-
-#### Download Code File (.ipynb)
-
-Click **File** → **Download** to save your notebook code.
-
-![Download Code](Assets/Image_9.png)
-*👆 Download your .ipynb file for backup*
-
-#### Export HTML/PDF Report 📄
-
-For submission, you also need an HTML or PDF report:
-
-Click **File** → **Save and Export Notebook As** → **HTML** (or PDF)
-
-![Export Report](Assets/Image_10.png)
-*👆 Export your completed assignment as HTML or PDF*
+### To Continue Later:
+1. Launch Binder again
+2. Click **Upload** button
+3. Upload your saved `.ipynb` file
+4. Continue where you left off!
 
 ---
 
-## ⚠️ Important: Saving Your Progress
+## 📤 Assignment Submission
 
-**Do not close Binder if you have not saved your code or all your progress will be gone!**
+Submit **TWO files** to UC Davis Canvas:
 
-If you want to take a break and continue your activity or assignment later:
-
-### Save Your Work Before Closing 💾
-
-Right-click on your code (`.ipynb`) file and click "Download" to make sure you have saved your code locally.
-
-![Save Your Code](Assets/Image_11.png)
-*👆 Right-click on your notebook file and download it before closing Binder*
-
-### Continue Your Progress Later 🔄
-
-When you open Binder again and want to continue your work:
-
-1. Click the **Upload** button on the top ribbon
-2. Find your saved code file locally on your computer
-3. Upload your `.ipynb` file
-4. Run your code cells again to see your previous outputs!
-
-![Upload Your Code](Assets/Image_12.png)
-*👆 Use the Upload button to continue your work from where you left off*
-
----
-
-## 📤 Submission Requirements
-
-For each assignment, submit **TWO files** to UC Davis Canvas:
-
-1. **📄 HTML/PDF Report** - Your formatted assignment with outputs
+1. **📄 HTML or PDF Report** - Your completed assignment with all outputs
 2. **💾 .ipynb File** - Your notebook code as backup
 
----
-
-## ❓ Need Help?
-
-### 📧 Contact Information
-
-**Mohammadreza Narimani**  
-📧 mnarimani@ucdavis.edu  
-🏫 Department of Biological and Agricultural Engineering, UC Davis
-
-### 🔧 Technical Issues
-
-- **Binder won't load?** Try refreshing the page or clearing browser cache
-- **Lost your work?** Always download files before closing Binder
-- **Code not working?** Check for typos and make sure you've run all previous cells
-
-### 📚 Learning Resources
-
-- **R Documentation:** Use `?function_name` in code cells for help
-- **Course Materials:** All tutorials are in the `class_activity` folder
-- **Practice:** Try modifying the example code to learn more!
+**Due Date:** Check Canvas for deadline
 
 ---
 
-## 📋 What You'll Learn
+## 🎯 Learning Objectives
 
-✅ **R Programming Basics** - Variables, vectors, data frames  
-✅ **Data Visualization** - Histograms, plots, charts  
-✅ **Statistical Analysis** - Descriptive statistics, hypothesis testing  
-✅ **Agricultural Applications** - Real-world data analysis  
-✅ **Report Writing** - Professional statistical reports  
+By the end of this week, you will be able to:
+
+✅ Calculate and interpret mean, median, and mode  
+✅ Understand when to use each measure of central tendency  
+✅ Compute variance, standard deviation, and coefficient of variation  
+✅ Interpret measures of variability in context  
+✅ Use quantiles to understand data distribution  
+✅ Compare statistics across different subgroups  
+✅ Make data-driven inferences about populations  
+
+---
+
+## 📊 Why This Matters in Agriculture
+
+Descriptive statistics are fundamental in agricultural research:
+
+- **Crop Yields:** Compare mean yields across varieties
+- **Soil Properties:** Understand variability in soil nutrients
+- **Weather Data:** Analyze temperature and rainfall patterns
+- **Pest Populations:** Track changes in pest abundance
+- **Quality Control:** Monitor consistency in agricultural products
+
+Understanding central tendency and variability helps you:
+- Summarize large datasets efficiently
+- Identify typical values and outliers
+- Compare different treatments or groups
+- Make informed management decisions
 
 ---
 
@@ -199,11 +186,11 @@ For each assignment, submit **TWO files** to UC Davis Canvas:
 
 ### 💡 Best Practices
 
-- **📖 Read instructions carefully** before starting each exercise
-- **▶️ Run code cells in order** - later cells depend on earlier ones
-- **💾 Save frequently** - Download your work regularly
-- **🤔 Experiment** - Try modifying code to see what happens
-- **❓ Ask questions** - Don't hesitate to reach out for help
+- **Understand the concepts** - Don't just calculate, interpret!
+- **Compare measures** - How do mean, median, and mode differ?
+- **Consider context** - What do the numbers tell you about the real world?
+- **Check your work** - Do your results make sense?
+- **Use hints wisely** - They guide you to the solution
 
 ### ⚡ Keyboard Shortcuts
 
@@ -215,14 +202,38 @@ For each assignment, submit **TWO files** to UC Davis Canvas:
 
 ---
 
+## ❓ Need Help?
+
+### 📧 Contact Information
+
+**Mohammadreza Narimani**  
+📧 mnarimani@ucdavis.edu  
+🏫 Department of Biological and Agricultural Engineering, UC Davis
+
+### 🔧 Common Issues
+
+- **Binder won't load?** Try refreshing or clearing browser cache
+- **Code error?** Check that you've run all previous cells in order
+- **Lost work?** Always download files before closing Binder
+- **Function not working?** Use `?function_name` for help documentation
+
+### 📚 Additional Resources
+
+- **R Documentation:** Type `?function_name` in any code cell
+- **Course Materials:** All tutorials in `class_activity/` folder
+- **Practice:** Experiment with the iris dataset to reinforce learning
+
+---
+
 ## 🎉 Ready to Start?
 
-Click the Binder badge at the top of this page to launch your first R programming session!
+Click the Binder badge at the top of this page to launch Week 2!
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
 
-**Happy coding! 🚀🌾**
+**Happy analyzing! 📊🌾**
 
 ---
 
 *Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis*
+*Week 2: Descriptive Statistics and Central Tendency*
