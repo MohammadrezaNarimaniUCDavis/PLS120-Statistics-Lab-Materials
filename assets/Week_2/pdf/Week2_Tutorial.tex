@@ -1,0 +1,282 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 2 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\Large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Descriptive Statistics and Central Tendency}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 2 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize October 2025}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials are available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{{\textbf{\Large \textcolor{primarygreen}{\underline{Click Here to Access Course Website}}}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 2 lab materials directly:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2}{{\textbf{\Large \textcolor{primarygreen}{\underline{Click Here to Launch Week 2 Binder}}}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 2: Descriptive Statistics}
+
+This week, we explore \textbf{descriptive statistics} and \textbf{measures of central tendency} - essential tools for summarizing and understanding data in agricultural research. You'll learn to calculate mean, median, mode, variance, and standard deviation using R!
+
+\section{Key Statistical Concepts}
+
+\subsection{Measures of Central Tendency}
+
+Understanding where the "center" of your data lies is fundamental to statistical analysis.
+
+\subsubsection{Mean ($\mu$ or $\bar{x}$)}
+
+\begin{formulabox}
+\textbf{Definition:} The arithmetic average of all values\\[0.3cm]
+\textbf{Formula:} $\mu = \frac{\Sigma x}{n}$\\[0.3cm]
+\textbf{When to use:} Most common measure, but sensitive to outliers\\
+\textbf{Example:} Average crop yield across all plots
+\end{formulabox}
+
+\subsubsection{Median}
+
+\begin{formulabox}
+\textbf{Definition:} The middle value when data is ordered\\[0.3cm]
+\textbf{Formula:} Middle value of sorted data\\[0.3cm]
+\textbf{When to use:} Better for skewed distributions or data with outliers\\
+\textbf{Example:} Typical rainfall amount (not affected by extreme storms)
+\end{formulabox}
+
+\subsubsection{Mode}
+
+\begin{formulabox}
+\textbf{Definition:} The most frequently occurring value\\[0.3cm]
+\textbf{Formula:} Most common value in dataset\\[0.3cm]
+\textbf{When to use:} Useful for categorical data or finding the most common observation\\
+\textbf{Example:} Most common pest species observed
+\end{formulabox}
+
+\subsection{Measures of Variability}
+
+Understanding how spread out your data is from the center.
+
+\subsubsection{Variance ($\sigma^2$)}
+
+\begin{formulabox}
+\textbf{Definition:} Average squared deviation from the mean\\[0.3cm]
+\textbf{Formula:} $\sigma^2 = \frac{\Sigma(x - \mu)^2}{n}$\\[0.3cm]
+\textbf{Note:} Units are squared, making interpretation less intuitive
+\end{formulabox}
+
+\subsubsection{Standard Deviation ($\sigma$)}
+
+\begin{formulabox}
+\textbf{Definition:} Square root of variance - average distance from the mean\\[0.3cm]
+\textbf{Formula:} $\sigma = \sqrt{\sigma^2}$\\[0.3cm]
+\textbf{Advantage:} Same units as original data, easier to interpret\\
+\textbf{Rule of thumb:} In normal distributions, ~68\% of data falls within 1$\sigma$ of the mean
+\end{formulabox}
+
+\subsubsection{Coefficient of Variation (CV)}
+
+\begin{formulabox}
+\textbf{Definition:} Relative variability measure\\[0.3cm]
+\textbf{Formula:} $CV = \frac{\sigma}{\mu} \times 100\%$\\[0.3cm]
+\textbf{When to use:} Allows comparison of variability across different scales or units\\
+\textbf{Example:} Compare consistency of wheat yield (tons/ha) vs. corn yield (bushels/acre)
+\end{formulabox}
+
+\section{Key R Functions This Week}
+
+\subsection{Summary Statistics}
+
+\begin{infobox}
+\texttt{summary(data)} - Comprehensive summary\\
+\texttt{mean(data\$column)} - Calculate mean\\
+\texttt{median(data\$column)} - Calculate median\\
+\texttt{var(data\$column)} - Calculate variance\\
+\texttt{sd(data\$column)} - Calculate standard deviation\\
+\texttt{quantile(data\$column)} - Calculate quantiles
+\end{infobox}
+
+\subsection{Data Exploration}
+
+\begin{infobox}
+\texttt{head(data)} - First 6 rows\\
+\texttt{str(data)} - Data structure\\
+\texttt{nrow(data)} - Number of rows\\
+\texttt{ncol(data)} - Number of columns
+\end{infobox}
+
+\subsection{Custom Mode Function}
+
+Since R doesn't have a built-in mode function, we create our own:
+
+\begin{infobox}
+\texttt{Mode <- function(x) \{}\\
+\texttt{~~ux <- unique(x)}\\
+\texttt{~~ux[which.max(tabulate(match(x, ux)))]}\\
+\texttt{\}}
+\end{infobox}
+
+\section{Assignment 2: Central Tendency Analysis}
+
+\subsection{Assignment Overview (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Mean, Median, Mode (7 points)}
+    \item \textbf{Part 2: Variance \& Standard Deviation (5 points)}
+    \item \textbf{Part 3: Quantiles (1 point)}
+    \item \textbf{Written Analysis (7 points)}
+\end{enumerate}
+
+The assignment uses the LA crime dataset to compare statistics between all victims, male victims, and female victims.
+
+\section{Why This Matters in Agriculture}
+
+\begin{infobox}
+\textbf{Agricultural Applications:}
+\begin{itemize}
+    \item \textbf{Crop Yields} - Compare mean yields across varieties
+    \item \textbf{Soil Properties} - Understand nutrient variability
+    \item \textbf{Weather Patterns} - Analyze rainfall and temperature
+    \item \textbf{Pest Populations} - Track abundance changes
+    \item \textbf{Quality Control} - Monitor product consistency
+\end{itemize}
+\end{infobox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 2 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week2\_Descriptive\_Statistics.ipynb}
+    \item Work with the built-in iris dataset
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Calculate and interpret mean, median, and mode
+    \item Understand when to use each measure of central tendency
+    \item Compute variance, standard deviation, and CV
+    \item Use quantiles to understand data distribution
+    \item Compare statistics across different subgroups
+\end{itemize}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 2: Descriptive Statistics and Central Tendency}
+\end{center}
+
+\end{document}
