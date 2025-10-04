@@ -1,751 +1,376 @@
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1 class="page-title">🌾 Week 2: Descriptive Statistics and Central Tendency</h1>
+<p class="page-subtitle">Understanding Your Data Through Statistical Measures 📊</p>
 
-    <!-- Header -->
-    <header class="bg-green-600 text-white py-6">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mb-2">🌾 PLS 120: Applied Statistics in Agriculture</h1>
-            <p class="text-green-100 text-lg">Week 2: Interactive Descriptive Statistics Lab</p>
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 2 Interactive Environment</span>
+            </a>
         </div>
-    </header>
+        
+        <p><strong>Welcome to Week 2!</strong> This week, we explore <strong>descriptive statistics</strong> and <strong>measures of central tendency</strong> - essential tools for summarizing and understanding data in agricultural research. Learn to calculate mean, median, mode, variance, and standard deviation using R!</p>
+    </div>
+</div>
 
-    <!-- Concepts Section -->
-    <section class="py-8">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">📊 Key Concepts</h2>
-            
-            <!-- Central Tendency Cards -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold text-blue-600 mb-3">Mean (μ or x̄)</h3>
-                    <p class="text-gray-600 mb-3">The arithmetic average of all values</p>
-                    <div class="formula">μ = Σx / n</div>
-                    <p class="text-sm text-gray-500 mt-2">Sensitive to outliers</p>
-                </div>
-                
-                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
-                    <h3 class="text-xl font-bold text-green-600 mb-3">Median</h3>
-                    <p class="text-gray-600 mb-3">The middle value when data is ordered</p>
-                    <div class="formula">Middle value of sorted data</div>
-                    <p class="text-sm text-gray-500 mt-2">Less affected by outliers</p>
-                </div>
-                
-                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
-                    <h3 class="text-xl font-bold text-purple-600 mb-3">Mode</h3>
-                    <p class="text-gray-600 mb-3">The most frequently occurring value</p>
-                    <div class="formula">Most common value</div>
-                    <p class="text-sm text-gray-500 mt-2">Useful for categorical data</p>
-                </div>
+<div class="section">
+    <h2 class="section-title">📊 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>Mean (μ or x̄)</strong> - The arithmetic average: μ = Σx / n</span>
             </div>
-
-            <!-- Variability Cards -->
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Measures of Variability</h3>
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
-                    <h3 class="text-xl font-bold text-red-600 mb-3">Standard Deviation (σ)</h3>
-                    <p class="text-gray-600 mb-3">Average distance from the mean</p>
-                    <div class="formula">σ = √(Σ(x - μ)² / n)</div>
-                    <p class="text-sm text-gray-500 mt-2">Same units as original data</p>
-                </div>
-                
-                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
-                    <h3 class="text-xl font-bold text-yellow-600 mb-3">Coefficient of Variation</h3>
-                    <p class="text-gray-600 mb-3">Relative variability measure</p>
-                    <div class="formula">CV = (σ / μ) × 100%</div>
-                    <p class="text-sm text-gray-500 mt-2">Allows comparison across scales</p>
-                </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Median</strong> - The middle value when data is ordered</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎯</span>
+                <span><strong>Mode</strong> - The most frequently occurring value</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📏</span>
+                <span><strong>Variance (σ²)</strong> - Average squared deviation from mean</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📐</span>
+                <span><strong>Standard Deviation (σ)</strong> - Square root of variance</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔍</span>
+                <span><strong>Coefficient of Variation</strong> - Relative variability measure</span>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Interactive Visual Concepts -->
-    <section class="py-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 Visual Learning: Understanding Statistics</h2>
-            
-            <!-- Mean Visualization -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h3 class="text-xl font-bold text-blue-600 mb-4">Understanding the Mean</h3>
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div>
-                        <p class="text-gray-600 mb-4">The mean is the "balance point" of your data. Click the button to see how it works!</p>
-                        <button onclick="demonstrateMean()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mb-4">Show Mean Visualization</button>
-                        <div id="meanDemo" class="bg-gray-50 p-4 rounded-lg min-h-32">
-                            <p class="text-gray-500">Click the button above to see the mean in action!</p>
-                        </div>
-                    </div>
-                    <div>
-                        <canvas id="meanChart" width="400" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 2 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 2"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for descriptive statistics.</p>
 
-            <!-- Median Visualization -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h3 class="text-xl font-bold text-green-600 mb-4">Understanding the Median</h3>
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div>
-                        <p class="text-gray-600 mb-4">The median splits your data in half. See how it's different from the mean!</p>
-                        <button onclick="demonstrateMedian()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mb-4">Show Median Visualization</button>
-                        <div id="medianDemo" class="bg-gray-50 p-4 rounded-lg min-h-32">
-                            <p class="text-gray-500">Click the button above to see the median in action!</p>
-                        </div>
-                    </div>
-                    <div>
-                        <canvas id="medianChart" width="400" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 2 on descriptive statistics</li>
+            <li><code>class_activity/</code> - Week 2 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
 
-            <!-- Standard Deviation Visualization -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h3 class="text-xl font-bold text-red-600 mb-4">Understanding Standard Deviation</h3>
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div>
-                        <p class="text-gray-600 mb-4">Standard deviation shows how spread out your data is from the mean.</p>
-                        <button onclick="demonstrateStdDev()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 mb-4">Show Spread Visualization</button>
-                        <div id="stdDevDemo" class="bg-gray-50 p-4 rounded-lg min-h-32">
-                            <p class="text-gray-500">Click the button above to see how standard deviation works!</p>
-                        </div>
-                    </div>
-                    <div>
-                        <canvas id="stdDevChart" width="400" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
+        <h3 class="card-title">Step 3: Open the Week 2 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week2_Descriptive_Statistics.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Work with the Iris Dataset 🌸</h3>
+        <p>This week we'll use the built-in <strong>iris dataset</strong> - no external files needed! The notebook will guide you through:</p>
+        <ul>
+            <li>Loading and examining the iris dataset</li>
+            <li>Using <code>summary()</code> and <code>head()</code> functions</li>
+            <li>Calculating mean, median, and mode</li>
+            <li>Computing variance and standard deviation</li>
+            <li>Finding quantiles and data dimensions</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Summary Statistics</h3>
+        <div class="code-block">
+            <code>summary(data)          # Comprehensive summary</code><br>
+            <code>mean(data$column)      # Calculate mean</code><br>
+            <code>median(data$column)    # Calculate median</code><br>
+            <code>var(data$column)       # Calculate variance</code><br>
+            <code>sd(data$column)        # Calculate standard deviation</code><br>
+            <code>quantile(data$column)  # Calculate quantiles</code>
         </div>
-    </section>
 
-    <!-- Calculator Section -->
-    <section class="py-8">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">🧮 Statistics Calculator</h2>
-            
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Input Section -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-4">Enter Your Data</h3>
-                    <textarea id="dataInput" 
-                              placeholder="Enter numbers separated by commas or spaces&#10;Example: 12, 15, 18, 20, 22, 25, 28"
-                              class="w-full h-32 p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
-                    
-                    <div class="mt-4">
-                        <button onclick="loadSampleData('crop')" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mr-2">Load Crop Yield Data</button>
-                        <button onclick="loadSampleData('rainfall')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mr-2">Load Rainfall Data</button>
-                        <button onclick="calculateStats()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Calculate</button>
-                    </div>
-                </div>
+        <h3 class="card-title">Data Exploration</h3>
+        <div class="code-block">
+            <code>head(data)             # First 6 rows</code><br>
+            <code>str(data)              # Data structure</code><br>
+            <code>nrow(data)             # Number of rows</code><br>
+            <code>ncol(data)             # Number of columns</code>
+        </div>
 
-                <!-- Results Section -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-4">Results</h3>
-                    <div id="results" class="space-y-3">
-                        <p class="text-gray-500">Enter data and click Calculate to see results</p>
-                    </div>
+        <h3 class="card-title">Custom Mode Function</h3>
+        <div class="code-block">
+            <code>Mode <- function(x) {</code><br>
+            <code>  ux <- unique(x)</code><br>
+            <code>  ux[which.max(tabulate(match(x, ux)))]</code><br>
+            <code>}</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 2: Central Tendency Analysis</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 2.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 2 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment2.ipynb</code> to open your assignment on descriptive statistics.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 1: Mean, Median, Mode (7 points)</h4>
+                    <p>Calculate central tendency measures for LA crime data</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Data Visualizer Section -->
-    <section class="py-8 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">📈 Data Distribution Explorer</h2>
-            
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <div class="flex flex-wrap gap-4 mb-6">
-                    <button onclick="generateDataset('normal')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Normal Distribution</button>
-                    <button onclick="generateDataset('skewed')" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Skewed Distribution</button>
-                    <button onclick="generateDataset('outliers')" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Data with Outliers</button>
-                    <button onclick="generateDataset('bimodal')" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">Bimodal Distribution</button>
+            <div class="submission-item">
+                <span class="submission-icon">📏</span>
+                <div>
+                    <h4>Part 2: Variance & Standard Deviation (5 points)</h4>
+                    <p>Analyze variability across different subgroups</p>
                 </div>
-                
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div>
-                        <canvas id="histogramChart" width="400" height="300"></canvas>
-                    </div>
-                    <div id="visualStats" class="bg-gray-50 p-4 rounded-lg">
-                        <h4 class="font-bold mb-2">Dataset Statistics</h4>
-                        <p class="text-gray-600">Generate a dataset to see statistics</p>
-                    </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📐</span>
+                <div>
+                    <h4>Part 3: Quantiles (1 point)</h4>
+                    <p>Interpret Q1 and Q3 values for datasets</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">✍️</span>
+                <div>
+                    <h4>Written Analysis (7 points)</h4>
+                    <p>Compare statistics and draw inferences</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Practice Quiz Section -->
-    <section class="py-8">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 Practice Quiz</h2>
-            
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div id="quizContainer">
-                    <div class="quiz-question mb-6">
-                        <h3 class="text-lg font-bold mb-4">Question 1 of 5</h3>
-                        <p class="mb-4">For the dataset: 10, 12, 15, 15, 18, 20, 25, what is the median?</p>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="radio" name="q1" value="15" class="mr-2">
-                                <span>15</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="q1" value="16.5" class="mr-2">
-                                <span>16.5</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="q1" value="17" class="mr-2">
-                                <span>17</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <button onclick="checkQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Check Answer</button>
-                    <div id="quizFeedback" class="mt-4"></div>
+        <h3 class="card-title">Step 3: Complete Your Analysis ✍️</h3>
+        <p>The assignment uses the LA crime dataset to compare statistics between:</p>
+        <ul>
+            <li><strong>All victims</strong> - Complete dataset</li>
+            <li><strong>Male victims</strong> - Filtered subset</li>
+            <li><strong>Female victims</strong> - Filtered subset</li>
+        </ul>
+        <p>Look for <strong>hints in comments</strong> to guide your coding!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Crop Yields</strong> - Compare mean yields across varieties</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌍</span>
+                <span><strong>Soil Properties</strong> - Understand nutrient variability</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌧️</span>
+                <span><strong>Weather Patterns</strong> - Analyze rainfall and temperature</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pest Populations</strong> - Track abundance changes</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✅</span>
+                <span><strong>Quality Control</strong> - Monitor product consistency</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Understanding Variability Helps You:</h3>
+        <ul>
+            <li>Summarize large datasets efficiently</li>
+            <li>Identify typical values and outliers</li>
+            <li>Compare different treatments or groups</li>
+            <li>Make informed management decisions</li>
+            <li>Assess risk and reliability in farming</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 2, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
 
-    <script>
-        // Visual Learning Functions
-        let meanChart = null;
-        let medianChart = null;
-        let stdDevChart = null;
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Calculate and interpret mean, median, and mode</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand when to use each measure of central tendency</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compute variance, standard deviation, and CV</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Interpret measures of variability in context</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Use quantiles to understand data distribution</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compare statistics across different subgroups</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-        function demonstrateMean() {
-            const data = [8, 12, 15, 18, 22, 25, 30];
-            const mean = data.reduce((a, b) => a + b, 0) / data.length;
-            
-            document.getElementById('meanDemo').innerHTML = `
-                <div class="space-y-3">
-                    <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
-                        <h4 class="font-bold text-blue-700">Sample Data: ${data.join(', ')}</h4>
-                        <p class="text-blue-600">Sum = ${data.reduce((a, b) => a + b, 0)}, Count = ${data.length}</p>
-                        <p class="text-blue-800 font-semibold">Mean = ${data.reduce((a, b) => a + b, 0)} ÷ ${data.length} = ${mean.toFixed(1)}</p>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <p>💡 <strong>Key Insight:</strong> The mean is like a balance point. If you put weights at each data point on a seesaw, the mean is where you'd place the fulcrum to balance it perfectly!</p>
-                        <p class="mt-2">⚠️ <strong>Watch out:</strong> Outliers can pull the mean away from the center of most data points.</p>
-                    </div>
-                </div>
-            `;
-            
-            createMeanChart(data, mean);
-        }
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
 
-        function demonstrateMedian() {
-            const originalData = [8, 12, 15, 18, 22, 25, 30];
-            const skewedData = [8, 12, 15, 18, 22, 25, 100]; // Same data but with outlier
-            
-            const medianOriginal = originalData[Math.floor(originalData.length / 2)];
-            const medianSkewed = skewedData[Math.floor(skewedData.length / 2)];
-            const meanOriginal = originalData.reduce((a, b) => a + b, 0) / originalData.length;
-            const meanSkewed = skewedData.reduce((a, b) => a + b, 0) / skewedData.length;
-            
-            document.getElementById('medianDemo').innerHTML = `
-                <div class="space-y-3">
-                    <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
-                        <h4 class="font-bold text-green-700">Normal Data: ${originalData.join(', ')}</h4>
-                        <p class="text-green-600">Median = ${medianOriginal} (middle value), Mean = ${meanOriginal.toFixed(1)}</p>
-                    </div>
-                    <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
-                        <h4 class="font-bold text-yellow-700">With Outlier: ${skewedData.join(', ')}</h4>
-                        <p class="text-yellow-600">Median = ${medianSkewed} (still middle!), Mean = ${meanSkewed.toFixed(1)} (changed!)</p>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <p>💡 <strong>Key Insight:</strong> The median is the middle value when data is sorted. It's not affected by extreme values!</p>
-                        <p class="mt-2">🎯 <strong>Use when:</strong> Your data has outliers or is skewed (like income data).</p>
-                    </div>
-                </div>
-            `;
-            
-            createMedianChart(originalData, skewedData);
-        }
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>Code error?</strong> Check that you've run all previous cells in order</li>
+            <li><strong>Lost work?</strong> Always download files before closing Binder</li>
+            <li><strong>Function not working?</strong> Use <code>?function_name</code> for help</li>
+        </ul>
 
-        function demonstrateStdDev() {
-            const lowSpread = [48, 49, 50, 51, 52]; // Low variability
-            const highSpread = [30, 40, 50, 60, 70]; // High variability
-            
-            const meanLow = lowSpread.reduce((a, b) => a + b, 0) / lowSpread.length;
-            const meanHigh = highSpread.reduce((a, b) => a + b, 0) / highSpread.length;
-            
-            const stdDevLow = Math.sqrt(lowSpread.reduce((sum, x) => sum + Math.pow(x - meanLow, 2), 0) / lowSpread.length);
-            const stdDevHigh = Math.sqrt(highSpread.reduce((sum, x) => sum + Math.pow(x - meanHigh, 2), 0) / highSpread.length);
-            
-            document.getElementById('stdDevDemo').innerHTML = `
-                <div class="space-y-3">
-                    <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
-                        <h4 class="font-bold text-red-700">Low Spread: ${lowSpread.join(', ')}</h4>
-                        <p class="text-red-600">Mean = ${meanLow}, Std Dev = ${stdDevLow.toFixed(1)} (data close to mean)</p>
-                    </div>
-                    <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
-                        <h4 class="font-bold text-orange-700">High Spread: ${highSpread.join(', ')}</h4>
-                        <p class="text-orange-600">Mean = ${meanHigh}, Std Dev = ${stdDevHigh.toFixed(1)} (data spread out)</p>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <p>💡 <strong>Key Insight:</strong> Standard deviation measures how "spread out" your data is from the average.</p>
-                        <p class="mt-2">📊 <strong>Rule of thumb:</strong> In normal distributions, ~68% of data falls within 1 standard deviation of the mean.</p>
-                        <p class="mt-1">🔍 <strong>CV helps compare:</strong> CV = (Std Dev ÷ Mean) × 100% lets you compare variability across different scales.</p>
-                    </div>
-                </div>
-            `;
-            
-            createStdDevChart(lowSpread, highSpread, meanLow, meanHigh, stdDevLow, stdDevHigh);
-        }
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>R Documentation:</strong> Type <code>?function_name</code> in any code cell</li>
+            <li><strong>Course Materials:</strong> All tutorials in <code>class_activity/</code> folder</li>
+            <li><strong>Practice:</strong> Experiment with the iris dataset to reinforce learning</li>
+        </ul>
+    </div>
+</div>
 
-        function createMeanChart(data, mean) {
-            const ctx = document.getElementById('meanChart').getContext('2d');
-            if(meanChart) meanChart.destroy();
-            
-            meanChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Data Points',
-                        data: data.map((val, idx) => ({x: idx + 1, y: val})),
-                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        pointRadius: 8
-                    }, {
-                        label: 'Mean',
-                        data: data.map((val, idx) => ({x: idx + 1, y: mean})),
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)',
-                        borderColor: 'rgba(239, 68, 68, 1)',
-                        pointRadius: 0,
-                        showLine: true,
-                        borderWidth: 3,
-                        borderDash: [5, 5]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: { display: true, text: 'Mean as Balance Point' }
-                    },
-                    scales: {
-                        x: { title: { display: true, text: 'Data Point' } },
-                        y: { title: { display: true, text: 'Value' } }
-                    }
-                }
-            });
-        }
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Understand the concepts</strong> - Don't just calculate, interpret!</li>
+            <li><strong>Compare measures</strong> - How do mean, median, and mode differ?</li>
+            <li><strong>Consider context</strong> - What do the numbers tell you about the real world?</li>
+            <li><strong>Check your work</strong> - Do your results make sense?</li>
+            <li><strong>Use hints wisely</strong> - They guide you to the solution</li>
+        </ul>
 
-        function createMedianChart(normal, skewed) {
-            const ctx = document.getElementById('medianChart').getContext('2d');
-            if(medianChart) medianChart.destroy();
-            
-            const medianNormal = normal[Math.floor(normal.length / 2)];
-            const medianSkewed = skewed[Math.floor(skewed.length / 2)];
-            const meanNormal = normal.reduce((a, b) => a + b, 0) / normal.length;
-            const meanSkewed = skewed.reduce((a, b) => a + b, 0) / skewed.length;
-            
-            medianChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Normal Data',
-                        data: normal.map((val, idx) => ({x: idx + 1, y: val})),
-                        backgroundColor: 'rgba(34, 197, 94, 0.6)',
-                        pointRadius: 6
-                    }, {
-                        label: 'With Outlier',
-                        data: skewed.map((val, idx) => ({x: idx + 8, y: val})),
-                        backgroundColor: 'rgba(251, 191, 36, 0.6)',
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: { display: true, text: 'Median vs Mean: Outlier Effect' }
-                    },
-                    scales: {
-                        x: { title: { display: true, text: 'Dataset Position' } },
-                        y: { title: { display: true, text: 'Value' } }
-                    }
-                }
-            });
-        }
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>A</kbd>
+                <span>Insert cell above</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>B</kbd>
+                <span>Insert cell below</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>DD</kbd>
+                <span>Delete current cell</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-        function createStdDevChart(lowSpread, highSpread, meanLow, meanHigh, stdDevLow, stdDevHigh) {
-            const ctx = document.getElementById('stdDevChart').getContext('2d');
-            if(stdDevChart) stdDevChart.destroy();
-            
-            stdDevChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Low Spread Data',
-                        data: lowSpread.map((val, idx) => ({x: idx + 1, y: val})),
-                        backgroundColor: 'rgba(239, 68, 68, 0.6)',
-                        pointRadius: 8
-                    }, {
-                        label: 'High Spread Data',
-                        data: highSpread.map((val, idx) => ({x: idx + 7, y: val})),
-                        backgroundColor: 'rgba(251, 146, 60, 0.6)',
-                        pointRadius: 8
-                    }, {
-                        label: 'Mean Lines',
-                        data: [{x: 1, y: meanLow}, {x: 5, y: meanLow}, {x: 7, y: meanHigh}, {x: 11, y: meanHigh}],
-                        backgroundColor: 'rgba(107, 114, 128, 0.8)',
-                        borderColor: 'rgba(107, 114, 128, 1)',
-                        pointRadius: 0,
-                        showLine: false,
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: { display: true, text: 'Comparing Data Spread' }
-                    },
-                    scales: {
-                        x: { title: { display: true, text: 'Dataset Position' } },
-                        y: { title: { display: true, text: 'Value' } }
-                    }
-                }
-            });
-        }
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 2!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 2 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy analyzing! 📊🌾</strong></p>
+    </div>
+</div>
 
-        // Calculator Functions
-        function loadSampleData(type) {
-            const sampleData = {
-                crop: "45, 52, 48, 61, 55, 49, 58, 53, 47, 56, 50, 59, 54, 46, 57",
-                rainfall: "2.3, 4.1, 1.8, 3.7, 5.2, 2.9, 4.8, 3.1, 2.6, 4.5, 3.3, 1.9, 5.1, 2.8, 4.2"
-            };
-            document.getElementById('dataInput').value = sampleData[type];
-        }
-
-        function calculateStats() {
-            const input = document.getElementById('dataInput').value;
-            const numbers = input.split(/[,\s]+/).map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
-            
-            if (numbers.length === 0) {
-                document.getElementById('results').innerHTML = '<p class="text-red-500">Please enter valid numbers</p>';
-                return;
-            }
-
-            // Sort for median calculation
-            const sorted = [...numbers].sort((a, b) => a - b);
-            
-            // Calculate statistics
-            const n = numbers.length;
-            const sum = numbers.reduce((a, b) => a + b, 0);
-            const mean = sum / n;
-            
-            // Median
-            const median = n % 2 === 0 
-                ? (sorted[n/2 - 1] + sorted[n/2]) / 2 
-                : sorted[Math.floor(n/2)];
-            
-            // Mode calculation removed - not typically used for continuous data
-            
-            // Variance and Standard Deviation
-            const variance = numbers.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / n;
-            const stdDev = Math.sqrt(variance);
-            
-            // Coefficient of Variation
-            const cv = (stdDev / mean) * 100;
-            
-            // Display results
-            document.getElementById('results').innerHTML = `
-                <div class="space-y-2">
-                    <div class="flex justify-between"><span class="font-semibold">Count (n):</span><span>${n}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Mean (μ):</span><span>${mean.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Median:</span><span>${median.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Variance (σ²):</span><span>${variance.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Std Dev (σ):</span><span>${stdDev.toFixed(2)}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">CV:</span><span>${cv.toFixed(1)}%</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Min:</span><span>${Math.min(...numbers)}</span></div>
-                    <div class="flex justify-between"><span class="font-semibold">Max:</span><span>${Math.max(...numbers)}</span></div>
-                </div>
-            `;
-        }
-
-        // Visualizer Functions
-        let histogramChart = null;
-
-        function generateDataset(type) {
-            let data = [];
-            
-            switch(type) {
-                case 'normal':
-                    // Generate normal distribution
-                    for(let i = 0; i < 100; i++) {
-                        data.push(Math.round(normalRandom(50, 10)));
-                    }
-                    break;
-                case 'skewed':
-                    // Generate right-skewed data
-                    for(let i = 0; i < 100; i++) {
-                        data.push(Math.round(Math.pow(Math.random(), 2) * 100));
-                    }
-                    break;
-                case 'outliers':
-                    // Normal data with outliers
-                    for(let i = 0; i < 90; i++) {
-                        data.push(Math.round(normalRandom(50, 8)));
-                    }
-                    // Add outliers
-                    data.push(5, 8, 92, 95, 98);
-                    break;
-                case 'bimodal':
-                    // Two peaks
-                    for(let i = 0; i < 50; i++) {
-                        data.push(Math.round(normalRandom(30, 5)));
-                        data.push(Math.round(normalRandom(70, 5)));
-                    }
-                    break;
-            }
-            
-            createHistogram(data);
-            displayVisualStats(data);
-        }
-
-        function normalRandom(mean, stdDev) {
-            let u = 0, v = 0;
-            while(u === 0) u = Math.random();
-            while(v === 0) v = Math.random();
-            return mean + stdDev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-        }
-
-        function createHistogram(data) {
-            const ctx = document.getElementById('histogramChart').getContext('2d');
-            
-            // Create bins
-            const min = Math.min(...data);
-            const max = Math.max(...data);
-            const binCount = 10;
-            const binWidth = (max - min) / binCount;
-            const bins = Array(binCount).fill(0);
-            const binLabels = [];
-            
-            for(let i = 0; i < binCount; i++) {
-                binLabels.push(`${Math.round(min + i * binWidth)}-${Math.round(min + (i + 1) * binWidth)}`);
-            }
-            
-            data.forEach(value => {
-                const binIndex = Math.min(Math.floor((value - min) / binWidth), binCount - 1);
-                bins[binIndex]++;
-            });
-            
-            if(histogramChart) {
-                histogramChart.destroy();
-            }
-            
-            histogramChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: binLabels,
-                    datasets: [{
-                        label: 'Frequency',
-                        data: bins,
-                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Data Distribution Histogram'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Frequency'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Value Range'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        function displayVisualStats(data) {
-            const n = data.length;
-            const mean = data.reduce((a, b) => a + b, 0) / n;
-            const sorted = [...data].sort((a, b) => a - b);
-            const median = n % 2 === 0 ? (sorted[n/2 - 1] + sorted[n/2]) / 2 : sorted[Math.floor(n/2)];
-            const variance = data.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / n;
-            const stdDev = Math.sqrt(variance);
-            
-            document.getElementById('visualStats').innerHTML = `
-                <h4 class="font-bold mb-2">Dataset Statistics</h4>
-                <div class="space-y-1 text-sm">
-                    <div><strong>Sample Size:</strong> ${n}</div>
-                    <div><strong>Mean:</strong> ${mean.toFixed(2)}</div>
-                    <div><strong>Median:</strong> ${median.toFixed(2)}</div>
-                    <div><strong>Std Dev:</strong> ${stdDev.toFixed(2)}</div>
-                    <div><strong>Min:</strong> ${Math.min(...data)}</div>
-                    <div><strong>Max:</strong> ${Math.max(...data)}</div>
-                </div>
-                <div class="mt-3 p-2 bg-blue-50 rounded text-xs">
-                    <strong>Observation:</strong> Notice how the shape of the distribution affects the relationship between mean and median!
-                </div>
-            `;
-        }
-
-        // Quiz Functions
-        let currentQuestion = 1;
-        const totalQuestions = 5;
-        let score = 0;
-
-        const quizQuestions = [
-            {
-                question: "For the dataset: 10, 12, 15, 15, 18, 20, 25, what is the median?",
-                options: ["15", "16.5", "17"],
-                correct: "15",
-                explanation: "For the dataset 10, 12, 15, 15, 18, 20, 25, the median is the middle value (4th position) which is 15."
-            },
-            {
-                question: "Which measure of central tendency is most affected by outliers?",
-                options: ["Mean", "Median", "Mode"],
-                correct: "Mean",
-                explanation: "The mean is most affected by outliers because it includes all values in its calculation, while the median only depends on the middle value(s)."
-            },
-            {
-                question: "If a dataset has a mean of 50 and a standard deviation of 10, what is the coefficient of variation?",
-                options: ["20%", "15%", "10%"],
-                correct: "20%",
-                explanation: "CV = (Standard Deviation ÷ Mean) × 100% = (10 ÷ 50) × 100% = 20%"
-            },
-            {
-                question: "In agricultural research, you measure crop yields: 45, 47, 48, 48, 49, 51, 52. What is the mode?",
-                options: ["48", "49", "No mode"],
-                correct: "48",
-                explanation: "The mode is 48 because it appears twice, more frequently than any other value in the dataset."
-            },
-            {
-                question: "Two farms have the same mean yield but different standard deviations (Farm A: σ=5, Farm B: σ=15). Which farm has more consistent yields?",
-                options: ["Farm A", "Farm B", "Both are equally consistent"],
-                correct: "Farm A",
-                explanation: "Farm A has more consistent yields because it has a lower standard deviation (σ=5), meaning the yields are closer to the mean with less variability."
-            }
-        ];
-
-        function loadQuestion(questionNum) {
-            const q = quizQuestions[questionNum - 1];
-            document.getElementById('quizContainer').innerHTML = `
-                <div class="quiz-question mb-6">
-                    <h3 class="text-lg font-bold mb-4">Question ${questionNum} of ${totalQuestions}</h3>
-                    <p class="mb-4">${q.question}</p>
-                    <div class="space-y-2">
-                        ${q.options.map((option, index) => `
-                            <label class="flex items-center">
-                                <input type="radio" name="q${questionNum}" value="${option}" class="mr-2">
-                                <span>${option}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div class="flex gap-4">
-                    <button onclick="checkQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Check Answer</button>
-                    ${questionNum > 1 ? `<button onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Previous</button>` : ''}
-                </div>
-                <div id="quizFeedback" class="mt-4"></div>
-            `;
-        }
-
-        function checkQuiz() {
-            const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
-            const feedback = document.getElementById('quizFeedback');
-            const q = quizQuestions[currentQuestion - 1];
-            
-            if (!selected) {
-                feedback.innerHTML = '<p class="text-yellow-600">Please select an answer.</p>';
-                return;
-            }
-            
-            const isCorrect = selected.value === q.correct;
-            if (isCorrect) score++;
-            
-            feedback.innerHTML = `
-                <div class="bg-${isCorrect ? 'green' : 'red'}-50 border border-${isCorrect ? 'green' : 'red'}-200 rounded p-3">
-                    <p class="text-${isCorrect ? 'green' : 'red'}-700 font-semibold">${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</p>
-                    <p class="text-${isCorrect ? 'green' : 'red'}-600 text-sm mt-1">${q.explanation}</p>
-                </div>
-                <div class="mt-4">
-                    ${currentQuestion < totalQuestions ? 
-                        `<button onclick="nextQuestion()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Next Question</button>` :
-                        `<button onclick="showResults()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">Show Final Results</button>`
-                    }
-                </div>
-            `;
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                loadQuestion(currentQuestion);
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                loadQuestion(currentQuestion);
-            }
-        }
-
-        function showResults() {
-            const percentage = Math.round((score / totalQuestions) * 100);
-            let message = "";
-            let colorClass = "";
-            
-            if (percentage >= 80) {
-                message = "Excellent work! You have a strong understanding of descriptive statistics.";
-                colorClass = "green";
-            } else if (percentage >= 60) {
-                message = "Good job! Review the concepts you missed and try the visual demonstrations above.";
-                colorClass = "blue";
-            } else {
-                message = "Keep studying! Use the interactive visualizations above to strengthen your understanding.";
-                colorClass = "yellow";
-            }
-            
-            document.getElementById('quizContainer').innerHTML = `
-                <div class="text-center">
-                    <h3 class="text-2xl font-bold mb-4">Quiz Complete!</h3>
-                    <div class="bg-${colorClass}-50 border border-${colorClass}-200 rounded-lg p-6 mb-4">
-                        <p class="text-3xl font-bold text-${colorClass}-700 mb-2">${score}/${totalQuestions}</p>
-                        <p class="text-xl text-${colorClass}-600 mb-2">${percentage}%</p>
-                        <p class="text-${colorClass}-700">${message}</p>
-                    </div>
-                    <button onclick="restartQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Restart Quiz</button>
-                </div>
-            `;
-        }
-
-        function restartQuiz() {
-            currentQuestion = 1;
-            score = 0;
-            loadQuestion(1);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load sample data for calculator
-            loadSampleData('crop');
-            
-            // Generate initial visualization
-            generateDataset('normal');
-            
-            // Load first quiz question
-            loadQuestion(1);
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9897c9a2750e351f',t:'MTc1OTYxMzUwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-
-
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 2: Descriptive Statistics and Central Tendency</em></p>
+    </div>
+</div>
