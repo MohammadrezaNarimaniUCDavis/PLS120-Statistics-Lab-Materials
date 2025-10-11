@@ -1,0 +1,383 @@
+<h1 class="page-title">🌾 Week 3: Data Manipulation with dplyr</h1>
+<p class="page-subtitle">Master Data Wrangling and Visualization Techniques 🔧</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 3 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 3!</strong> This week, we explore <strong>data manipulation using dplyr</strong> and the <strong>tidyverse ecosystem</strong> - essential tools for organizing, cleaning, and visualizing agricultural data. Learn to filter, select, arrange, and transform data efficiently!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🔧 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🔍</span>
+                <span><strong>Data Subsetting</strong> - Using brackets and logical conditions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔗</span>
+                <span><strong>Pipes (%>%)</strong> - Chain operations for readable workflows</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📋</span>
+                <span><strong>filter()</strong> - Subset rows based on conditions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✂️</span>
+                <span><strong>select()</strong> - Choose specific columns efficiently</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔄</span>
+                <span><strong>mutate()</strong> - Create new variables and transformations</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>group_by() + summarize()</strong> - Calculate group statistics</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 3 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 3"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for data manipulation.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 3 on data visualization and analysis</li>
+            <li><code>class_activity/</code> - Week 3 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 3 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week3_Data_Manipulation.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Work with Multiple Datasets 📊</h3>
+        <p>This week we'll use multiple datasets including the <strong>iris dataset</strong> and real-world data! The notebook will guide you through:</p>
+        <ul>
+            <li>Loading tidyverse and dplyr packages</li>
+            <li>Basic data subsetting with brackets</li>
+            <li>Filtering and slicing data efficiently</li>
+            <li>Advanced column selection techniques</li>
+            <li>Data transformation and visualization</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Data Manipulation Tools</h3>
+        <p>Use these interactive tools to understand data manipulation concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/week3_Interactive_Tools.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to visualize data manipulation concepts before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Data Manipulation</h3>
+        <div class="code-block">
+            <code>filter(data, condition)     # Subset rows</code><br>
+            <code>select(data, columns)       # Choose columns</code><br>
+            <code>slice(data, rows)           # Select by position</code><br>
+            <code>arrange(data, variable)     # Sort data</code><br>
+            <code>mutate(data, new_var = ...)  # Create variables</code><br>
+            <code>group_by(data, variable)    # Group for analysis</code>
+        </div>
+
+        <h3 class="card-title">Column Selection Helpers</h3>
+        <div class="code-block">
+            <code>starts_with("Sepal")        # Columns starting with "Sepal"</code><br>
+            <code>ends_with("Length")         # Columns ending with "Length"</code><br>
+            <code>contains("Petal")           # Columns containing "Petal"</code><br>
+            <code>matches(".*Width")          # Regular expression matching</code>
+        </div>
+
+        <h3 class="card-title">Data Cleaning</h3>
+        <div class="code-block">
+            <code>str_replace_all(text, pattern, replacement)  # Clean text</code><br>
+            <code>na.omit(data)               # Remove missing values</code><br>
+            <code>as.integer(vector)          # Convert data types</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 3: Data Visualization and Analysis</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 3.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 3 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment3.ipynb</code> to open your assignment on data visualization and analysis.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 1: LA Crime Data Analysis (6 points)</h4>
+                    <p>Filter data by gender and create comparative boxplots</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🧹</span>
+                <div>
+                    <h4>Part 2: SAT Dataset Processing (9 points)</h4>
+                    <p>Import, clean, and subset real-world data</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📈</span>
+                <div>
+                    <h4>Part 3: Distribution Analysis (5 points)</h4>
+                    <p>Create stem-and-leaf plots and analyze patterns</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Work with Real-World Data 🌍</h3>
+        <p>The assignment uses multiple datasets:</p>
+        <ul>
+            <li><strong>LA Crime Data</strong> - Victim demographics and crime statistics</li>
+            <li><strong>SAT Dataset 2012</strong> - School performance data requiring cleaning</li>
+        </ul>
+        <p>Learn to handle <strong>messy real-world data</strong> with non-numeric values and missing information!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Crop Yield Analysis</strong> - Filter by variety, location, season</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🧪</span>
+                <span><strong>Soil Sample Processing</strong> - Clean mixed numeric/text data</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌧️</span>
+                <span><strong>Weather Data Analysis</strong> - Group by month, calculate averages</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐄</span>
+                <span><strong>Livestock Performance</strong> - Compare treatments, identify outliers</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✅</span>
+                <span><strong>Quality Control</strong> - Monitor product consistency over time</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Data Manipulation Skills Help You:</h3>
+        <ul>
+            <li>Clean and organize messy agricultural datasets</li>
+            <li>Filter data by treatment groups or conditions</li>
+            <li>Create new variables for analysis (ratios, categories)</li>
+            <li>Summarize data by groups (variety, location, time)</li>
+            <li>Prepare data for statistical analysis and visualization</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 3, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Master data subsetting with brackets and logical conditions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Apply dplyr functions for efficient data manipulation</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Chain operations using pipes for readable workflows</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Select columns using helper functions and patterns</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Clean real-world data with mixed data types</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Create visualizations to understand data patterns</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>Package error?</strong> Make sure to run the library loading cell first</li>
+            <li><strong>Data not found?</strong> Check that you're in the correct directory</li>
+            <li><strong>Pipe not working?</strong> Ensure you've loaded dplyr or tidyverse</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>dplyr Cheat Sheet:</strong> Available in RStudio Help menu</li>
+            <li><strong>Tidyverse Documentation:</strong> <code>?function_name</code> for help</li>
+            <li><strong>Practice:</strong> Try different combinations of functions</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Start simple</strong> - Master basic functions before combining them</li>
+            <li><strong>Use pipes wisely</strong> - Chain operations for readable code</li>
+            <li><strong>Check your data</strong> - Use head(), str(), and summary() frequently</li>
+            <li><strong>Practice filtering</strong> - Try different conditions and combinations</li>
+            <li><strong>Experiment</strong> - The best way to learn is by doing!</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Shift + M</kbd>
+                <span>Insert pipe operator (%>%)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 3!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 3 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy data wrangling! 🔧🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 3: Data Manipulation with dplyr</em></p>
+    </div>
+</div>

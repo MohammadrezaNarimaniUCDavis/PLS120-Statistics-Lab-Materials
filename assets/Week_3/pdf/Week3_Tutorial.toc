@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Important Links}{2}{section.1}%
+\contentsline {section}{\numberline {2}Welcome to Week 3: Data Manipulation with dplyr}{2}{section.2}%
+\contentsline {section}{\numberline {3}Key Data Manipulation Concepts}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basic Data Subsetting}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Bracket Notation}{2}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}The Power of Pipes (\%>\%)}{2}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Essential dplyr Functions}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Filtering Data}{3}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}filter() Function}{3}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}slice() Functions}{3}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Selecting Columns}{3}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}select() Function}{3}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Advanced Selection Helpers}{3}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Data Transformation}{4}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}arrange() Function}{4}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}mutate() Function}{4}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}rename() Function}{4}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Grouping and Summarizing}{4}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}group\_by() and summarize()}{4}{subsubsection.4.4.1}%
+\contentsline {section}{\numberline {5}Data Visualization}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}ggplot2 Fundamentals}{5}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Basic ggplot Structure}{5}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Common Plot Types}{5}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Base R Plotting}{5}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Quick Visualization Functions}{5}{subsubsection.5.2.1}%
+\contentsline {section}{\numberline {6}Data Cleaning Techniques}{5}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Handling Non-Numeric Data}{5}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}String Manipulation}{5}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Missing Value Treatment}{6}{subsubsection.6.1.2}%
+\contentsline {section}{\numberline {7}Assignment 3 Overview}{6}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Assignment Structure (20 points total)}{6}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Agricultural Applications}{6}{section.8}%
+\contentsline {section}{\numberline {9}Getting Started}{7}{section.9}%
+\contentsline {section}{\numberline {10}Learning Objectives}{7}{section.10}%
+\contentsline {section}{\numberline {11}Need Help?}{7}{section.11}%

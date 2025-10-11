@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Weeks 1-2 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-3 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -48,6 +48,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 2 - Descriptive Statistics:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2
 
+**Week 3 - Data Manipulation:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3
+
 ---
 
 ## 🔧 Project Structure
@@ -63,7 +65,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── resources.html      # learning resources
 │   ├── faq.html           # frequently asked questions
 │   ├── week1.html         # week 1 materials
-│   └── week2.html         # week 2 materials
+│   ├── week2.html         # week 2 materials
+│   └── week3.html         # week 3 materials
 ├── assets/                 # images and media
 │   ├── images/
 │   │   ├── logos/         # UC Davis logos
@@ -72,15 +75,20 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   │   ├── Image_*.png    # tutorial screenshots
 │   │   ├── README.md      # binder tutorial
 │   │   └── pdf/           # LaTeX/PDF materials
-│   └── Week_2/            # week 2 specific materials
+│   ├── Week_2/            # week 2 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
+│   └── Week_3/            # week 3 specific materials
 │       └── pdf/           # LaTeX/PDF materials
 ├── assignment/            # homework assignments
 │   ├── Assignment1.ipynb  # week 1 assignment
 │   ├── Assignment2.ipynb  # week 2 assignment
-│   └── LA_Data.csv       # crime statistics dataset
+│   ├── Assignment3.ipynb  # week 3 assignment
+│   ├── LA_Data.csv       # crime statistics dataset
+│   └── SAT_DATASET_2012.csv # SAT performance dataset
 ├── class_activity/        # interactive tutorials
 │   ├── Week1_Introduction.ipynb
-│   └── Week2_Descriptive_Statistics.ipynb
+│   ├── Week2_Descriptive_Statistics.ipynb
+│   └── Week3_Data_Manipulation.ipynb
 └── README.md             # you're reading it!
 ```
 
@@ -102,7 +110,15 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Coefficient of variation
    - Interactive statistical analysis with R
 
-3. **Week 3-10**: 🔒 *Coming Soon*
+3. **Week 3**: Data Manipulation with dplyr ✅ *Available*
+   - Data subsetting and filtering techniques
+   - Using pipes (%>%) for readable workflows
+   - Column selection with helper functions
+   - Data transformation and cleaning
+   - Grouping and summarizing data
+   - Data visualization with ggplot2
+
+4. **Week 4-10**: 🔒 *Coming Soon*
    - Probability and Distributions
    - Sampling and Estimation
    - Hypothesis Testing
@@ -152,6 +168,7 @@ By completing this course, students will be able to:
 2. **Launch Interactive Environment:**
    - [Week 1 - Introduction](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
    - [Week 2 - Descriptive Statistics](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
+   - [Week 3 - Data Manipulation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3)
 3. **No software installation needed!**
 
 ### For Developers:

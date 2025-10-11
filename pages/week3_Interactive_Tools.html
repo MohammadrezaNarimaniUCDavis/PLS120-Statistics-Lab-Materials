@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding dplyr Functions - Interactive Concepts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .data-table {
+            transition: all 0.5s ease;
+        }
+        
+        .highlight-row {
+            background-color: #dbeafe !important;
+            border: 2px solid #3b82f6;
+        }
+        
+        .highlight-col {
+            background-color: #dcfce7 !important;
+            border: 2px solid #10b981;
+        }
+        
+        .fade-out {
+            opacity: 0.3;
+            background-color: #f3f4f6;
+        }
+        
+        .new-data {
+            background-color: #dcfce7 !important;
+            border: 2px solid #10b981;
+            animation: pulse 1s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .function-btn, .plot-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .function-btn:hover, .plot-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .function-btn.active, .plot-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-full">
+
+
+    <!-- Main Interactive Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <!-- Function Buttons -->
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Click a Function to See How It Works</h2>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button onclick="demonstrateFunction('filter')" class="function-btn bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-semibold">
+                        🔍 filter()
+                    </button>
+                    <button onclick="demonstrateFunction('select')" class="function-btn bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 font-semibold">
+                        📋 select()
+                    </button>
+                    <button onclick="demonstrateFunction('arrange')" class="function-btn bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 font-semibold">
+                        📊 arrange()
+                    </button>
+                    <button onclick="demonstrateFunction('mutate')" class="function-btn bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 font-semibold">
+                        ➕ mutate()
+                    </button>
+                    <button onclick="demonstrateFunction('group_by')" class="function-btn bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 font-semibold">
+                        📦 group_by()
+                    </button>
+                    <button onclick="demonstrateFunction('pipe')" class="function-btn bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 font-semibold">
+                        🔗 Pipes (%>%)
+                    </button>
+                </div>
+                <button onclick="resetTable()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                    🔄 Reset
+                </button>
+            </div>
+
+            <!-- Function Description -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div id="functionDescription" class="text-center">
+                    <p class="text-blue-700 font-semibold text-lg">Choose a function above to see how it transforms data!</p>
+                </div>
+            </div>
+
+            <!-- Data Tables -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Original Data -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">📊 Original Farm Data</h3>
+                    <div class="overflow-x-auto">
+                        <table id="originalTable" class="data-table w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border border-gray-300 px-3 py-2 text-left">Farm</th>
+                                    <th class="border border-gray-300 px-3 py-2 text-left">Crop</th>
+                                    <th class="border border-gray-300 px-3 py-2 text-left">Yield</th>
+                                    <th class="border border-gray-300 px-3 py-2 text-left">Region</th>
+                                    <th class="border border-gray-300 px-3 py-2 text-left">Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Result Data -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">✨ After Transformation</h3>
+                    <div class="overflow-x-auto">
+                        <div id="resultTable">
+                            <div class="text-center text-gray-500 py-8">
+                                Select a function to see the result!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Visualization Learning -->
+    <section class="py-12 bg-gradient-to-br from-purple-50 to-pink-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📊 Interactive Data Visualization Learning</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">Learn the four essential plot types you'll use in your assignments!</p>
+            
+            <!-- Plot Type Buttons -->
+            <div class="text-center mb-8">
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <button onclick="showPlot('histogram')" class="plot-btn bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-semibold">
+                        📊 Histogram
+                    </button>
+                    <button onclick="showPlot('boxplot')" class="plot-btn bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 font-semibold">
+                        📦 Boxplot
+                    </button>
+                    <button onclick="showPlot('density')" class="plot-btn bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 font-semibold">
+                        🌊 Density Plot
+                    </button>
+                    <button onclick="showPlot('stem')" class="plot-btn bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 font-semibold">
+                        🌿 Stem-and-Leaf
+                    </button>
+                </div>
+            </div>
+
+            <!-- Plot Display Area -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div id="plotDisplay">
+                    <div class="text-center text-gray-500 py-12">
+                        <h3 class="text-xl font-bold mb-4">Choose a plot type above to start learning!</h3>
+                        <p>Each plot type helps you understand your data in different ways.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Examples -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div id="codeExamples">
+                    <div class="text-center text-gray-500 py-8">
+                        Select a plot type to see the R code examples!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Explanations -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">🎯 Why These Functions Matter in Agriculture</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+                    <h3 class="text-xl font-bold text-blue-700 mb-3">🔍 filter() - Find What Matters</h3>
+                    <p class="text-blue-600 mb-3">Like using a sieve in the field - only keep the data you need!</p>
+                    <ul class="text-sm text-blue-600 space-y-1">
+                        <li>• Find high-yielding varieties</li>
+                        <li>• Identify problem areas</li>
+                        <li>• Focus on specific seasons</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-green-700 mb-3">📋 select() - Choose Your Focus</h3>
+                    <p class="text-green-600 mb-3">Like choosing which measurements to record - focus on what's important!</p>
+                    <ul class="text-sm text-green-600 space-y-1">
+                        <li>• Focus on yield data only</li>
+                        <li>• Remove unnecessary columns</li>
+                        <li>• Simplify complex datasets</li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-500">
+                    <h3 class="text-xl font-bold text-purple-700 mb-3">📊 arrange() - Rank Performance</h3>
+                    <p class="text-purple-600 mb-3">Like ranking farms by performance - see who's doing best!</p>
+                    <ul class="text-sm text-purple-600 space-y-1">
+                        <li>• Rank farms by yield</li>
+                        <li>• Sort by planting date</li>
+                        <li>• Order by profit margins</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 rounded-lg p-6 border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-700 mb-3">➕ mutate() - Calculate New Insights</h3>
+                    <p class="text-red-600 mb-3">Like calculating profit from yield - create new useful information!</p>
+                    <ul class="text-sm text-red-600 space-y-1">
+                        <li>• Calculate profit per acre</li>
+                        <li>• Determine efficiency ratios</li>
+                        <li>• Create performance scores</li>
+                    </ul>
+                </div>
+
+                <div class="bg-yellow-50 rounded-lg p-6 border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-yellow-700 mb-3">📦 group_by() - Compare Groups</h3>
+                    <p class="text-yellow-600 mb-3">Like comparing different crop varieties - see patterns by category!</p>
+                    <ul class="text-sm text-yellow-600 space-y-1">
+                        <li>• Compare crop varieties</li>
+                        <li>• Analyze by region</li>
+                        <li>• Group by treatment type</li>
+                    </ul>
+                </div>
+
+                <div class="bg-indigo-50 rounded-lg p-6 border-l-4 border-indigo-500">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">🔗 Pipes - Chain Your Work</h3>
+                    <p class="text-indigo-600 mb-3">Like following a recipe step-by-step - connect operations smoothly!</p>
+                    <ul class="text-sm text-indigo-600 space-y-1">
+                        <li>• Filter, then calculate, then sort</li>
+                        <li>• Build complex analyses</li>
+                        <li>• Make code easy to read</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Original data for the table
+        const originalData = [
+            {farm: "Green Valley", crop: "Corn", yield: 85, region: "North", year: 2023},
+            {farm: "Sunny Acres", crop: "Wheat", yield: 72, region: "South", year: 2023},
+            {farm: "Prairie Farm", crop: "Corn", yield: 91, region: "North", year: 2023},
+            {farm: "Golden Fields", crop: "Soybeans", yield: 68, region: "South", year: 2022},
+            {farm: "River Bend", crop: "Wheat", yield: 79, region: "North", year: 2022},
+            {farm: "Mountain View", crop: "Corn", yield: 88, region: "West", year: 2023}
+        ];
+
+        // Function demonstrations
+        const functionDemos = {
+            filter: {
+                title: "🔍 filter() - Keep Only Rows That Meet Conditions",
+                description: "Like using a sieve - only data that meets your criteria passes through!",
+                explanation: "We're keeping only corn farms (Crop == 'Corn'). Notice how wheat and soybeans disappear!",
+                transform: (data) => data.filter(row => row.crop === "Corn"),
+                highlightOriginal: (data) => data.map((row, index) => ({
+                    ...row,
+                    highlight: row.crop === "Corn" ? "highlight-row" : "fade-out"
+                }))
+            },
+            select: {
+                title: "📋 select() - Choose Which Columns to Keep",
+                description: "Like choosing which columns to show in a spreadsheet - focus on what matters!",
+                explanation: "We're selecting only Farm, Crop, and Yield columns. Region and Year are removed.",
+                transform: (data) => data.map(row => ({
+                    farm: row.farm,
+                    crop: row.crop,
+                    yield: row.yield
+                })),
+                highlightOriginal: () => null,
+                columns: ["Farm", "Crop", "Yield"]
+            },
+            arrange: {
+                title: "📊 arrange() - Sort Your Data",
+                description: "Put your data in order - highest to lowest, A to Z, or any pattern you need!",
+                explanation: "We're sorting farms by yield from highest to lowest. See how Prairie Farm (91) moves to the top!",
+                transform: (data) => [...data].sort((a, b) => b.yield - a.yield),
+                highlightOriginal: () => null
+            },
+            mutate: {
+                title: "➕ mutate() - Create New Calculated Columns",
+                description: "Add new columns with calculations based on existing data!",
+                explanation: "We're adding a 'Profit' column calculated as (Yield × $5) - $200. New data appears in green!",
+                transform: (data) => data.map(row => ({
+                    ...row,
+                    profit: (row.yield * 5) - 200
+                })),
+                highlightOriginal: () => null,
+                newColumn: "Profit"
+            },
+            group_by: {
+                title: "📦 group_by() + summarize() - Group and Calculate Statistics",
+                description: "Group similar items together and calculate averages, totals, or other statistics!",
+                explanation: "We're grouping by crop type and calculating average yield for each group.",
+                transform: (data) => {
+                    const groups = {};
+                    data.forEach(row => {
+                        if (!groups[row.crop]) {
+                            groups[row.crop] = { crop: row.crop, yields: [], count: 0 };
+                        }
+                        groups[row.crop].yields.push(row.yield);
+                        groups[row.crop].count++;
+                    });
+                    
+                    return Object.values(groups).map(group => ({
+                        crop: group.crop,
+                        avg_yield: Math.round(group.yields.reduce((a, b) => a + b, 0) / group.yields.length),
+                        count: group.count
+                    }));
+                },
+                highlightOriginal: (data) => {
+                    const colors = { "Corn": "highlight-row", "Wheat": "highlight-col", "Soybeans": "new-data" };
+                    return data.map(row => ({
+                        ...row,
+                        highlight: colors[row.crop] || ""
+                    }));
+                },
+                isGrouped: true
+            },
+            pipe: {
+                title: "🔗 Pipes (%>%) - Chain Multiple Operations",
+                description: "Connect operations together like a recipe - step 1, then step 2, then step 3!",
+                explanation: "We're doing 3 steps: 1) Filter for corn, 2) Select farm and yield, 3) Sort by yield. All connected smoothly!",
+                transform: (data) => {
+                    return data
+                        .filter(row => row.crop === "Corn")
+                        .map(row => ({ farm: row.farm, yield: row.yield }))
+                        .sort((a, b) => b.yield - a.yield);
+                },
+                highlightOriginal: (data) => data.map(row => ({
+                    ...row,
+                    highlight: row.crop === "Corn" ? "highlight-row" : "fade-out"
+                })),
+                isPipe: true
+            }
+        };
+
+        function demonstrateFunction(funcName) {
+            const demo = functionDemos[funcName];
+            
+            // Update description
+            document.getElementById('functionDescription').innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-blue-700 mb-2">${demo.title}</h3>
+                    <p class="text-blue-600 mb-2">${demo.description}</p>
+                    <p class="text-blue-800 font-semibold">${demo.explanation}</p>
+                </div>
+            `;
+
+            // Highlight original table if needed
+            if (demo.highlightOriginal) {
+                const highlightedData = demo.highlightOriginal(originalData);
+                if (highlightedData) {
+                    updateOriginalTable(highlightedData);
+                }
+            }
+
+            // Handle special cases for select (column highlighting)
+            if (funcName === 'select') {
+                highlightColumns(demo.columns);
+            }
+
+            // Show result
+            setTimeout(() => {
+                const resultData = demo.transform(originalData);
+                showResultTable(resultData, demo);
+            }, 1000);
+
+            // Add active class to button
+            document.querySelectorAll('.function-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function updateOriginalTable(data) {
+            const tbody = document.querySelector('#originalTable tbody');
+            tbody.innerHTML = '';
+            
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.className = row.highlight || '';
+                tr.innerHTML = `
+                    <td class="border border-gray-300 px-3 py-2">${row.farm}</td>
+                    <td class="border border-gray-300 px-3 py-2">${row.crop}</td>
+                    <td class="border border-gray-300 px-3 py-2">${row.yield}</td>
+                    <td class="border border-gray-300 px-3 py-2">${row.region}</td>
+                    <td class="border border-gray-300 px-3 py-2">${row.year}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function highlightColumns(columns) {
+            const headers = document.querySelectorAll('#originalTable th');
+            const cells = document.querySelectorAll('#originalTable td');
+            
+            // Reset all
+            headers.forEach(h => h.classList.remove('highlight-col'));
+            cells.forEach(c => c.classList.remove('highlight-col'));
+            
+            // Highlight selected columns
+            headers.forEach((header, index) => {
+                if (columns.includes(header.textContent)) {
+                    header.classList.add('highlight-col');
+                    // Highlight corresponding cells
+                    const columnCells = document.querySelectorAll(`#originalTable tbody tr td:nth-child(${index + 1})`);
+                    columnCells.forEach(cell => cell.classList.add('highlight-col'));
+                }
+            });
+        }
+
+        function showResultTable(data, demo) {
+            const resultContainer = document.getElementById('resultTable');
+            
+            if (demo.isGrouped) {
+                // Special table for grouped data
+                resultContainer.innerHTML = `
+                    <div class="overflow-x-auto">
+                        <table class="data-table border-collapse border border-gray-300 mx-auto min-w-full">
+                            <thead>
+                                <tr class="bg-green-200">
+                                    <th class="border border-gray-300 px-2 py-2 text-sm">Crop</th>
+                                    <th class="border border-gray-300 px-2 py-2 text-sm">Avg Yield</th>
+                                    <th class="border border-gray-300 px-2 py-2 text-sm">Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.map(row => `
+                                    <tr class="fade-in">
+                                        <td class="border border-gray-300 px-2 py-2 text-sm">${row.crop}</td>
+                                        <td class="border border-gray-300 px-2 py-2 text-sm">${row.avg_yield}</td>
+                                        <td class="border border-gray-300 px-2 py-2 text-sm">${row.count}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (demo.isPipe) {
+                // Special table for pipe result
+                resultContainer.innerHTML = `
+                    <div class="overflow-x-auto">
+                        <table class="data-table border-collapse border border-gray-300 mx-auto min-w-full">
+                            <thead>
+                                <tr class="bg-green-200">
+                                    <th class="border border-gray-300 px-2 py-2 text-sm">Farm</th>
+                                    <th class="border border-gray-300 px-2 py-2 text-sm">Yield</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.map(row => `
+                                    <tr class="fade-in">
+                                        <td class="border border-gray-300 px-2 py-2 text-sm">${row.farm}</td>
+                                        <td class="border border-gray-300 px-2 py-2 text-sm">${row.yield}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else {
+                // Regular table with responsive design
+                const hasProfit = data[0] && data[0].profit !== undefined;
+                const hasAllColumns = data[0] && data[0].region !== undefined;
+                
+                let headers = '';
+                if (hasAllColumns) {
+                    headers = '<th class="border border-gray-300 px-2 py-2 text-sm">Farm</th><th class="border border-gray-300 px-2 py-2 text-sm">Crop</th><th class="border border-gray-300 px-2 py-2 text-sm">Yield</th><th class="border border-gray-300 px-2 py-2 text-sm">Region</th><th class="border border-gray-300 px-2 py-2 text-sm">Year</th>';
+                } else if (hasProfit) {
+                    headers = '<th class="border border-gray-300 px-1 py-1 text-xs w-16">Farm</th><th class="border border-gray-300 px-1 py-1 text-xs w-12">Crop</th><th class="border border-gray-300 px-1 py-1 text-xs w-10">Yield</th><th class="border border-gray-300 px-1 py-1 text-xs w-12">Region</th><th class="border border-gray-300 px-1 py-1 text-xs w-10">Year</th><th class="border border-gray-300 px-1 py-1 text-xs w-12 new-data">Profit</th>';
+                } else {
+                    headers = '<th class="border border-gray-300 px-2 py-2 text-sm">Farm</th><th class="border border-gray-300 px-2 py-2 text-sm">Crop</th><th class="border border-gray-300 px-2 py-2 text-sm">Yield</th>';
+                }
+                
+                if (hasProfit) {
+                    // Special compact table for mutate with profit column
+                    resultContainer.innerHTML = `
+                        <div class="overflow-x-auto">
+                            <table class="border-collapse border border-gray-300 w-full min-w-full">
+                                <thead>
+                                    <tr class="bg-green-200">
+                                        <th class="border border-gray-300 px-1 py-1 text-xs">Farm</th>
+                                        <th class="border border-gray-300 px-1 py-1 text-xs">Crop</th>
+                                        <th class="border border-gray-300 px-1 py-1 text-xs">Yield</th>
+                                        <th class="border border-gray-300 px-1 py-1 text-xs">Region</th>
+                                        <th class="border border-gray-300 px-1 py-1 text-xs">Year</th>
+                                        <th class="border border-gray-300 px-1 py-1 text-xs new-data bg-green-300">💰 Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.map(row => `
+                                        <tr class="fade-in">
+                                            <td class="border border-gray-300 px-1 py-1 text-xs">${row.farm.split(' ')[0]}</td>
+                                            <td class="border border-gray-300 px-1 py-1 text-xs">${row.crop}</td>
+                                            <td class="border border-gray-300 px-1 py-1 text-xs">${row.yield}</td>
+                                            <td class="border border-gray-300 px-1 py-1 text-xs">${row.region}</td>
+                                            <td class="border border-gray-300 px-1 py-1 text-xs">${row.year}</td>
+                                            <td class="border border-gray-300 px-1 py-1 text-xs new-data bg-green-100 font-bold">$${row.profit}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                } else {
+                    resultContainer.innerHTML = `
+                        <div class="overflow-x-auto">
+                            <table class="data-table border-collapse border border-gray-300 w-full">
+                                <thead>
+                                    <tr class="bg-green-200">
+                                        ${headers}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.map(row => {
+                                        let cells = '';
+                                        if (hasAllColumns) {
+                                            cells = `<td class="border border-gray-300 px-2 py-2 text-sm">${row.farm}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.crop}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.yield}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.region}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.year}</td>`;
+                                        } else {
+                                            cells = `<td class="border border-gray-300 px-2 py-2 text-sm">${row.farm}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.crop}</td><td class="border border-gray-300 px-2 py-2 text-sm">${row.yield}</td>`;
+                                        }
+                                        return `<tr class="fade-in">${cells}</tr>`;
+                                    }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function resetTable() {
+            // Reset original table
+            updateOriginalTable(originalData);
+            
+            // Clear highlights
+            document.querySelectorAll('#originalTable th, #originalTable td').forEach(cell => {
+                cell.classList.remove('highlight-col', 'highlight-row', 'fade-out', 'new-data');
+            });
+            
+            // Reset result table
+            document.getElementById('resultTable').innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    Select a function to see the result!
+                </div>
+            `;
+            
+            // Reset description
+            document.getElementById('functionDescription').innerHTML = `
+                <p class="text-blue-700 font-semibold">Choose a function above to see how it transforms data!</p>
+            `;
+            
+            // Remove active button
+            document.querySelectorAll('.function-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        // Plot visualization functions
+        const plotExamples = {
+            histogram: {
+                title: "📊 Histogram - Show Distribution Shape",
+                description: "Histograms show how your data is distributed. Perfect for seeing if data is normal, skewed, or has multiple peaks!",
+                visual: `
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                        <div class="text-center mb-4">
+                            <h4 class="font-bold text-gray-800">Petal Width Distribution</h4>
+                        </div>
+                        <div class="flex justify-center">
+                            <svg width="400" height="200" viewBox="0 0 400 200">
+                                <rect x="50" y="150" width="30" height="20" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="80" y="130" width="30" height="40" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="110" y="100" width="30" height="70" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="140" y="80" width="30" height="90" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="170" y="60" width="30" height="110" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="200" y="90" width="30" height="80" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="230" y="120" width="30" height="50" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="260" y="140" width="30" height="30" fill="#3b82f6" opacity="0.7"/>
+                                <rect x="290" y="160" width="30" height="10" fill="#3b82f6" opacity="0.7"/>
+                                <line x1="40" y1="170" x2="330" y2="170" stroke="black" stroke-width="2"/>
+                                <line x1="40" y1="170" x2="40" y2="50" stroke="black" stroke-width="2"/>
+                                <text x="185" y="190" text-anchor="middle" font-size="12">Petal Width (cm)</text>
+                                <text x="25" y="110" text-anchor="middle" font-size="12" transform="rotate(-90 25 110)">Frequency</text>
+                            </svg>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">This shows most flowers have medium petal widths, with fewer having very small or very large petals.</p>
+                    </div>
+                `,
+                code: `
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <div class="text-blue-300"># Step-by-step histogram building</div>
+                            <div class="mt-2">library(ggplot2)</div>
+                            <div class="mt-1 text-gray-400"># Start with empty plot</div>
+                            <div>ggplot()</div>
+                            <div class="mt-1 text-gray-400"># Add data</div>
+                            <div>ggplot(data)</div>
+                            <div class="mt-1 text-gray-400"># Add aesthetics (what to plot)</div>
+                            <div>ggplot(data, aes(x=Petal.Width))</div>
+                            <div class="mt-1 text-gray-400"># Add histogram layer</div>
+                            <div>ggplot(data, aes(x=Petal.Width)) + geom_histogram()</div>
+                            <div class="mt-1 text-gray-400"># Control number of bins</div>
+                            <div class="text-yellow-300">ggplot(data, aes(x=Petal.Width)) + geom_histogram(bins=20)</div>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h5 class="font-bold text-green-700 mb-2">🌾 Agricultural Use:</h5>
+                            <p class="text-green-600 text-sm">Perfect for showing crop yield distributions, soil pH ranges, or rainfall patterns!</p>
+                        </div>
+                    </div>
+                `
+            },
+            boxplot: {
+                title: "📦 Boxplot - Compare Groups Visually",
+                description: "Boxplots show the median, quartiles, and outliers. Perfect for comparing different groups!",
+                visual: `
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                        <div class="text-center mb-4">
+                            <h4 class="font-bold text-gray-800">Petal Width by Species</h4>
+                        </div>
+                        <div class="flex justify-center">
+                            <svg width="400" height="200" viewBox="0 0 400 200">
+                                <g transform="translate(80,0)">
+                                    <rect x="-15" y="120" width="30" height="40" fill="none" stroke="#10b981" stroke-width="2"/>
+                                    <line x1="-15" y1="140" x2="15" y2="140" stroke="#10b981" stroke-width="3"/>
+                                    <line x1="0" y1="120" x2="0" y2="110" stroke="#10b981" stroke-width="2"/>
+                                    <line x1="0" y1="160" x2="0" y2="170" stroke="#10b981" stroke-width="2"/>
+                                    <line x1="-5" y1="110" x2="5" y2="110" stroke="#10b981" stroke-width="2"/>
+                                    <line x1="-5" y1="170" x2="5" y2="170" stroke="#10b981" stroke-width="2"/>
+                                    <text x="0" y="185" text-anchor="middle" font-size="10">Setosa</text>
+                                </g>
+                                <g transform="translate(200,0)">
+                                    <rect x="-15" y="80" width="30" height="60" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="-15" y1="110" x2="15" y2="110" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="0" y1="80" x2="0" y2="70" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="0" y1="140" x2="0" y2="150" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="-5" y1="70" x2="5" y2="70" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="-5" y1="150" x2="5" y2="150" stroke="#3b82f6" stroke-width="2"/>
+                                    <text x="0" y="185" text-anchor="middle" font-size="10">Versicolor</text>
+                                </g>
+                                <g transform="translate(320,0)">
+                                    <rect x="-15" y="60" width="30" height="70" fill="none" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="-15" y1="95" x2="15" y2="95" stroke="#ef4444" stroke-width="3"/>
+                                    <line x1="0" y1="60" x2="0" y2="50" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="0" y1="130" x2="0" y2="140" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="-5" y1="50" x2="5" y2="50" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="-5" y1="140" x2="5" y2="140" stroke="#ef4444" stroke-width="2"/>
+                                    <text x="0" y="185" text-anchor="middle" font-size="10">Virginica</text>
+                                </g>
+                                <line x1="40" y1="170" x2="40" y2="40" stroke="black" stroke-width="2"/>
+                                <text x="25" y="105" text-anchor="middle" font-size="12" transform="rotate(-90 25 105)">Petal Width</text>
+                            </svg>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">Virginica has the widest petals, Setosa the narrowest. The thick line shows the median.</p>
+                    </div>
+                `,
+                code: `
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <div class="text-blue-300"># ggplot2 boxplots</div>
+                            <div class="mt-2">ggplot(data, aes(x=Species, y=Petal.Width)) + geom_boxplot()</div>
+                            <div class="mt-1 text-gray-400"># Add colors</div>
+                            <div>ggplot(data, aes(x=Species, y=Petal.Width, fill=Species)) + geom_boxplot()</div>
+                            <div class="mt-2 text-blue-300"># Base R boxplots</div>
+                            <div>boxplot(setosa$Petal.Width, virginica$Petal.Width,</div>
+                            <div>        main = "Comparing petal width",</div>
+                            <div>        col = c("blue", "red"),</div>
+                            <div>        names = c("Setosa", "Virginica"))</div>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h5 class="font-bold text-blue-700 mb-2">📊 What the Box Shows:</h5>
+                            <ul class="text-blue-600 text-sm space-y-1">
+                                <li>• <strong>Thick line:</strong> Median (middle value)</li>
+                                <li>• <strong>Box:</strong> 25th to 75th percentile (middle 50%)</li>
+                                <li>• <strong>Whiskers:</strong> Data range (excluding outliers)</li>
+                                <li>• <strong>Dots:</strong> Outliers (unusual values)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            density: {
+                title: "🌊 Density Plot - Smooth Distribution Curves",
+                description: "Density plots are like smooth histograms. Great for comparing multiple groups on the same plot!",
+                visual: `
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                        <div class="text-center mb-4">
+                            <h4 class="font-bold text-gray-800">Sepal Length Density by Species</h4>
+                        </div>
+                        <div class="flex justify-center">
+                            <svg width="400" height="200" viewBox="0 0 400 200">
+                                <path d="M 60 160 Q 80 140, 100 120 Q 120 100, 140 120 Q 160 140, 180 160" 
+                                      fill="none" stroke="#10b981" stroke-width="3" opacity="0.8"/>
+                                <path d="M 60 160 Q 80 140, 100 120 Q 120 100, 140 120 Q 160 140, 180 160 L 180 170 L 60 170 Z" 
+                                      fill="#10b981" opacity="0.3"/>
+                                <path d="M 120 160 Q 140 130, 160 110 Q 180 90, 200 100 Q 220 110, 240 130 Q 260 150, 280 160" 
+                                      fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.8"/>
+                                <path d="M 120 160 Q 140 130, 160 110 Q 180 90, 200 100 Q 220 110, 240 130 Q 260 150, 280 160 L 280 170 L 120 170 Z" 
+                                      fill="#3b82f6" opacity="0.3"/>
+                                <path d="M 180 160 Q 200 140, 220 120 Q 240 100, 260 110 Q 280 120, 300 130 Q 320 140, 340 160" 
+                                      fill="none" stroke="#ef4444" stroke-width="3" opacity="0.8"/>
+                                <path d="M 180 160 Q 200 140, 220 120 Q 240 100, 260 110 Q 280 120, 300 130 Q 320 140, 340 160 L 340 170 L 180 170 Z" 
+                                      fill="#ef4444" opacity="0.3"/>
+                                <line x1="40" y1="170" x2="360" y2="170" stroke="black" stroke-width="2"/>
+                                <line x1="40" y1="170" x2="40" y2="80" stroke="black" stroke-width="2"/>
+                                <g transform="translate(50,90)">
+                                    <rect x="0" y="0" width="15" height="3" fill="#10b981"/>
+                                    <text x="20" y="8" font-size="10">Setosa</text>
+                                    <rect x="0" y="15" width="15" height="3" fill="#3b82f6"/>
+                                    <text x="20" y="23" font-size="10">Versicolor</text>
+                                    <rect x="0" y="30" width="15" height="3" fill="#ef4444"/>
+                                    <text x="20" y="38" font-size="10">Virginica</text>
+                                </g>
+                                <text x="200" y="190" text-anchor="middle" font-size="12">Sepal Length (cm)</text>
+                                <text x="25" y="125" text-anchor="middle" font-size="12" transform="rotate(-90 25 125)">Density</text>
+                            </svg>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">Each species has a different distribution shape. Setosa is shortest, Virginica is longest.</p>
+                    </div>
+                `,
+                code: `
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <div class="text-blue-300"># Simple density plot</div>
+                            <div class="mt-2">ggplot(data, aes(x=Petal.Width)) + geom_density()</div>
+                            <div class="mt-1 text-gray-400"># Compare groups with colors</div>
+                            <div>ggplot(data, aes(x=Sepal.Length, fill=Species)) + </div>
+                            <div>  geom_density(alpha=0.7)</div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h5 class="font-bold text-purple-700 mb-2">🌊 When to Use Density Plots:</h5>
+                            <ul class="text-purple-600 text-sm space-y-1">
+                                <li>• Comparing distributions between groups</li>
+                                <li>• When you want smooth curves instead of bars</li>
+                                <li>• Overlaying multiple groups on one plot</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            stem: {
+                title: "🌿 Stem-and-Leaf Plot - See Actual Data Values",
+                description: "Unlike histograms, stem-and-leaf plots show the actual data values while displaying the distribution shape!",
+                visual: `
+                    <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                        <div class="text-center mb-4">
+                            <h4 class="font-bold text-gray-800">Petal Length Stem-and-Leaf Plot</h4>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="bg-white p-4 rounded border font-mono text-sm">
+                                <div class="text-center mb-2 font-bold">Stem | Leaf</div>
+                                <div class="border-b mb-2"></div>
+                                <div>1 | 0 1 2 3 4 4 4 5 5 6 7 9</div>
+                                <div>2 | 0 3 5</div>
+                                <div>3 | 0 0 0 1 1 2 3 3 4 5 6 7 8 9</div>
+                                <div>4 | 0 1 2 4 5 6 7 8 9</div>
+                                <div>5 | 0 1 1 2 3 4 5 6 7 8</div>
+                                <div>6 | 0 1 3 4 6 7 9</div>
+                                <div class="border-t mt-2 pt-2 text-xs text-gray-600">
+                                    <div>1|4 means 1.4 cm</div>
+                                    <div>Scale: Each unit = 0.1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">You can see the exact values AND the distribution shape. Most values are in the 3-5 range.</p>
+                    </div>
+                `,
+                code: `
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <div class="text-blue-300"># Basic stem-and-leaf plot</div>
+                            <div class="mt-2">stem(data$Petal.Length)</div>
+                            <div class="mt-2 text-blue-300"># Control the display</div>
+                            <div>stem(data$Petal.Length, scale = 1, width = 80, atom = 1e-08)</div>
+                            <div class="mt-2 text-blue-300"># Less detail (larger atom)</div>
+                            <div>stem(data$Petal.Length, scale = 1, width = 80, atom = 10)</div>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <h5 class="font-bold text-red-700 mb-2">🌿 Stem-and-Leaf Parameters:</h5>
+                            <ul class="text-red-600 text-sm space-y-1">
+                                <li>• <strong>scale:</strong> Controls digits in stem</li>
+                                <li>• <strong>width:</strong> Controls leaf display width</li>
+                                <li>• <strong>atom:</strong> Controls precision (like histogram bins)</li>
+                                <li>• <strong>Higher atom = less detail, simpler view</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+                            <h5 class="font-bold text-green-700 mb-2">🎯 Advantages over Histograms:</h5>
+                            <ul class="text-green-600 text-sm space-y-1">
+                                <li>• Shows actual data values, not just frequencies</li>
+                                <li>• Easy to spot outliers and gaps</li>
+                                <li>• Works well for small to medium datasets</li>
+                                <li>• Can estimate median and quartiles quickly</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function showPlot(plotType) {
+            const plot = plotExamples[plotType];
+            
+            // Update plot display
+            document.getElementById('plotDisplay').innerHTML = `
+                <div>
+                    <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">${plot.title}</h3>
+                    <p class="text-center text-gray-600 mb-6 text-lg">${plot.description}</p>
+                    ${plot.visual}
+                </div>
+            `;
+            
+            // Update code examples
+            document.getElementById('codeExamples').innerHTML = `
+                <h3 class="text-xl font-bold text-gray-800 mb-4">📝 R Code Examples</h3>
+                ${plot.code}
+            `;
+            
+            // Add active class to button
+            document.querySelectorAll('.plot-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            resetTable();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98d1e417a73d3520',t:'MTc2MDIyMjc1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
