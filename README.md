@@ -104,7 +104,7 @@ By the end of this week, you will be able to:
 
 **Detailed Assignment Breakdown**:
 
-#### **PART ONE: LA Crime Data Analysis** (6 points)
+#### **PART ONE: LA Data Analysis** (6 points)
 - **Load and Filter Data** (2 points)
   - Import LA_Data.csv using `read.csv()`
   - Create male and female victim subsets using `filter()`
@@ -170,9 +170,9 @@ library(stringr)
 - **Use**: Learning data manipulation techniques
 - **Size**: 150 observations, 5 variables
 
-### **2. LA Crime Data** (Assignment)
-- **Source**: Los Angeles crime statistics
-- **Variables**: Victim demographics, crime details
+### **2. LA Data** (Assignment)
+- **Source**: Los Angeles statistics
+- **Variables**: Victim demographics, details
 - **Use**: Filtering and visualization practice
 - **Focus**: Age distribution by gender
 
