@@ -60,7 +60,7 @@ Inside the `class_activity` folder, **double-click** on `Week1_Introduction.ipyn
 
 ### Step 5: Explore the Data (Optional) 📊
 
-We've already uploaded the data for this lab! The file `LA_Data.csv` contains the crime statistics data. You can **double-click** on it to explore the data if you're curious.
+We've already uploaded the data for this lab! The file `LA_Data.csv` contains the statistics data. You can **double-click** on it to explore the data if you're curious.
 
 ![Explore Data](Image_5.png)
 *👆 Click here to view the raw data (optional)*

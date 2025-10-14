@@ -83,7 +83,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Assignment1.ipynb  # week 1 assignment
 │   ├── Assignment2.ipynb  # week 2 assignment
 │   ├── Assignment3.ipynb  # week 3 assignment
-│   ├── LA_Data.csv       # crime statistics dataset
+│   ├── LA_Data.csv       # statistics dataset
 │   └── SAT_DATASET_2012.csv # SAT performance dataset
 ├── class_activity/        # interactive tutorials
 │   ├── Week1_Introduction.ipynb
