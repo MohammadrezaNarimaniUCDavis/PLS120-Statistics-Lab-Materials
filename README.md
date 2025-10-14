@@ -81,7 +81,7 @@ Interactive tutorial covering:
 - Understanding data dimensions with `nrow()` and `ncol()`
 
 ### Assignment 2: Central Tendency Analysis
-Apply your knowledge to the LA crime dataset:
+Apply your knowledge to the LA dataset:
 - Calculate measures of central tendency for different subgroups
 - Compare male vs. female victim statistics
 - Analyze variability across datasets
