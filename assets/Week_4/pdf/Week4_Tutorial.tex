@@ -173,7 +173,7 @@ Logical variables in R can only take the values TRUE, FALSE, or NA (missing valu
 \textbf{Example:}\\
 \texttt{numeric\_vector <- c(0, 1, 2)}\\
 \texttt{logical\_vector <- as.logical(numeric\_vector)}\\
-\texttt{# Result: FALSE, TRUE, TRUE}
+\texttt{\# Result: FALSE, TRUE, TRUE}
 \end{formulabox}
 
 \needspace{5\baselineskip}
@@ -204,7 +204,7 @@ Use \texttt{set.seed(number)} before random sampling to ensure reproducible resu
 \textbf{Example:}\\
 \texttt{set.seed(123)}\\
 \texttt{sample(c("H", "T"), 10, replace = TRUE)}\\
-\texttt{# Will always produce the same sequence}
+\texttt{\# Will always produce the same sequence}
 \end{formulabox}
 
 \needspace{5\baselineskip}
@@ -246,7 +246,7 @@ Experimental probability varies with sample size
 \textbf{Analyze Results:}\\
 \texttt{roll\_counts <- table(rolls)}\\
 \texttt{roll\_probabilities <- roll\_counts / sum(roll\_counts)}\\[0.3cm]
-\textbf{Theoretical:} Each face should have probability = 1/6 ≈ 0.167
+\textbf{Theoretical:} Each face should have probability = 1/6 $\approx$ 0.167
 \end{probabilitybox}
 
 \subsubsection{Two Dice and Central Limit Theorem}
@@ -259,7 +259,7 @@ Experimental probability varies with sample size
 \textbf{Observe Distribution:}\\
 As sample size increases, the distribution of sums approaches normal distribution (Central Limit Theorem)\\[0.3cm]
 \textbf{Theoretical Mean:} E(sum) = 7\\
-\textbf{Theoretical SD:} σ(sum) ≈ 2.42
+\textbf{Theoretical SD:} $\sigma$(sum) $\approx$ 2.42
 \end{probabilitybox}
 
 \needspace{5\baselineskip}
@@ -286,10 +286,10 @@ As sample size increases, the distribution of sums approaches normal distributio
 \begin{formulabox}
 \textbf{Purpose:} Calculate cumulative probability (area under curve)\\[0.3cm]
 \textbf{Syntax:} \texttt{pnorm(q, mean = 0, sd = 1)}\\[0.3cm]
-\textbf{Returns:} P(X ≤ q) for normal distribution\\[0.3cm]
+\textbf{Returns:} P(X $\leq$ q) for normal distribution\\[0.3cm]
 \textbf{Example:}\\
 \texttt{prob\_less\_than\_60 <- pnorm(60, mean = 50, sd = 10)}\\
-\texttt{# Returns probability that X < 60}
+\texttt{\# Returns probability that X < 60}
 \end{formulabox}
 
 \subsubsection{qnorm() Function}
@@ -297,10 +297,10 @@ As sample size increases, the distribution of sums approaches normal distributio
 \begin{formulabox}
 \textbf{Purpose:} Find quantiles (inverse of pnorm)\\[0.3cm]
 \textbf{Syntax:} \texttt{qnorm(p, mean = 0, sd = 1)}\\[0.3cm]
-\textbf{Returns:} Value x such that P(X ≤ x) = p\\[0.3cm]
+\textbf{Returns:} Value x such that P(X $\leq$ x) = p\\[0.3cm]
 \textbf{Example:}\\
 \texttt{value\_at\_90th <- qnorm(0.90, mean = 50, sd = 10)}\\
-\texttt{# Returns value below which 90\% of data falls}
+\texttt{\# Returns value below which 90\% of data falls}
 \end{formulabox}
 
 \subsection{Visual Probability Functions}
