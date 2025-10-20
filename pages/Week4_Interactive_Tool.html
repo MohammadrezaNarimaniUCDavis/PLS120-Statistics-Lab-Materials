@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLS 120: Interactive Probability Lab - Week 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #f3f4f6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .interactive-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-green-600 text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-2">🎲 PLS 120: Applied Statistics in Agriculture</h1>
+            <p class="text-green-100 text-lg">Week 4: Interactive Probability and Sampling Lab</p>
+        </div>
+    </header>
+
+    <!-- Concepts Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 Key Concepts</h2>
+            
+            <!-- Probability Concepts Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                    <h3 class="text-xl font-bold text-blue-600 mb-3">Random Sampling</h3>
+                    <p class="text-gray-600 mb-3">Drawing samples from a population</p>
+                    <div class="formula">sample(x, size, replace)</div>
+                    <p class="text-sm text-gray-500 mt-2">With or without replacement</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-green-600 mb-3">Probability</h3>
+                    <p class="text-gray-600 mb-3">Likelihood of an event occurring</p>
+                    <div class="formula">P(Event) = Favorable / Total</div>
+                    <p class="text-sm text-gray-500 mt-2">Values between 0 and 1</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+                    <h3 class="text-xl font-bold text-purple-600 mb-3">Normal Distribution</h3>
+                    <p class="text-gray-600 mb-3">Bell-shaped probability distribution</p>
+                    <div class="formula">rnorm(n, mean, sd)</div>
+                    <p class="text-sm text-gray-500 mt-2">Continuous probability distribution</p>
+                </div>
+            </div>
+
+            <!-- Distribution Functions Cards -->
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Normal Distribution Functions</h3>
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-600 mb-3">pnorm() - Probability</h3>
+                    <p class="text-gray-600 mb-3">Area under curve (cumulative probability)</p>
+                    <div class="formula">pnorm(q, mean, sd)</div>
+                    <p class="text-sm text-gray-500 mt-2">P(X ≤ q) for normal distribution</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-yellow-600 mb-3">qnorm() - Quantiles</h3>
+                    <p class="text-gray-600 mb-3">Inverse of pnorm function</p>
+                    <div class="formula">qnorm(p, mean, sd)</div>
+                    <p class="text-sm text-gray-500 mt-2">Find value for given probability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Coin Flip Section -->
+    <section class="py-8 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">🪙 Coin Flip Simulator</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-blue-600 mb-4">Simulate Coin Tosses</h3>
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-600 mb-4">Simulate coin flips and see how experimental probability approaches theoretical probability!</p>
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="flipCoins(10)" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">10 Flips</button>
+                            <button onclick="flipCoins(50)" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">50 Flips</button>
+                            <button onclick="flipCoins(100)" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">100 Flips</button>
+                            <button onclick="flipCoins(1000)" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">1000 Flips</button>
+                        </div>
+                        <div id="coinResults" class="bg-gray-50 p-4 rounded-lg min-h-32">
+                            <p class="text-gray-500">Click a button above to start flipping coins!</p>
+                        </div>
+                    </div>
+                    <div>
+                        <canvas id="coinChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dice Roll Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎲 Dice Roll Simulator</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-green-600 mb-4">Single Die Simulation</h3>
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-600 mb-4">Roll a six-sided die and observe the frequency distribution!</p>
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="rollDice(20)" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">20 Rolls</button>
+                            <button onclick="rollDice(100)" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">100 Rolls</button>
+                            <button onclick="rollDice(500)" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">500 Rolls</button>
+                        </div>
+                        <div id="diceResults" class="bg-gray-50 p-4 rounded-lg min-h-32">
+                            <p class="text-gray-500">Click a button above to start rolling dice!</p>
+                        </div>
+                    </div>
+                    <div>
+                        <canvas id="diceChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Dice Sum -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-purple-600 mb-4">Two Dice Sum Distribution</h3>
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-600 mb-4">Roll two dice and see the Central Limit Theorem in action!</p>
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="rollTwoDice(50)" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">50 Rolls</button>
+                            <button onclick="rollTwoDice(200)" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">200 Rolls</button>
+                            <button onclick="rollTwoDice(1000)" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">1000 Rolls</button>
+                        </div>
+                        <div id="twoDiceResults" class="bg-gray-50 p-4 rounded-lg min-h-32">
+                            <p class="text-gray-500">Click a button above to roll two dice!</p>
+                        </div>
+                    </div>
+                    <div>
+                        <canvas id="twoDiceChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Normal Distribution Explorer -->
+    <section class="py-8 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">📊 Normal Distribution Explorer</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Interactive Parameters</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Mean (μ): <span id="meanValue">50</span></label>
+                                <input type="range" id="meanSlider" min="0" max="100" value="50" class="w-full" onchange="updateNormalDist()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Standard Deviation (σ): <span id="sdValue">15</span></label>
+                                <input type="range" id="sdSlider" min="1" max="30" value="15" class="w-full" onchange="updateNormalDist()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Sample Size: <span id="sampleValue">100</span></label>
+                                <input type="range" id="sampleSlider" min="10" max="1000" value="100" step="10" class="w-full" onchange="updateNormalDist()">
+                            </div>
+                        </div>
+                        <div id="normalStats" class="bg-gray-50 p-4 rounded-lg mt-4">
+                            <h4 class="font-bold mb-2">Distribution Statistics</h4>
+                            <p class="text-gray-600">Adjust sliders to see statistics</p>
+                        </div>
+                    </div>
+                    <div>
+                        <canvas id="normalChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Quiz Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 Practice Quiz</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div id="quizContainer">
+                    <div class="quiz-question mb-6">
+                        <h3 class="text-lg font-bold mb-4">Question 1 of 5</h3>
+                        <p class="mb-4">If you flip a fair coin 100 times and get 45 heads, what is the experimental probability of heads?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q1" value="0.45" class="mr-2">
+                                <span>0.45</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q1" value="0.50" class="mr-2">
+                                <span>0.50</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q1" value="0.55" class="mr-2">
+                                <span>0.55</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button onclick="checkQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Check Answer</button>
+                    <div id="quizFeedback" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Global variables for charts
+        let coinChart = null;
+        let diceChart = null;
+        let twoDiceChart = null;
+        let normalChart = null;
+
+        // Coin Flip Functions
+        function flipCoins(n) {
+            const results = [];
+            for(let i = 0; i < n; i++) {
+                results.push(Math.random() < 0.5 ? 'H' : 'T');
+            }
+            
+            const heads = results.filter(r => r === 'H').length;
+            const tails = results.filter(r => r === 'T').length;
+            const probHeads = heads / n;
+            const probTails = tails / n;
+            
+            document.getElementById('coinResults').innerHTML = `
+                <div class="space-y-3">
+                    <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                        <h4 class="font-bold text-blue-700">Results from ${n} coin flips:</h4>
+                        <p class="text-blue-600">Heads: ${heads} (${(probHeads * 100).toFixed(1)}%)</p>
+                        <p class="text-blue-600">Tails: ${tails} (${(probTails * 100).toFixed(1)}%)</p>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <p><strong>Theoretical:</strong> Each outcome should be 50%</p>
+                        <p><strong>Difference from theory:</strong> ${Math.abs(probHeads - 0.5).toFixed(3)}</p>
+                    </div>
+                </div>
+            `;
+            
+            createCoinChart(heads, tails);
+        }
+
+        function createCoinChart(heads, tails) {
+            const ctx = document.getElementById('coinChart').getContext('2d');
+            if(coinChart) coinChart.destroy();
+            
+            coinChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Heads', 'Tails'],
+                    datasets: [{
+                        label: 'Frequency',
+                        data: [heads, tails],
+                        backgroundColor: ['rgba(59, 130, 246, 0.6)', 'rgba(239, 68, 68, 0.6)'],
+                        borderColor: ['rgba(59, 130, 246, 1)', 'rgba(239, 68, 68, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Coin Flip Results' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Dice Roll Functions
+        function rollDice(n) {
+            const results = [];
+            for(let i = 0; i < n; i++) {
+                results.push(Math.floor(Math.random() * 6) + 1);
+            }
+            
+            const counts = [0, 0, 0, 0, 0, 0];
+            results.forEach(r => counts[r-1]++);
+            
+            const probabilities = counts.map(c => (c/n * 100).toFixed(1));
+            
+            document.getElementById('diceResults').innerHTML = `
+                <div class="space-y-3">
+                    <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                        <h4 class="font-bold text-green-700">Results from ${n} dice rolls:</h4>
+                        ${counts.map((count, i) => `<p class="text-green-600">${i+1}: ${count} (${probabilities[i]}%)</p>`).join('')}
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <p><strong>Theoretical:</strong> Each face should be ~16.67%</p>
+                    </div>
+                </div>
+            `;
+            
+            createDiceChart(counts);
+        }
+
+        function createDiceChart(counts) {
+            const ctx = document.getElementById('diceChart').getContext('2d');
+            if(diceChart) diceChart.destroy();
+            
+            diceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6'],
+                    datasets: [{
+                        label: 'Frequency',
+                        data: counts,
+                        backgroundColor: 'rgba(34, 197, 94, 0.6)',
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Dice Roll Distribution' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Two Dice Functions
+        function rollTwoDice(n) {
+            const results = [];
+            for(let i = 0; i < n; i++) {
+                const die1 = Math.floor(Math.random() * 6) + 1;
+                const die2 = Math.floor(Math.random() * 6) + 1;
+                results.push(die1 + die2);
+            }
+            
+            const counts = Array(11).fill(0); // sums 2-12
+            results.forEach(sum => counts[sum-2]++);
+            
+            const mean = results.reduce((a, b) => a + b, 0) / results.length;
+            const variance = results.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / results.length;
+            const stdDev = Math.sqrt(variance);
+            
+            document.getElementById('twoDiceResults').innerHTML = `
+                <div class="space-y-3">
+                    <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                        <h4 class="font-bold text-purple-700">Results from ${n} two-dice rolls:</h4>
+                        <p class="text-purple-600">Mean: ${mean.toFixed(2)} (Theory: 7.0)</p>
+                        <p class="text-purple-600">Std Dev: ${stdDev.toFixed(2)} (Theory: 2.42)</p>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <p><strong>Central Limit Theorem:</strong> As sample size increases, distribution approaches normal</p>
+                    </div>
+                </div>
+            `;
+            
+            createTwoDiceChart(counts);
+        }
+
+        function createTwoDiceChart(counts) {
+            const ctx = document.getElementById('twoDiceChart').getContext('2d');
+            if(twoDiceChart) twoDiceChart.destroy();
+            
+            twoDiceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                    datasets: [{
+                        label: 'Frequency',
+                        data: counts,
+                        backgroundColor: 'rgba(147, 51, 234, 0.6)',
+                        borderColor: 'rgba(147, 51, 234, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Sum of Two Dice Distribution' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Normal Distribution Functions
+        function updateNormalDist() {
+            const mean = parseFloat(document.getElementById('meanSlider').value);
+            const sd = parseFloat(document.getElementById('sdSlider').value);
+            const sampleSize = parseInt(document.getElementById('sampleSlider').value);
+            
+            document.getElementById('meanValue').textContent = mean;
+            document.getElementById('sdValue').textContent = sd;
+            document.getElementById('sampleValue').textContent = sampleSize;
+            
+            // Generate normal random data
+            const data = [];
+            for(let i = 0; i < sampleSize; i++) {
+                data.push(normalRandom(mean, sd));
+            }
+            
+            // Calculate statistics
+            const sampleMean = data.reduce((a, b) => a + b, 0) / data.length;
+            const sampleVar = data.reduce((sum, x) => sum + Math.pow(x - sampleMean, 2), 0) / data.length;
+            const sampleSD = Math.sqrt(sampleVar);
+            
+            document.getElementById('normalStats').innerHTML = `
+                <h4 class="font-bold mb-2">Distribution Statistics</h4>
+                <div class="space-y-1 text-sm">
+                    <div><strong>Sample Mean:</strong> ${sampleMean.toFixed(2)} (Theory: ${mean})</div>
+                    <div><strong>Sample SD:</strong> ${sampleSD.toFixed(2)} (Theory: ${sd})</div>
+                    <div><strong>Sample Size:</strong> ${sampleSize}</div>
+                    <div><strong>Min:</strong> ${Math.min(...data).toFixed(1)}</div>
+                    <div><strong>Max:</strong> ${Math.max(...data).toFixed(1)}</div>
+                </div>
+            `;
+            
+            createNormalChart(data, mean, sd);
+        }
+
+        function normalRandom(mean, stdDev) {
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random();
+            while(v === 0) v = Math.random();
+            return mean + stdDev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        }
+
+        function createNormalChart(data, mean, sd) {
+            const ctx = document.getElementById('normalChart').getContext('2d');
+            
+            // Create histogram bins
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            const binCount = 15;
+            const binWidth = (max - min) / binCount;
+            const bins = Array(binCount).fill(0);
+            const binLabels = [];
+            
+            for(let i = 0; i < binCount; i++) {
+                binLabels.push((min + i * binWidth).toFixed(1));
+            }
+            
+            data.forEach(value => {
+                const binIndex = Math.min(Math.floor((value - min) / binWidth), binCount - 1);
+                bins[binIndex]++;
+            });
+            
+            if(normalChart) normalChart.destroy();
+            
+            normalChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: binLabels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: bins,
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: `Normal Distribution (μ=${mean}, σ=${sd})` }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Quiz Functions
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        let score = 0;
+
+        const quizQuestions = [
+            {
+                question: "If you flip a fair coin 100 times and get 45 heads, what is the experimental probability of heads?",
+                options: ["0.45", "0.50", "0.55"],
+                correct: "0.45",
+                explanation: "Experimental probability = Number of heads / Total flips = 45/100 = 0.45"
+            },
+            {
+                question: "When using sample(1:6, 10, replace=TRUE), what does replace=TRUE mean?",
+                options: ["Each number can be selected multiple times", "Each number can only be selected once", "The sample size must equal 6"],
+                correct: "Each number can be selected multiple times",
+                explanation: "replace=TRUE means sampling with replacement - each item can be selected multiple times."
+            },
+            {
+                question: "In a normal distribution with mean=50 and sd=10, approximately what percentage of data falls within one standard deviation of the mean?",
+                options: ["68%", "95%", "99.7%"],
+                correct: "68%",
+                explanation: "In a normal distribution, approximately 68% of data falls within one standard deviation (μ ± σ)."
+            },
+            {
+                question: "If pnorm(60, mean=50, sd=10) = 0.84, what does this tell us?",
+                options: ["84% of values are less than 60", "84% of values are greater than 60", "The mean is 84"],
+                correct: "84% of values are less than 60",
+                explanation: "pnorm() gives the cumulative probability - the area under the curve to the left of the specified value."
+            },
+            {
+                question: "In agricultural research, why might you use set.seed() before random sampling?",
+                options: ["To make results reproducible", "To increase sample size", "To change the population"],
+                correct: "To make results reproducible",
+                explanation: "set.seed() ensures that random sampling produces the same results each time, making research reproducible."
+            }
+        ];
+
+        function loadQuestion(questionNum) {
+            const q = quizQuestions[questionNum - 1];
+            document.getElementById('quizContainer').innerHTML = `
+                <div class="quiz-question mb-6">
+                    <h3 class="text-lg font-bold mb-4">Question ${questionNum} of ${totalQuestions}</h3>
+                    <p class="mb-4">${q.question}</p>
+                    <div class="space-y-2">
+                        ${q.options.map((option, index) => `
+                            <label class="flex items-center">
+                                <input type="radio" name="q${questionNum}" value="${option}" class="mr-2">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="checkQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Check Answer</button>
+                    ${questionNum > 1 ? `<button onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Previous</button>` : ''}
+                </div>
+                <div id="quizFeedback" class="mt-4"></div>
+            `;
+        }
+
+        function checkQuiz() {
+            const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+            const feedback = document.getElementById('quizFeedback');
+            const q = quizQuestions[currentQuestion - 1];
+            
+            if (!selected) {
+                feedback.innerHTML = '<p class="text-yellow-600">Please select an answer.</p>';
+                return;
+            }
+            
+            const isCorrect = selected.value === q.correct;
+            if (isCorrect) score++;
+            
+            feedback.innerHTML = `
+                <div class="bg-${isCorrect ? 'green' : 'red'}-50 border border-${isCorrect ? 'green' : 'red'}-200 rounded p-3">
+                    <p class="text-${isCorrect ? 'green' : 'red'}-700 font-semibold">${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</p>
+                    <p class="text-${isCorrect ? 'green' : 'red'}-600 text-sm mt-1">${q.explanation}</p>
+                </div>
+                <div class="mt-4">
+                    ${currentQuestion < totalQuestions ? 
+                        `<button onclick="nextQuestion()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Next Question</button>` :
+                        `<button onclick="showResults()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">Show Final Results</button>`
+                    }
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                loadQuestion(currentQuestion);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                loadQuestion(currentQuestion);
+            }
+        }
+
+        function showResults() {
+            const percentage = Math.round((score / totalQuestions) * 100);
+            let message = "";
+            let colorClass = "";
+            
+            if (percentage >= 80) {
+                message = "Excellent work! You have a strong understanding of probability concepts.";
+                colorClass = "green";
+            } else if (percentage >= 60) {
+                message = "Good job! Review the concepts you missed and try the simulations above.";
+                colorClass = "blue";
+            } else {
+                message = "Keep studying! Use the interactive simulations above to strengthen your understanding.";
+                colorClass = "yellow";
+            }
+            
+            document.getElementById('quizContainer').innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">Quiz Complete!</h3>
+                    <div class="bg-${colorClass}-50 border border-${colorClass}-200 rounded-lg p-6 mb-4">
+                        <p class="text-3xl font-bold text-${colorClass}-700 mb-2">${score}/${totalQuestions}</p>
+                        <p class="text-xl text-${colorClass}-600 mb-2">${percentage}%</p>
+                        <p class="text-${colorClass}-700">${message}</p>
+                    </div>
+                    <button onclick="restartQuiz()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Restart Quiz</button>
+                </div>
+            `;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 1;
+            score = 0;
+            loadQuestion(1);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize normal distribution
+            updateNormalDist();
+            
+            // Load first quiz question
+            loadQuestion(1);
+        });
+    </script>
+</body>
+</html>
