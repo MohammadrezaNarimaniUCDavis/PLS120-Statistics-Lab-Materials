@@ -1,0 +1,385 @@
+<h1 class="page-title">🎲 Week 4: Probability and Sampling</h1>
+<p class="page-subtitle">Master Probability Theory and Statistical Simulation 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 4 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 4!</strong> This week, we explore <strong>probability theory and sampling techniques</strong> - essential foundations for statistical inference in agricultural research. Learn to simulate probability experiments, work with distributions, and understand randomness!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🔍</span>
+                <span><strong>Logical Variables</strong> - TRUE/FALSE operations and comparisons</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔄</span>
+                <span><strong>Data Type Conversion</strong> - Transform between different R data types</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎯</span>
+                <span><strong>Random Sampling</strong> - Use sample() function for population sampling</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🪙</span>
+                <span><strong>Coin Toss Simulation</strong> - Model probability experiments programmatically</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎲</span>
+                <span><strong>Dice Roll Simulation</strong> - Understand Central Limit Theorem effects</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Normal Distributions</strong> - Use rnorm(), pnorm(), and qnorm() functions</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 4 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 4"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for probability and sampling.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 4 on probability simulation</li>
+            <li><code>class_activity/</code> - Week 4 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 4 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week4_Probability_Sampling.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore Probability Concepts 🎲</h3>
+        <p>This week we'll work with simulated data and probability distributions! The notebook will guide you through:</p>
+        <ul>
+            <li>Understanding logical variables and data types</li>
+            <li>Random sampling with and without replacement</li>
+            <li>Simulating coin tosses and dice rolls</li>
+            <li>Working with normal distribution functions</li>
+            <li>Comparing experimental vs theoretical probabilities</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Probability Simulation Tools</h3>
+        <p>Use these interactive tools to understand probability concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/week4_Interactive_Tools.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to visualize probability concepts before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Probability and Sampling</h3>
+        <div class="code-block">
+            <code>sample(x, size, replace = TRUE/FALSE)  # Random sampling</code><br>
+            <code>set.seed(number)                       # Reproducible results</code><br>
+            <code>table(data)                            # Frequency counts</code><br>
+            <code>sum(logical_vector)                    # Count TRUE values</code><br>
+            <code>length(data)                           # Total observations</code>
+        </div>
+
+        <h3 class="card-title">Normal Distribution Functions</h3>
+        <div class="code-block">
+            <code>rnorm(n, mean = 0, sd = 1)             # Generate random normal data</code><br>
+            <code>pnorm(q, mean = 0, sd = 1)             # Calculate probabilities</code><br>
+            <code>qnorm(p, mean = 0, sd = 1)             # Find quantiles</code><br>
+            <code>pnormGC(q, mean, sd, graph = TRUE)     # Visual probability (tigerstats)</code>
+        </div>
+
+        <h3 class="card-title">Data Type Conversion</h3>
+        <div class="code-block">
+            <code>as.numeric(x)                          # Convert to numeric</code><br>
+            <code>as.character(x)                        # Convert to character</code><br>
+            <code>as.factor(x)                           # Convert to factor</code><br>
+            <code>as.logical(x)                          # Convert to logical</code><br>
+            <code>data.frame(x)                          # Convert to data frame</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 4: Probability Simulation</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 4.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 4 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment4.ipynb</code> to open your assignment on probability simulation.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">🎲</span>
+                <div>
+                    <h4>Part 1: Simulation (6 points)</h4>
+                    <p>Simulate 50 coin flips and 50 dice rolls</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 2: Probability Calculation (6 points)</h4>
+                    <p>Calculate experimental probabilities and compare to theoretical</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📈</span>
+                <div>
+                    <h4>Part 3: Data Frames and Visualization (8 points)</h4>
+                    <p>Create probability distributions and bar plots</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Simulate Probability Experiments 🎯</h3>
+        <p>The assignment focuses on fundamental probability concepts:</p>
+        <ul>
+            <li><strong>Coin Flip Simulation</strong> - Model fair coin tosses and calculate probabilities</li>
+            <li><strong>Dice Roll Simulation</strong> - Generate random dice outcomes and analyze patterns</li>
+            <li><strong>Experimental vs Theoretical</strong> - Compare your results to expected probabilities</li>
+        </ul>
+        <p>Learn to work with <strong>discrete probability distributions</strong> and understand sampling variability!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Seed Germination Studies</strong> - Model probability of germination success</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌧️</span>
+                <span><strong>Weather Risk Assessment</strong> - Simulate drought and frost probabilities</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🧪</span>
+                <span><strong>Quality Control Sampling</strong> - Random sampling of agricultural products</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔬</span>
+                <span><strong>Field Trial Design</strong> - Understanding sampling variability</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pest Management</strong> - Model probability distributions of pest occurrence</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Probability Skills Help You:</h3>
+        <ul>
+            <li>Design experiments with appropriate sample sizes</li>
+            <li>Understand uncertainty and variability in agricultural systems</li>
+            <li>Make informed decisions under uncertainty</li>
+            <li>Calculate risk probabilities for insurance and planning</li>
+            <li>Interpret statistical test results and confidence intervals</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 4, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand logical variables and data type conversions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Perform random sampling with and without replacement</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Simulate probability experiments (coins, dice)</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Work with normal distribution functions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compare experimental and theoretical probabilities</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Visualize probability distributions with bar plots</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>Random results different?</strong> Use set.seed() for reproducible results</li>
+            <li><strong>Probability doesn't sum to 1?</strong> Check your table() and division calculations</li>
+            <li><strong>tigerstats error?</strong> Make sure the package is loaded with library(tigerstats)</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>Probability Theory:</strong> Review basic probability rules and concepts</li>
+            <li><strong>R Documentation:</strong> Use <code>?function_name</code> for help with functions</li>
+            <li><strong>Practice:</strong> Try different sample sizes to see how results change</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Use set.seed()</strong> - For reproducible random results</li>
+            <li><strong>Start with small samples</strong> - Understand concepts before increasing size</li>
+            <li><strong>Verify your simulations</strong> - Check that probabilities sum to 1</li>
+            <li><strong>Compare to theory</strong> - Always relate experimental to expected results</li>
+            <li><strong>Visualize your data</strong> - Plots help understand probability distributions</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>?function</kbd>
+                <span>Get help for any R function</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 4!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 4 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy probability exploring! 🎲🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 4: Probability and Sampling</em></p>
+    </div>
+</div>
