@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  20 OCT 2025 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  20 OCT 2025 14:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -655,11 +655,11 @@ LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 4
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 4.
+(Font)              <10> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <7> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 4.
+(Font)              <5> on input line 4.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -671,40 +671,44 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write5
 \openout5 = `Week4_Tutorial.toc'.
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 128.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 128.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 128.
 
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.121 \newpage
-               [1]
-
-[2]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 150.
+l.134 
+       [1]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 149.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
+[2]
+
 [3]
 
-[4]
+[4{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
-[5{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[5{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
 
-[6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
-
-[7]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 356.
+[6]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 355.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-[8{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+[7{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 
-[9]
+[8]
 
-[10] (./Week4_Tutorial.aux)
+[9] (./Week4_Tutorial.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
@@ -713,18 +717,18 @@ Package rerunfilecheck Info: File `Week4_Tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 1E52A73D20CFD27CC53ECAC6FEBE8180;7309.
  ) 
 Here is how much of TeX's memory you used:
- 27185 strings out of 473579
- 524180 string characters out of 5732263
- 878953 words of memory out of 5000000
- 49608 multiletter control sequences out of 15000+600000
- 599564 words of font info for 64 fonts, out of 8000000 for 9000
+ 27212 strings out of 473579
+ 524481 string characters out of 5732263
+ 879953 words of memory out of 5000000
+ 49628 multiletter control sequences out of 15000+600000
+ 617580 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,11n,101p,536b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Week4_Tutorial.pdf (11 pages, 2129363 bytes).
+Output written on Week4_Tutorial.pdf (10 pages, 2128425 bytes).
 PDF statistics:
- 332 PDF objects out of 1000 (max. 8388607)
- 297 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 294 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
  338 words of extra memory for PDF output out of 10000 (max. 10000000)
 
