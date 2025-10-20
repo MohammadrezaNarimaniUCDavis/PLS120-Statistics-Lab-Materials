@@ -1,0 +1,40 @@
+\contentsline {section}{\numberline {1}Important Links}{2}{section.1}%
+\contentsline {section}{\numberline {2}Welcome to Week 4: Probability and Sampling}{2}{section.2}%
+\contentsline {section}{\numberline {3}Logical Variables and Data Types}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Understanding Logical Variables}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Basic Logical Operations}{2}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Data Type Conversion}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Essential Conversion Functions}{3}{subsubsection.3.2.1}%
+\contentsline {section}{\numberline {4}Random Sampling Techniques}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}The sample() Function}{3}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Function Parameters}{3}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Reproducible Results}{3}{subsubsection.4.1.2}%
+\contentsline {section}{\numberline {5}Probability Simulation}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Coin Toss Experiments}{4}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Basic Coin Simulation}{4}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Frequency Analysis}{4}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Dice Roll Simulation}{4}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Single Die Experiments}{4}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Two Dice and Central Limit Theorem}{5}{subsubsection.5.2.2}%
+\contentsline {section}{\numberline {6}Normal Distribution Functions}{5}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Generating Random Normal Data}{5}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}rnorm() Function}{5}{subsubsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.2}Probability Calculations}{5}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}pnorm() Function}{5}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}qnorm() Function}{6}{subsubsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.3}Visual Probability Functions}{6}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}tigerstats Package}{6}{subsubsection.6.3.1}%
+\contentsline {section}{\numberline {7}Data Visualization for Probability}{6}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Creating Probability Plots}{6}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Bar Plots for Discrete Distributions}{6}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Histograms for Continuous Distributions}{7}{subsubsection.7.1.2}%
+\contentsline {section}{\numberline {8}Assignment 4 Overview}{7}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Assignment Structure (20 points total)}{7}{subsection.8.1}%
+\contentsline {section}{\numberline {9}Agricultural Applications}{8}{section.9}%
+\contentsline {section}{\numberline {10}Key Concepts Summary}{8}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Probability Fundamentals}{8}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Sampling Concepts}{8}{subsection.10.2}%
+\contentsline {section}{\numberline {11}Getting Started}{8}{section.11}%
+\contentsline {section}{\numberline {12}Learning Objectives}{9}{section.12}%
+\contentsline {section}{\numberline {13}Tips for Success}{9}{section.13}%
+\contentsline {section}{\numberline {14}Need Help?}{9}{section.14}%

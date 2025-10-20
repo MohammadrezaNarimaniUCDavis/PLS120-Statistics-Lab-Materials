@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Weeks 1-3 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-4 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -49,6 +49,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 **Week 2 - Descriptive Statistics:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2
 
 **Week 3 - Data Manipulation:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3
+
+**Week 4 - Probability and Sampling:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4
 
 ---
 
@@ -77,18 +79,22 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   │   └── pdf/           # LaTeX/PDF materials
 │   ├── Week_2/            # week 2 specific materials
 │   │   └── pdf/           # LaTeX/PDF materials
-│   └── Week_3/            # week 3 specific materials
+│   ├── Week_3/            # week 3 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
+│   └── Week_4/            # week 4 specific materials
 │       └── pdf/           # LaTeX/PDF materials
 ├── assignment/            # homework assignments
 │   ├── Assignment1.ipynb  # week 1 assignment
 │   ├── Assignment2.ipynb  # week 2 assignment
 │   ├── Assignment3.ipynb  # week 3 assignment
+│   ├── Assignment4.ipynb  # week 4 assignment
 │   ├── LA_Data.csv       # statistics dataset
 │   └── SAT_DATASET_2012.csv # SAT performance dataset
 ├── class_activity/        # interactive tutorials
 │   ├── Week1_Introduction.ipynb
 │   ├── Week2_Descriptive_Statistics.ipynb
-│   └── Week3_Data_Manipulation.ipynb
+│   ├── Week3_Data_Manipulation.ipynb
+│   └── Week4_Probability_Sampling.ipynb
 └── README.md             # you're reading it!
 ```
 
@@ -118,8 +124,15 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Grouping and summarizing data
    - Data visualization with ggplot2
 
-4. **Week 4-10**: 🔒 *Coming Soon*
-   - Probability and Distributions
+4. **Week 4**: Probability and Sampling ✅ *Available*
+   - Logical variables and data type conversions
+   - Random sampling techniques with sample() function
+   - Probability simulation (coins, dice)
+   - Normal distribution functions (rnorm, pnorm, qnorm)
+   - Experimental vs theoretical probability
+   - Data visualization for probability distributions
+
+5. **Week 5-10**: 🔒 *Coming Soon*
    - Sampling and Estimation
    - Hypothesis Testing
    - ANOVA and Regression
@@ -169,6 +182,7 @@ By completing this course, students will be able to:
    - [Week 1 - Introduction](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week1)
    - [Week 2 - Descriptive Statistics](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
    - [Week 3 - Data Manipulation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3)
+   - [Week 4 - Probability and Sampling](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4)
 3. **No software installation needed!**
 
 ### For Developers:

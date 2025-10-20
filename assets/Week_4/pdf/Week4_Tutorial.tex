@@ -1,0 +1,467 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 4 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{probabilitybox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Probability and Sampling}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 4 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize October 2025}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 4 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4}{\textcolor{primarygreen}{\underline{Week 4 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 4: Probability and Sampling}
+
+This week, we explore \textbf{probability theory and sampling techniques} - essential foundations for statistical inference in agricultural research. You'll learn to simulate probability experiments, work with distributions, and understand randomness!
+
+\section{Logical Variables and Data Types}
+
+\subsection{Understanding Logical Variables}
+
+Logical variables in R can only take the values TRUE, FALSE, or NA (missing value). They are fundamental in decision-making processes in programming.
+
+\subsubsection{Basic Logical Operations}
+
+\begin{formulabox}
+\textbf{Comparison Operators:}\\
+\texttt{==} - Equal to\\
+\texttt{!=} - Not equal to\\
+\texttt{<} - Less than\\
+\texttt{>} - Greater than\\
+\texttt{<=} - Less than or equal to\\
+\texttt{>=} - Greater than or equal to\\[0.3cm]
+\textbf{Logical Operators:}\\
+\texttt{\&} - AND (element-wise)\\
+\texttt{|} - OR (element-wise)\\
+\texttt{!} - NOT (negation)
+\end{formulabox}
+
+\subsection{Data Type Conversion}
+
+\subsubsection{Essential Conversion Functions}
+
+\begin{formulabox}
+\textbf{Type Conversion Functions:}\\
+\texttt{as.numeric(x)} - Convert to numeric\\
+\texttt{as.character(x)} - Convert to character\\
+\texttt{as.factor(x)} - Convert to factor\\
+\texttt{as.logical(x)} - Convert to logical\\
+\texttt{data.frame(x)} - Convert to data frame\\[0.3cm]
+\textbf{Example:}\\
+\texttt{numeric\_vector <- c(0, 1, 2)}\\
+\texttt{logical\_vector <- as.logical(numeric\_vector)}\\
+\texttt{\# Result: FALSE, TRUE, TRUE}
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Random Sampling Techniques}
+
+\subsection{The sample() Function}
+
+Understanding how to perform random sampling from a population is essential for statistical analysis.
+
+\subsubsection{Function Parameters}
+
+\begin{formulabox}
+\textbf{Syntax:} \texttt{sample(x, size, replace)}\\[0.3cm]
+\textbf{Parameters:}\\
+\texttt{x} - Population (dataset) to sample from\\
+\texttt{size} - Number of samples to draw\\
+\texttt{replace} - TRUE (with replacement) or FALSE (without replacement)\\[0.3cm]
+\textbf{Examples:}\\
+\texttt{sample(1:6, 10, replace = TRUE)} - Roll die 10 times\\
+\texttt{sample(nrow(data), 30, replace = FALSE)} - Select 30 unique rows
+\end{formulabox}
+
+\subsubsection{Reproducible Results}
+
+\begin{formulabox}
+\textbf{set.seed() Function:}\\
+Use \texttt{set.seed(number)} before random sampling to ensure reproducible results\\[0.3cm]
+\textbf{Example:}\\
+\texttt{set.seed(123)}\\
+\texttt{sample(c("H", "T"), 10, replace = TRUE)}\\
+\texttt{\# Will always produce the same sequence}
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Probability Simulation}
+
+\subsection{Coin Toss Experiments}
+
+\subsubsection{Basic Coin Simulation}
+
+\begin{probabilitybox}
+\textbf{Create a Coin:} \texttt{coin <- c("H", "T")}\\[0.3cm]
+\textbf{Simulate Tosses:} \texttt{tosses <- sample(coin, size = 50, replace = TRUE)}\\[0.3cm]
+\textbf{Count Outcomes:}\\
+\texttt{heads <- sum(tosses == "H")}\\
+\texttt{tails <- sum(tosses == "T")}\\[0.3cm]
+\textbf{Calculate Probabilities:}\\
+\texttt{prob\_heads <- heads / length(tosses)}\\
+\texttt{prob\_tails <- tails / length(tosses)}
+\end{probabilitybox}
+
+\subsubsection{Frequency Analysis}
+
+\begin{probabilitybox}
+\textbf{Create Frequency Table:} \texttt{toss\_table <- table(tosses)}\\[0.3cm]
+\textbf{Convert to Probabilities:}\\
+\texttt{toss\_probabilities <- toss\_table / sum(toss\_table)}\\[0.3cm]
+\textbf{Theoretical vs Experimental:}\\
+Theoretical probability for fair coin: P(H) = P(T) = 0.5\\
+Experimental probability varies with sample size
+\end{probabilitybox}
+
+\subsection{Dice Roll Simulation}
+
+\subsubsection{Single Die Experiments}
+
+\begin{probabilitybox}
+\textbf{Create a Die:} \texttt{dice <- c(1:6)} or \texttt{dice <- seq(1, 6, 1)}\\[0.3cm]
+\textbf{Simulate Rolls:} \texttt{rolls <- sample(dice, size = 100, replace = TRUE)}\\[0.3cm]
+\textbf{Analyze Results:}\\
+\texttt{roll\_counts <- table(rolls)}\\
+\texttt{roll\_probabilities <- roll\_counts / sum(roll\_counts)}\\[0.3cm]
+\textbf{Theoretical:} Each face should have probability = 1/6 $\approx$ 0.167
+\end{probabilitybox}
+
+\subsubsection{Two Dice and Central Limit Theorem}
+
+\begin{probabilitybox}
+\textbf{Sum of Two Dice:}\\
+\texttt{die1 <- sample(1:6, 1000, replace = TRUE)}\\
+\texttt{die2 <- sample(1:6, 1000, replace = TRUE)}\\
+\texttt{sums <- die1 + die2}\\[0.3cm]
+\textbf{Observe Distribution:}\\
+As sample size increases, the distribution of sums approaches normal distribution (Central Limit Theorem)\\[0.3cm]
+\textbf{Theoretical Mean:} E(sum) = 7\\
+\textbf{Theoretical SD:} $\sigma$(sum) $\approx$ 2.42
+\end{probabilitybox}
+
+\needspace{5\baselineskip}
+\section{Normal Distribution Functions}
+
+\subsection{Generating Random Normal Data}
+
+\subsubsection{rnorm() Function}
+
+\begin{formulabox}
+\textbf{Purpose:} Generate random numbers from normal distribution\\[0.3cm]
+\textbf{Syntax:} \texttt{rnorm(n, mean = 0, sd = 1)}\\[0.3cm]
+\textbf{Parameters:}\\
+\texttt{n} - Number of random values to generate\\
+\texttt{mean} - Mean of the distribution (default: 0)\\
+\texttt{sd} - Standard deviation (default: 1)\\[0.3cm]
+\textbf{Example:} \texttt{normal\_data <- rnorm(100, mean = 50, sd = 15)}
+\end{formulabox}
+
+\subsection{Probability Calculations}
+
+\subsubsection{pnorm() Function}
+
+\begin{formulabox}
+\textbf{Purpose:} Calculate cumulative probability (area under curve)\\[0.3cm]
+\textbf{Syntax:} \texttt{pnorm(q, mean = 0, sd = 1)}\\[0.3cm]
+\textbf{Returns:} P(X $\leq$ q) for normal distribution\\[0.3cm]
+\textbf{Example:}\\
+\texttt{prob\_less\_than\_60 <- pnorm(60, mean = 50, sd = 10)}\\
+\texttt{\# Returns probability that X < 60}
+\end{formulabox}
+
+\subsubsection{qnorm() Function}
+
+\begin{formulabox}
+\textbf{Purpose:} Find quantiles (inverse of pnorm)\\[0.3cm]
+\textbf{Syntax:} \texttt{qnorm(p, mean = 0, sd = 1)}\\[0.3cm]
+\textbf{Returns:} Value x such that P(X $\leq$ x) = p\\[0.3cm]
+\textbf{Example:}\\
+\texttt{value\_at\_90th <- qnorm(0.90, mean = 50, sd = 10)}\\
+\texttt{\# Returns value below which 90\% of data falls}
+\end{formulabox}
+
+\subsection{Visual Probability Functions}
+
+\subsubsection{tigerstats Package}
+
+\begin{formulabox}
+\textbf{Enhanced Visualization:}\\
+\texttt{library(tigerstats)}\\[0.3cm]
+\texttt{pnormGC(60, mean = 50, sd = 10, graph = TRUE)}\\
+\texttt{\# Shows probability with visual graph}\\[0.3cm]
+\texttt{qnormGC(0.90, mean = 50, sd = 10, graph = TRUE)}\\
+\texttt{\# Shows quantile with visual graph}
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Data Visualization for Probability}
+
+\subsection{Creating Probability Plots}
+
+\subsubsection{Bar Plots for Discrete Distributions}
+
+\begin{formulabox}
+\textbf{Base R Approach:}\\
+\texttt{barplot(probability\_table, main = "Probability Distribution")}\\[0.3cm]
+\textbf{ggplot2 Approach:}\\
+\texttt{ggplot(data\_frame, aes(x = outcome, y = probability)) +}\\
+\texttt{geom\_bar(stat = "identity")}\\[0.3cm]
+\textbf{Note:} Use \texttt{stat = "identity"} to plot actual probability values
+\end{formulabox}
+
+\subsubsection{Histograms for Continuous Distributions}
+
+\begin{formulabox}
+\textbf{For Normal Data:}\\
+\texttt{hist(normal\_data, breaks = 15)}\\[0.3cm]
+\textbf{With ggplot2:}\\
+\texttt{ggplot(data.frame(x = normal\_data), aes(x = x)) +}\\
+\texttt{geom\_histogram(bins = 15)}\\[0.3cm]
+\textbf{Density Plots:}\\
+\texttt{ggplot(data.frame(x = normal\_data), aes(x = x)) +}\\
+\texttt{geom\_density()}
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Assignment 4 Overview}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Simulation (6 points)}
+    \begin{itemize}
+        \item Simulate 50 coin flips (3 points)
+        \item Simulate 50 dice rolls (3 points)
+    \end{itemize}
+    
+    \item \textbf{Part 2: Probability Calculation (6 points)}
+    \begin{itemize}
+        \item Calculate experimental probabilities for coin outcomes (2 points)
+        \item Calculate experimental probabilities for dice outcomes (3 points)
+        \item Compare experimental vs theoretical probabilities (1 point)
+    \end{itemize}
+    
+    \item \textbf{Part 3: Data Frames and Visualization (8 points)}
+    \begin{itemize}
+        \item Create coin probability data frame (2 points)
+        \item Create dice probability data frame (2 points)
+        \item Generate coin flip bar plot (2 points)
+        \item Generate dice roll bar plot (2 points)
+    \end{itemize}
+\end{enumerate}
+
+\needspace{5\baselineskip}
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Real-World Applications:}
+\begin{itemize}
+    \item \textbf{Seed Germination Studies} - Model probability of germination success under different conditions
+    \item \textbf{Weather Risk Assessment} - Simulate probability of drought, frost, or extreme weather events
+    \item \textbf{Quality Control Sampling} - Random sampling of agricultural products for testing
+    \item \textbf{Field Trial Design} - Understanding sampling variability in experimental plots
+    \item \textbf{Pest Management} - Modeling probability distributions of pest occurrence
+    \item \textbf{Crop Insurance} - Calculating risk probabilities for insurance premium determination
+\end{itemize}
+\end{infobox}
+
+\section{Key Concepts Summary}
+
+\subsection{Probability Fundamentals}
+
+\begin{probabilitybox}
+\textbf{Basic Probability Rules:}\\
+• Probability ranges from 0 to 1\\
+• P(Event) = Favorable outcomes / Total outcomes\\
+• Sum of all probabilities = 1\\
+• P(not A) = 1 - P(A)\\[0.3cm]
+\textbf{Law of Large Numbers:}\\
+As sample size increases, experimental probability approaches theoretical probability
+\end{probabilitybox}
+
+\subsection{Sampling Concepts}
+
+\begin{probabilitybox}
+\textbf{Sampling with Replacement:}\\
+Each item can be selected multiple times (like rolling dice)\\[0.3cm]
+\textbf{Sampling without Replacement:}\\
+Each item can only be selected once (like drawing cards without putting back)\\[0.3cm]
+\textbf{Population vs Sample:}\\
+Population = entire group; Sample = subset of population
+\end{probabilitybox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 4 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week4\_Probability\_Sampling.ipynb}
+    \item Work through interactive exercises
+    \item Complete Assignment 4 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Understand logical variables and data type conversions
+    \item Perform random sampling with and without replacement
+    \item Simulate probability experiments (coins, dice)
+    \item Work with normal distribution functions (rnorm, pnorm, qnorm)
+    \item Compare experimental and theoretical probabilities
+    \item Visualize probability distributions with bar plots and histograms
+    \item Apply probability concepts to agricultural research scenarios
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Use \texttt{set.seed()} for reproducible random results
+    \item Start with small sample sizes to understand concepts
+    \item Always verify that probabilities sum to 1
+    \item Compare experimental results to theoretical expectations
+    \item Use visualization to understand probability distributions
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 4: Probability and Sampling}
+\end{center}
+
+\end{document}
