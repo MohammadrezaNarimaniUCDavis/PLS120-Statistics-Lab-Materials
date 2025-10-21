@@ -162,7 +162,7 @@
                         🌊 Density Plot
                     </button>
                     <button onclick="showPlot('stem')" class="plot-btn bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 font-semibold">
-                        🌿 Stem Plot
+                        🌿 Stem-and-Leaf
                     </button>
                 </div>
             </div>
@@ -757,44 +757,58 @@
                 `
             },
             stem: {
-                title: "🌿 Stem-and-Leaf Plot - Simple Data Display",
-                description: "A simple way to show your data values while seeing the overall pattern. Perfect for small datasets!",
+                title: "🌿 Stem-and-Leaf Plot - See Actual Data Values",
+                description: "Unlike histograms, stem-and-leaf plots show the actual data values while displaying the distribution shape!",
                 visual: `
                     <div class="bg-gray-50 p-6 rounded-lg mb-4">
                         <div class="text-center mb-4">
-                            <h4 class="font-bold text-gray-800">Farm Yield Data (bushels per acre)</h4>
+                            <h4 class="font-bold text-gray-800">Petal Length Stem-and-Leaf Plot</h4>
                         </div>
                         <div class="flex justify-center">
                             <div class="bg-white p-4 rounded border font-mono text-sm">
                                 <div class="text-center mb-2 font-bold">Stem | Leaf</div>
                                 <div class="border-b mb-2"></div>
-                                <div>6 | 2 5 8</div>
-                                <div>7 | 1 3 6 9</div>
-                                <div>8 | 0 2 4 7 8</div>
-                                <div>9 | 1 3 5</div>
+                                <div>1 | 0 1 2 3 4 4 4 5 5 6 7 9</div>
+                                <div>2 | 0 3 5</div>
+                                <div>3 | 0 0 0 1 1 2 3 3 4 5 6 7 8 9</div>
+                                <div>4 | 0 1 2 4 5 6 7 8 9</div>
+                                <div>5 | 0 1 1 2 3 4 5 6 7 8</div>
+                                <div>6 | 0 1 3 4 6 7 9</div>
                                 <div class="border-t mt-2 pt-2 text-xs text-gray-600">
-                                    <div>6|2 means 62 bushels</div>
-                                    <div>Most farms: 70-89 bushels</div>
+                                    <div>1|4 means 1.4 cm</div>
+                                    <div>Scale: Each unit = 0.1</div>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-center text-sm text-gray-600 mt-2">Easy to see that most farms produce between 70-89 bushels per acre.</p>
+                        <p class="text-center text-sm text-gray-600 mt-2">You can see the exact values AND the distribution shape. Most values are in the 3-5 range.</p>
                     </div>
                 `,
                 code: `
                     <div class="space-y-4">
                         <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm">
-                            <div class="text-blue-300"># Simple stem-and-leaf plot</div>
-                            <div class="mt-2">stem(yield_data)</div>
-                            <div class="mt-2 text-gray-400"># That's it! R does the rest automatically</div>
+                            <div class="text-blue-300"># Basic stem-and-leaf plot</div>
+                            <div class="mt-2">stem(data$Petal.Length)</div>
+                            <div class="mt-2 text-blue-300"># Control the display</div>
+                            <div>stem(data$Petal.Length, scale = 1, width = 80, atom = 1e-08)</div>
+                            <div class="mt-2 text-blue-300"># Less detail (larger atom)</div>
+                            <div>stem(data$Petal.Length, scale = 1, width = 80, atom = 10)</div>
                         </div>
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <h5 class="font-bold text-green-700 mb-2">🌿 Why Use Stem-and-Leaf?</h5>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <h5 class="font-bold text-red-700 mb-2">🌿 Stem-and-Leaf Parameters:</h5>
+                            <ul class="text-red-600 text-sm space-y-1">
+                                <li>• <strong>scale:</strong> Controls digits in stem</li>
+                                <li>• <strong>width:</strong> Controls leaf display width</li>
+                                <li>• <strong>atom:</strong> Controls precision (like histogram bins)</li>
+                                <li>• <strong>Higher atom = less detail, simpler view</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+                            <h5 class="font-bold text-green-700 mb-2">🎯 Advantages over Histograms:</h5>
                             <ul class="text-green-600 text-sm space-y-1">
-                                <li>• Shows actual data values (not just bars)</li>
-                                <li>• Quick to create with one simple command</li>
-                                <li>• Good for small datasets (like your assignments)</li>
-                                <li>• Easy to spot high and low values</li>
+                                <li>• Shows actual data values, not just frequencies</li>
+                                <li>• Easy to spot outliers and gaps</li>
+                                <li>• Works well for small to medium datasets</li>
+                                <li>• Can estimate median and quartiles quickly</li>
                             </ul>
                         </div>
                     </div>
