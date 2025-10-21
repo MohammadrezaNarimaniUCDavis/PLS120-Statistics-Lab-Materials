@@ -178,12 +178,12 @@
       </div>
      </div><!-- Normal Distribution Explorer -->
      <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 flex flex-col h-full">
-      <h3 class="text-xl font-bold text-purple-700 mb-4 text-center">📈 Crop Yield Distribution</h3>
-      <p class="text-purple-600 mb-4 text-center">Adjust mean and standard deviation to see how crop yields distribute!</p>
+      <h3 class="text-xl font-bold text-purple-700 mb-4 text-center">📈 Normal Distribution Explorer</h3>
+      <p class="text-purple-600 mb-4 text-center">See how changing the mean and spread affects the bell curve!</p>
       <div class="space-y-4 mb-4 flex-grow">
-       <div><label class="block text-sm font-medium text-purple-700 mb-1">Mean Yield (bushels/acre)</label> <input type="range" id="meanSlider" min="40" max="80" value="60" class="w-full" onchange="updateNormalDist()"> <span id="meanValue" class="text-sm text-purple-600">60</span>
+       <div><label class="block text-sm font-medium text-purple-700 mb-1">Mean (center)</label> <input type="range" id="meanSlider" min="40" max="80" value="60" class="w-full" onchange="updateNormalDist()"> <span id="meanValue" class="text-sm text-purple-600">60</span>
        </div>
-       <div><label class="block text-sm font-medium text-purple-700 mb-1">Standard Deviation</label> <input type="range" id="sdSlider" min="2" max="15" value="8" class="w-full" onchange="updateNormalDist()"> <span id="sdValue" class="text-sm text-purple-600">8</span>
+       <div><label class="block text-sm font-medium text-purple-700 mb-1">Standard Deviation (spread)</label> <input type="range" id="sdSlider" min="2" max="15" value="8" class="w-full" onchange="updateNormalDist()"> <span id="sdValue" class="text-sm text-purple-600">8</span>
        </div>
       </div>
       <div class="bg-white p-4 rounded mt-auto">
@@ -326,34 +326,34 @@
         // Quiz questions
         const quizQuestions = [
             {
-                question: "A farmer plants 200 seeds and 170 germinate. What is the experimental probability of germination?",
-                options: ["0.85", "0.15", "0.70", "0.30"],
+                question: "If you flip a coin 10 times and get 6 heads, what is the experimental probability of getting heads?",
+                options: ["0.6", "0.4", "0.5", "0.7"],
                 correct: 0,
-                explanation: "P(germination) = 170/200 = 0.85 or 85%"
+                explanation: "Experimental probability = 6 heads / 10 flips = 0.6"
             },
             {
-                question: "When sampling 50 plants from a field of 1000, which R command should you use?",
-                options: ["sample(1:1000, 50, replace=TRUE)", "sample(1:1000, 50, replace=FALSE)", "sample(1:50, 1000)", "rnorm(50, 1000)"],
+                question: "What R command creates a simple random sample of 5 numbers from 1 to 20?",
+                options: ["sample(1:20, 5)", "random(1:20, 5)", "pick(1:20, 5)", "choose(1:20, 5)"],
+                correct: 0,
+                explanation: "sample(1:20, 5) selects 5 random numbers from 1 to 20."
+            },
+            {
+                question: "In a fair coin flip, what is the theoretical probability of getting heads?",
+                options: ["0.25", "0.5", "0.75", "1.0"],
                 correct: 1,
-                explanation: "Use replace=FALSE when sampling without replacement from a finite population."
+                explanation: "A fair coin has equal chances: P(heads) = 1/2 = 0.5"
             },
             {
-                question: "If crop yields follow N(60, 10), what percentage of yields are below 50 bushels/acre?",
-                options: ["16%", "34%", "50%", "84%"],
-                correct: 0,
-                explanation: "Using pnorm(50, 60, 10) ≈ 0.16 or 16%. This is one standard deviation below the mean."
-            },
-            {
-                question: "You flip a coin 20 times and get 8 heads. The theoretical probability is 0.5. What's the difference?",
-                options: ["0.1", "0.4", "0.6", "0.9"],
-                correct: 0,
-                explanation: "Experimental: 8/20 = 0.4. Difference: |0.5 - 0.4| = 0.1"
-            },
-            {
-                question: "A seed company claims 90% germination rate. You test 100 seeds and 85 germinate. Is this significantly different?",
-                options: ["Yes, very different", "No, within normal variation", "Need more data", "Impossible to tell"],
+                question: "You roll a die 12 times and get these results: 1,2,3,4,5,6,1,2,3,4,5,6. What's the experimental probability of rolling a 3?",
+                options: ["1/6", "2/12", "3/12", "1/3"],
                 correct: 1,
-                explanation: "85% is close to 90% and within expected sampling variation for 100 seeds."
+                explanation: "The number 3 appears 2 times out of 12 rolls, so P(3) = 2/12"
+            },
+            {
+                question: "What does set.seed(123) do in R?",
+                options: ["Plants 123 seeds", "Makes random results repeatable", "Creates 123 random numbers", "Sets the sample size to 123"],
+                correct: 1,
+                explanation: "set.seed() makes random functions produce the same results each time you run them."
             }
         ];
 
