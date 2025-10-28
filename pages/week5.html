@@ -1,0 +1,391 @@
+<h1 class="page-title">📊 Week 5: Sampling and Estimation</h1>
+<p class="page-subtitle">Master Sample Size Calculations and Confidence Intervals 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 5 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 5!</strong> This week, we explore <strong>sampling distributions and statistical estimation</strong> - critical skills for designing agricultural studies and interpreting research results. Learn to calculate sample sizes, construct confidence intervals, and understand estimation precision!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🎲</span>
+                <span><strong>Reproducible Research</strong> - Use set.seed() for consistent random sampling</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📏</span>
+                <span><strong>Z-Score Standardization</strong> - Convert data to standard normal distribution</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Normal Distribution Functions</strong> - Master pnorm(), qnorm(), and rnorm()</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎯</span>
+                <span><strong>Confidence Intervals</strong> - Estimate population parameters with uncertainty</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📐</span>
+                <span><strong>Sample Size Calculations</strong> - Determine required sample sizes for studies</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>Margin of Error</strong> - Understand precision trade-offs in estimation</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 5 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 5"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for sampling and estimation.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 5 on sample size calculations</li>
+            <li><code>class_activity/</code> - Week 5 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 5 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week5_Sampling_Estimation.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore Sampling Concepts 📊</h3>
+        <p>This week we'll work with sampling distributions and estimation! The notebook will guide you through:</p>
+        <ul>
+            <li>Understanding reproducible research with set.seed()</li>
+            <li>Z-score standardization and normal distributions</li>
+            <li>Constructing confidence intervals for means and proportions</li>
+            <li>Calculating required sample sizes for different precision levels</li>
+            <li>Understanding margin of error and confidence level trade-offs</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Sampling and Estimation Tools</h3>
+        <p>Use these interactive tools to understand sampling concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/Week5_Interactive_Tool.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to visualize sampling distributions and confidence intervals before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Sample Size and Confidence Intervals</h3>
+        <div class="code-block">
+            <code>qnorm(0.975)                           # Z-value for 95% confidence</code><br>
+            <code>ceiling(n)                             # Round up sample size</code><br>
+            <code>mean(data) + c(-1,1) * margin_error    # Confidence interval</code><br>
+            <code>sqrt(p * (1-p) / n)                    # Standard error for proportions</code><br>
+            <code>z^2 * p * (1-p) / d^2                  # Sample size formula</code>
+        </div>
+
+        <h3 class="card-title">Normal Distribution Functions</h3>
+        <div class="code-block">
+            <code>pnorm(x, mean = 0, sd = 1)             # Calculate probabilities</code><br>
+            <code>qnorm(p, mean = 0, sd = 1)             # Find critical values</code><br>
+            <code>rnorm(n, mean = 0, sd = 1)             # Generate random normal data</code><br>
+            <code>scale(data)                            # Standardize data (z-scores)</code>
+        </div>
+
+        <h3 class="card-title">Reproducible Research</h3>
+        <div class="code-block">
+            <code>set.seed(123)                          # Set random seed</code><br>
+            <code>sample(population, n, replace=FALSE)   # Random sampling</code><br>
+            <code>replicate(1000, experiment)            # Repeat simulations</code><br>
+            <code>mean(replicated_results)               # Average over simulations</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 5: Sample Size Calculations</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 5.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 5 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment5.ipynb</code> to open your assignment on sample size calculations.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📐</span>
+                <div>
+                    <h4>Question 1: Basic Sample Size Calculation (6 points)</h4>
+                    <p>Calculate sample size for 95% confidence and 5% margin of error</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Question 2: Effect of Prevalence Rate (5 points)</h4>
+                    <p>Analyze how prevalence affects required sample size</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📏</span>
+                <div>
+                    <h4>Question 3: Effect of Margin of Error (5 points)</h4>
+                    <p>Understand precision trade-offs in sample size planning</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🎯</span>
+                <div>
+                    <h4>Question 4: Effect of Confidence Level (4 points)</h4>
+                    <p>Compare sample sizes for different confidence levels</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Calculate Sample Sizes for Health Studies 🏥</h3>
+        <p>The assignment focuses on sample size determination for public health research:</p>
+        <ul>
+            <li><strong>Diabetes Prevalence Study</strong> - Calculate required sample sizes for disease estimation</li>
+            <li><strong>Confidence Level Effects</strong> - Compare 90%, 95%, and 99% confidence requirements</li>
+            <li><strong>Precision Trade-offs</strong> - Understand how margin of error affects sample size</li>
+        </ul>
+        <p>Learn to make informed decisions about <strong>study design and resource allocation</strong>!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Seed Germination Studies</strong> - Estimate germination rates with confidence intervals</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌾</span>
+                <span><strong>Crop Yield Estimation</strong> - Sample fields to predict total harvest</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pest Occurrence Surveys</strong> - Calculate sample sizes for pest monitoring</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔬</span>
+                <span><strong>Quality Control Testing</strong> - Design sampling plans for product standards</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💰</span>
+                <span><strong>Agricultural Insurance</strong> - Quantify risks using statistical estimation</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Sampling Skills Help You:</h3>
+        <ul>
+            <li>Design cost-effective studies with appropriate sample sizes</li>
+            <li>Estimate population parameters with known precision</li>
+            <li>Make informed decisions about resource allocation</li>
+            <li>Understand uncertainty in agricultural measurements</li>
+            <li>Communicate results with confidence intervals</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 5, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all calculations and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Calculate required sample sizes for different precision levels</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Construct confidence intervals for means and proportions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand the relationship between confidence level and margin of error</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Use normal distribution functions for statistical inference</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Apply z-score standardization to compare different datasets</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Design studies with appropriate statistical power</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>Sample size too large?</strong> Check your formula and parameter values</li>
+            <li><strong>Confidence interval wrong?</strong> Verify z-value and standard error calculations</li>
+            <li><strong>qnorm() error?</strong> Make sure probability is between 0 and 1</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>Sample Size Theory:</strong> Review power analysis and effect size concepts</li>
+            <li><strong>R Documentation:</strong> Use <code>?qnorm</code> for help with normal functions</li>
+            <li><strong>Practice:</strong> Try different confidence levels to see effects on sample size</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Use ceiling()</strong> - Always round up sample sizes to whole numbers</li>
+            <li><strong>Check your z-values</strong> - 1.96 for 95%, 1.645 for 90%, 2.576 for 99%</li>
+            <li><strong>Understand trade-offs</strong> - Higher confidence = larger sample size</li>
+            <li><strong>Verify calculations</strong> - Double-check formulas and parameter values</li>
+            <li><strong>Think practically</strong> - Consider cost and feasibility of sample sizes</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Key Formulas</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>n = z²p(1-p)/d²</kbd>
+                <span>Sample size for proportions</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>x̄ ± z(s/√n)</kbd>
+                <span>Confidence interval for means</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>z = (x-μ)/σ</kbd>
+                <span>Z-score standardization</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>SE = s/√n</kbd>
+                <span>Standard error</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 5!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 5 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy sampling and estimating! 📊🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 5: Sampling and Estimation</em></p>
+    </div>
+</div>
