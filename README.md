@@ -24,112 +24,118 @@ By the end of this week, you will be able to:
 
 ## 📊 What You'll Learn This Week
 
-### 🔍 **Logical Variables and Data Types**
-- **Boolean Logic**: Understanding TRUE/FALSE values and logical operations
-- **Comparison Operations**: Using ==, !=, <, >, &, | operators
-- **Data Type Conversion**: Converting between numeric, character, factor, and logical types
-- **Vector Operations**: Working with logical vectors and element-wise comparisons
-
-### 🎯 **Random Sampling Techniques**
-- **sample() Function**: Drawing random samples from populations
-- **Sampling Parameters**: Understanding size, replace, and probability arguments
-- **Population vs Sample**: Distinguishing between population parameters and sample statistics
+### 🎲 **Reproducible Research with set.seed()**
+- **Random Number Generation**: Understanding how computers generate "random" numbers
 - **Reproducible Results**: Using set.seed() for consistent random sampling
+- **Research Integrity**: Ensuring others can replicate your statistical analyses
+- **Best Practices**: When and how to use seeds in statistical research
 
-### 🪙 **Probability Simulation**
-- **Coin Toss Experiments**: Simulating fair and biased coin flips
-- **Dice Roll Simulations**: Modeling single and multiple dice experiments
-- **Frequency Analysis**: Converting counts to probabilities using table() function
-- **Law of Large Numbers**: Observing convergence to theoretical probabilities
+### 📏 **Z-Scores and Standardization**
+- **Standardization Process**: Converting raw data to z-scores for comparison
+- **Z-Score Formula**: Understanding (x - μ) / σ and its applications
+- **Distribution Comparison**: Comparing different datasets using standardized values
+- **Outlier Detection**: Using z-scores to identify unusual observations
 
 ### 📊 **Normal Distribution Functions**
-- **rnorm()**: Generating random numbers from normal distributions
 - **pnorm()**: Calculating cumulative probabilities and areas under curves
-- **qnorm()**: Finding quantiles and percentiles in normal distributions
-- **Distribution Visualization**: Creating density plots and histograms
+- **qnorm()**: Finding quantiles and critical values for confidence intervals
+- **Standard Normal Distribution**: Working with mean=0, sd=1 distributions
+- **tigerstats Package**: Visual probability functions for better understanding
+
+### 🎯 **Confidence Intervals**
+- **Population Parameter Estimation**: Using sample data to estimate population values
+- **Margin of Error**: Understanding uncertainty in statistical estimates
+- **Confidence Levels**: 90%, 95%, 99% confidence and their interpretations
+- **Critical Z-Values**: Finding appropriate z-scores for different confidence levels
+
+### 📏 **Sample Size Calculation**
+- **Power Analysis**: Determining adequate sample sizes for research
+- **Precision vs Cost**: Balancing statistical precision with practical constraints
+- **Formula Application**: Using n = z²p(1-p)/d² for proportion studies
+- **Parameter Effects**: How confidence level, margin of error, and prevalence affect sample size
 
 ---
 
-## 📁 Week 4 Materials
+## 📁 Week 5 Materials
 
-### 🧪 **Class Activity: Probability and Sampling**
-**File**: `class_activity/Week4_Probability_Sampling.ipynb`
+### 🧪 **Class Activity: Sampling and Estimation**
+**File**: `class_activity/Week5_Sampling_Estimation.ipynb`
 
 **Step-by-Step Learning Path**:
 
-1. **Logical Variables** (15 minutes)
-   - Understand TRUE/FALSE values and logical operations
-   - Practice comparison operators and logical combinations
-   - Work with logical vectors and element-wise operations
+1. **set.seed() Function** (15 minutes)
+   - Understand reproducible research principles
+   - Practice using set.seed() for consistent results
+   - Learn when and why to use random seeds
 
-2. **Data Type Conversion** (20 minutes)
-   - Convert between numeric, character, factor, and logical types
-   - Use as.numeric(), as.character(), as.factor(), as.logical()
-   - Handle data type requirements for different functions
+2. **Z-Score Calculations** (25 minutes)
+   - Calculate z-scores using (x - μ) / σ formula
+   - Standardize data for comparison across datasets
+   - Visualize original vs standardized distributions
 
-3. **Random Sampling** (25 minutes)
-   - Use sample() function for population sampling
-   - Understand sampling with and without replacement
-   - Practice with iris dataset sampling
+3. **Normal Distribution Functions** (20 minutes)
+   - Use pnorm() to find areas under normal curves
+   - Use qnorm() to find critical values and quantiles
+   - Practice with tigerstats visualization functions
 
-4. **Coin Toss Simulation** (20 minutes)
-   - Simulate coin flips using sample() function
-   - Calculate experimental probabilities
-   - Create frequency tables and probability distributions
+4. **Confidence Interval Construction** (30 minutes)
+   - Calculate z-scores for different confidence levels
+   - Build confidence intervals using sample data
+   - Interpret confidence intervals in practical contexts
 
-5. **Dice Roll Simulation** (25 minutes)
-   - Model single and multiple dice experiments
-   - Observe Central Limit Theorem effects
-   - Compare different sample sizes
+5. **Sample Size Calculations** (25 minutes)
+   - Apply sample size formula for proportion studies
+   - Understand effects of changing parameters
+   - Calculate required sample sizes for research scenarios
 
-6. **Normal Distribution Functions** (20 minutes)
-   - Generate random normal data with rnorm()
-   - Calculate probabilities with pnorm()
-   - Find quantiles with qnorm()
+6. **Agricultural Applications** (20 minutes)
+   - Apply concepts to crop yield estimation
+   - Design studies for pesticide effectiveness
+   - Calculate sample sizes for quality control
 
-7. **Probability Visualization** (30 minutes)
-   - Create bar plots for discrete distributions
-   - Build histograms and density plots
-   - Compare base R and ggplot2 approaches
-
-### 📋 **Assignment 4: Probability Simulation**
-**File**: `assignment/Assignment4.ipynb`  
+### 📋 **Assignment 5: Sample Size Calculation**
+**File**: `assignment/Assignment5.ipynb`  
 **Total Points**: 20
 
 **Detailed Assignment Breakdown**:
 
-#### **PART ONE: Simulation** (6 points)
-- **Coin Flip Simulation** (3 points)
-  - Simulate 50 coin flips using sample() function
-  - Use proper parameters for random sampling with replacement
-- **Dice Roll Simulation** (3 points)
-  - Simulate 50 six-sided dice rolls
-  - Generate random integers from 1 to 6
+#### **Question 1: Basic Sample Size Calculation** (6 points)
+- **Z-Score Calculation** (1 point)
+  - Calculate z-score for 95% confidence level using qnorm()
+  - Display and interpret the critical value
+- **Sample Size Formula** (1 point)
+  - Apply n = z²p(1-p)/d² formula for proportions
+  - Round up using ceiling() function
+- **Margin of Error Interpretation** (2 points)
+  - Explain what 5% margin of error means in practical terms
+- **Confidence Interval Understanding** (2 points)
+  - Interpret confidence intervals correctly
 
-#### **PART TWO: Probability Calculation** (6 points)
-- **Coin Probability Analysis** (2 points)
-  - Calculate experimental probabilities for heads and tails
-  - Use table() function and probability conversion
-- **Dice Probability Analysis** (3 points)
-  - Calculate experimental probabilities for each face (1-6)
-  - Compare results across different outcomes
-- **Theoretical Comparison** (1 point)
-  - Compare experimental vs theoretical probabilities
-  - Discuss discrepancies and sample size effects
+#### **Question 2: Effect of Prevalence Rate** (5 points)
+- **0.5X Prevalence Calculation** (1 point)
+  - Calculate sample size for 5% prevalence rate
+- **2X Prevalence Calculation** (1 point)
+  - Calculate sample size for 20% prevalence rate
+- **3X Prevalence Calculation** (1 point)
+  - Calculate sample size for 30% prevalence rate
+- **Prevalence Effect Analysis** (2 points)
+  - Analyze how changing prevalence affects sample size requirements
 
-#### **PART THREE: Data Frames and Visualization** (8 points)
-- **Coin Data Frame** (2 points)
-  - Create data frame from coin probability distribution
-  - Structure data for visualization
-- **Dice Data Frame** (2 points)
-  - Create data frame from dice probability distribution
-  - Prepare discrete probability data
-- **Coin Visualization** (2 points)
-  - Create bar plot using barplot() or ggplot2
-  - Add appropriate labels and titles
-- **Dice Visualization** (2 points)
-  - Create bar plot for dice probabilities
-  - Compare visualization approaches
+#### **Question 3: Effect of Margin of Error** (5 points)
+- **2.5% Margin Calculation** (2 points)
+  - Calculate sample size with tighter precision requirements
+- **7.5% Margin Calculation** (1 point)
+  - Calculate sample size with looser precision requirements
+- **Precision Trade-off Analysis** (2 points)
+  - Explain relationship between precision and sample size
+
+#### **Question 4: Effect of Confidence Level** (4 points)
+- **90% Confidence Calculation** (2 points)
+  - Calculate sample size with lower confidence requirement
+- **99% Confidence Calculation** (1 point)
+  - Calculate sample size with higher confidence requirement
+- **Confidence Effect Analysis** (1 point)
+  - Analyze how confidence level affects sample size
 
 ---
 
@@ -153,96 +159,98 @@ library(tigerstats)
 
 ## 📊 Datasets Used This Week
 
-### **1. Iris Dataset** (Class Activity)
-- **Source**: Built-in R dataset
-- **Variables**: Sepal/Petal measurements, Species
-- **Use**: Learning random sampling techniques
-- **Size**: 150 observations, 5 variables
+### **1. Simulated Normal Data** (Class Activity)
+- **Source**: Generated using rnorm() function
+- **Variables**: Crop yields (bushels per acre)
+- **Use**: Learning z-score calculations and standardization
+- **Focus**: Understanding distribution shapes and standardization
 
-### **2. Simulated Coin Data** (Class Activity & Assignment)
-- **Source**: Generated using sample() function
-- **Variables**: Heads (H) or Tails (T)
-- **Use**: Probability simulation and analysis
-- **Focus**: Experimental vs theoretical probability
+### **2. Student Study Time Data** (Class Activity)
+- **Source**: Hypothetical sample data
+- **Variables**: Hours per week, sample statistics
+- **Use**: Confidence interval construction
+- **Application**: Estimating population parameters from samples
 
-### **3. Simulated Dice Data** (Class Activity & Assignment)
-- **Source**: Generated using sample() function
-- **Variables**: Integer values 1-6
-- **Use**: Discrete probability distributions
-- **Challenge**: Understanding Central Limit Theorem effects
+### **3. Public Health Scenarios** (Assignment)
+- **Source**: Diabetes prevalence rates and research scenarios
+- **Variables**: Prevalence rates, confidence levels, margins of error
+- **Use**: Sample size calculation practice
+- **Challenge**: Understanding parameter trade-offs in study design
 
 ---
 
 ## 🛠️ Key R Functions You'll Master
 
-### **Probability and Sampling**
+### **Reproducible Research**
 ```r
-# Random sampling
-sample(x, size, replace = TRUE/FALSE)
-set.seed(number)  # for reproducible results
-nrow(data)  # population size
+# Set random seed for reproducibility
+set.seed(123)  # any integer works
+sample(nrow(data), 10)  # consistent results
+```
 
-# Probability calculations
-table(data)  # frequency counts
-sum(logical_vector)  # count TRUE values
-length(data)  # total observations
+### **Z-Score Calculations**
+```r
+# Standardize data
+z_scores <- (data - mean(data)) / sd(data)
+
+# Check standardization
+mean(z_scores)  # should be ~0
+sd(z_scores)    # should be ~1
 ```
 
 ### **Normal Distribution Functions**
 ```r
-# Generate random normal data
-rnorm(n, mean = 0, sd = 1)
+# Calculate probabilities (areas)
+pnorm(z_value)  # P(Z ≤ z)
 
-# Calculate probabilities
-pnorm(q, mean = 0, sd = 1)
-
-# Find quantiles
-qnorm(p, mean = 0, sd = 1)
+# Find critical values (quantiles)
+qnorm(0.975)  # 97.5th percentile for 95% CI
+qnorm(1 - alpha/2)  # general formula
 ```
 
-### **Data Type Conversion**
+### **Confidence Intervals**
 ```r
-# Type conversion functions
-as.numeric(x)
-as.character(x)
-as.factor(x)
-as.logical(x)
-data.frame(x)  # convert to data frame
+# Confidence interval formula
+lower <- sample_mean - z_score * (sample_sd / sqrt(n))
+upper <- sample_mean + z_score * (sample_sd / sqrt(n))
+
+# Margin of error
+margin_error <- z_score * (sample_sd / sqrt(n))
 ```
 
-### **Visualization**
+### **Sample Size Calculation**
 ```r
-# Base R plotting
-barplot(table_data)
-hist(numeric_data)
-par(mfrow = c(rows, cols))  # multiple plots
+# Sample size for proportions
+n <- (z_score^2 * p * (1 - p)) / (margin_error^2)
+ceiling(n)  # round up to whole number
 
-# ggplot2 graphics
-ggplot(data, aes(x = variable)) + geom_histogram()
-ggplot(data, aes(x = category, y = frequency)) + geom_bar(stat = "identity")
+# Critical z-values
+z_90 <- qnorm(0.95)   # 90% confidence
+z_95 <- qnorm(0.975)  # 95% confidence
+z_99 <- qnorm(0.995)  # 99% confidence
 ```
 
 ---
 
 ## 💡 Pro Tips for Success
 
-### **🎲 Probability Simulation Strategy**
-1. **Use set.seed()** for reproducible random results
-2. **Start with small samples** to understand concepts, then increase size
-3. **Always verify your simulations** by checking total counts and probabilities
-4. **Compare experimental to theoretical** probabilities to validate results
+### **🎲 Reproducible Research Strategy**
+1. **Always use set.seed()** before any random number generation
+2. **Document your seed value** in research reports for transparency
+3. **Use consistent seeds** across related analyses
+4. **Choose memorable seeds** (like 123, 2025) for easy reference
 
-### **📊 Visualization Best Practices**
-1. **Add meaningful titles and labels** to all probability plots
-2. **Use appropriate scales** for probability (0 to 1) vs frequency displays
-3. **Choose clear colors** to distinguish different outcomes
-4. **Always interpret your results** in terms of probability theory
+### **📏 Confidence Interval Best Practices**
+1. **Choose appropriate confidence levels** - 95% is standard, 99% for critical decisions
+2. **Interpret intervals correctly** - "We are 95% confident the true value is between..."
+3. **Consider practical significance** - statistical significance ≠ practical importance
+4. **Report both point estimates and intervals** for complete information
 
-### **🔍 Statistical Analysis Workflow**
-1. **Simulate first, then analyze** - generate data before calculating probabilities
-2. **Document your random seed** for reproducible experiments
-3. **Verify probability sums** - discrete probabilities should sum to 1
-4. **Consider sample size effects** - larger samples approach theoretical values
+### **📊 Sample Size Planning Strategy**
+1. **Plan sample size before data collection** - not after seeing results
+2. **Balance precision with resources** - smaller margins require larger samples
+3. **Consider population characteristics** - prevalence affects required sample size
+4. **Account for non-response** - collect more than calculated minimum
 
 ---
 
@@ -250,12 +258,12 @@ ggplot(data, aes(x = category, y = frequency)) + geom_bar(stat = "identity")
 
 ### **Real-World Scenarios You'll Be Prepared For**:
 
-- **Seed Germination Studies**: Model probability of germination success under different conditions
-- **Weather Risk Assessment**: Simulate probability of drought, frost, or extreme weather events
-- **Quality Control Sampling**: Random sampling of agricultural products for testing
-- **Field Trial Design**: Understanding sampling variability in experimental plots
-- **Pest Management**: Modeling probability distributions of pest occurrence
-- **Crop Insurance**: Calculating risk probabilities for insurance premium determination
+- **Crop Yield Estimation**: Use confidence intervals to estimate average yields per acre
+- **Pesticide Effectiveness Studies**: Calculate required sample sizes for treatment comparisons
+- **Quality Control Programs**: Determine sampling frequencies for product testing
+- **Field Trial Design**: Plan adequate sample sizes for detecting treatment effects
+- **Organic Certification Surveys**: Estimate proportion of farms meeting organic standards
+- **Agricultural Insurance**: Assess risk levels using statistical estimation methods
 
 ---
 
@@ -270,11 +278,11 @@ ggplot(data, aes(x = category, y = frequency)) + geom_bar(stat = "identity")
 
 ## 🔄 What's Next?
 
-**Week 5 Preview**: We'll build on this week's probability foundations to explore:
-- Hypothesis testing and statistical inference
-- Confidence intervals and p-values
-- t-tests and ANOVA for agricultural experiments
-- Statistical decision-making in research
+**Week 6 Preview**: We'll build on this week's estimation foundations to explore:
+- Hypothesis testing and p-values
+- t-tests for comparing means
+- Type I and Type II errors
+- Statistical decision-making in agricultural research
 
 ---
 
