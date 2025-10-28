@@ -1,10 +1,10 @@
-# 🎲 PLS 120 - Week 4: Probability and Sampling
+# 📊 PLS 120 - Week 5: Sampling and Estimation
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5)
 
-## 📚 Week 4 Overview: Probability and Sampling
+## 📚 Week 5 Overview: Sampling and Estimation
 
-Welcome to Week 4 of PLS 120! This week focuses on **probability theory and sampling techniques**. You'll learn essential skills for understanding randomness, simulating probability experiments, and working with probability distributions in agricultural research.
+Welcome to Week 5 of PLS 120! This week focuses on **sampling distributions and statistical estimation**. You'll learn essential skills for understanding how samples relate to populations, calculating confidence intervals, and making statistical inferences in agricultural research.
 
 ---
 
@@ -12,13 +12,13 @@ Welcome to Week 4 of PLS 120! This week focuses on **probability theory and samp
 
 By the end of this week, you will be able to:
 
-✅ **Understand Logical Variables** - Work with TRUE/FALSE values and logical operations  
-✅ **Convert Data Types** - Transform between numeric, character, factor, and logical types  
-✅ **Perform Random Sampling** - Use the sample() function for population sampling  
-✅ **Simulate Probability** - Model coin tosses and dice rolls programmatically  
-✅ **Work with Normal Distributions** - Use rnorm(), pnorm(), and qnorm() functions  
-✅ **Visualize Probability Distributions** - Create bar plots and histograms of outcomes  
-✅ **Compare Experimental vs Theoretical** - Analyze differences between simulated and expected results  
+✅ **Understand Sampling Distributions** - Learn how sample means vary across different samples  
+✅ **Apply Central Limit Theorem** - Understand how sample size affects sampling distribution shape  
+✅ **Calculate Confidence Intervals** - Estimate population parameters with uncertainty measures  
+✅ **Determine Sample Sizes** - Calculate required sample sizes for desired precision  
+✅ **Estimate Population Parameters** - Use sample statistics to infer population characteristics  
+✅ **Understand Standard Error** - Measure variability in sample statistics  
+✅ **Apply Bootstrap Methods** - Use resampling techniques for robust estimation  
 
 ---
 
