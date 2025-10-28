@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 PLS 120: Week 5 - Sampling and Estimation Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ucd-green': '#16a085',
+                        'ucd-dark': '#2d8659',
+                        'ucd-light': '#48c9b0'
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .btn-animate {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .interval-bar {
+            height: 20px;
+            border-radius: 10px;
+            position: relative;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .interval-hit {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+        
+        .interval-miss {
+            background: linear-gradient(90deg, #ef4444, #f87171);
+        }
+        
+        .true-mean-line {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: #000;
+            z-index: 10;
+        }
+        
+        .pulse-green {
+            animation: pulseGreen 2s infinite;
+        }
+        
+        @keyframes pulseGreen {
+            0%, 100% { background-color: #10b981; }
+            50% { background-color: #34d399; }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-full"><!-- Formula Reference Cards -->
+  <section class="py-8 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📚 Essential Formulas</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+     <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <h3 class="text-lg font-bold text-blue-700 mb-2">Confidence Interval</h3>
+      <div class="text-center bg-white p-3 rounded"><code class="text-blue-600 font-bold">x̄ ± z(s/√n)</code>
+      </div>
+     </div>
+     <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg shadow border-l-4 border-green-500">
+      <h3 class="text-lg font-bold text-green-700 mb-2">Standard Error</h3>
+      <div class="text-center bg-white p-3 rounded"><code class="text-green-600 font-bold">SE = s/√n</code>
+      </div>
+     </div>
+     <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg shadow border-l-4 border-purple-500">
+      <h3 class="text-lg font-bold text-purple-700 mb-2">Sample Size</h3>
+      <div class="text-center bg-white p-3 rounded"><code class="text-purple-600 font-bold">n = z²p(1-p)/d²</code>
+      </div>
+     </div>
+     <div class="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg shadow border-l-4 border-red-500">
+      <h3 class="text-lg font-bold text-red-700 mb-2">Z-Score</h3>
+      <div class="text-center bg-white p-3 rounded"><code class="text-red-600 font-bold">z = (x-μ)/σ</code>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Understanding Confidence Intervals -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Understanding Confidence Intervals</h2><!-- Single Sample Demo -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-blue-700 mb-6 text-center">📊 Your Sample's Confidence Interval</h3><!-- Controls and Results Side by Side -->
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-blue-700 mb-4">🎲 Take a Sample</h4>
+       <div class="space-y-4">
+        <div><label class="block text-sm font-medium text-blue-700 mb-2">Sample Size</label>
+         <div class="grid grid-cols-3 gap-2"><button onclick="setSampleSize(25)" class="bg-blue-500 text-white py-2 rounded btn-animate">n = 25</button> <button onclick="setSampleSize(50)" class="bg-blue-600 text-white py-2 rounded btn-animate">n = 50</button> <button onclick="setSampleSize(100)" class="bg-blue-700 text-white py-2 rounded btn-animate">n = 100</button>
+         </div>
+        </div><button onclick="takeSingleSample()" class="w-full bg-green-600 text-white py-3 rounded btn-animate font-semibold"> 🎯 Take New Sample </button>
+       </div>
+      </div>
+      <div id="sampleResults" class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-gray-700 mb-4">📈 Your Results</h4>
+       <div class="text-center text-gray-500">
+        Take a sample to see your confidence interval!
+       </div>
+      </div>
+     </div><!-- Horizontal Visualization Below -->
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-blue-700 mb-4 text-center">📏 Confidence Interval Visualization</h4>
+      <div id="singleIntervalViz" class="w-full">
+       <div class="text-center text-6xl mb-4">
+        📊
+       </div>
+       <p class="text-center text-gray-600">Your confidence interval will appear here</p>
+      </div>
+     </div>
+    </div><!-- Multiple Intervals Simulation -->
+    <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-purple-700 mb-6 text-center">🔬 What Does "95% Confidence" Really Mean?</h3><!-- Settings and Results on Top -->
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-purple-700 mb-4">⚙️ Simulation Settings</h4>
+       <div class="space-y-4">
+        <div><label class="block text-sm font-medium text-purple-700 mb-2">Confidence Level</label>
+         <div class="grid grid-cols-3 gap-2"><button onclick="setConfidence(90)" class="bg-yellow-500 text-white py-2 rounded btn-animate">90%</button> <button onclick="setConfidence(95)" class="bg-green-600 text-white py-2 rounded btn-animate">95%</button> <button onclick="setConfidence(99)" class="bg-red-600 text-white py-2 rounded btn-animate">99%</button>
+         </div>
+        </div><button onclick="runSimulation()" class="w-full bg-purple-600 text-white py-3 rounded btn-animate font-semibold"> 🔄 Run 20 Studies </button>
+       </div>
+      </div>
+      <div id="simulationStats" class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-purple-700 mb-4">📊 Results</h4>
+       <div class="text-center text-gray-500">
+        Run simulation to see the results!
+       </div>
+      </div>
+     </div><!-- Horizontal Visualization Below -->
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-purple-700 mb-4 text-center">📈 20 Different Studies (Horizontal View)</h4>
+      <div id="multipleIntervalsViz" class="w-full">
+       <div class="text-center text-6xl mb-4">
+        🔬
+       </div>
+       <p class="text-center text-gray-600">Simulation results will appear here</p>
+      </div>
+     </div>
+    </div><!-- Sample Size Effect -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-green-700 mb-6 text-center">📐 How Sample Size Affects Precision</h3>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+       <h4 class="text-lg font-bold text-red-600 mb-4">Small Sample (n=25)</h4>
+       <div id="smallSampleDemo" class="mb-4">
+        <div class="interval-bar bg-red-200 mx-auto" style="width: 80%;">
+         <div class="text-xs text-center py-1">
+          Wide Interval ±8.2
+         </div>
+        </div>
+       </div><button onclick="showSampleSizeEffect(25)" class="bg-red-500 text-white px-4 py-2 rounded btn-animate"> Show n=25 Effect </button>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+       <h4 class="text-lg font-bold text-yellow-600 mb-4">Medium Sample (n=50)</h4>
+       <div id="mediumSampleDemo" class="mb-4">
+        <div class="interval-bar bg-yellow-200 mx-auto" style="width: 60%;">
+         <div class="text-xs text-center py-1">
+          Medium Interval ±5.8
+         </div>
+        </div>
+       </div><button onclick="showSampleSizeEffect(50)" class="bg-yellow-500 text-white px-4 py-2 rounded btn-animate"> Show n=50 Effect </button>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+       <h4 class="text-lg font-bold text-green-600 mb-4">Large Sample (n=100)</h4>
+       <div id="largeSampleDemo" class="mb-4">
+        <div class="interval-bar bg-green-200 mx-auto" style="width: 40%;">
+         <div class="text-xs text-center py-1">
+          Narrow Interval ±4.1
+         </div>
+        </div>
+       </div><button onclick="showSampleSizeEffect(100)" class="bg-green-500 text-white px-4 py-2 rounded btn-animate"> Show n=100 Effect </button>
+      </div>
+     </div>
+     <div id="sampleSizeComparison" class="mt-6 bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-green-700 mb-4 text-center">📊 Sample Size Comparison</h4>
+      <div class="text-center text-gray-500">
+       Click a sample size button above to see the comparison!
+      </div>
+     </div>
+    </div><!-- Key Concepts -->
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-green-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        ✅
+       </div>
+       <h3 class="text-xl font-bold text-green-700">What 95% Confidence Means</h3>
+      </div>
+      <p class="text-green-600 text-center">If we repeated our study 100 times, about 95 of the confidence intervals would contain the true population parameter (μ).</p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-blue-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        📏
+       </div>
+       <h3 class="text-xl font-bold text-blue-700">Interval Width</h3>
+      </div>
+      <p class="text-blue-600 text-center">Larger samples create narrower intervals (more precise). Higher confidence levels create wider intervals (more certain).</p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-purple-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        🎯
+       </div>
+       <h3 class="text-xl font-bold text-purple-700">Correct Interpretation</h3>
+      </div>
+      <p class="text-purple-600 text-center">Your specific interval either contains μ or it doesn't - there's no probability. The confidence is about the method, not your specific interval!</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Z-Score Interactive Learning -->
+  <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-100">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📏 Interactive Z-Score Calculator</h2>
+    <div class="bg-white rounded-lg p-8 shadow-lg card-hover">
+     <h3 class="text-2xl font-bold text-orange-700 mb-6 text-center">🎯 Understanding Z-Scores</h3>
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-orange-50 p-6 rounded-lg">
+       <h4 class="text-lg font-bold text-orange-700 mb-4">📊 Enter Your Data</h4>
+       <div class="space-y-4">
+        <div>
+         <label class="block text-sm font-medium text-orange-700 mb-2">Raw Value (x)</label>
+         <input type="number" id="rawValue" value="65" step="0.1" class="w-full p-3 border rounded-lg" oninput="calculateZScore()">
+        </div>
+        <div>
+         <label class="block text-sm font-medium text-orange-700 mb-2">Population Mean (μ)</label>
+         <input type="number" id="popMean" value="60" step="0.1" class="w-full p-3 border rounded-lg" oninput="calculateZScore()">
+        </div>
+        <div>
+         <label class="block text-sm font-medium text-orange-700 mb-2">Standard Deviation (σ)</label>
+         <input type="number" id="popSD" value="10" step="0.1" min="0.1" class="w-full p-3 border rounded-lg" oninput="calculateZScore()">
+        </div>
+       </div>
+       <div class="mt-6 grid grid-cols-2 gap-3">
+        <button onclick="loadExample('crop')" class="bg-green-500 text-white py-2 px-4 rounded btn-animate">🌾 Crop Yield</button>
+        <button onclick="loadExample('rainfall')" class="bg-blue-500 text-white py-2 px-4 rounded btn-animate">🌧️ Rainfall</button>
+       </div>
+      </div>
+      <div id="zScoreResults" class="bg-gradient-to-br from-blue-50 to-purple-100 p-6 rounded-lg">
+       <h4 class="text-lg font-bold text-purple-700 mb-4">📈 Z-Score Results</h4>
+       <div class="text-center text-gray-500">
+        Enter values to see z-score calculation!
+       </div>
+      </div>
+     </div>
+     <div id="zScoreVisualization" class="bg-gray-50 p-6 rounded-lg">
+      <h4 class="text-lg font-bold text-gray-700 mb-4 text-center">📊 Normal Distribution Visualization</h4>
+      <div class="text-center text-gray-500">
+       Z-score visualization will appear here
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Agricultural Applications -->
+  <section class="py-12 bg-gradient-to-br from-green-50 to-emerald-100">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🌾 Real Agricultural Examples</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="bg-white rounded-lg p-6 shadow-lg card-hover border-l-4 border-green-500">
+      <h3 class="text-xl font-bold text-green-700 mb-3">🌱 Crop Yield Study</h3>
+      <div class="mb-4">
+       <div class="text-2xl font-bold text-green-600">
+        62.3 ± 3.8 bu/acre
+       </div>
+       <div class="text-sm text-gray-600">
+        95% Confidence Interval
+       </div>
+      </div>
+      <p class="text-sm text-green-600 mb-3">Sample of 50 fields shows average corn yield between 58.5 and 66.1 bushels per acre.</p>
+      <div class="bg-green-50 p-3 rounded">
+       <div class="text-xs font-semibold text-green-700">
+        Interpretation:
+       </div>
+       <div class="text-xs text-green-600">
+        We're 95% confident the true average yield for this region is between 58.5 and 66.1 bu/acre.
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-lg p-6 shadow-lg card-hover border-l-4 border-yellow-500">
+      <h3 class="text-xl font-bold text-yellow-700 mb-3">🐛 Pest Infestation Rate</h3>
+      <div class="mb-4">
+       <div class="text-2xl font-bold text-yellow-600">
+        12.4% ± 4.2%
+       </div>
+       <div class="text-sm text-gray-600">
+        90% Confidence Interval
+       </div>
+      </div>
+      <p class="text-sm text-yellow-600 mb-3">Survey of 80 fields shows pest damage rate between 8.2% and 16.6%.</p>
+      <div class="bg-yellow-50 p-3 rounded">
+       <div class="text-xs font-semibold text-yellow-700">
+        Decision:
+       </div>
+       <div class="text-xs text-yellow-600">
+        Since the entire interval is above 8%, recommend preventive treatment for the region.
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-lg p-6 shadow-lg card-hover border-l-4 border-blue-500">
+      <h3 class="text-xl font-bold text-blue-700 mb-3">🌧️ Rainfall Prediction</h3>
+      <div class="mb-4">
+       <div class="text-2xl font-bold text-blue-600">
+        28.7 ± 6.1 inches
+       </div>
+       <div class="text-sm text-gray-600">
+        95% Confidence Interval
+       </div>
+      </div>
+      <p class="text-sm text-blue-600 mb-3">Historical data suggests annual rainfall between 22.6 and 34.8 inches.</p>
+      <div class="bg-blue-50 p-3 rounded">
+       <div class="text-xs font-semibold text-blue-700">
+        Planning:
+       </div>
+       <div class="text-xs text-blue-600">
+        Design irrigation systems to handle drought conditions (22.6 inches minimum).
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Practice Quiz -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Practice Quiz</h2>
+    <div class="max-w-4xl mx-auto">
+     <div class="bg-gradient-to-br from-indigo-50 to-blue-100 rounded-lg shadow-lg p-6">
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-indigo-700">Question <span id="currentQuestion">1</span> of 5</h3>
+        <div class="text-sm text-indigo-600">
+         Progress: <span id="quizProgress">0%</span>
+        </div>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3">
+        <div id="progressBar" class="bg-indigo-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+       </div>
+      </div>
+      <div id="quizContent"><!-- Quiz questions will be loaded here -->
+      </div>
+      <div class="mt-6 flex justify-between"><button id="prevBtn" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded btn-animate" disabled>Previous</button> <button id="nextBtn" onclick="nextQuestion()" class="bg-indigo-500 text-white px-6 py-2 rounded btn-animate">Next</button>
+      </div>
+      <div id="quizResults" class="mt-6 hidden"><!-- Results will be shown here -->
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Global variables
+        let currentSampleSize = 50;
+        let currentConfidence = 95;
+        const trueMean = 60; // Population mean for crop yield
+        const populationSD = 10;
+        
+        // Quiz variables
+        let currentQuestionIndex = 0;
+        let quizAnswers = [];
+        
+        // Quiz questions - 5 easy conceptual questions
+        const quizQuestions = [
+            {
+                question: "What does a 95% confidence interval mean?",
+                options: ["95% of the data falls in this range", "We are 95% confident the true parameter is in this range", "The sample mean is 95% accurate", "95% of samples will have this mean"],
+                correct: 1,
+                explanation: "A 95% confidence interval means we are 95% confident that the true population parameter lies within this range."
+            },
+            {
+                question: "What happens to the margin of error when you increase sample size?",
+                options: ["It increases", "It decreases", "It stays the same", "It becomes negative"],
+                correct: 1,
+                explanation: "Larger sample sizes give more precise estimates, so the margin of error decreases (SE = s/√n)."
+            },
+            {
+                question: "Which z-value is used for 95% confidence intervals?",
+                options: ["1.28", "1.65", "1.96", "2.58"],
+                correct: 2,
+                explanation: "For 95% confidence, we use z = 1.96, which leaves 2.5% in each tail of the normal distribution."
+            },
+            {
+                question: "If you have a confidence interval of [52, 68] for crop yield, what can you conclude?",
+                options: ["The true yield is definitely between 52 and 68", "There's a 95% chance the true yield is between 52 and 68", "We're confident the true yield is in this range", "52 and 68 are the minimum and maximum possible yields"],
+                correct: 2,
+                explanation: "We are confident (at our chosen confidence level) that the true population parameter lies within the interval."
+            },
+            {
+                question: "In agricultural research, why do we use confidence intervals?",
+                options: ["To make our data look more impressive", "To account for sampling variability", "To increase our sample size", "To eliminate all uncertainty"],
+                correct: 1,
+                explanation: "Confidence intervals help us understand the uncertainty in our estimates due to sampling variability."
+            }
+        ];
+
+        // Utility functions
+        function normalRandom(mean = 0, sd = 1) {
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random();
+            while(v === 0) v = Math.random();
+            return mean + sd * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        }
+
+        function getZValue(confidence) {
+            switch(confidence) {
+                case 90: return 1.645;
+                case 95: return 1.96;
+                case 99: return 2.576;
+                default: return 1.96;
+            }
+        }
+
+        // Single sample functions
+        function setSampleSize(n) {
+            currentSampleSize = n;
+            // Visual feedback
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes(`n = ${n}`)) {
+                    btn.classList.add('pulse-green');
+                    setTimeout(() => btn.classList.remove('pulse-green'), 1000);
+                }
+            });
+        }
+
+        function takeSingleSample() {
+            const standardError = populationSD / Math.sqrt(currentSampleSize);
+            const sampleMean = normalRandom(trueMean, standardError);
+            const marginError = getZValue(95) * standardError;
+            const lowerBound = sampleMean - marginError;
+            const upperBound = sampleMean + marginError;
+            const containsTrue = (lowerBound <= trueMean && upperBound >= trueMean);
+
+            // Update results
+            document.getElementById('sampleResults').innerHTML = `
+                <h4 class="text-lg font-bold text-gray-700 mb-4">📈 Your Sample Results</h4>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span>Sample Size:</span>
+                        <span class="font-mono">n = ${currentSampleSize}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Sample Mean:</span>
+                        <span class="font-mono">${sampleMean.toFixed(1)} bu/acre</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Margin of Error:</span>
+                        <span class="font-mono">±${marginError.toFixed(1)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>95% CI:</span>
+                        <span class="font-mono">[${lowerBound.toFixed(1)}, ${upperBound.toFixed(1)}]</span>
+                    </div>
+                    <div class="text-center p-3 rounded ${containsTrue ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                        <div class="text-2xl mb-1">${containsTrue ? '🎯' : '❌'}</div>
+                        <div class="font-bold">${containsTrue ? 'HIT!' : 'MISS!'}</div>
+                        <div class="text-sm">Your interval ${containsTrue ? 'contains' : 'does not contain'} μ = ${trueMean}</div>
+                    </div>
+                </div>
+            `;
+
+            // Update visualization - Horizontal layout
+            const intervalWidth = ((upperBound - lowerBound) / 40) * 100; // Scale for display
+            const intervalPosition = ((sampleMean - 40) / 40) * 100; // Position relative to scale
+            
+            document.getElementById('singleIntervalViz').innerHTML = `
+                <div class="relative bg-gray-100 h-20 rounded-lg mb-4">
+                    <!-- Scale -->
+                    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-between px-4 text-xs text-gray-500">
+                        <span>40</span>
+                        <span>50</span>
+                        <span class="font-bold text-black">μ=60</span>
+                        <span>70</span>
+                        <span>80</span>
+                    </div>
+                    
+                    <!-- True mean line -->
+                    <div class="true-mean-line" style="left: 50%;"></div>
+                    
+                    <!-- Confidence interval -->
+                    <div class="absolute top-1/2 transform -translate-y-1/2 ${containsTrue ? 'interval-hit' : 'interval-miss'} interval-bar" 
+                         style="left: ${Math.max(5, Math.min(85, intervalPosition - intervalWidth/2))}%; width: ${Math.min(intervalWidth, 80)}%;">
+                        <div class="text-xs text-white text-center py-1 font-bold">
+                            ${sampleMean.toFixed(1)} ± ${marginError.toFixed(1)}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-2xl mb-2">${containsTrue ? '🎯 HIT!' : '❌ MISS!'}</div>
+                    <div class="text-lg font-bold ${containsTrue ? 'text-green-600' : 'text-red-600'} mb-2">
+                        95% CI: [${lowerBound.toFixed(1)}, ${upperBound.toFixed(1)}]
+                    </div>
+                    <div class="text-sm text-gray-600 mb-2">
+                        ${containsTrue ? 
+                            'Your confidence interval successfully captured the true population mean!' : 
+                            'Your confidence interval missed the true population mean this time.'}
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        Remember: Individual intervals either hit or miss. The "95%" refers to the long-run success rate of the method.
+                    </div>
+                </div>
+            `;
+        }
+
+        // Simulation functions
+        function setConfidence(conf) {
+            currentConfidence = conf;
+            // Visual feedback
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes(`${conf}%`)) {
+                    btn.classList.add('pulse-green');
+                    setTimeout(() => btn.classList.remove('pulse-green'), 1000);
+                }
+            });
+        }
+
+        function runSimulation() {
+            const numStudies = 20;
+            const standardError = populationSD / Math.sqrt(currentSampleSize);
+            const zValue = getZValue(currentConfidence);
+            let hits = 0;
+            const intervals = [];
+
+            for (let i = 0; i < numStudies; i++) {
+                const sampleMean = normalRandom(trueMean, standardError);
+                const marginError = zValue * standardError;
+                const lowerBound = sampleMean - marginError;
+                const upperBound = sampleMean + marginError;
+                const containsTrue = (lowerBound <= trueMean && upperBound >= trueMean);
+                
+                if (containsTrue) hits++;
+                intervals.push({
+                    mean: sampleMean,
+                    lower: lowerBound,
+                    upper: upperBound,
+                    hit: containsTrue
+                });
+            }
+
+            // Update stats
+            const hitRate = (hits / numStudies * 100).toFixed(0);
+            document.getElementById('simulationStats').innerHTML = `
+                <h4 class="text-lg font-bold text-purple-700 mb-4">📊 Simulation Results</h4>
+                <div class="space-y-3">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold ${Math.abs(hits - currentConfidence/5) <= 2 ? 'text-green-600' : 'text-yellow-600'} mb-2">
+                            ${hits}/${numStudies}
+                        </div>
+                        <div class="text-lg font-semibold text-purple-700">${hitRate}% Success Rate</div>
+                        <div class="text-sm text-gray-600">Expected: ~${currentConfidence}%</div>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded">
+                        <div class="text-xs font-semibold text-purple-700">What this means:</div>
+                        <div class="text-xs text-purple-600">
+                            ${hits} out of ${numStudies} confidence intervals contained the true population mean (μ = ${trueMean}).
+                            ${Math.abs(hits - currentConfidence/5) <= 2 ? 
+                                'This is close to our expected success rate!' : 
+                                'With more studies, we\'d get closer to the expected rate.'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Update visualization - Horizontal layout
+            let vizHTML = `
+                <div class="mb-4">
+                    <!-- Scale at top -->
+                    <div class="flex justify-between text-xs text-gray-500 mb-2 px-4">
+                        <span>40</span>
+                        <span>45</span>
+                        <span>50</span>
+                        <span>55</span>
+                        <span class="font-bold text-black">μ=60</span>
+                        <span>65</span>
+                        <span>70</span>
+                        <span>75</span>
+                        <span>80</span>
+                    </div>
+                    
+                    <!-- Horizontal intervals -->
+                    <div class="space-y-1">
+            `;
+            
+            intervals.forEach((interval, i) => {
+                const intervalWidth = Math.min(((interval.upper - interval.lower) / 40) * 100, 80);
+                const intervalPosition = ((interval.mean - 40) / 40) * 100;
+                
+                vizHTML += `
+                    <div class="relative bg-gray-50 h-6 rounded flex items-center">
+                        <!-- True mean line -->
+                        <div class="absolute w-1 h-full bg-black" style="left: 50%;"></div>
+                        
+                        <!-- Confidence interval bar -->
+                        <div class="absolute top-1/2 transform -translate-y-1/2 ${interval.hit ? 'interval-hit' : 'interval-miss'} h-4 rounded" 
+                             style="left: ${Math.max(2, Math.min(88, intervalPosition - intervalWidth/2))}%; width: ${Math.min(intervalWidth, 85)}%;">
+                        </div>
+                        
+                        <!-- Study number and result -->
+                        <div class="absolute left-1 top-1/2 transform -translate-y-1/2 text-xs font-bold text-gray-700">
+                            ${i + 1}
+                        </div>
+                        <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-sm ${interval.hit ? 'text-green-600' : 'text-red-600'}">
+                            ${interval.hit ? '✓' : '✗'}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            vizHTML += `
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-xs text-gray-600 mb-2">
+                        Black line = True population mean (μ = ${trueMean}) | Each row = One study's confidence interval
+                    </div>
+                    <div class="flex justify-center space-x-6 text-sm">
+                        <div class="flex items-center">
+                            <div class="w-6 h-3 bg-green-400 rounded mr-2"></div>
+                            <span class="font-semibold">Hit: ${hits} studies</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-3 bg-red-400 rounded mr-2"></div>
+                            <span class="font-semibold">Miss: ${numStudies - hits} studies</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('multipleIntervalsViz').innerHTML = vizHTML;
+        }
+
+        // Sample size effect functions
+        function showSampleSizeEffect(n) {
+            const standardError = populationSD / Math.sqrt(n);
+            const marginError = getZValue(95) * standardError;
+            
+            // Generate 5 sample intervals for comparison
+            let vizHTML = `
+                <h4 class="text-lg font-bold text-green-700 mb-4 text-center">Sample Size n = ${n} Effect</h4>
+                <div class="space-y-3">
+                    <div class="text-center mb-4">
+                        <div class="text-2xl font-bold text-green-600">Margin of Error: ±${marginError.toFixed(1)}</div>
+                        <div class="text-sm text-gray-600">Standard Error: ${standardError.toFixed(2)}</div>
+                    </div>
+            `;
+
+            for (let i = 0; i < 5; i++) {
+                const sampleMean = normalRandom(trueMean, standardError);
+                const lowerBound = sampleMean - marginError;
+                const upperBound = sampleMean + marginError;
+                const containsTrue = (lowerBound <= trueMean && upperBound >= trueMean);
+                const intervalWidth = ((upperBound - lowerBound) / 40) * 100;
+                const intervalPosition = ((sampleMean - 40) / 40) * 100;
+
+                vizHTML += `
+                    <div class="relative bg-gray-50 h-8 rounded">
+                        <div class="true-mean-line" style="left: 50%;"></div>
+                        <div class="absolute top-1/2 transform -translate-y-1/2 ${containsTrue ? 'interval-hit' : 'interval-miss'} h-6 rounded" 
+                             style="left: ${Math.max(2, Math.min(88, intervalPosition - intervalWidth/2))}%; width: ${Math.min(intervalWidth, 85)}%;">
+                            <div class="text-xs text-white text-center py-1 font-bold">
+                                ${sampleMean.toFixed(1)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            vizHTML += `
+                </div>
+                <div class="mt-4 text-center">
+                    <div class="text-sm text-gray-600">
+                        ${n <= 30 ? 
+                            '⚠️ Small samples create wide, less precise intervals' : 
+                            n <= 75 ? 
+                            '✅ Medium samples provide good balance of precision and cost' : 
+                            '🎯 Large samples create very narrow, precise intervals'}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('sampleSizeComparison').innerHTML = vizHTML;
+        }
+
+        // Quiz Functions
+        function loadQuizQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('quizContent').innerHTML = `
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    <div class="space-y-2">
+                        ${question.options.map((option, index) => `
+                            <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="answer" value="${index}" class="mr-3">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            updateQuizProgress();
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                quizAnswers[currentQuestionIndex] = parseInt(selectedAnswer.value);
+            }
+            
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuizQuestion();
+            }
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('quizProgress').textContent = `${Math.round(progress)}%`;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Finish' : 'Next';
+        }
+
+        function showQuizResults() {
+            let correct = 0;
+            quizQuestions.forEach((question, index) => {
+                if (quizAnswers[index] === question.correct) correct++;
+            });
+            
+            const percentage = (correct / quizQuestions.length) * 100;
+            
+            document.getElementById('quizContent').innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">Quiz Complete!</h3>
+                    <div class="text-6xl mb-4">${percentage >= 80 ? '🎉' : percentage >= 60 ? '👍' : '📚'}</div>
+                    <p class="text-xl mb-4">You scored ${correct} out of ${quizQuestions.length} (${percentage.toFixed(0)}%)</p>
+                    <div class="text-left mt-6 space-y-4">
+                        ${quizQuestions.map((question, index) => `
+                            <div class="border rounded p-4 ${quizAnswers[index] === question.correct ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}">
+                                <p class="font-semibold mb-2">Q${index + 1}: ${question.question}</p>
+                                <p class="text-sm text-gray-600 mb-2">Your answer: ${question.options[quizAnswers[index] || 0]}</p>
+                                <p class="text-sm text-gray-600 mb-2">Correct answer: ${question.options[question.correct]}</p>
+                                <p class="text-sm text-blue-600">${question.explanation}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('prevBtn').style.display = 'none';
+        }
+
+        // Z-Score Functions
+        function calculateZScore() {
+            const x = parseFloat(document.getElementById('rawValue').value);
+            const mu = parseFloat(document.getElementById('popMean').value);
+            const sigma = parseFloat(document.getElementById('popSD').value);
+            
+            if (isNaN(x) || isNaN(mu) || isNaN(sigma) || sigma <= 0) {
+                document.getElementById('zScoreResults').innerHTML = `
+                    <h4 class="text-lg font-bold text-purple-700 mb-4">📈 Z-Score Results</h4>
+                    <div class="text-center text-red-500">Please enter valid numbers (σ > 0)</div>
+                `;
+                return;
+            }
+            
+            const zScore = (x - mu) / sigma;
+            const percentile = normalCDF(zScore) * 100;
+            
+            let interpretation = '';
+            if (Math.abs(zScore) < 1) {
+                interpretation = 'Within 1 standard deviation (typical)';
+            } else if (Math.abs(zScore) < 2) {
+                interpretation = 'Within 2 standard deviations (somewhat unusual)';
+            } else if (Math.abs(zScore) < 3) {
+                interpretation = 'Within 3 standard deviations (unusual)';
+            } else {
+                interpretation = 'Beyond 3 standard deviations (very unusual)';
+            }
+            
+            document.getElementById('zScoreResults').innerHTML = `
+                <h4 class="text-lg font-bold text-purple-700 mb-4">📈 Z-Score Results</h4>
+                <div class="space-y-4">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold ${zScore >= 0 ? 'text-green-600' : 'text-red-600'} mb-2">
+                            z = ${zScore.toFixed(3)}
+                        </div>
+                        <div class="text-lg text-gray-700">${percentile.toFixed(1)}th percentile</div>
+                    </div>
+                    <div class="bg-white p-4 rounded">
+                        <div class="text-sm font-semibold text-purple-700 mb-2">Formula:</div>
+                        <div class="text-center font-mono text-lg mb-2">
+                            z = (${x} - ${mu}) / ${sigma} = ${zScore.toFixed(3)}
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded">
+                        <div class="text-sm font-semibold text-purple-700">Interpretation:</div>
+                        <div class="text-sm text-purple-600">${interpretation}</div>
+                        <div class="text-xs text-gray-600 mt-1">
+                            ${zScore >= 0 ? 
+                                `This value is ${Math.abs(zScore).toFixed(2)} standard deviations ABOVE the mean` :
+                                `This value is ${Math.abs(zScore).toFixed(2)} standard deviations BELOW the mean`}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateZScoreVisualization(zScore, x, mu, sigma);
+        }
+        
+        function normalCDF(z) {
+            return 0.5 * (1 + erf(z / Math.sqrt(2)));
+        }
+        
+        function erf(x) {
+            const a1 =  0.254829592;
+            const a2 = -0.284496736;
+            const a3 =  1.421413741;
+            const a4 = -1.453152027;
+            const a5 =  1.061405429;
+            const p  =  0.3275911;
+            
+            const sign = x >= 0 ? 1 : -1;
+            x = Math.abs(x);
+            
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+            
+            return sign * y;
+        }
+        
+        function updateZScoreVisualization(zScore, x, mu, sigma) {
+            const position = Math.max(5, Math.min(95, 50 + (zScore * 12)));
+            
+            document.getElementById('zScoreVisualization').innerHTML = `
+                <h4 class="text-lg font-bold text-gray-700 mb-6 text-center">📊 Interactive Normal Distribution</h4>
+                <div class="relative bg-white border-2 border-gray-200 rounded-lg p-6 mb-6" style="height: 350px;">
+                    <!-- Interactive SVG Normal Curve -->
+                    <svg id="normalCurve" width="100%" height="100%" viewBox="0 0 800 320" class="cursor-crosshair">
+                        
+                        <!-- Normal curve path -->
+                        <path id="normalPath" d="" stroke="#3b82f6" stroke-width="3" fill="rgba(59, 130, 246, 0.2)" class="drop-shadow-sm"/>
+                        
+                        <!-- Standard deviation markers -->
+                        <g class="text-xs fill-gray-600">
+                            <line x1="67" y1="260" x2="67" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="67" y="285" text-anchor="middle" class="font-semibold">-3σ</text>
+                            <text x="67" y="300" text-anchor="middle" class="text-xs">${(mu - 3*sigma).toFixed(0)}</text>
+                            
+                            <line x1="133" y1="260" x2="133" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="133" y="285" text-anchor="middle" class="font-semibold">-2σ</text>
+                            <text x="133" y="300" text-anchor="middle" class="text-xs">${(mu - 2*sigma).toFixed(0)}</text>
+                            
+                            <line x1="200" y1="260" x2="200" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="200" y="285" text-anchor="middle" class="font-semibold">-1σ</text>
+                            <text x="200" y="300" text-anchor="middle" class="text-xs">${(mu - sigma).toFixed(0)}</text>
+                            
+                            <line x1="400" y1="260" x2="400" y2="270" stroke="#000" stroke-width="3"/>
+                            <text x="400" y="285" text-anchor="middle" class="font-bold">μ</text>
+                            <text x="400" y="300" text-anchor="middle" class="text-sm font-bold">${mu}</text>
+                            
+                            <line x1="600" y1="260" x2="600" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="600" y="285" text-anchor="middle" class="font-semibold">+1σ</text>
+                            <text x="600" y="300" text-anchor="middle" class="text-xs">${(mu + sigma).toFixed(0)}</text>
+                            
+                            <line x1="667" y1="260" x2="667" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="667" y="285" text-anchor="middle" class="font-semibold">+2σ</text>
+                            <text x="667" y="300" text-anchor="middle" class="text-xs">${(mu + 2*sigma).toFixed(0)}</text>
+                            
+                            <line x1="733" y1="260" x2="733" y2="270" stroke="#9ca3af" stroke-width="2"/>
+                            <text x="733" y="285" text-anchor="middle" class="font-semibold">+3σ</text>
+                            <text x="733" y="300" text-anchor="middle" class="text-xs">${(mu + 3*sigma).toFixed(0)}</text>
+                        </g>
+                        
+                        <!-- Your value marker -->
+                        <g id="valueMarker">
+                            <line x1="${400 + (zScore * 67)}" y1="110" x2="${400 + (zScore * 67)}" y2="260" 
+                                  stroke="${zScore >= 0 ? '#ef4444' : '#f59e0b'}" stroke-width="4" stroke-dasharray="5,5" class="animate-pulse">
+                                <title>Your value: ${x} (z = ${zScore.toFixed(3)})</title>
+                            </line>
+                            <circle cx="${400 + (zScore * 67)}" cy="${260 - (normalPDF(zScore) * 600)}" r="6" 
+                                    fill="${zScore >= 0 ? '#ef4444' : '#f59e0b'}" stroke="white" stroke-width="2" class="animate-pulse">
+                                <title>Your value: ${x} (z = ${zScore.toFixed(3)})</title>
+                            </circle>
+                            <text x="${400 + (zScore * 67)}" y="100" text-anchor="middle" class="font-bold text-sm" 
+                                  fill="${zScore >= 0 ? '#ef4444' : '#f59e0b'}">${x}</text>
+                        </g>
+                    </svg>
+                    
+                    <!-- Hover tooltip -->
+                    <div id="tooltip" class="absolute bg-black text-white px-2 py-1 rounded text-xs pointer-events-none opacity-0 transition-opacity z-10"></div>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-4 text-center text-sm">
+                    <div class="bg-blue-50 p-3 rounded">
+                        <div class="font-bold text-blue-700">Raw Value</div>
+                        <div class="text-blue-600 text-lg">${x}</div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded">
+                        <div class="font-bold text-gray-700">Population Mean</div>
+                        <div class="text-gray-600 text-lg">μ = ${mu}</div>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded">
+                        <div class="font-bold text-purple-700">Z-Score</div>
+                        <div class="text-purple-600 text-lg font-bold">${zScore.toFixed(3)}</div>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded">
+                        <div class="font-bold text-green-700">Percentile</div>
+                        <div class="text-green-600 text-lg">${(normalCDF(zScore) * 100).toFixed(1)}%</div>
+                    </div>
+                </div>
+            `;
+            
+            // Draw the normal curve
+            drawNormalCurve();
+            
+            // Add hover functionality
+            addHoverFunctionality();
+        }
+        
+        function normalPDF(z) {
+            return Math.exp(-0.5 * z * z) / Math.sqrt(2 * Math.PI);
+        }
+        
+        function drawNormalCurve() {
+            const svg = document.getElementById('normalPath');
+            if (!svg) return;
+            
+            let path = 'M 67 260';
+            for (let i = 0; i <= 666; i += 2) {
+                const z = (i - 333) / 67; // Convert pixel to z-score
+                const y = 260 - (normalPDF(z) * 600); // Scale for display
+                path += ` L ${67 + i} ${y}`;
+            }
+            path += ' L 733 260 Z';
+            svg.setAttribute('d', path);
+        }
+        
+        function addHoverFunctionality() {
+            const svg = document.getElementById('normalCurve');
+            const tooltip = document.getElementById('tooltip');
+            
+            if (!svg || !tooltip) return;
+            
+            svg.addEventListener('mousemove', function(e) {
+                const rect = svg.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const svgX = (x / rect.width) * 800;
+                
+                if (svgX >= 67 && svgX <= 733) {
+                    const z = (svgX - 400) / 67;
+                    const percentile = (normalCDF(z) * 100).toFixed(1);
+                    const rawValue = (parseFloat(document.getElementById('popMean').value) + z * parseFloat(document.getElementById('popSD').value)).toFixed(1);
+                    
+                    tooltip.innerHTML = `Value: ${rawValue}<br>Z-score: ${z.toFixed(2)}<br>Percentile: ${percentile}%`;
+                    tooltip.style.left = (e.clientX - rect.left + 10) + 'px';
+                    tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+                    tooltip.style.opacity = '1';
+                }
+            });
+            
+            svg.addEventListener('mouseleave', function() {
+                tooltip.style.opacity = '0';
+            });
+        }
+        
+        function loadExample(type) {
+            if (type === 'crop') {
+                document.getElementById('rawValue').value = 68;
+                document.getElementById('popMean').value = 60;
+                document.getElementById('popSD').value = 8;
+            } else if (type === 'rainfall') {
+                document.getElementById('rawValue').value = 35;
+                document.getElementById('popMean').value = 28;
+                document.getElementById('popSD').value = 6;
+            }
+            calculateZScore();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setSampleSize(50);
+            setConfidence(95);
+            loadQuizQuestion();
+            calculateZScore();
+        });
+        
+        // Add CSS for better interactivity
+        const style = document.createElement('style');
+        style.textContent = `
+            #normalCurve:hover {
+                background-color: rgba(59, 130, 246, 0.05);
+            }
+            .animate-pulse {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.7; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'995c7e0570e532bd',t:'MTc2MTY3NjA5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
