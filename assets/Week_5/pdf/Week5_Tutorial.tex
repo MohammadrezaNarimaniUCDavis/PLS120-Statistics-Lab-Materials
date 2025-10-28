@@ -1,0 +1,399 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 5 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{estimationbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Sampling and Estimation}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 5 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize October 2025}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 5 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5}{\textcolor{primarygreen}{\underline{Week 5 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 5: Sampling and Estimation}
+
+This week, we explore \textbf{sampling distributions and statistical estimation} - critical skills for designing agricultural studies and interpreting research results. You'll learn to calculate sample sizes, construct confidence intervals, and understand estimation precision!
+
+\section{Reproducible Research with set.seed()}
+
+\subsection{Understanding Reproducible Research}
+
+The set.seed() function is essential for creating reproducible research, especially when involving random number generation and sampling.
+
+\subsubsection{Why Reproducibility Matters}
+
+\begin{formulabox}
+\textbf{Benefits of Reproducible Research:}\\
+• Allows others to verify your results\\
+• Enables debugging of statistical analyses\\
+• Ensures consistent results across runs\\
+• Required for scientific publication\\[0.3cm]
+\textbf{Usage:} \texttt{set.seed(value)}\\
+\textbf{Example:} \texttt{set.seed(123)}\\
+The specific number doesn't matter - use memorable values like 123, 42, or 2025
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Z-Score Standardization}
+
+\subsection{Understanding Z-Scores}
+
+Z-scores help us \textbf{standardize} data by converting values to standard deviations from the mean, making it easier to compare different datasets and calculate probabilities.
+
+\subsubsection{Z-Score Formula}
+
+\begin{formulabox}
+\textbf{Z-Score Formula:}
+$$z = \frac{x - \mu}{\sigma}$$
+Where:\\
+\texttt{x} = individual value\\
+\texttt{$\mu$} = population mean\\
+\texttt{$\sigma$} = population standard deviation\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{z\_scores <- (data - mean(data)) / sd(data)}\\
+\texttt{z\_scores <- scale(data)} \# Alternative method
+\end{formulabox}
+
+\subsection{Normal Distribution Functions}
+
+\subsubsection{Essential Normal Functions}
+
+\begin{formulabox}
+\textbf{pnorm() - Cumulative Probability:}\\
+\texttt{pnorm(q, mean = 0, sd = 1)}\\
+Returns: P(X $\leq$ q) for normal distribution\\[0.3cm]
+\textbf{qnorm() - Quantiles:}\\
+\texttt{qnorm(p, mean = 0, sd = 1)}\\
+Returns: Value x such that P(X $\leq$ x) = p\\[0.3cm]
+\textbf{rnorm() - Random Generation:}\\
+\texttt{rnorm(n, mean = 0, sd = 1)}\\
+Generates n random values from normal distribution
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Confidence Intervals}
+
+\subsection{Understanding Confidence Intervals}
+
+Confidence intervals provide an estimated range that is likely to include the true value of an unknown population parameter with a certain level of confidence.
+
+\subsubsection{Confidence Interval Formula}
+
+\begin{estimationbox}
+\textbf{Confidence Interval for Means:}
+$$CI = \overline{x} \pm z_{\alpha/2} \times \frac{s}{\sqrt{n}}$$
+Where:\\
+\texttt{$\overline{x}$} = sample mean\\
+\texttt{z} = critical z-value\\
+\texttt{s} = sample standard deviation\\
+\texttt{n} = sample size\\[0.3cm]
+\textbf{Common Z-Values:}\\
+90\% confidence: z = 1.645\\
+95\% confidence: z = 1.96\\
+99\% confidence: z = 2.576
+\end{estimationbox}
+
+\subsubsection{Margin of Error}
+
+\begin{estimationbox}
+\textbf{Margin of Error Formula:}
+$$ME = z_{\alpha/2} \times \frac{s}{\sqrt{n}}$$
+\textbf{R Implementation:}\\
+\texttt{alpha <- 0.05}\\
+\texttt{z\_score <- qnorm(1 - alpha / 2)}\\
+\texttt{margin\_error <- z\_score * (sample\_sd / sqrt(sample\_size))}\\
+\texttt{lower\_bound <- sample\_mean - margin\_error}\\
+\texttt{upper\_bound <- sample\_mean + margin\_error}
+\end{estimationbox}
+
+\needspace{5\baselineskip}
+\section{Sample Size Calculations}
+
+\subsection{Determining Required Sample Size}
+
+When designing experiments, calculating appropriate sample size is critical to minimize error and ensure sufficient statistical power.
+
+\subsubsection{Sample Size Formula for Proportions}
+
+\begin{formulabox}
+\textbf{Sample Size Formula:}
+$$n = \frac{z^2 \times p \times (1-p)}{d^2}$$
+Where:\\
+\texttt{n} = required sample size\\
+\texttt{z} = z-score for desired confidence level\\
+\texttt{p} = expected proportion\\
+\texttt{d} = desired margin of error\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{z\_score <- qnorm(1 - alpha / 2)}\\
+\texttt{sample\_size <- z\_score\^{}2 * p * (1 - p) / d\^{}2}\\
+\texttt{ceiling(sample\_size)} \# Round up to whole number
+\end{formulabox}
+
+\subsection{Factors Affecting Sample Size}
+
+\subsubsection{Trade-offs in Sample Size Planning}
+
+\begin{estimationbox}
+\textbf{Key Relationships:}\\
+• Higher confidence level → Larger sample size needed\\
+• Lower margin of error → Larger sample size needed\\
+• Higher expected proportion (up to 0.5) → Larger sample size needed\\
+• Cost vs. Precision: Balance practical constraints with statistical requirements\\[0.3cm]
+\textbf{Example Scenarios:}\\
+90\% confidence, 5\% margin: n $\approx$ 271\\
+95\% confidence, 5\% margin: n $\approx$ 385\\
+99\% confidence, 1\% margin: n $\approx$ 16,641
+\end{estimationbox}
+
+\needspace{5\baselineskip}
+\section{Assignment 5 Overview}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Question 1: Basic Sample Size Calculation (6 points)}
+    \begin{itemize}
+        \item Calculate sample size for 95\% confidence and 5\% margin of error
+        \item Explain margin of error concept
+        \item Interpret confidence intervals correctly
+    \end{itemize}
+    
+    \item \textbf{Question 2: Effect of Prevalence Rate (5 points)}
+    \begin{itemize}
+        \item Calculate sample sizes for different prevalence rates (0.5X, 2X, 3X)
+        \item Analyze how prevalence affects sample size requirements
+    \end{itemize}
+    
+    \item \textbf{Question 3: Effect of Margin of Error (5 points)}
+    \begin{itemize}
+        \item Calculate sample sizes for 2.5\% and 7.5\% margins of error
+        \item Understand precision trade-offs in sample size planning
+    \end{itemize}
+    
+    \item \textbf{Question 4: Effect of Confidence Level (4 points)}
+    \begin{itemize}
+        \item Compare sample sizes for 90\% and 99\% confidence levels
+        \item Analyze how confidence level affects sample size
+    \end{itemize}
+\end{enumerate}
+
+\needspace{5\baselineskip}
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Real-World Applications:}
+\begin{itemize}
+    \item \textbf{Seed Germination Studies} - Estimate germination rates with confidence intervals for planting density planning
+    \item \textbf{Crop Yield Estimation} - Sample fields to predict total harvest with known precision
+    \item \textbf{Pest Occurrence Surveys} - Calculate sample sizes needed to detect pest outbreaks reliably
+    \item \textbf{Quality Control Testing} - Design sampling plans to ensure product quality standards
+    \item \textbf{Weather Pattern Analysis} - Use historical data to create prediction intervals for rainfall
+    \item \textbf{Agricultural Insurance} - Quantify risks using sampling and probability distributions
+\end{itemize}
+\end{infobox}
+
+\section{Key Concepts Summary}
+
+\subsection{Estimation Fundamentals}
+
+\begin{estimationbox}
+\textbf{Confidence Interval Interpretation:}\\
+• A 95\% confidence interval means: if we repeated our study 100 times, about 95 of the intervals would contain the true population parameter\\
+• Your specific interval either contains $\mu$ or it doesn't - the confidence is about the method\\
+• Wider intervals = more confidence, narrower intervals = more precision\\[0.3cm]
+\textbf{Sample Size Principles:}\\
+• Larger samples create more precise estimates\\
+• There's always a trade-off between precision and cost\\
+• Plan sample size before data collection, not after
+\end{estimationbox}
+
+\subsection{Statistical Inference}
+
+\begin{estimationbox}
+\textbf{Population vs Sample:}\\
+Population = entire group of interest\\
+Sample = subset used to make inferences about population\\[0.3cm]
+\textbf{Point Estimate vs Interval Estimate:}\\
+Point estimate = single value (e.g., sample mean)\\
+Interval estimate = range of plausible values (confidence interval)\\[0.3cm]
+\textbf{Sampling Distribution:}\\
+Distribution of sample statistics across many samples from the same population
+\end{estimationbox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 5 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week5\_Sampling\_Estimation.ipynb}
+    \item Work through interactive exercises
+    \item Complete Assignment 5 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Calculate required sample sizes for different precision levels
+    \item Construct confidence intervals for means and proportions
+    \item Understand the relationship between confidence level and margin of error
+    \item Use normal distribution functions for statistical inference
+    \item Apply z-score standardization to compare different datasets
+    \item Design studies with appropriate statistical power
+    \item Make informed decisions about resource allocation in research
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Use \texttt{ceiling()} to round up sample sizes to whole numbers
+    \item Remember key z-values: 1.96 for 95\%, 1.645 for 90\%, 2.576 for 99\%
+    \item Understand trade-offs: higher confidence = larger sample size
+    \item Verify calculations by checking formulas and parameter values
+    \item Think practically about cost and feasibility of sample sizes
+    \item Always interpret confidence intervals in context
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 5: Sampling and Estimation}
+\end{center}
+
+\end{document}
