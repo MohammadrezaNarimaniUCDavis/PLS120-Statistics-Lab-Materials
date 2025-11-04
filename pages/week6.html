@@ -1,0 +1,376 @@
+<h1 class="page-title">📊 Week 6: Confidence Intervals and T-Tests</h1>
+<p class="page-subtitle">Master T-Distribution and Group Comparisons 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 6 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 6!</strong> This week, we explore <strong>confidence intervals and t-tests</strong> - essential skills for comparing means between groups in agricultural research. Learn to construct confidence intervals, use t-distribution, and interpret statistical comparisons!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🖨️</span>
+                <span><strong>R Output Functions</strong> - Master print(), cat(), and paste() functions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📐</span>
+                <span><strong>T-Distribution</strong> - Apply t-distribution when population variance is unknown</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎯</span>
+                <span><strong>Confidence Intervals</strong> - Build confidence intervals for population means</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🌸</span>
+                <span><strong>Group Comparisons</strong> - Compare means between different treatment groups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Data Filtering</strong> - Separate datasets by groups using dplyr</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔍</span>
+                <span><strong>Statistical Inference</strong> - Interpret overlapping vs non-overlapping intervals</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 6 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 6"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for confidence intervals and t-tests.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 6 on wheat fertilizer experiment</li>
+            <li><code>class_activity/</code> - Week 6 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 6 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week6_Confidence_Intervals_T_Tests.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore Confidence Intervals 📊</h3>
+        <p>This week we'll work with the iris dataset and confidence intervals! The notebook will guide you through:</p>
+        <ul>
+            <li>Understanding different R output functions (print, cat, paste)</li>
+            <li>Loading and exploring the iris dataset</li>
+            <li>Creating visualizations with boxplots and scatter plots</li>
+            <li>Filtering data by species using dplyr</li>
+            <li>Constructing confidence intervals using t-distribution</li>
+            <li>Comparing groups using confidence interval overlap</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Confidence Intervals and T-Tests</h3>
+        <p>Use these interactive tools to understand confidence interval concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/Week6_Interactive_Tool.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to visualize confidence intervals and t-distribution before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Output Functions</h3>
+        <div class="code-block">
+            <code>print(x)                               # Standard printing</code><br>
+            <code>cat("The value is:", x)                # Concatenated output</code><br>
+            <code>paste("Result:", x, "units")           # String combination</code><br>
+            <code>x                                      # Basic display</code>
+        </div>
+
+        <h3 class="card-title">T-Distribution Functions</h3>
+        <div class="code-block">
+            <code>qt(1-alpha/2, df = n-1)                # Critical t-value</code><br>
+            <code>DoF <- n-1                             # Degrees of freedom</code><br>
+            <code>t_score <- qt(0.975, 49)               # 95% confidence, n=50</code>
+        </div>
+
+        <h3 class="card-title">Confidence Intervals</h3>
+        <div class="code-block">
+            <code>SE <- sd/sqrt(n)                       # Standard error</code><br>
+            <code>ME <- t_score * SE                     # Margin of error</code><br>
+            <code>CI <- c(mean - ME, mean, mean + ME)    # Confidence interval</code><br>
+            <code>data %>% filter(Group == "Treatment")  # Data filtering</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 6: Wheat Fertilizer Experiment</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 6.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 6 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment6.ipynb</code> to open your assignment on confidence intervals for agricultural data.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 1: Overall Analysis (9 points)</h4>
+                    <p>Load data, calculate overall statistics, and construct confidence intervals</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🌾</span>
+                <div>
+                    <h4>Part 2: Treatment Comparison (11 points)</h4>
+                    <p>Compare fertilizer treatments using confidence intervals</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Analyze Wheat Fertilizer Data 🌾</h3>
+        <p>The assignment focuses on agricultural research applications:</p>
+        <ul>
+            <li><strong>Wheat Yield Analysis</strong> - Compare nitrogen fertilizer vs control treatments</li>
+            <li><strong>Confidence Interval Construction</strong> - Build intervals for overall and treatment-specific means</li>
+            <li><strong>Statistical Inference</strong> - Determine if fertilizer significantly improves yield</li>
+        </ul>
+        <p>Learn to make <strong>evidence-based agricultural decisions</strong> using statistical methods!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Fertilizer Effectiveness</strong> - Compare crop yields between treated and control plots</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌾</span>
+                <span><strong>Variety Trials</strong> - Determine if new crop varieties perform significantly better</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔬</span>
+                <span><strong>Quality Control</strong> - Establish confidence intervals for product specifications</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pesticide Efficacy</strong> - Compare pest control between different treatments</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💧</span>
+                <span><strong>Irrigation Studies</strong> - Compare water use efficiency between methods</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Confidence Interval Skills Help You:</h3>
+        <ul>
+            <li>Make evidence-based decisions about treatment effectiveness</li>
+            <li>Quantify uncertainty in agricultural measurements</li>
+            <li>Compare different farming practices statistically</li>
+            <li>Design experiments with appropriate statistical power</li>
+            <li>Communicate research results with confidence measures</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 6, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand different R printing methods (print, cat, paste)</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Construct confidence intervals using t-distribution</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Compare group means using confidence intervals</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Filter and manipulate data using dplyr functions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Interpret overlapping vs non-overlapping confidence intervals</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Apply statistical inference to agricultural research problems</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Binder won't load?</strong> Try refreshing or clearing browser cache</li>
+            <li><strong>T-score calculation error?</strong> Check degrees of freedom (df = n-1)</li>
+            <li><strong>Confidence intervals wrong?</strong> Verify t-value and standard error calculations</li>
+            <li><strong>Data filtering issues?</strong> Check factor levels and spelling in filter() function</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>T-Distribution Theory:</strong> Review when to use t vs z distribution</li>
+            <li><strong>R Documentation:</strong> Use <code>?qt</code> for help with t-distribution functions</li>
+            <li><strong>Practice:</strong> Try different confidence levels to see effects on interval width</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Use t-distribution</strong> - When population variance is unknown (most real situations)</li>
+            <li><strong>Check degrees of freedom</strong> - Always n-1 for single sample</li>
+            <li><strong>Interpret correctly</strong> - "We are 95% confident the true mean is between..."</li>
+            <li><strong>Compare intervals</strong> - Non-overlapping suggests significant differences</li>
+            <li><strong>Visualize first</strong> - Use boxplots to understand data before analysis</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>?function</kbd>
+                <span>Get help for any R function</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 6!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 6 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy confidence interval building! 📊🌾</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 6: Confidence Intervals and T-Tests</em></p>
+    </div>
+</div>

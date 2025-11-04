@@ -1,0 +1,466 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 6 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{ttestbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Confidence Intervals and T-Tests}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 6 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize October 2025}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 6 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6}{\textcolor{primarygreen}{\underline{Week 6 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 6: Confidence Intervals and T-Tests}
+
+This week, we dive into \textbf{t-distribution and hypothesis testing} - essential tools for agricultural research when population parameters are unknown. You'll learn when to use t-tests instead of z-tests, construct t-based confidence intervals, and analyze treatment effectiveness!
+
+\section{T-Distribution vs Z-Distribution}
+
+\subsection{When to Use T-Distribution}
+
+The t-distribution is used when the population standard deviation is unknown and must be estimated from sample data.
+
+\subsubsection{Key Differences}
+
+\begin{formulabox}
+\textbf{Use T-Distribution When:}\\
+• Population standard deviation ($\sigma$) is unknown\\
+• Using sample standard deviation (s) as estimate\\
+• Small to moderate sample sizes (especially n < 30)\\
+• More conservative than z-distribution\\[0.3cm]
+\textbf{Use Z-Distribution When:}\\
+• Population standard deviation ($\sigma$) is known\\
+• Large sample sizes (n $\geq$ 30) with CLT\\
+• Population is normally distributed\\[0.3cm]
+\textbf{Key Properties:}\\
+• T-distribution has heavier tails than normal\\
+• As df increases, t approaches standard normal\\
+• More uncertainty = wider confidence intervals
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Degrees of Freedom}
+
+\subsection{Understanding Degrees of Freedom}
+
+Degrees of freedom (df) represent the number of independent pieces of information available to estimate a parameter.
+
+\subsubsection{Degrees of Freedom Formula}
+
+\begin{formulabox}
+\textbf{One-Sample T-Test:}
+$$df = n - 1$$
+Where:\\
+\texttt{n} = sample size\\
+\texttt{df} = degrees of freedom\\[0.3cm]
+\textbf{Why n-1?}\\
+• We lose one degree of freedom when estimating the mean\\
+• With n observations and known mean, only (n-1) are free to vary\\
+• Smaller df = wider t-distribution = more conservative results\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{df <- length(data) - 1}\\
+\texttt{t\_critical <- qt(0.975, df)} \# For 95\% CI
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{T-Based Confidence Intervals}
+
+\subsection{Confidence Interval Formula}
+
+T-based confidence intervals account for the additional uncertainty when estimating population standard deviation.
+
+\subsubsection{T-Confidence Interval Formula}
+
+\begin{ttestbox}
+\textbf{T-Based Confidence Interval:}
+$$CI = \overline{x} \pm t_{\alpha/2,df} \times \frac{s}{\sqrt{n}}$$
+Where:\\
+\texttt{$\overline{x}$} = sample mean\\
+\texttt{$t_{\alpha/2,df}$} = critical t-value\\
+\texttt{s} = sample standard deviation\\
+\texttt{n} = sample size\\
+\texttt{df} = n - 1\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{sample\_mean <- mean(data)}\\
+\texttt{sample\_sd <- sd(data)}\\
+\texttt{n <- length(data)}\\
+\texttt{df <- n - 1}\\
+\texttt{t\_critical <- qt(0.975, df)} \# 95\% CI\\
+\texttt{margin\_error <- t\_critical * (sample\_sd / sqrt(n))}\\
+\texttt{ci\_lower <- sample\_mean - margin\_error}\\
+\texttt{ci\_upper <- sample\_mean + margin\_error}
+\end{ttestbox}
+
+\subsection{Comparison: T vs Z Intervals}
+
+\subsubsection{Width Comparison}
+
+\begin{ttestbox}
+\textbf{Interval Width Comparison:}\\
+• T-based intervals are WIDER than z-based intervals\\
+• Difference is larger for smaller sample sizes\\
+• As n increases, t-intervals approach z-intervals\\[0.3cm]
+\textbf{Example (n=10, 95\% confidence):}\\
+Z-critical value: 1.96\\
+T-critical value: 2.262\\
+T-interval is about 15\% wider\\[0.3cm]
+\textbf{Example (n=30, 95\% confidence):}\\
+Z-critical value: 1.96\\
+T-critical value: 2.045\\
+T-interval is about 4\% wider
+\end{ttestbox}
+
+\needspace{5\baselineskip}
+\section{One-Sample T-Test}
+
+\subsection{Hypothesis Testing with T-Tests}
+
+T-tests allow us to test hypotheses about population means when the population standard deviation is unknown.
+
+\subsubsection{One-Sample T-Test Formula}
+
+\begin{ttestbox}
+\textbf{T-Test Statistic:}
+$$t = \frac{\overline{x} - \mu_0}{\frac{s}{\sqrt{n}}}$$
+Where:\\
+\texttt{$\overline{x}$} = sample mean\\
+\texttt{$\mu_0$} = hypothesized population mean\\
+\texttt{s} = sample standard deviation\\
+\texttt{n} = sample size\\[0.3cm]
+\textbf{Decision Rule:}\\
+If $|t| > t_{\alpha/2,df}$, reject $H_0$\\
+If p-value < $\alpha$, reject $H_0$\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(data, mu = hypothesized\_mean)}\\
+\texttt{t.test(data, mu = 60, conf.level = 0.95)}
+\end{ttestbox}
+
+\subsection{Interpreting T-Test Results}
+
+\subsubsection{Understanding Output}
+
+\begin{ttestbox}
+\textbf{T-Test Output Components:}\\
+• \textbf{t-statistic:} How many standard errors the sample mean is from $\mu_0$\\
+• \textbf{degrees of freedom:} n - 1\\
+• \textbf{p-value:} Probability of observing this result if $H_0$ is true\\
+• \textbf{confidence interval:} Range of plausible values for $\mu$\\[0.3cm]
+\textbf{Agricultural Example:}\\
+Testing if new fertilizer increases yield above 60 bu/acre\\
+$H_0: \mu = 60$ vs $H_a: \mu > 60$\\
+If t = 2.34, df = 24, p = 0.028\\
+Conclusion: Reject $H_0$, fertilizer significantly increases yield
+\end{ttestbox}
+
+\needspace{5\baselineskip}
+\section{Assignment 6 Overview}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Overall Wheat Yield Analysis (9 points)}
+    \begin{itemize}
+        \item Load and explore wheat yield dataset (1 point)
+        \item Calculate sample size and basic statistics (1 point)
+        \item Compute mean and standard deviation (2 points)
+        \item Calculate z-score for specific value (1 point)
+        \item Construct 95\% confidence interval (3 points)
+        \item Interpret results in agricultural context (1 point)
+    \end{itemize}
+    
+    \item \textbf{Part 2: Treatment Comparison (11 points)}
+    \begin{itemize}
+        \item Separate control and fertilizer groups (1 point)
+        \item Calculate treatment statistics (2 points)
+        \item Compute standard errors (2 points)
+        \item Calculate margins of error (2 points)
+        \item Construct confidence intervals for each treatment (3 points)
+        \item Compare treatments and interpret results (1 point)
+    \end{itemize}
+\end{enumerate}
+
+\needspace{5\baselineskip}
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Real-World T-Test Applications:}
+\begin{itemize}
+    \item \textbf{Fertilizer Effectiveness} - Test if new fertilizer significantly increases crop yield
+    \item \textbf{Variety Trials} - Compare new crop varieties against established standards
+    \item \textbf{Treatment Efficacy} - Evaluate pesticide or herbicide effectiveness
+    \item \textbf{Quality Control} - Test if product meets quality standards
+    \item \textbf{Environmental Impact} - Assess effects of farming practices on soil health
+    \item \textbf{Breeding Programs} - Compare performance of new genetic lines
+    \item \textbf{Irrigation Studies} - Test optimal water application rates
+    \item \textbf{Harvest Timing} - Determine optimal harvest dates for maximum yield
+\end{itemize}
+\end{infobox}
+
+\section{Key Concepts Summary}
+
+\subsection{T-Test Fundamentals}
+
+\begin{ttestbox}
+\textbf{When to Use T-Tests:}\\
+• Population $\sigma$ is unknown (most real situations)\\
+• Sample size is small to moderate\\
+• Data is approximately normally distributed\\
+• Testing hypotheses about means\\[0.3cm]
+\textbf{T-Test Assumptions:}\\
+• Random sampling from population\\
+• Observations are independent\\
+• Data is approximately normally distributed\\
+• For small samples, normality is more critical\\[0.3cm]
+\textbf{Confidence Interval Interpretation:}\\
+• 95\% CI: We're 95\% confident the true mean lies in this range\\
+• Wider intervals = more uncertainty\\
+• T-intervals are more conservative than z-intervals
+\end{ttestbox}
+
+\subsection{Statistical Decision Making}
+
+\begin{ttestbox}
+\textbf{Hypothesis Testing Steps:}\\
+1. State null and alternative hypotheses\\
+2. Choose significance level ($\alpha$)\\
+3. Calculate test statistic\\
+4. Find p-value or critical value\\
+5. Make decision and interpret in context\\[0.3cm]
+\textbf{Type I and Type II Errors:}\\
+Type I Error: Rejecting true $H_0$ (false positive)\\
+Type II Error: Failing to reject false $H_0$ (false negative)\\[0.3cm]
+\textbf{Practical vs Statistical Significance:}\\
+• Statistical significance: p < $\alpha$\\
+• Practical significance: Effect size matters in real world\\
+• Large samples can detect tiny, unimportant differences
+\end{ttestbox}
+
+\section{Data Analysis Workflow}
+
+\subsection{Step-by-Step Analysis}
+
+\begin{enumerate}
+    \item \textbf{Data Exploration}
+    \begin{itemize}
+        \item Load data and examine structure
+        \item Check for missing values and outliers
+        \item Create summary statistics and visualizations
+    \end{itemize}
+    
+    \item \textbf{Assumption Checking}
+    \begin{itemize}
+        \item Assess normality (histograms, Q-Q plots)
+        \item Check for independence
+        \item Identify potential issues
+    \end{itemize}
+    
+    \item \textbf{Statistical Analysis}
+    \begin{itemize}
+        \item Calculate appropriate test statistics
+        \item Construct confidence intervals
+        \item Perform hypothesis tests
+    \end{itemize}
+    
+    \item \textbf{Interpretation}
+    \begin{itemize}
+        \item Interpret results in agricultural context
+        \item Consider practical significance
+        \item Make recommendations based on findings
+    \end{itemize}
+\end{enumerate}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 6 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week6\_Confidence\_Intervals.ipynb}
+    \item Work through interactive exercises
+    \item Complete Assignment 6 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Distinguish between t-distribution and z-distribution applications
+    \item Calculate degrees of freedom for one-sample t-tests
+    \item Construct t-based confidence intervals
+    \item Perform one-sample t-tests for hypothesis testing
+    \item Compare treatment groups using confidence intervals
+    \item Interpret t-test results in agricultural contexts
+    \item Understand the relationship between sample size and interval width
+    \item Make data-driven decisions about treatment effectiveness
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Always check if you should use t or z distribution
+    \item Remember: df = n - 1 for one-sample t-tests
+    \item T-intervals are wider than z-intervals (more conservative)
+    \item Use \texttt{t.test()} function in R for complete analysis
+    \item Check normality assumptions, especially for small samples
+    \item Interpret confidence intervals correctly (about the parameter, not individual observations)
+    \item Consider both statistical and practical significance
+    \item Always interpret results in the context of the agricultural problem
+\end{itemize}
+\end{warningbox}
+
+\section{Common Mistakes to Avoid}
+
+\begin{warningbox}
+\textbf{Avoid These Errors:}
+\begin{itemize}
+    \item Using z-distribution when $\sigma$ is unknown
+    \item Forgetting to subtract 1 for degrees of freedom
+    \item Misinterpreting confidence intervals
+    \item Ignoring assumptions (normality, independence)
+    \item Confusing statistical significance with practical importance
+    \item Not considering the agricultural context in interpretations
+    \item Using wrong tail for one-sided vs two-sided tests
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: October 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 6: Confidence Intervals and T-Tests}
+\end{center}
+
+\end{document}
