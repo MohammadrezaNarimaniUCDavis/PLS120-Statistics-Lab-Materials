@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Weeks 1-4 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-6 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -52,6 +52,10 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 4 - Probability and Sampling:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4
 
+**Week 5 - Sampling and Estimation:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5
+
+**Week 6 - Confidence Intervals:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6
+
 ---
 
 ## 🔧 Project Structure
@@ -68,7 +72,10 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── faq.html           # frequently asked questions
 │   ├── week1.html         # week 1 materials
 │   ├── week2.html         # week 2 materials
-│   └── week3.html         # week 3 materials
+│   ├── week3.html         # week 3 materials
+│   ├── week4.html         # week 4 materials
+│   ├── week5.html         # week 5 materials
+│   └── week6.html         # week 6 materials
 ├── assets/                 # images and media
 │   ├── images/
 │   │   ├── logos/         # UC Davis logos
@@ -88,13 +95,18 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Assignment2.ipynb  # week 2 assignment
 │   ├── Assignment3.ipynb  # week 3 assignment
 │   ├── Assignment4.ipynb  # week 4 assignment
+│   ├── Assignment5.ipynb  # week 5 assignment
+│   ├── Assignment6.ipynb  # week 6 assignment
 │   ├── LA_Data.csv       # statistics dataset
-│   └── SAT_DATASET_2012.csv # SAT performance dataset
+│   ├── SAT_DATASET_2012.csv # SAT performance dataset
+│   └── wheat_yield.csv   # wheat yield dataset
 ├── class_activity/        # interactive tutorials
 │   ├── Week1_Introduction.ipynb
 │   ├── Week2_Descriptive_Statistics.ipynb
 │   ├── Week3_Data_Manipulation.ipynb
-│   └── Week4_Probability_Sampling.ipynb
+│   ├── Week4_Probability_Sampling.ipynb
+│   ├── Week5_Sampling_Estimation.ipynb
+│   └── Week6_Confidence_Intervals.ipynb
 └── README.md             # you're reading it!
 ```
 
@@ -132,10 +144,26 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Experimental vs theoretical probability
    - Data visualization for probability distributions
 
-5. **Week 5-10**: 🔒 *Coming Soon*
-   - Sampling and Estimation
+5. **Week 5**: Sampling and Estimation ✅ *Available*
+   - Central Limit Theorem and sampling distributions
+   - Standard error and sampling variability
+   - Point estimation vs interval estimation
+   - Bootstrap sampling techniques
+   - Sampling distribution visualization
+   - Real-world sampling applications
+
+6. **Week 6**: Confidence Intervals ✅ *Available*
+   - Understanding confidence intervals and interpretation
+   - Z-score calculations and critical values
+   - Confidence intervals for population means
+   - Margin of error calculations
+   - Comparing confidence intervals between groups
+   - Agricultural data analysis with confidence intervals
+
+7. **Week 7-10**: 🔒 *Coming Soon*
    - Hypothesis Testing
-   - ANOVA and Regression
+   - T-Tests and ANOVA
+   - Regression Analysis
    - Correlation Analysis
 
 ### 📋 Assessment
@@ -183,6 +211,8 @@ By completing this course, students will be able to:
    - [Week 2 - Descriptive Statistics](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week2)
    - [Week 3 - Data Manipulation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week3)
    - [Week 4 - Probability and Sampling](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4)
+   - [Week 5 - Sampling and Estimation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5)
+   - [Week 6 - Confidence Intervals](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6)
 3. **No software installation needed!**
 
 ### For Developers:
