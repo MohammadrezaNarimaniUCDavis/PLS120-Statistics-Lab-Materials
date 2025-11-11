@@ -1,0 +1,499 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 7 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{ttestbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Functions and T-Tests}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 7 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize November 2024}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 7 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7}{\textcolor{primarygreen}{\underline{Week 7 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 7: Functions and T-Tests}
+
+This week, we explore \textbf{custom functions in R and two-sample t-tests} - essential tools for creating reusable code and comparing groups in agricultural research. You'll learn to write functions, perform statistical comparisons, and interpret results for evidence-based farming decisions!
+
+\section{Writing Functions in R}
+
+\subsection{Why Use Functions?}
+
+Functions in R are powerful tools that simplify repetitive tasks and improve code efficiency. They make your analysis more organized, reduce errors, and allow for easy reuse across projects.
+
+\subsubsection{Function Syntax}
+
+\begin{formulabox}
+\textbf{Basic Function Structure:}
+\begin{verbatim}
+myFunction <- function(arg1, arg2, ...) {
+  # Code to execute
+  result <- some_calculation
+  return(result)
+}
+\end{verbatim}
+\textbf{Components:}\\
+• \texttt{myFunction} = Function name\\
+• \texttt{arg1, arg2} = Parameters (inputs)\\
+• \texttt{return()} = Specifies output\\[0.3cm]
+\textbf{Example - Square Function:}
+\begin{verbatim}
+square <- function(x) {
+  result <- x^2
+  return(result)
+}
+
+# Usage
+square(5)  # Returns 25
+\end{verbatim}
+\end{formulabox}
+
+\subsection{Sample Size Function}
+
+A practical example of function creation for statistical calculations.
+
+\subsubsection{Sample Size Calculation Function}
+
+\begin{formulabox}
+\textbf{Sample Size Formula:}
+$$n = \frac{z^2 \cdot p \cdot (1-p)}{E^2}$$
+Where:\\
+\texttt{z} = critical value from normal distribution\\
+\texttt{p} = expected prevalence\\
+\texttt{E} = desired margin of error\\[0.3cm]
+\textbf{R Function Implementation:}
+\begin{verbatim}
+calculate_sample_size <- function(prev, alpha, margin_error) {
+  z <- qnorm(1 - alpha / 2)
+  n <- z^2 * prev * (1 - prev) / (margin_error^2)
+  required_sample_size <- ceiling(n)
+  return(required_sample_size)
+}
+
+# Usage
+calculate_sample_size(0.1, 0.05, 0.05)  # Returns 139
+\end{verbatim}
+\end{formulabox}
+
+\needspace{5\baselineskip}
+\section{Two-Sample T-Tests}
+
+\subsection{When to Use Two-Sample T-Tests}
+
+Two-sample t-tests compare means between two independent groups, such as treatment vs control in agricultural experiments.
+
+\subsubsection{Welch's T-Test Formula}
+
+\begin{ttestbox}
+\textbf{Two-Sample T-Test (Unequal Variances):}
+$$t = \frac{\overline{x_1} - \overline{x_2}}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$$
+Where:\\
+\texttt{$\overline{x_1}, \overline{x_2}$} = sample means\\
+\texttt{$s_1, s_2$} = sample standard deviations\\
+\texttt{$n_1, n_2$} = sample sizes\\[0.3cm]
+\textbf{Degrees of Freedom (Welch's approximation):}
+$$df = \frac{(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2})^2}{\frac{(s_1^2/n_1)^2}{n_1-1} + \frac{(s_2^2/n_2)^2}{n_2-1}}$$
+\textbf{R Implementation:}\\
+\texttt{t.test(group1, group2, var.equal = FALSE)}
+\end{ttestbox}
+
+\subsection{Hypothesis Formation}
+
+Proper hypothesis setup is crucial for meaningful statistical testing.
+
+\subsubsection{Hypothesis Types}
+
+\begin{ttestbox}
+\textbf{Two-Sided Test:}\\
+$H_0: \mu_1 = \mu_2$ (means are equal)\\
+$H_1: \mu_1 \neq \mu_2$ (means are different)\\[0.3cm]
+\textbf{One-Sided Tests:}\\
+Greater than: $H_1: \mu_1 > \mu_2$\\
+Less than: $H_1: \mu_1 < \mu_2$\\[0.3cm]
+\textbf{Agricultural Examples:}\\
+• Fertilizer vs Control: Does fertilizer increase yield?\\
+• Variety A vs B: Which variety performs better?\\
+• Irrigation methods: Is drip more efficient than flood?\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(treatment, control, alternative = "two.sided")}\\
+\texttt{t.test(treatment, control, alternative = "greater")}\\
+\texttt{t.test(treatment, control, alternative = "less")}
+\end{ttestbox}
+
+\needspace{5\baselineskip}
+\section{Interpreting T-Test Results}
+
+\subsection{Understanding T-Test Output}
+
+T-test results provide multiple pieces of information for decision-making.
+
+\subsubsection{Key Output Components}
+
+\begin{ttestbox}
+\textbf{T-Test Output Elements:}\\
+• \textbf{t-statistic:} Magnitude and direction of difference\\
+• \textbf{degrees of freedom:} Based on sample sizes and variances\\
+• \textbf{p-value:} Probability of observing result if $H_0$ true\\
+• \textbf{confidence interval:} Range for true mean difference\\
+• \textbf{sample estimates:} Group means\\[0.3cm]
+\textbf{Decision Rules:}\\
+If p-value < $\alpha$ (0.05) → Reject $H_0$\\
+If confidence interval excludes 0 → Significant difference\\[0.3cm]
+\textbf{Agricultural Interpretation:}\\
+"The fertilizer treatment shows a statistically significant\\
+increase in yield compared to control (p = 0.023).\\
+The mean difference is 6.5 bu/acre with 95\% CI [1.2, 11.8]."
+\end{ttestbox}
+
+\subsection{One-Sided vs Two-Sided Tests}
+
+Understanding when to use directional hypotheses.
+
+\subsubsection{Test Selection Guidelines}
+
+\begin{ttestbox}
+\textbf{Two-Sided Test Use When:}\\
+• Testing for any difference (better or worse)\\
+• Exploratory research\\
+• No prior expectation of direction\\[0.3cm]
+\textbf{One-Sided Test Use When:}\\
+• Strong theoretical reason for direction\\
+• Testing if treatment is better (not just different)\\
+• More statistical power for detecting effects in predicted direction\\[0.3cm]
+\textbf{Agricultural Examples:}\\
+Two-sided: "Does variety A differ from variety B?"\\
+One-sided: "Does nitrogen fertilizer increase yield above control?"\\[0.3cm]
+\textbf{Caution:}\\
+One-sided tests should be planned before data collection\\
+Don't switch after seeing results!
+\end{ttestbox}
+
+\needspace{5\baselineskip}
+\section{Assignment 7 Overview}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Load and Visualize Data (4 points)}
+    \begin{itemize}
+        \item Load wheat yield dataset and convert factors (2 points)
+        \item Create boxplot visualization (2 points)
+    \end{itemize}
+    
+    \item \textbf{Part 2: Form Hypotheses (3 points)}
+    \begin{itemize}
+        \item State null and alternative hypotheses clearly (3 points)
+    \end{itemize}
+    
+    \item \textbf{Part 3: Perform T-Test (5 points)}
+    \begin{itemize}
+        \item Separate data by treatment groups (2 points)
+        \item Execute two-sample t-test with proper parameters (3 points)
+    \end{itemize}
+    
+    \item \textbf{Part 4: Interpret Results (4 points)}
+    \begin{itemize}
+        \item Interpret p-value correctly (1 point)
+        \item Draw conclusions about fertilizer treatments (2 points)
+        \item Make decision about null hypothesis (1 point)
+    \end{itemize}
+    
+    \item \textbf{Part 5: One-Sided Test (4 points)}
+    \begin{itemize}
+        \item Perform directional t-test (2 points)
+        \item Interpret one-sided test results (2 points)
+    \end{itemize}
+\end{enumerate}
+
+\needspace{5\baselineskip}
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Real-World Function and T-Test Applications:}
+\begin{itemize}
+    \item \textbf{Treatment Efficacy} - Compare fertilizer, pesticide, or irrigation treatments
+    \item \textbf{Variety Trials} - Test new crop varieties against established standards
+    \item \textbf{Quality Control} - Automated functions for routine quality assessments
+    \item \textbf{Experimental Design} - Sample size calculations for field trials
+    \item \textbf{Breeding Programs} - Compare genetic lines for yield and quality traits
+    \item \textbf{Environmental Studies} - Test effects of farming practices on soil health
+    \item \textbf{Economic Analysis} - Compare profitability of different management strategies
+    \item \textbf{Precision Agriculture} - Analyze zone-specific treatment effects
+\end{itemize}
+\end{infobox}
+
+\section{Key Concepts Summary}
+
+\subsection{Function Development}
+
+\begin{formulabox}
+\textbf{Function Best Practices:}\\
+• Use descriptive function names\\
+• Include parameter validation\\
+• Add comments explaining purpose\\
+• Test with simple examples first\\
+• Return meaningful results\\[0.3cm]
+\textbf{Common Function Types in Agriculture:}\\
+• Statistical calculations (mean, variance, sample size)\\
+• Unit conversions (acres to hectares, etc.)\\
+• Economic calculations (profit, cost per unit)\\
+• Data transformations and cleaning\\[0.3cm]
+\textbf{Function Benefits:}\\
+• Reduces code duplication\\
+• Easier debugging and maintenance\\
+• Consistent calculations across analyses\\
+• Shareable with colleagues
+\end{formulabox}
+
+\subsection{Statistical Testing Fundamentals}
+
+\begin{ttestbox}
+\textbf{T-Test Assumptions:}\\
+• Independent observations\\
+• Approximately normal distributions\\
+• Random sampling from populations\\
+• For Welch's t-test: unequal variances OK\\[0.3cm]
+\textbf{Effect Size Considerations:}\\
+• Statistical significance $\neq$ practical importance\\
+• Consider magnitude of difference\\
+• Economic significance in agricultural context\\
+• Confidence intervals show range of plausible effects\\[0.3cm]
+\textbf{Multiple Comparisons:}\\
+• Be cautious with many t-tests\\
+• Consider family-wise error rate\\
+• Use appropriate corrections when needed
+\end{ttestbox}
+
+\section{Data Analysis Workflow}
+
+\subsection{Step-by-Step Analysis}
+
+\begin{enumerate}
+    \item \textbf{Data Preparation}
+    \begin{itemize}
+        \item Load and examine data structure
+        \item Convert categorical variables to factors
+        \item Check for missing values and outliers
+        \item Create exploratory visualizations
+    \end{itemize}
+    
+    \item \textbf{Hypothesis Formation}
+    \begin{itemize}
+        \item Define research question clearly
+        \item State null and alternative hypotheses
+        \item Choose appropriate test type (one/two-sided)
+        \item Set significance level
+    \end{itemize}
+    
+    \item \textbf{Statistical Testing}
+    \begin{itemize}
+        \item Separate data by groups
+        \item Check test assumptions
+        \item Perform appropriate t-test
+        \item Calculate effect sizes
+    \end{itemize}
+    
+    \item \textbf{Interpretation and Communication}
+    \begin{itemize}
+        \item Interpret results in agricultural context
+        \item Consider practical significance
+        \item Make evidence-based recommendations
+        \item Communicate uncertainty appropriately
+    \end{itemize}
+\end{enumerate}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 7 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week7\_Regression\_Analysis.ipynb}
+    \item Work through function examples and t-test exercises
+    \item Complete Assignment 7 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Create custom functions with parameters and return values
+    \item Build reusable functions for statistical calculations
+    \item Form appropriate null and alternative hypotheses
+    \item Perform two-sample t-tests using Welch's method
+    \item Interpret t-statistics, p-values, and confidence intervals
+    \item Distinguish between one-sided and two-sided tests
+    \item Apply statistical testing to agricultural research problems
+    \item Make data-driven decisions about treatment effectiveness
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Test functions with simple examples before complex data
+    \item Always check t-test assumptions (normality, independence)
+    \item Use \texttt{var.equal = FALSE} for Welch's t-test (safer default)
+    \item Interpret p-values correctly (probability under null hypothesis)
+    \item Consider both statistical and practical significance
+    \item Visualize data before testing (boxplots, histograms)
+    \item Choose test type (one/two-sided) before seeing results
+    \item Always interpret results in agricultural context
+\end{itemize}
+\end{warningbox}
+
+\section{Common Mistakes to Avoid}
+
+\begin{warningbox}
+\textbf{Avoid These Errors:}
+\begin{itemize}
+    \item Writing functions without testing them first
+    \item Forgetting to use \texttt{return()} in functions
+    \item Using one-sided tests without strong justification
+    \item Misinterpreting p-values as probability hypotheses are true
+    \item Ignoring practical significance when p-value is small
+    \item Not checking t-test assumptions
+    \item Switching between one/two-sided tests after seeing data
+    \item Over-interpreting non-significant results
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 7: Functions and T-Tests}
+\end{center}
+
+\end{document}

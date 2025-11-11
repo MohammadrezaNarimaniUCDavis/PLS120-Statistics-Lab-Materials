@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Weeks 1-6 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-7 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -56,6 +56,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 6 - Confidence Intervals:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6
 
+**Week 7 - Functions and T-Tests:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7
+
 ---
 
 ## 🔧 Project Structure
@@ -75,7 +77,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── week3.html         # week 3 materials
 │   ├── week4.html         # week 4 materials
 │   ├── week5.html         # week 5 materials
-│   └── week6.html         # week 6 materials
+│   ├── week6.html         # week 6 materials
+│   └── week7.html         # week 7 materials
 ├── assets/                 # images and media
 │   ├── images/
 │   │   ├── logos/         # UC Davis logos
@@ -88,7 +91,13 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   │   └── pdf/           # LaTeX/PDF materials
 │   ├── Week_3/            # week 3 specific materials
 │   │   └── pdf/           # LaTeX/PDF materials
-│   └── Week_4/            # week 4 specific materials
+│   ├── Week_4/            # week 4 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
+│   ├── Week_5/            # week 5 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
+│   ├── Week_6/            # week 6 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
+│   └── Week_7/            # week 7 specific materials
 │       └── pdf/           # LaTeX/PDF materials
 ├── assignment/            # homework assignments
 │   ├── Assignment1.ipynb  # week 1 assignment
@@ -97,6 +106,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Assignment4.ipynb  # week 4 assignment
 │   ├── Assignment5.ipynb  # week 5 assignment
 │   ├── Assignment6.ipynb  # week 6 assignment
+│   ├── Assignment7.ipynb  # week 7 assignment
 │   ├── LA_Data.csv       # statistics dataset
 │   ├── SAT_DATASET_2012.csv # SAT performance dataset
 │   └── wheat_yield.csv   # wheat yield dataset
@@ -106,7 +116,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Week3_Data_Manipulation.ipynb
 │   ├── Week4_Probability_Sampling.ipynb
 │   ├── Week5_Sampling_Estimation.ipynb
-│   └── Week6_Confidence_Intervals.ipynb
+│   ├── Week6_Confidence_Intervals.ipynb
+│   └── Week7_Regression_Analysis.ipynb
 └── README.md             # you're reading it!
 ```
 
@@ -160,9 +171,18 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Comparing confidence intervals between groups
    - Agricultural data analysis with confidence intervals
 
-7. **Week 7-10**: 🔒 *Coming Soon*
-   - Hypothesis Testing
-   - T-Tests and ANOVA
+7. **Week 7**: Functions and T-Tests ✅ *Available*
+   - Creating custom functions in R for reusable code
+   - Function parameters, body, and return values
+   - Sample size calculation functions
+   - Two-sample t-tests for group comparisons
+   - Hypothesis formation and testing
+   - Welch's t-test for unequal variances
+   - One-sided vs two-sided tests
+   - Agricultural treatment comparison analysis
+
+8. **Week 8-10**: 🔒 *Coming Soon*
+   - ANOVA and Multiple Comparisons
    - Regression Analysis
    - Correlation Analysis
 
@@ -213,6 +233,7 @@ By completing this course, students will be able to:
    - [Week 4 - Probability and Sampling](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week4)
    - [Week 5 - Sampling and Estimation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5)
    - [Week 6 - Confidence Intervals](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6)
+   - [Week 7 - Functions and T-Tests](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7)
 3. **No software installation needed!**
 
 ### For Developers:
@@ -272,4 +293,4 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
-*Last updated: October 2025 | PLS 120 - Applied Statistics in Agricultural Sciences | UC Davis*
+*Last updated: November 2024 | PLS 120 - Applied Statistics in Agricultural Sciences | UC Davis*

@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 PLS 120: Week 7 - Functions &amp; T-Tests Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ucd-green': '#16a085',
+                        'ucd-dark': '#2d8659',
+                        'ucd-light': '#48c9b0'
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .btn-animate {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .pulse-green {
+            animation: pulseGreen 2s infinite;
+        }
+        
+        @keyframes pulseGreen {
+            0%, 100% { background-color: #10b981; }
+            50% { background-color: #34d399; }
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        
+        .function-preview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-full"><!-- Key Concepts Overview -->
+  <section class="py-8 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Week 7 Key Concepts</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+     <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <h3 class="text-lg font-bold text-blue-700 mb-2">🔧 Function Syntax</h3>
+      <div class="text-center bg-white p-3 rounded mb-2"><code class="text-blue-600 font-bold text-xs">myFunction &lt;- function(arg1, arg2) { return(result) }</code>
+      </div>
+      <p class="text-xs text-blue-600">Create reusable code blocks with parameters and return values</p>
+     </div>
+     <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg shadow border-l-4 border-green-500">
+      <h3 class="text-lg font-bold text-green-700 mb-2">📊 Sample Size Function</h3>
+      <div class="text-center bg-white p-3 rounded mb-2"><code class="text-green-600 font-bold">n = z²p(1-p)/E²</code>
+      </div>
+      <p class="text-xs text-green-600">Build functions for statistical calculations like sample size</p>
+     </div>
+     <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg shadow border-l-4 border-purple-500">
+      <h3 class="text-lg font-bold text-purple-700 mb-2">📈 Two-Sample T-Test</h3>
+      <div class="text-center bg-white p-3 rounded mb-2"><code class="text-purple-600 font-bold text-xs">t = (x̄₁-x̄₂)/√(s₁²/n₁ + s₂²/n₂)</code>
+      </div>
+      <p class="text-xs text-purple-600">Compare means between two independent groups</p>
+     </div>
+     <div class="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg shadow border-l-4 border-red-500">
+      <h3 class="text-lg font-bold text-red-700 mb-2">🎯 Hypothesis Testing</h3>
+      <div class="text-center bg-white p-3 rounded mb-2"><code class="text-red-600 font-bold text-xs">H₀: μ₁ = μ₂ vs H₁: μ₁ ≠ μ₂</code>
+      </div>
+      <p class="text-xs text-red-600">Set up null and alternative hypotheses for comparisons</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Interactive Function Builder -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🔧 Interactive Function Builder</h2>
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-blue-700 mb-6 text-center">Build Your Own R Function</h3>
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-blue-700 mb-4">⚙️ Function Definition</h4>
+       <div class="space-y-4">
+        <div><label for="functionName" class="block text-sm font-medium text-blue-700 mb-2">Function Name</label> <input type="text" id="functionName" value="calculateMean" class="w-full p-2 border rounded" oninput="updateFunctionPreview()">
+        </div>
+        <div><label for="functionParams" class="block text-sm font-medium text-blue-700 mb-2">Parameters (comma-separated)</label> <input type="text" id="functionParams" value="values" class="w-full p-2 border rounded" oninput="updateFunctionPreview()">
+        </div>
+        <div><label for="functionBody" class="block text-sm font-medium text-blue-700 mb-2">Function Body</label> <textarea id="functionBody" rows="4" class="w-full p-2 border rounded font-mono text-sm" oninput="updateFunctionPreview()">  result &lt;- sum(values) / length(values)
+  return(result)</textarea>
+        </div>
+        <div class="grid grid-cols-3 gap-2"><button onclick="loadExample('square')" class="bg-blue-500 text-white py-2 rounded btn-animate text-sm">Square</button> <button onclick="loadExample('multiply')" class="bg-blue-500 text-white py-2 rounded btn-animate text-sm">Multiply</button> <button onclick="loadExample('sampleSize')" class="bg-blue-500 text-white py-2 rounded btn-animate text-sm">Sample Size</button>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-blue-700 mb-4">👁️ Live Preview</h4>
+       <div id="functionPreview" class="function-preview mb-4"><!-- Function preview will appear here -->
+       </div>
+       <div class="mt-4">
+        <h5 class="text-sm font-bold text-blue-700 mb-2">🧪 Test Your Function</h5>
+        <div class="space-y-2"><input type="text" id="testInput" placeholder="Enter test values (e.g., 10, 20, 30)" class="w-full p-2 border rounded"> <button onclick="testFunction()" class="w-full bg-green-600 text-white py-2 rounded btn-animate">▶️ Run Function</button>
+         <div id="testResult" class="mt-2 p-3 bg-gray-50 rounded text-sm">
+          Enter test values and click Run to see the result
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-blue-700 mb-4 text-center">📚 Function Examples</h4>
+      <div class="grid md:grid-cols-3 gap-4">
+       <div class="bg-blue-50 p-4 rounded">
+        <h5 class="font-bold text-blue-700 mb-2">Square Function</h5><code class="text-xs">square &lt;- function(x) {<br>
+         &nbsp;&nbsp;return(x * x)<br>
+         }</code>
+       </div>
+       <div class="bg-green-50 p-4 rounded">
+        <h5 class="font-bold text-green-700 mb-2">Multiply Function</h5><code class="text-xs">multiply &lt;- function(a, b) {<br>
+         &nbsp;&nbsp;return(a * b)<br>
+         }</code>
+       </div>
+       <div class="bg-purple-50 p-4 rounded">
+        <h5 class="font-bold text-purple-700 mb-2">Sample Size</h5><code class="text-xs">sampleSize &lt;- function(p, E, z) {<br>
+         &nbsp;&nbsp;return(z^2 * p * (1-p) / E^2)<br>
+         }</code>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Sample Size Calculator -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📊 Sample Size Function Calculator</h2>
+    <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-green-700 mb-6 text-center">🌾 Agricultural Study Sample Size</h3>
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-green-700 mb-4">⚙️ Parameters</h4>
+       <div class="space-y-6">
+        <div><label class="block text-sm font-medium text-green-700 mb-2">Prevalence (p): <span id="prevalenceValue" class="font-bold">0.50</span></label> <input type="range" id="prevalenceSlider" min="0.1" max="0.9" step="0.05" value="0.5" class="w-full" oninput="updateSampleSize()">
+         <div class="text-xs text-gray-600 mt-1">
+          Proportion of population with characteristic
+         </div>
+        </div>
+        <div><label class="block text-sm font-medium text-green-700 mb-2">Alpha (α): <span id="alphaValue" class="font-bold">0.05</span></label> <input type="range" id="alphaSlider" min="0.01" max="0.10" step="0.01" value="0.05" class="w-full" oninput="updateSampleSize()">
+         <div class="text-xs text-gray-600 mt-1">
+          Significance level (1 - confidence level)
+         </div>
+        </div>
+        <div><label class="block text-sm font-medium text-green-700 mb-2">Margin of Error (E): <span id="marginValue" class="font-bold">0.05</span></label> <input type="range" id="marginSlider" min="0.01" max="0.10" step="0.01" value="0.05" class="w-full" oninput="updateSampleSize()">
+         <div class="text-xs text-gray-600 mt-1">
+          Acceptable error in estimate
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-green-700 mb-4">📊 Calculation Results</h4>
+       <div id="sampleSizeResults" class="space-y-4"><!-- Results will appear here -->
+       </div>
+      </div>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-green-700 mb-4 text-center">📈 Sample Size Visualization</h4>
+      <div id="sampleSizeViz" class="w-full"><!-- Visualization will appear here -->
+      </div>
+     </div>
+     <div class="mt-6 bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+      <h5 class="font-bold text-yellow-700 mb-2">🌾 Agricultural Example:</h5>
+      <p class="text-sm text-yellow-700">You're studying the prevalence of a crop disease. With p=0.50 (worst case), α=0.05 (95% confidence), and E=0.05 (±5% error), you need to sample enough fields to accurately estimate disease prevalence.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Two-Sample T-Test Simulator -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📈 Agricultural Treatment Comparison</h2>
+    <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-purple-700 mb-6 text-center">🚜 Two-Sample T-Test Simulator</h3>
+     <div class="grid lg:grid-cols-2 gap-8 mb-8"><!-- Control Group -->
+      <div class="bg-white p-6 rounded-lg shadow border-l-4 border-gray-500">
+       <h4 class="text-lg font-bold text-gray-700 mb-4">🌱 Control Group</h4>
+       <div class="space-y-3">
+        <div><label for="control2N" class="block text-sm font-medium text-gray-700 mb-1">Sample Size (n₁)</label> <input type="number" id="control2N" value="30" min="3" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+        <div><label for="control2Mean" class="block text-sm font-medium text-gray-700 mb-1">Mean Yield (x̄₁) - bu/acre</label> <input type="number" id="control2Mean" value="58.2" step="0.1" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+        <div><label for="control2SD" class="block text-sm font-medium text-gray-700 mb-1">Standard Deviation (s₁)</label> <input type="number" id="control2SD" value="6.8" step="0.1" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+       </div>
+      </div><!-- Treatment Group -->
+      <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+       <h4 class="text-lg font-bold text-green-700 mb-4">🌿 Treatment Group</h4>
+       <div class="space-y-3">
+        <div><label for="treatment2N" class="block text-sm font-medium text-green-700 mb-1">Sample Size (n₂)</label> <input type="number" id="treatment2N" value="28" min="3" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+        <div><label for="treatment2Mean" class="block text-sm font-medium text-green-700 mb-1">Mean Yield (x̄₂) - bu/acre</label> <input type="number" id="treatment2Mean" value="64.7" step="0.1" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+        <div><label for="treatment2SD" class="block text-sm font-medium text-green-700 mb-1">Standard Deviation (s₂)</label> <input type="number" id="treatment2SD" value="7.2" step="0.1" class="w-full p-2 border rounded" oninput="calculateTwoSampleTest()">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="text-center mb-6"><button onclick="generateTwoSampleData()" class="bg-purple-600 text-white px-6 py-3 rounded btn-animate font-semibold"> 🎲 Generate New Sample Data </button>
+     </div><!-- Test Results -->
+     <div id="twoSampleResults" class="bg-white p-6 rounded-lg shadow mb-6">
+      <h4 class="text-lg font-bold text-purple-700 mb-4 text-center">📊 Two-Sample T-Test Results</h4>
+      <div class="text-center text-gray-500">
+       Enter sample data to see the analysis!
+      </div>
+     </div><!-- Visualization -->
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-purple-700 mb-4 text-center">📈 Visual Comparison</h4>
+      <div id="twoSampleViz" class="w-full">
+       <div class="text-center text-6xl mb-4">
+        📊
+       </div>
+       <p class="text-center text-gray-600">Visualization will appear here</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Hypothesis Testing Practice -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Hypothesis Formation Tool</h2>
+    <div class="bg-gradient-to-br from-orange-50 to-amber-100 rounded-lg p-8 mb-8 card-hover">
+     <h3 class="text-2xl font-bold text-orange-700 mb-6 text-center">🔬 Build Your Hypothesis Test</h3>
+     <div class="grid lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-orange-700 mb-4">⚙️ Test Setup</h4>
+       <div class="space-y-4">
+        <div><label for="scenarioSelect" class="block text-sm font-medium text-orange-700 mb-2">Research Scenario</label> <select id="scenarioSelect" class="w-full p-2 border rounded" onchange="updateHypothesis()"> <option value="fertilizer">Fertilizer vs Control</option> <option value="variety">Variety A vs Variety B</option> <option value="irrigation">Drip vs Flood Irrigation</option> <option value="pesticide">Organic vs Chemical Pesticide</option> </select>
+        </div>
+        <div><label for="testType" class="block text-sm font-medium text-orange-700 mb-2">Test Type</label> <select id="testType" class="w-full p-2 border rounded" onchange="updateHypothesis()"> <option value="two-sided">Two-Sided (≠)</option> <option value="greater">One-Sided (&gt;)</option> <option value="less">One-Sided (&lt;)</option> </select>
+        </div>
+        <div><label for="alphaLevel" class="block text-sm font-medium text-orange-700 mb-2">Significance Level (α)</label> <select id="alphaLevel" class="w-full p-2 border rounded" onchange="updateHypothesis()"> <option value="0.10">0.10 (90% confidence)</option> <option value="0.05" selected>0.05 (95% confidence)</option> <option value="0.01">0.01 (99% confidence)</option> </select>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+       <h4 class="text-lg font-bold text-orange-700 mb-4">📝 Hypothesis Statements</h4>
+       <div id="hypothesisDisplay" class="space-y-4"><!-- Hypothesis statements will appear here -->
+       </div>
+      </div>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-orange-700 mb-4 text-center">📊 Rejection Regions</h4>
+      <div id="rejectionViz" class="w-full"><!-- Rejection region visualization will appear here -->
+      </div>
+     </div>
+     <div class="mt-6 bg-white p-6 rounded-lg shadow">
+      <h4 class="text-lg font-bold text-orange-700 mb-4">💡 Interpretation Helper</h4>
+      <div class="grid md:grid-cols-3 gap-4">
+       <div class="bg-green-50 p-4 rounded border-l-4 border-green-500">
+        <h5 class="font-bold text-green-700 mb-2">p-value &lt; α</h5>
+        <p class="text-sm text-green-600">Reject H₀. Evidence supports the alternative hypothesis.</p>
+       </div>
+       <div class="bg-yellow-50 p-4 rounded border-l-4 border-yellow-500">
+        <h5 class="font-bold text-yellow-700 mb-2">p-value ≈ α</h5>
+        <p class="text-sm text-yellow-600">Borderline. Consider practical significance and collect more data.</p>
+       </div>
+       <div class="bg-red-50 p-4 rounded border-l-4 border-red-500">
+        <h5 class="font-bold text-red-700 mb-2">p-value &gt; α</h5>
+        <p class="text-sm text-red-600">Fail to reject H₀. Insufficient evidence for alternative.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Practice Quiz -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Practice Quiz</h2>
+    <div class="max-w-4xl mx-auto">
+     <div class="bg-gradient-to-br from-indigo-50 to-blue-100 rounded-lg shadow-lg p-6">
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-indigo-700">Question <span id="currentQuestion">1</span> of 5</h3>
+        <div class="text-sm text-indigo-600">
+         Progress: <span id="quizProgress">0%</span>
+        </div>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3">
+        <div id="progressBar" class="bg-indigo-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+       </div>
+      </div>
+      <div id="quizContent"><!-- Quiz questions will be loaded here -->
+      </div>
+      <div class="mt-6 flex justify-between"><button id="prevBtn" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded btn-animate" disabled>Previous</button> <button id="nextBtn" onclick="nextQuestion()" class="bg-indigo-500 text-white px-6 py-2 rounded btn-animate">Next</button>
+      </div>
+      <div id="quizResults" class="mt-6 hidden"><!-- Results will be shown here -->
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Key Takeaways -->
+  <section class="py-12 bg-gradient-to-br from-green-50 to-emerald-100">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎓 Key Takeaways</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-blue-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        🔧
+       </div>
+       <h3 class="text-xl font-bold text-blue-700">Function Benefits</h3>
+      </div>
+      <ul class="text-blue-600 text-sm space-y-1">
+       <li>• Reusable code blocks</li>
+       <li>• Fewer errors and bugs</li>
+       <li>• Organized analysis workflow</li>
+       <li>• Easy to test and debug</li>
+      </ul>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-green-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        📊
+       </div>
+       <h3 class="text-xl font-bold text-green-700">T-Test Applications</h3>
+      </div>
+      <ul class="text-green-600 text-sm space-y-1">
+       <li>• Treatment comparisons</li>
+       <li>• Group differences analysis</li>
+       <li>• Agricultural decisions</li>
+       <li>• Evidence-based farming</li>
+      </ul>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow card-hover border-l-4 border-purple-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        🌾
+       </div>
+       <h3 class="text-xl font-bold text-purple-700">Agricultural Examples</h3>
+      </div>
+      <ul class="text-purple-600 text-sm space-y-1">
+       <li>• Fertilizer effectiveness trials</li>
+       <li>• Crop variety testing</li>
+       <li>• Irrigation method studies</li>
+       <li>• Pest management evaluation</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Global variables
+        let currentQuestionIndex = 0;
+        let quizAnswers = [];
+        
+        // Quiz questions
+        const quizQuestions = [
+            {
+                question: "When should you use a two-sample t-test instead of a one-sample t-test?",
+                options: [
+                    "When you have a large sample size",
+                    "When comparing means of two independent groups",
+                    "When the population standard deviation is known",
+                    "When testing against a hypothesized value"
+                ],
+                correct: 1,
+                explanation: "Use a two-sample t-test when comparing the means of two independent groups (e.g., treatment vs control). One-sample tests compare a single sample mean to a hypothesized value."
+            },
+            {
+                question: "What does the return() statement do in an R function?",
+                options: [
+                    "It prints the result to the console",
+                    "It saves the result to a file",
+                    "It specifies the value the function outputs",
+                    "It restarts the function from the beginning"
+                ],
+                correct: 2,
+                explanation: "The return() statement specifies what value the function will output when called. This value can then be assigned to a variable or used in further calculations."
+            },
+            {
+                question: "How do you interpret a p-value of 0.03 in a two-sample t-test with α = 0.05?",
+                options: [
+                    "Fail to reject H₀; no significant difference",
+                    "Reject H₀; there is a significant difference",
+                    "The test is inconclusive",
+                    "Need to collect more data"
+                ],
+                correct: 1,
+                explanation: "Since p-value (0.03) < α (0.05), we reject the null hypothesis. This means there is statistically significant evidence of a difference between the two groups."
+            },
+            {
+                question: "In the sample size formula n = z²p(1-p)/E², what does E represent?",
+                options: [
+                    "The expected value",
+                    "The margin of error",
+                    "The effect size",
+                    "The experimental error"
+                ],
+                correct: 1,
+                explanation: "E represents the margin of error - the maximum acceptable difference between the sample estimate and the true population parameter. Smaller E requires larger sample size."
+            },
+            {
+                question: "What is the main difference between one-sided and two-sided hypothesis tests?",
+                options: [
+                    "One-sided tests are always more powerful",
+                    "Two-sided tests require larger sample sizes",
+                    "One-sided tests look for differences in a specific direction only",
+                    "Two-sided tests are only used for large samples"
+                ],
+                correct: 2,
+                explanation: "One-sided tests (H₁: μ₁ > μ₂ or μ₁ < μ₂) test for differences in a specific direction. Two-sided tests (H₁: μ₁ ≠ μ₂) test for any difference, regardless of direction."
+            }
+        ];
+
+        // Utility functions
+        function normalRandom(mean = 0, sd = 1) {
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random();
+            while(v === 0) v = Math.random();
+            return mean + sd * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        }
+
+        function getTValue(df, alpha) {
+            const tTable = {
+                90: { 5: 2.015, 10: 1.812, 15: 1.753, 20: 1.725, 25: 1.708, 30: 1.697, 50: 1.676, 100: 1.660 },
+                95: { 5: 2.571, 10: 2.228, 15: 2.131, 20: 2.086, 25: 2.060, 30: 2.042, 50: 2.009, 100: 1.984 },
+                99: { 5: 4.032, 10: 3.169, 15: 2.947, 20: 2.845, 25: 2.787, 30: 2.750, 50: 2.678, 100: 2.626 }
+            };
+            
+            const confidence = 100 - alpha * 100;
+            const table = tTable[confidence];
+            
+            const dfs = Object.keys(table).map(Number).sort((a, b) => a - b);
+            let closestDf = dfs[0];
+            for (let i = 0; i < dfs.length; i++) {
+                if (df >= dfs[i]) closestDf = dfs[i];
+            }
+            
+            return table[closestDf];
+        }
+
+        function getZValue(confidence) {
+            switch(confidence) {
+                case 90: return 1.645;
+                case 95: return 1.96;
+                case 99: return 2.576;
+                default: return 1.96;
+            }
+        }
+
+        // Function Builder
+        function updateFunctionPreview() {
+            const name = document.getElementById('functionName').value || 'myFunction';
+            const params = document.getElementById('functionParams').value || 'x';
+            const body = document.getElementById('functionBody').value || '  return(x)';
+            
+            const preview = `${name} <- function(${params}) {\n${body}\n}`;
+            
+            document.getElementById('functionPreview').innerHTML = `<pre>${preview}</pre>`;
+        }
+
+        function loadExample(type) {
+            switch(type) {
+                case 'square':
+                    document.getElementById('functionName').value = 'square';
+                    document.getElementById('functionParams').value = 'x';
+                    document.getElementById('functionBody').value = '  result <- x * x\n  return(result)';
+                    document.getElementById('testInput').placeholder = 'Enter a number (e.g., 5)';
+                    break;
+                case 'multiply':
+                    document.getElementById('functionName').value = 'multiply';
+                    document.getElementById('functionParams').value = 'a, b';
+                    document.getElementById('functionBody').value = '  result <- a * b\n  return(result)';
+                    document.getElementById('testInput').placeholder = 'Enter two numbers (e.g., 3, 4)';
+                    break;
+                case 'sampleSize':
+                    document.getElementById('functionName').value = 'sampleSize';
+                    document.getElementById('functionParams').value = 'p, E, z';
+                    document.getElementById('functionBody').value = '  n <- z^2 * p * (1-p) / E^2\n  return(ceiling(n))';
+                    document.getElementById('testInput').placeholder = 'Enter p, E, z (e.g., 0.5, 0.05, 1.96)';
+                    break;
+            }
+            updateFunctionPreview();
+        }
+
+        function testFunction() {
+            const name = document.getElementById('functionName').value;
+            const params = document.getElementById('functionParams').value.split(',').map(p => p.trim());
+            const body = document.getElementById('functionBody').value;
+            const testInput = document.getElementById('testInput').value;
+            
+            if (!testInput) {
+                document.getElementById('testResult').innerHTML = '<div class="text-red-600">⚠️ Please enter test values</div>';
+                return;
+            }
+            
+            try {
+                const inputs = testInput.split(',').map(v => parseFloat(v.trim()));
+                
+                if (inputs.length !== params.length) {
+                    document.getElementById('testResult').innerHTML = `<div class="text-red-600">⚠️ Expected ${params.length} parameter(s), got ${inputs.length}</div>`;
+                    return;
+                }
+                
+                // Simple evaluation for common functions
+                let result;
+                if (name === 'square' && params.length === 1) {
+                    result = inputs[0] * inputs[0];
+                } else if (name === 'multiply' && params.length === 2) {
+                    result = inputs[0] * inputs[1];
+                } else if (name === 'sampleSize' && params.length === 3) {
+                    const [p, E, z] = inputs;
+                    result = Math.ceil(z * z * p * (1 - p) / (E * E));
+                } else if (name === 'calculateMean') {
+                    result = inputs.reduce((a, b) => a + b, 0) / inputs.length;
+                } else {
+                    result = 'Function executed (result depends on implementation)';
+                }
+                
+                document.getElementById('testResult').innerHTML = `
+                    <div class="text-green-600 font-bold">✅ Success!</div>
+                    <div class="mt-2">
+                        <div class="text-sm text-gray-600">Input: ${testInput}</div>
+                        <div class="text-lg font-bold text-blue-600">Result: ${typeof result === 'number' ? result.toFixed(4) : result}</div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('testResult').innerHTML = `<div class="text-red-600">⚠️ Error: ${error.message}</div>`;
+            }
+        }
+
+        // Sample Size Calculator
+        function updateSampleSize() {
+            const p = parseFloat(document.getElementById('prevalenceSlider').value);
+            const alpha = parseFloat(document.getElementById('alphaSlider').value);
+            const E = parseFloat(document.getElementById('marginSlider').value);
+            
+            document.getElementById('prevalenceValue').textContent = p.toFixed(2);
+            document.getElementById('alphaValue').textContent = alpha.toFixed(2);
+            document.getElementById('marginValue').textContent = E.toFixed(2);
+            
+            const confidence = (1 - alpha) * 100;
+            const z = getZValue(Math.round(confidence));
+            
+            const n = Math.ceil((z * z * p * (1 - p)) / (E * E));
+            
+            document.getElementById('sampleSizeResults').innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-blue-700 mb-2">Step 1: Z-Value</h5>
+                        <div class="text-lg">z = ${z.toFixed(3)}</div>
+                        <div class="text-xs text-gray-600">For ${confidence.toFixed(0)}% confidence level</div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-green-700 mb-2">Step 2: Formula</h5>
+                        <div class="font-mono text-sm">n = z²p(1-p)/E²</div>
+                        <div class="font-mono text-sm">n = (${z.toFixed(3)})² × ${p.toFixed(2)} × ${(1-p).toFixed(2)} / (${E.toFixed(2)})²</div>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-400">
+                        <h5 class="font-bold text-purple-700 mb-2">Step 3: Required Sample Size</h5>
+                        <div class="text-3xl font-bold text-purple-600">n = ${n}</div>
+                        <div class="text-xs text-gray-600 mt-1">You need to sample ${n} fields/plots</div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-3 rounded-lg text-sm">
+                        <div class="font-semibold text-yellow-700">💡 Interpretation:</div>
+                        <div class="text-yellow-600">
+                            With ${n} samples, you can estimate the prevalence within ±${(E*100).toFixed(1)}% 
+                            with ${confidence.toFixed(0)}% confidence.
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            createSampleSizeVisualization(p, E, z, n);
+        }
+
+        function createSampleSizeVisualization(p, E, z, n) {
+            const scenarios = [
+                { E: 0.10, n: Math.ceil((z * z * p * (1 - p)) / (0.10 * 0.10)) },
+                { E: 0.05, n: Math.ceil((z * z * p * (1 - p)) / (0.05 * 0.05)) },
+                { E: 0.03, n: Math.ceil((z * z * p * (1 - p)) / (0.03 * 0.03)) },
+                { E: 0.01, n: Math.ceil((z * z * p * (1 - p)) / (0.01 * 0.01)) }
+            ];
+            
+            const maxN = Math.max(...scenarios.map(s => s.n));
+            
+            document.getElementById('sampleSizeViz').innerHTML = `
+                <div class="space-y-4">
+                    <div class="text-center text-sm font-semibold text-gray-700 mb-4">
+                        How Margin of Error Affects Sample Size (p=${p.toFixed(2)}, confidence=${((1-parseFloat(document.getElementById('alphaSlider').value))*100).toFixed(0)}%)
+                    </div>
+                    ${scenarios.map(s => {
+                        const barWidth = (s.n / maxN) * 100;
+                        const labelPosition = barWidth > 85 ? 'inside' : 'outside';
+                        return `
+                        <div class="flex items-center space-x-4">
+                            <div class="w-24 text-sm font-semibold text-gray-700">E = ${(s.E*100).toFixed(0)}%</div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-8 relative">
+                                <div class="bg-gradient-to-r from-green-400 to-green-600 h-8 rounded-full" 
+                                     style="width: ${barWidth}%">
+                                </div>
+                                ${labelPosition === 'inside' ? 
+                                    `<div class="absolute top-0 right-2 h-8 flex items-center font-bold text-sm text-white">
+                                        n = ${s.n}
+                                    </div>` :
+                                    `<div class="absolute top-0 left-0 h-8 flex items-center pl-2 font-bold text-sm text-gray-700" 
+                                         style="left: ${barWidth + 1}%">
+                                        n = ${s.n}
+                                    </div>`
+                                }
+                            </div>
+                        </div>
+                    `}).join('')}
+                    <div class="text-center text-xs text-gray-600 mt-4">
+                        Smaller margin of error requires larger sample size
+                    </div>
+                </div>
+            `;
+        }
+
+        // Two-Sample T-Test
+        function calculateTwoSampleTest() {
+            const n1 = parseInt(document.getElementById('control2N').value);
+            const x1 = parseFloat(document.getElementById('control2Mean').value);
+            const s1 = parseFloat(document.getElementById('control2SD').value);
+            
+            const n2 = parseInt(document.getElementById('treatment2N').value);
+            const x2 = parseFloat(document.getElementById('treatment2Mean').value);
+            const s2 = parseFloat(document.getElementById('treatment2SD').value);
+            
+            // Calculate pooled standard error
+            const se = Math.sqrt((s1 * s1 / n1) + (s2 * s2 / n2));
+            
+            // Calculate t-statistic
+            const tStat = (x2 - x1) / se;
+            
+            // Calculate degrees of freedom (Welch's approximation)
+            const df = Math.floor(
+                Math.pow((s1*s1/n1 + s2*s2/n2), 2) /
+                (Math.pow(s1*s1/n1, 2)/(n1-1) + Math.pow(s2*s2/n2, 2)/(n2-1))
+            );
+            
+            const alpha = 0.05;
+            const tCritical = getTValue(df, alpha);
+            
+            const significant = Math.abs(tStat) > tCritical;
+            
+            // Calculate confidence interval for difference
+            const diff = x2 - x1;
+            const ciMargin = tCritical * se;
+            const ciLower = diff - ciMargin;
+            const ciUpper = diff + ciMargin;
+            
+            // Approximate p-value
+            const pValue = 2 * (1 - normalCDF(Math.abs(tStat)));
+            
+            document.getElementById('twoSampleResults').innerHTML = `
+                <h4 class="text-lg font-bold text-purple-700 mb-4 text-center">📊 Two-Sample T-Test Results</h4>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-700 mb-2">🌱 Control Group</h5>
+                            <div class="text-sm space-y-1">
+                                <div>n₁ = ${n1}, x̄₁ = ${x1.toFixed(1)}, s₁ = ${s1.toFixed(1)}</div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h5 class="font-bold text-green-700 mb-2">🌿 Treatment Group</h5>
+                            <div class="text-sm space-y-1">
+                                <div>n₂ = ${n2}, x̄₂ = ${x2.toFixed(1)}, s₂ = ${s2.toFixed(1)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h5 class="font-bold text-blue-700 mb-2">📊 Test Statistics</h5>
+                            <div class="text-sm space-y-1">
+                                <div>SE = ${se.toFixed(3)}</div>
+                                <div>t = ${tStat.toFixed(3)}</div>
+                                <div>df = ${df}</div>
+                                <div>t-critical = ±${tCritical.toFixed(3)}</div>
+                                <div>p-value ≈ ${pValue.toFixed(4)}</div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h5 class="font-bold text-purple-700 mb-2">📏 95% CI for Difference</h5>
+                            <div class="text-sm">
+                                [${ciLower.toFixed(2)}, ${ciUpper.toFixed(2)}] bu/acre
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center p-4 rounded ${significant ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                    <div class="text-2xl mb-2">${significant ? '✅' : '❌'}</div>
+                    <div class="font-bold text-lg">
+                        ${significant ? 'Reject H₀' : 'Fail to Reject H₀'}
+                    </div>
+                    <div class="text-sm mt-2">
+                        ${significant ? 
+                            `Treatment shows a significant difference of ${diff.toFixed(1)} bu/acre (p = ${pValue.toFixed(4)})` :
+                            `No significant difference detected between groups (p = ${pValue.toFixed(4)})`}
+                    </div>
+                </div>
+                
+                <div class="mt-4 bg-gray-50 p-3 rounded text-sm">
+                    <div class="font-semibold text-gray-700 mb-1">📝 Interpretation:</div>
+                    <div class="text-gray-600">
+                        ${significant ? 
+                            'The treatment group has a statistically significant different mean yield compared to the control group. The confidence interval suggests the true difference is between ' + ciLower.toFixed(1) + ' and ' + ciUpper.toFixed(1) + ' bu/acre.' :
+                            'There is insufficient evidence to conclude that the treatment affects yield differently than the control.'}
+                    </div>
+                </div>
+            `;
+            
+            createTwoSampleVisualization(n1, x1, s1, n2, x2, s2, tStat, tCritical, significant);
+        }
+
+        function generateTwoSampleData() {
+            const baseYield = 55 + Math.random() * 10;
+            const treatmentEffect = 3 + Math.random() * 8;
+            
+            const n1 = 25 + Math.floor(Math.random() * 15);
+            const n2 = 25 + Math.floor(Math.random() * 15);
+            
+            const s1 = 5 + Math.random() * 4;
+            const s2 = 5 + Math.random() * 4;
+            
+            const x1 = baseYield + normalRandom(0, 1);
+            const x2 = baseYield + treatmentEffect + normalRandom(0, 1);
+            
+            document.getElementById('control2N').value = n1;
+            document.getElementById('control2Mean').value = x1.toFixed(1);
+            document.getElementById('control2SD').value = s1.toFixed(1);
+            
+            document.getElementById('treatment2N').value = n2;
+            document.getElementById('treatment2Mean').value = x2.toFixed(1);
+            document.getElementById('treatment2SD').value = s2.toFixed(1);
+            
+            calculateTwoSampleTest();
+        }
+
+        function createTwoSampleVisualization(n1, x1, s1, n2, x2, s2, tStat, tCrit, significant) {
+            const width = 700;
+            const height = 300;
+            
+            // Box plot visualization - stacked vertically
+            const minVal = Math.min(x1 - 2*s1, x2 - 2*s2);
+            const maxVal = Math.max(x1 + 2*s1, x2 + 2*s2);
+            const range = maxVal - minVal;
+            
+            const boxPlot = `
+                <div class="space-y-6 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-bold text-green-700 mb-3 flex items-center">
+                            <span class="text-2xl mr-2">🌿</span> Treatment Group
+                        </h5>
+                        <div class="relative h-24 bg-white rounded pt-6">
+                            <div class="absolute top-6 text-xs font-bold text-green-700" style="left: ${((x2 - minVal) / range) * 100}%; transform: translateX(-50%)">
+                                x̄₂ = ${x2.toFixed(1)}
+                            </div>
+                            <div class="absolute top-10 left-0 right-0 h-12 bg-green-400 rounded" 
+                                 style="left: ${((x2 - s2 - minVal) / range) * 100}%; width: ${(2 * s2 / range) * 100}%">
+                            </div>
+                            <div class="absolute top-10 w-1 h-12 bg-green-700" style="left: ${((x2 - minVal) / range) * 100}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-500">
+                        <h5 class="font-bold text-gray-700 mb-3 flex items-center">
+                            <span class="text-2xl mr-2">🌱</span> Control Group
+                        </h5>
+                        <div class="relative h-24 bg-white rounded pt-6">
+                            <div class="absolute top-6 text-xs font-bold text-gray-700" style="left: ${((x1 - minVal) / range) * 100}%; transform: translateX(-50%)">
+                                x̄₁ = ${x1.toFixed(1)}
+                            </div>
+                            <div class="absolute top-10 left-0 right-0 h-12 bg-gray-400 rounded" 
+                                 style="left: ${((x1 - s1 - minVal) / range) * 100}%; width: ${(2 * s1 / range) * 100}%">
+                            </div>
+                            <div class="absolute top-10 w-1 h-12 bg-gray-700" style="left: ${((x1 - minVal) / range) * 100}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center text-xs text-gray-600">
+                        Box width represents ±1 standard deviation. Vertical line shows the mean.
+                    </div>
+                </div>
+            `;
+            
+            // T-distribution visualization
+            const tDistViz = createTDistributionViz(tStat, tCrit, significant);
+            
+            document.getElementById('twoSampleViz').innerHTML = boxPlot + tDistViz;
+        }
+
+        function createTDistributionViz(tStat, tCrit, significant) {
+            const width = 600;
+            const height = 250;
+            const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+            
+            let svgHTML = `
+                <div class="bg-white p-4 rounded-lg">
+                    <h5 class="text-center font-bold text-purple-700 mb-4">T-Distribution with Test Statistic</h5>
+                    <svg width="${width}" height="${height}" class="mx-auto">
+            `;
+            
+            // Generate t-distribution curve
+            const points = [];
+            const df = 30; // approximate
+            for (let x = -4; x <= 4; x += 0.1) {
+                const xPos = margin.left + ((x + 4) / 8) * (width - margin.left - margin.right);
+                const y = Math.pow(1 + (x * x) / df, -(df + 1) / 2);
+                const yPos = height - margin.bottom - (y * 0.5 * (height - margin.top - margin.bottom));
+                points.push(`${xPos},${yPos}`);
+            }
+            
+            svgHTML += `<polyline points="${points.join(' ')}" fill="none" stroke="#3b82f6" stroke-width="3" />`;
+            
+            // Add critical regions
+            const tCritPos = margin.left + ((tCrit + 4) / 8) * (width - margin.left - margin.right);
+            const tCritNegPos = margin.left + ((-tCrit + 4) / 8) * (width - margin.left - margin.right);
+            
+            svgHTML += `
+                <rect x="${margin.left}" y="${margin.top}" width="${tCritNegPos - margin.left}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.2)" />
+                <rect x="${tCritPos}" y="${margin.top}" width="${width - margin.right - tCritPos}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.2)" />
+                <line x1="${tCritPos}" y1="${margin.top}" x2="${tCritPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+                <line x1="${tCritNegPos}" y1="${margin.top}" x2="${tCritNegPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+            `;
+            
+            // Add t-statistic line
+            const tStatPos = margin.left + ((tStat + 4) / 8) * (width - margin.left - margin.right);
+            svgHTML += `
+                <line x1="${tStatPos}" y1="${margin.top}" x2="${tStatPos}" y2="${height - margin.bottom}" stroke="${significant ? '#dc2626' : '#059669'}" stroke-width="4" />
+                <circle cx="${tStatPos}" cy="${margin.top + 10}" r="6" fill="${significant ? '#dc2626' : '#059669'}" />
+                <text x="${tStatPos}" y="${margin.top - 5}" text-anchor="middle" font-size="12" fill="${significant ? '#dc2626' : '#059669'}" font-weight="bold">t=${tStat.toFixed(2)}</text>
+            `;
+            
+            // Add x-axis
+            svgHTML += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="#666" stroke-width="1" />`;
+            
+            for (let i = -3; i <= 3; i++) {
+                const xPos = margin.left + ((i + 4) / 8) * (width - margin.left - margin.right);
+                svgHTML += `
+                    <line x1="${xPos}" y1="${height - margin.bottom}" x2="${xPos}" y2="${height - margin.bottom + 5}" stroke="#666" stroke-width="1" />
+                    <text x="${xPos}" y="${height - margin.bottom + 20}" text-anchor="middle" font-size="12" fill="#666">${i}</text>
+                `;
+            }
+            
+            svgHTML += `
+                    </svg>
+                    <div class="text-center text-xs text-gray-600 mt-2">
+                        Red shaded areas are rejection regions (α = 0.05). Your t-statistic ${significant ? 'falls in' : 'does not fall in'} the rejection region.
+                    </div>
+                </div>
+            `;
+            
+            return svgHTML;
+        }
+
+        // Hypothesis Testing Tool
+        function updateHypothesis() {
+            const scenario = document.getElementById('scenarioSelect').value;
+            const testType = document.getElementById('testType').value;
+            const alpha = parseFloat(document.getElementById('alphaLevel').value);
+            
+            const scenarios = {
+                fertilizer: { group1: 'Control', group2: 'Fertilizer', measure: 'yield' },
+                variety: { group1: 'Variety A', group2: 'Variety B', measure: 'yield' },
+                irrigation: { group1: 'Flood Irrigation', group2: 'Drip Irrigation', measure: 'water efficiency' },
+                pesticide: { group1: 'Chemical Pesticide', group2: 'Organic Pesticide', measure: 'pest control' }
+            };
+            
+            const s = scenarios[scenario];
+            
+            let h0, h1, description;
+            
+            switch(testType) {
+                case 'two-sided':
+                    h0 = `H₀: μ₁ = μ₂`;
+                    h1 = `H₁: μ₁ ≠ μ₂`;
+                    description = `Testing if there is ANY difference in ${s.measure} between ${s.group1} and ${s.group2}`;
+                    break;
+                case 'greater':
+                    h0 = `H₀: μ₁ ≤ μ₂`;
+                    h1 = `H₁: μ₁ > μ₂`;
+                    description = `Testing if ${s.group1} has GREATER ${s.measure} than ${s.group2}`;
+                    break;
+                case 'less':
+                    h0 = `H₀: μ₁ ≥ μ₂`;
+                    h1 = `H₁: μ₁ < μ₂`;
+                    description = `Testing if ${s.group1} has LESS ${s.measure} than ${s.group2}`;
+                    break;
+            }
+            
+            document.getElementById('hypothesisDisplay').innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-blue-700 mb-2">📋 Research Question</h5>
+                        <p class="text-sm text-blue-600">${description}</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-gray-700 mb-2">Null Hypothesis</h5>
+                        <div class="text-lg font-mono">${h0}</div>
+                        <p class="text-xs text-gray-600 mt-1">No difference between groups</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-green-700 mb-2">Alternative Hypothesis</h5>
+                        <div class="text-lg font-mono">${h1}</div>
+                        <p class="text-xs text-gray-600 mt-1">There is a difference between groups</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-bold text-purple-700 mb-2">Test Parameters</h5>
+                        <div class="text-sm space-y-1">
+                            <div>Significance Level: α = ${alpha}</div>
+                            <div>Confidence Level: ${((1-alpha)*100).toFixed(0)}%</div>
+                            <div>Test Type: ${testType === 'two-sided' ? 'Two-Sided' : 'One-Sided'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            createRejectionVisualization(testType, alpha);
+        }
+
+        function createRejectionVisualization(testType, alpha) {
+            const width = 600;
+            const height = 250;
+            const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+            
+            const z = getZValue(Math.round((1-alpha)*100));
+            
+            let svgHTML = `
+                <svg width="${width}" height="${height}" class="mx-auto">
+            `;
+            
+            // Generate normal curve
+            const points = [];
+            for (let x = -4; x <= 4; x += 0.1) {
+                const xPos = margin.left + ((x + 4) / 8) * (width - margin.left - margin.right);
+                const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+                const yPos = height - margin.bottom - (y * 0.4 * (height - margin.top - margin.bottom));
+                points.push(`${xPos},${yPos}`);
+            }
+            
+            svgHTML += `<polyline points="${points.join(' ')}" fill="none" stroke="#3b82f6" stroke-width="3" />`;
+            
+            // Add rejection regions based on test type
+            if (testType === 'two-sided') {
+                const critPos = margin.left + ((z + 4) / 8) * (width - margin.left - margin.right);
+                const critNegPos = margin.left + ((-z + 4) / 8) * (width - margin.left - margin.right);
+                
+                svgHTML += `
+                    <rect x="${margin.left}" y="${margin.top}" width="${critNegPos - margin.left}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.3)" />
+                    <rect x="${critPos}" y="${margin.top}" width="${width - margin.right - critPos}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.3)" />
+                    <line x1="${critPos}" y1="${margin.top}" x2="${critPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+                    <line x1="${critNegPos}" y1="${margin.top}" x2="${critNegPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+                    <text x="${critNegPos}" y="${margin.top - 5}" text-anchor="middle" font-size="10" fill="#ef4444">-${z.toFixed(2)}</text>
+                    <text x="${critPos}" y="${margin.top - 5}" text-anchor="middle" font-size="10" fill="#ef4444">${z.toFixed(2)}</text>
+                `;
+            } else if (testType === 'greater') {
+                const critPos = margin.left + ((z + 4) / 8) * (width - margin.left - margin.right);
+                svgHTML += `
+                    <rect x="${critPos}" y="${margin.top}" width="${width - margin.right - critPos}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.3)" />
+                    <line x1="${critPos}" y1="${margin.top}" x2="${critPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+                    <text x="${critPos}" y="${margin.top - 5}" text-anchor="middle" font-size="10" fill="#ef4444">${z.toFixed(2)}</text>
+                `;
+            } else {
+                const critNegPos = margin.left + ((-z + 4) / 8) * (width - margin.left - margin.right);
+                svgHTML += `
+                    <rect x="${margin.left}" y="${margin.top}" width="${critNegPos - margin.left}" height="${height - margin.top - margin.bottom}" fill="rgba(239, 68, 68, 0.3)" />
+                    <line x1="${critNegPos}" y1="${margin.top}" x2="${critNegPos}" y2="${height - margin.bottom}" stroke="#ef4444" stroke-width="2" />
+                    <text x="${critNegPos}" y="${margin.top - 5}" text-anchor="middle" font-size="10" fill="#ef4444">-${z.toFixed(2)}</text>
+                `;
+            }
+            
+            // Add x-axis
+            svgHTML += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="#666" stroke-width="1" />`;
+            
+            for (let i = -3; i <= 3; i++) {
+                const xPos = margin.left + ((i + 4) / 8) * (width - margin.left - margin.right);
+                svgHTML += `
+                    <line x1="${xPos}" y1="${height - margin.bottom}" x2="${xPos}" y2="${height - margin.bottom + 5}" stroke="#666" stroke-width="1" />
+                    <text x="${xPos}" y="${height - margin.bottom + 20}" text-anchor="middle" font-size="12" fill="#666">${i}</text>
+                `;
+            }
+            
+            svgHTML += `</svg>`;
+            
+            const testTypeNames = {
+                'two-sided': 'Two-Sided Test',
+                'greater': 'Right-Tailed Test',
+                'less': 'Left-Tailed Test'
+            };
+            
+            document.getElementById('rejectionViz').innerHTML = `
+                ${svgHTML}
+                <div class="mt-4 text-center">
+                    <div class="inline-flex items-center space-x-4 text-sm">
+                        <div class="flex items-center">
+                            <div class="w-6 h-4 bg-red-300 mr-2"></div>
+                            <span>Rejection Region (α = ${alpha})</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-4 bg-green-200 mr-2"></div>
+                            <span>Acceptance Region</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-600 mt-2">
+                        ${testTypeNames[testType]}: Reject H₀ if test statistic falls in red region
+                    </div>
+                </div>
+            `;
+        }
+
+        // Quiz Functions
+        function loadQuizQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            const selectedAnswer = quizAnswers[currentQuestionIndex];
+            
+            document.getElementById('quizContent').innerHTML = `
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    <div class="space-y-2">
+                        ${question.options.map((option, index) => `
+                            <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer ${selectedAnswer === index ? 'bg-blue-50 border-blue-400' : ''}">
+                                <input type="radio" name="answer" value="${index}" ${selectedAnswer === index ? 'checked' : ''} class="mr-3">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            updateQuizProgress();
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                quizAnswers[currentQuestionIndex] = parseInt(selectedAnswer.value);
+            }
+            
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuizQuestion();
+            }
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('quizProgress').textContent = `${Math.round(progress)}%`;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Finish' : 'Next';
+        }
+
+        function showQuizResults() {
+            let correct = 0;
+            quizQuestions.forEach((question, index) => {
+                if (quizAnswers[index] === question.correct) correct++;
+            });
+            
+            const percentage = (correct / quizQuestions.length) * 100;
+            
+            document.getElementById('quizContent').innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">Quiz Complete!</h3>
+                    <div class="text-6xl mb-4">${percentage >= 80 ? '🎉' : percentage >= 60 ? '👍' : '📚'}</div>
+                    <p class="text-xl mb-4">You scored ${correct} out of ${quizQuestions.length} (${percentage.toFixed(0)}%)</p>
+                    <div class="text-left mt-6 space-y-4">
+                        ${quizQuestions.map((question, index) => `
+                            <div class="border rounded p-4 ${quizAnswers[index] === question.correct ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}">
+                                <p class="font-semibold mb-2">Q${index + 1}: ${question.question}</p>
+                                <p class="text-sm text-gray-600 mb-2">Your answer: ${question.options[quizAnswers[index] || 0]}</p>
+                                ${quizAnswers[index] !== question.correct ? `<p class="text-sm text-gray-600 mb-2">Correct answer: ${question.options[question.correct]}</p>` : ''}
+                                <p class="text-sm text-blue-600">${question.explanation}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('prevBtn').style.display = 'none';
+        }
+
+        function normalCDF(z) {
+            return 0.5 * (1 + erf(z / Math.sqrt(2)));
+        }
+
+        function erf(x) {
+            const a1 =  0.254829592;
+            const a2 = -0.284496736;
+            const a3 =  1.421413741;
+            const a4 = -1.453152027;
+            const a5 =  1.061405429;
+            const p  =  0.3275911;
+            
+            const sign = x >= 0 ? 1 : -1;
+            x = Math.abs(x);
+            
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+            
+            return sign * y;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFunctionPreview();
+            updateSampleSize();
+            calculateTwoSampleTest();
+            updateHypothesis();
+            loadQuizQuestion();
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99d139c2574767a9',t:'MTc2MjkwMDEzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
