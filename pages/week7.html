@@ -1,0 +1,399 @@
+<h1 class="page-title">📊 Week 7: Functions and T-Tests</h1>
+<p class="page-subtitle">Master Custom Functions and Statistical Comparisons 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 7 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 7!</strong> This week, we explore <strong>custom functions in R and two-sample t-tests</strong> - essential skills for creating reusable code and comparing groups in agricultural research. Learn to write functions, perform statistical tests, and interpret results!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🔧</span>
+                <span><strong>Custom Functions</strong> - Create reusable functions for repetitive tasks</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Sample Size Functions</strong> - Build functions for statistical calculations</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔬</span>
+                <span><strong>Hypothesis Formation</strong> - Set up null and alternative hypotheses</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>Two-Sample T-Tests</strong> - Compare means between two groups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">⚖️</span>
+                <span><strong>Welch's T-Test</strong> - Handle unequal variances between groups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎯</span>
+                <span><strong>One-Sided Tests</strong> - Test directional hypotheses</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 7 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 7"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for functions and t-tests.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 7 on fertilizer treatment comparison</li>
+            <li><code>class_activity/</code> - Week 7 lab tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 7 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week7_Regression_Analysis.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore Functions and T-Tests 📊</h3>
+        <p>This week we'll work with custom functions and the iris dataset! The notebook will guide you through:</p>
+        <ul>
+            <li>Creating custom functions with parameters and return values</li>
+            <li>Building sample size calculation functions</li>
+            <li>Loading and visualizing the iris dataset</li>
+            <li>Forming statistical hypotheses for group comparisons</li>
+            <li>Performing two-sample t-tests with Welch's method</li>
+            <li>Interpreting p-values, confidence intervals, and test statistics</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Functions and T-Tests</h3>
+        <p>Use these interactive tools to understand function creation and t-test concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/Week7_Interactive_Tool.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to practice function syntax and visualize t-test concepts before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Function Creation</h3>
+        <div class="code-block">
+            <code>myFunction <- function(arg1, arg2) {     # Define function</code><br>
+            <code>  result <- arg1 + arg2                  # Function body</code><br>
+            <code>  return(result)                         # Return value</code><br>
+            <code>}                                        # End function</code>
+        </div>
+
+        <h3 class="card-title">Sample Size Function</h3>
+        <div class="code-block">
+            <code>calculate_sample_size <- function(prev, alpha, margin_error) {</code><br>
+            <code>  z <- qnorm(1 - alpha / 2)             # Critical z-value</code><br>
+            <code>  n <- z^2 * prev * (1 - prev) / (margin_error^2)</code><br>
+            <code>  return(ceiling(n))                     # Round up</code><br>
+            <code>}</code>
+        </div>
+
+        <h3 class="card-title">Two-Sample T-Tests</h3>
+        <div class="code-block">
+            <code>t.test(group1, group2, alternative = "two.sided")  # Two-sided test</code><br>
+            <code>t.test(group1, group2, var.equal = FALSE)         # Welch's t-test</code><br>
+            <code>t.test(group1, group2, alternative = "greater")   # One-sided test</code><br>
+            <code>data %>% filter(Species == "setosa")             # Data filtering</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 7: Fertilizer Treatment Comparison</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 7.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 7 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment7.ipynb</code> to open your assignment on t-tests for agricultural data.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 1: Data Loading & Visualization (4 points)</h4>
+                    <p>Load wheat yield data and create visualizations</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🔬</span>
+                <div>
+                    <h4>Part 2: Hypothesis Formation (3 points)</h4>
+                    <p>Set up null and alternative hypotheses</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📈</span>
+                <div>
+                    <h4>Part 3: T-Test Analysis (5 points)</h4>
+                    <p>Perform two-sample t-test and interpret results</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🎯</span>
+                <div>
+                    <h4>Part 4: Results Interpretation (4 points)</h4>
+                    <p>Analyze p-values and draw conclusions</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">⚡</span>
+                <div>
+                    <h4>Part 5: One-Sided Test (4 points)</h4>
+                    <p>Test if nitrogen fertilizer yields are higher</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Analyze Fertilizer Treatment Data 🌾</h3>
+        <p>The assignment focuses on agricultural research applications:</p>
+        <ul>
+            <li><strong>Wheat Yield Comparison</strong> - Compare nitrogen fertilizer vs control treatments</li>
+            <li><strong>Statistical Testing</strong> - Use t-tests to determine significant differences</li>
+            <li><strong>Directional Hypotheses</strong> - Test if nitrogen fertilizer improves yield</li>
+        </ul>
+        <p>Learn to make <strong>evidence-based agricultural decisions</strong> using statistical testing!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agriculture</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Treatment Efficacy</strong> - Test if fertilizers significantly improve crop yields</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌾</span>
+                <span><strong>Variety Comparisons</strong> - Compare performance between crop varieties</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔬</span>
+                <span><strong>Experimental Design</strong> - Create reusable functions for statistical calculations</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🐛</span>
+                <span><strong>Pest Management</strong> - Compare effectiveness of different control methods</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💧</span>
+                <span><strong>Irrigation Studies</strong> - Test water management strategies</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Function and T-Test Skills Help You:</h3>
+        <ul>
+            <li>Create reusable code for repetitive statistical calculations</li>
+            <li>Test hypotheses about treatment effectiveness</li>
+            <li>Compare agricultural practices with statistical rigor</li>
+            <li>Automate sample size calculations for experiments</li>
+            <li>Make data-driven decisions in agricultural research</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 7, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Create custom functions with parameters and return values</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Build reusable functions for statistical calculations</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Form null and alternative hypotheses for group comparisons</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Perform two-sample t-tests using Welch's method</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Interpret t-statistics, p-values, and confidence intervals</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Apply statistical testing to agricultural research problems</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Function not working?</strong> Check parameter names and return statement</li>
+            <li><strong>T-test error?</strong> Verify data filtering and variable names</li>
+            <li><strong>P-value interpretation?</strong> Compare to significance level (α = 0.05)</li>
+            <li><strong>One-sided test confusion?</strong> Check alternative hypothesis direction</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>Function Documentation:</strong> Use <code>?function</code> for help with R functions</li>
+            <li><strong>T-Test Theory:</strong> Review assumptions and interpretation guidelines</li>
+            <li><strong>Practice:</strong> Try different alternative hypotheses to understand differences</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Test functions</strong> - Always test your functions with simple examples first</li>
+            <li><strong>Check assumptions</strong> - Verify data meets t-test requirements</li>
+            <li><strong>Interpret correctly</strong> - P-value < 0.05 suggests significant difference</li>
+            <li><strong>Use appropriate test</strong> - Choose two-sided vs one-sided based on hypothesis</li>
+            <li><strong>Visualize data</strong> - Use boxplots to understand group differences</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>?function</kbd>
+                <span>Get help for any R function</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 7!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 7 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy function building and testing! 🔧📊</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 7: Functions and T-Tests</em></p>
+    </div>
+</div>
