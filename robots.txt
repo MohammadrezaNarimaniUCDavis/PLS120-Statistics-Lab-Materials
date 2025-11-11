@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/sitemap.xml
