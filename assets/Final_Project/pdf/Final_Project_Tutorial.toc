@@ -1,0 +1,29 @@
+\contentsline {section}{\numberline {1}Important Links}{2}{section.1}%
+\contentsline {section}{\numberline {2}Welcome to Your Final Project}{2}{section.2}%
+\contentsline {section}{\numberline {3}Project Overview}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Project Option}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Project Objectives}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Pre-Installed Analysis Tools}{3}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Getting Started}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Step 1: Launch Your Environment}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Step 2: Upload Your Data}{4}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Project Workflow}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Phase 1: Data Preparation \& Exploration}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Phase 2: Descriptive Statistics}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Phase 3: Statistical Testing}{5}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Phase 4: Advanced Analysis}{6}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Phase 5: Results Visualization}{6}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Project Deliverables}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Required Components}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Submission Requirements}{7}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Evaluation Criteria}{8}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Grading Rubric}{8}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Agricultural Applications}{9}{section.8}%
+\contentsline {section}{\numberline {9}Statistical Methods Reference}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Common Agricultural Statistics}{9}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Tips for Success}{10}{section.10}%
+\contentsline {section}{\numberline {11}Common Pitfalls to Avoid}{10}{section.11}%
+\contentsline {section}{\numberline {12}Troubleshooting}{10}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Technical Issues}{11}{subsection.12.1}%
+\contentsline {section}{\numberline {13}Learning Objectives}{11}{section.13}%
+\contentsline {section}{\numberline {14}Need Help?}{11}{section.14}%

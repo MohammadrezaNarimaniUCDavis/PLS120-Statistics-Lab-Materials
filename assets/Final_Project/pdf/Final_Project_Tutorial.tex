@@ -1,0 +1,534 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+\definecolor{goldproject}{RGB}{255,193,7}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Final Project Guide}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{projectbox}{
+    colback=goldproject!10,
+    colframe=goldproject!80,
+    boxrule=2pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{analysisbox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{submissionbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=2pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{goldproject!80} Final Project Workspace}
+    
+    \vspace{0.5cm}
+    
+    {\normalsize\color{redstat} \textbf{Optional Alternative to Final Exam}}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Complete Statistical Analysis Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize November 2024}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=goldproject!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Project Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Final Project Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access your project workspace:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-final-project}{\textcolor{primarygreen}{\underline{Final Project Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Your Final Project}
+
+This comprehensive final project is an \textbf{optional alternative to the final exam}. Students may choose to complete either the traditional final exam or this hands-on project. The project brings together all statistical concepts learned throughout PLS 120, allowing you to conduct a complete statistical analysis using your own agricultural dataset while demonstrating mastery of R programming, statistical testing, and scientific communication.
+
+\section{Project Overview}
+
+\subsection{Project Option}
+
+\begin{projectbox}
+\textbf{Choose Your Assessment Method:}\\
+\textcolor{redstat}{\textbf{Option 1:}} Traditional Final Exam (150 points)\\
+\textcolor{redstat}{\textbf{Option 2:}} Final Project Workspace (150 points)\\[0.5cm]
+\textbf{This project is completely optional!} Students who prefer hands-on analysis over traditional testing may choose this comprehensive project as their final assessment.
+\end{projectbox}
+
+\subsection{Project Objectives}
+
+\begin{projectbox}
+\textbf{Demonstrate Mastery Of:}
+\begin{itemize}
+    \item \textbf{Data Management} - Import, clean, and organize agricultural datasets
+    \item \textbf{Exploratory Analysis} - Summarize and visualize data patterns
+    \item \textbf{Statistical Testing} - Apply appropriate tests for research questions
+    \item \textbf{Interpretation} - Draw meaningful conclusions from results
+    \item \textbf{Communication} - Present findings in professional format
+    \item \textbf{R Programming} - Use functions, packages, and best practices
+\end{itemize}
+\end{projectbox}
+
+\subsection{Pre-Installed Analysis Tools}
+
+Your Binder environment includes comprehensive R packages for professional statistical analysis:
+
+\begin{analysisbox}
+\textbf{Data Manipulation \& Import:}\\
+\texttt{dplyr, tidyr, readr, readxl, data.table}\\[0.3cm]
+\textbf{Statistical Analysis:}\\
+\texttt{car, agricolae, multcomp, emmeans, broom, lmtest, nortest}\\[0.3cm]
+\textbf{Visualization:}\\
+\texttt{ggplot2, plotly, corrplot, pheatmap}\\[0.3cm]
+\textbf{Report Generation:}\\
+\texttt{knitr, rmarkdown, DT}\\[0.3cm]
+\textbf{Advanced Modeling:}\\
+\texttt{MASS, lawstat} (plus ability to install additional packages)
+\end{analysisbox}
+
+\needspace{5\baselineskip}
+\section{Getting Started}
+
+\subsection{Step 1: Launch Your Environment}
+
+\begin{enumerate}
+    \item Click the \textbf{Final Project Binder Link} above
+    \item Wait 2-5 minutes for environment setup
+    \item Navigate to \texttt{Final\_Project\_Workspace.ipynb}
+    \item Begin your analysis following the structured workflow
+\end{enumerate}
+
+\subsection{Step 2: Upload Your Data}
+
+\begin{projectbox}
+\textbf{Data Upload Process:}
+\begin{enumerate}
+    \item Use the \textbf{Upload button} in left panel (folder icon area)
+    \item Select your data file (CSV, Excel, or other formats)
+    \item File appears in left panel when ready
+    \item Load data using appropriate R functions:
+    \begin{itemize}
+        \item CSV: \texttt{data <- read.csv("filename.csv")}
+        \item Excel: \texttt{data <- read\_excel("filename.xlsx")}
+    \end{itemize}
+\end{enumerate}
+\textbf{Supported Data Formats:}\\
+CSV, Excel (.xlsx, .xls), Tab-delimited, and other common formats
+\end{projectbox}
+
+\needspace{5\baselineskip}
+\section{Project Workflow}
+
+\subsection{Phase 1: Data Preparation \& Exploration}
+
+\begin{analysisbox}
+\textbf{Essential Steps:}
+\begin{enumerate}
+    \item \textbf{Load Required Libraries}
+    \begin{itemize}
+        \item Load \texttt{ggplot2, dplyr, readr, knitr}
+        \item Add specialized packages as needed
+    \end{itemize}
+    
+    \item \textbf{Import and Examine Data}
+    \begin{itemize}
+        \item Use \texttt{str(data)} to check structure
+        \item Apply \texttt{head(data)} and \texttt{summary(data)}
+        \item Check for missing values with \texttt{is.na()}
+    \end{itemize}
+    
+    \item \textbf{Data Cleaning}
+    \begin{itemize}
+        \item Convert categorical variables to factors
+        \item Handle missing values appropriately
+        \item Check for and address outliers
+    \end{itemize}
+    
+    \item \textbf{Exploratory Visualization}
+    \begin{itemize}
+        \item Create histograms for continuous variables
+        \item Generate boxplots for group comparisons
+        \item Build scatter plots for relationships
+    \end{itemize}
+\end{enumerate}
+\end{analysisbox}
+
+\subsection{Phase 2: Descriptive Statistics}
+
+\begin{analysisbox}
+\textbf{Calculate Summary Statistics:}
+\begin{itemize}
+    \item \textbf{Central Tendency:} mean, median, mode
+    \item \textbf{Variability:} variance, standard deviation, coefficient of variation
+    \item \textbf{Distribution:} quantiles, skewness, normality tests
+    \item \textbf{Group Comparisons:} statistics by treatment/category
+\end{itemize}
+\textbf{Key R Functions:}\\
+\texttt{mean(), median(), var(), sd(), quantile(), summary()}\\
+\texttt{group\_by() \%>\% summarise()} for grouped statistics
+\end{analysisbox}
+
+\subsection{Phase 3: Statistical Testing}
+
+\begin{analysisbox}
+\textbf{Choose Appropriate Tests Based on Data:}
+\begin{itemize}
+    \item \textbf{Two-sample t-tests:} Compare means between groups
+    \item \textbf{ANOVA:} Compare means across multiple groups
+    \item \textbf{Chi-square tests:} Test associations in categorical data
+    \item \textbf{Correlation analysis:} Examine relationships between variables
+    \item \textbf{Regression analysis:} Model relationships and predictions
+\end{itemize}
+\textbf{Hypothesis Testing Framework:}
+\begin{enumerate}
+    \item State null and alternative hypotheses
+    \item Check test assumptions
+    \item Perform appropriate statistical test
+    \item Interpret p-values and confidence intervals
+    \item Draw conclusions in agricultural context
+\end{enumerate}
+\end{analysisbox}
+
+\subsection{Phase 4: Advanced Analysis}
+
+\begin{analysisbox}
+\textbf{Sophisticated Statistical Methods:}
+\begin{itemize}
+    \item \textbf{Multiple Regression:} Model complex relationships
+    \item \textbf{ANOVA with Post-hoc Tests:} Detailed group comparisons
+    \item \textbf{Non-parametric Tests:} When assumptions aren't met
+    \item \textbf{Effect Size Calculations:} Practical significance assessment
+    \item \textbf{Power Analysis:} Sample size and study design evaluation
+\end{itemize}
+\textbf{Model Validation:}\\
+Check residuals, assess assumptions, validate predictions
+\end{analysisbox}
+
+\subsection{Phase 5: Results Visualization}
+
+\begin{analysisbox}
+\textbf{Publication-Quality Graphics:}
+\begin{itemize}
+    \item \textbf{Treatment Comparisons:} Boxplots with significance indicators
+    \item \textbf{Relationships:} Scatter plots with regression lines
+    \item \textbf{Distributions:} Histograms and density plots
+    \item \textbf{Correlations:} Correlation matrices and heatmaps
+    \item \textbf{Model Results:} Coefficient plots and diagnostic plots
+\end{itemize}
+\textbf{Visualization Best Practices:}\\
+Clear titles, axis labels, legends, and appropriate color schemes
+\end{analysisbox}
+
+\needspace{5\baselineskip}
+\section{Project Deliverables}
+
+\subsection{Required Components}
+
+\begin{submissionbox}
+\textbf{Your Final Project Must Include:}
+\begin{enumerate}
+    \item \textbf{Student Information} (Complete in raw text cells)
+    \item \textbf{Data Description} (Source, variables, sample size)
+    \item \textbf{Research Questions} (Clear, testable hypotheses)
+    \item \textbf{Statistical Analysis} (Appropriate tests with justification)
+    \item \textbf{Results Visualization} (Professional plots and tables)
+    \item \textbf{Interpretation} (Agricultural significance and implications)
+    \item \textbf{Limitations} (Study constraints and future directions)
+    \item \textbf{Conclusions} (Evidence-based recommendations)
+\end{enumerate}
+\end{submissionbox}
+
+\subsection{Submission Requirements}
+
+\begin{submissionbox}
+\textbf{Submit TWO Files to Canvas:}
+\begin{enumerate}
+    \item \textbf{HTML Report} (File → Save and Export Notebook As → HTML)
+    \begin{itemize}
+        \item Complete formatted report with all outputs
+        \item Professional presentation of results
+        \item All plots and tables included
+    \end{itemize}
+    
+    \item \textbf{Jupyter Notebook} (File → Download → .ipynb)
+    \begin{itemize}
+        \item Complete code for reproducibility
+        \item Backup of your analysis
+        \item All cells executed with outputs
+    \end{itemize}
+\end{enumerate}
+\textbf{File Naming Convention:}\\
+\texttt{LastName\_FirstName\_PLS120\_FinalProject.html}\\
+\texttt{LastName\_FirstName\_PLS120\_FinalProject.ipynb}
+\end{submissionbox}
+
+\needspace{5\baselineskip}
+\section{Evaluation Criteria}
+
+\subsection{Grading Rubric}
+
+\begin{projectbox}
+\textbf{Technical Competency (40\%):}
+\begin{itemize}
+    \item Appropriate statistical test selection
+    \item Correct R code implementation
+    \item Proper assumption checking
+    \item Accurate calculations and outputs
+\end{itemize}
+
+\textbf{Data Analysis Quality (30\%):}
+\begin{itemize}
+    \item Thorough exploratory analysis
+    \item Meaningful visualizations
+    \item Comprehensive statistical testing
+    \item Appropriate model validation
+\end{itemize}
+
+\textbf{Interpretation \& Communication (20\%):}
+\begin{itemize}
+    \item Clear agricultural context
+    \item Correct statistical interpretation
+    \item Practical significance discussion
+    \item Professional presentation
+\end{itemize}
+
+\textbf{Scientific Rigor (10\%):}
+\begin{itemize}
+    \item Proper hypothesis formation
+    \item Acknowledgment of limitations
+    \item Evidence-based conclusions
+    \item Reproducible methodology
+\end{itemize}
+\end{projectbox}
+
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Potential Research Areas:}
+\begin{itemize}
+    \item \textbf{Crop Production} - Yield comparisons, variety trials, treatment effects
+    \item \textbf{Soil Science} - Nutrient analysis, pH effects, organic matter studies
+    \item \textbf{Plant Breeding} - Genetic line comparisons, trait correlations
+    \item \textbf{Pest Management} - Treatment efficacy, resistance studies
+    \item \textbf{Environmental Impact} - Sustainability metrics, carbon footprint
+    \item \textbf{Economic Analysis} - Cost-benefit analysis, profitability studies
+    \item \textbf{Quality Assessment} - Product quality, post-harvest analysis
+    \item \textbf{Precision Agriculture} - Spatial analysis, technology adoption
+\end{itemize}
+\end{infobox}
+
+\section{Statistical Methods Reference}
+
+\subsection{Common Agricultural Statistics}
+
+\begin{analysisbox}
+\textbf{Descriptive Statistics:}\\
+\texttt{mean(data\$variable)}\\
+\texttt{sd(data\$variable)}\\
+\texttt{quantile(data\$variable)}\\[0.3cm]
+\textbf{Group Comparisons:}\\
+\texttt{t.test(group1, group2)}\\
+\texttt{aov(response \textasciitilde{} treatment, data)}\\
+\texttt{TukeyHSD(aov\_model)}\\[0.3cm]
+\textbf{Relationships:}\\
+\texttt{cor(x, y)}\\
+\texttt{lm(y \textasciitilde{} x, data)}\\
+\texttt{plot(x, y)}\\[0.3cm]
+\textbf{Visualization:}\\
+\texttt{ggplot(data, aes(x, y)) + geom\_point()}\\
+\texttt{ggplot(data, aes(x, y)) + geom\_boxplot()}
+\end{analysisbox}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item \textbf{Start Early} - Allow time for data exploration and analysis
+    \item \textbf{Check Assumptions} - Verify test requirements before proceeding
+    \item \textbf{Document Everything} - Add comments explaining your reasoning
+    \item \textbf{Visualize First} - Always plot data before statistical testing
+    \item \textbf{Interpret Practically} - Consider agricultural significance
+    \item \textbf{Save Frequently} - Download work regularly to avoid loss
+    \item \textbf{Test Code} - Run cells in order and check outputs
+    \item \textbf{Seek Help Early} - Use office hours for guidance
+\end{itemize}
+\end{warningbox}
+
+\section{Common Pitfalls to Avoid}
+
+\begin{warningbox}
+\textbf{Avoid These Mistakes:}
+\begin{itemize}
+    \item Using inappropriate statistical tests for data type
+    \item Ignoring test assumptions (normality, independence)
+    \item Over-interpreting non-significant results
+    \item Confusing statistical and practical significance
+    \item Poor data visualization choices
+    \item Inadequate description of methods and data
+    \item Missing or incorrect interpretation of results
+    \item Failing to save work before closing Binder
+\end{itemize}
+\end{warningbox}
+
+\section{Troubleshooting}
+
+\subsection{Technical Issues}
+
+\begin{infobox}
+\textbf{Common Problems and Solutions:}
+\begin{itemize}
+    \item \textbf{Binder won't load:} Refresh page, clear browser cache
+    \item \textbf{Package not found:} Use \texttt{install.packages("package\_name")}
+    \item \textbf{Code error:} Check syntax, run cells in order
+    \item \textbf{Data won't load:} Verify file name and format
+    \item \textbf{Lost work:} Always download files before closing
+    \item \textbf{Plot not showing:} Check ggplot syntax and data
+\end{itemize}
+\end{infobox}
+
+\section{Learning Objectives}
+
+By completing this final project, you will demonstrate ability to:
+\begin{itemize}
+    \item Import and manage agricultural datasets in R
+    \item Conduct comprehensive exploratory data analysis
+    \item Select and apply appropriate statistical tests
+    \item Create professional data visualizations
+    \item Interpret statistical results in agricultural context
+    \item Communicate findings effectively to stakeholders
+    \item Use R programming for reproducible research
+    \item Make evidence-based recommendations for agricultural practices
+\end{itemize}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}\\[0.5cm]
+\textbf{Additional Resources:}\\
+• Course website for all materials\\
+• Canvas discussion forum for peer help\\
+• R documentation: \texttt{?function\_name}\\
+• Online R tutorials and Stack Overflow
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Final Project: Complete Statistical Analysis}
+\end{center}
+
+\end{document}
