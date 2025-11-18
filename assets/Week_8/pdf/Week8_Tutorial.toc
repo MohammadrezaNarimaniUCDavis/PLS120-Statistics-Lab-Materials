@@ -1,0 +1,36 @@
+\contentsline {section}{\numberline {1}Important Links}{2}{section.1}%
+\contentsline {section}{\numberline {2}Welcome to Week 8: Hypothesis Testing and Statistical Analysis}{2}{section.2}%
+\contentsline {section}{\numberline {3}One-Sample T-Tests}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}When to Use One-Sample T-Tests}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}One-Sample T-Test Formula}{2}{subsubsection.3.1.1}%
+\contentsline {section}{\numberline {4}Two-Sample T-Tests (Independent and Paired)}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Independent Two-Sample T-Tests}{3}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Independent T-Test Formula}{3}{subsubsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.2}Paired T-Tests}{3}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Paired T-Test Formula}{3}{subsubsection.4.2.1}%
+\contentsline {section}{\numberline {5}Hypothesis Testing Methods}{3}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Three Approaches to Hypothesis Testing}{3}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Method Comparison}{4}{subsubsection.5.1.1}%
+\contentsline {section}{\numberline {6}Chi-Square Tests}{4}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Chi-Square Test Applications}{4}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Chi-Square Formulas}{4}{subsubsection.6.1.1}%
+\contentsline {section}{\numberline {7}Assignment 8 Overview}{5}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Assignment Structure (15 points total)}{5}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Environmental Applications}{5}{section.8}%
+\contentsline {section}{\numberline {9}Hypothesis Formation Guidelines}{5}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Proper Hypothesis Setup}{6}{subsection.9.1}%
+\contentsline {subsubsection}{\numberline {9.1.1}Hypothesis Types and Examples}{6}{subsubsection.9.1.1}%
+\contentsline {section}{\numberline {10}Statistical Interpretation}{6}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Understanding P-Values and Confidence Intervals}{6}{subsection.10.1}%
+\contentsline {subsubsection}{\numberline {10.1.1}Interpretation Guidelines}{6}{subsubsection.10.1.1}%
+\contentsline {section}{\numberline {11}Data Analysis Workflow}{6}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Step-by-Step Hypothesis Testing}{7}{subsection.11.1}%
+\contentsline {section}{\numberline {12}Key Concepts Summary}{7}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Test Selection Guide}{8}{subsection.12.1}%
+\contentsline {section}{\numberline {13}Common Analysis Limitations}{8}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Statistical Analysis Constraints}{8}{subsection.13.1}%
+\contentsline {section}{\numberline {14}Getting Started}{8}{section.14}%
+\contentsline {section}{\numberline {15}Learning Objectives}{9}{section.15}%
+\contentsline {section}{\numberline {16}Tips for Success}{9}{section.16}%
+\contentsline {section}{\numberline {17}Common Mistakes to Avoid}{10}{section.17}%
+\contentsline {section}{\numberline {18}Need Help?}{10}{section.18}%

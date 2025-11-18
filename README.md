@@ -31,7 +31,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 | 📱 **Responsive Design** | Works on any device with modern web browser |
 | 🌓 **Light / Dark Theme** | One-click theme toggle with preference storage |
 | 📊 **Interactive Learning** | Jupyter notebooks with step-by-step tutorials |
-| 🔒 **Progressive Content** | Weeks 1-7 available, additional weeks coming soon |
+| 🔒 **Progressive Content** | Weeks 1-8 available, additional weeks coming soon |
 | 📝 **Assignment System** | Integrated homework with HTML/PDF export |
 | 🎯 **Agricultural Focus** | Real-world statistical applications in agriculture |
 | 📚 **Complete Resources** | Syllabus, FAQ, resources, and help materials |
@@ -58,6 +58,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 7 - Functions and T-Tests:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7
 
+**Week 8 - Hypothesis Testing and Statistical Analysis:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8
+
 **Final Project Workspace (Optional Alternative to Final Exam):** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-final-project
 
 ---
@@ -80,7 +82,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── week4.html         # week 4 materials
 │   ├── week5.html         # week 5 materials
 │   ├── week6.html         # week 6 materials
-│   └── week7.html         # week 7 materials
+│   ├── week7.html         # week 7 materials
+│   └── week8.html         # week 8 materials
 ├── assets/                 # images and media
 │   ├── images/
 │   │   ├── logos/         # UC Davis logos
@@ -101,6 +104,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   │   └── pdf/           # LaTeX/PDF materials
 │   ├── Week_7/            # week 7 specific materials
 │   │   └── pdf/           # LaTeX/PDF materials
+│   ├── Week_8/            # week 8 specific materials
+│   │   └── pdf/           # LaTeX/PDF materials
 │   └── Final_Project/     # final project materials
 │       └── pdf/           # LaTeX/PDF tutorial
 ├── assignment/            # homework assignments
@@ -111,6 +116,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Assignment5.ipynb  # week 5 assignment
 │   ├── Assignment6.ipynb  # week 6 assignment
 │   ├── Assignment7.ipynb  # week 7 assignment
+│   ├── Assignment8.ipynb  # week 8 assignment
+│   ├── before_after.csv  # biodiversity wildfire dataset
 │   ├── LA_Data.csv       # statistics dataset
 │   ├── SAT_DATASET_2012.csv # SAT performance dataset
 │   └── wheat_yield.csv   # wheat yield dataset
@@ -121,7 +128,9 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   ├── Week4_Probability_Sampling.ipynb
 │   ├── Week5_Sampling_Estimation.ipynb
 │   ├── Week6_Confidence_Intervals.ipynb
-│   └── Week7_Regression_Analysis.ipynb
+│   ├── Week7_Regression_Analysis.ipynb
+│   ├── Week8_Correlation_Analysis.ipynb
+│   └── Paired_Agricultural_Yield.csv
 └── README.md             # you're reading it!
 ```
 
@@ -185,7 +194,17 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - One-sided vs two-sided tests
    - Agricultural treatment comparison analysis
 
-8. **Week 8-10**: 🔒 *Coming Soon*
+8. **Week 8**: Hypothesis Testing and Statistical Analysis ✅ *Available*
+   - One-sample t-tests using multiple methods
+   - Two-sample t-tests (independent and paired)
+   - Paired t-tests for before/after analysis
+   - Chi-square tests for categorical data
+   - Critical value vs p-value methods
+   - Environmental and biodiversity applications
+   - Wildfire impact analysis using statistical testing
+   - Understanding analysis limitations
+
+9. **Week 9-10**: 🔒 *Coming Soon*
    - ANOVA and Multiple Comparisons
    - Regression Analysis
    - Correlation Analysis
@@ -240,6 +259,7 @@ By completing this course, students will be able to:
    - [Week 5 - Sampling and Estimation](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week5)
    - [Week 6 - Confidence Intervals](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6)
    - [Week 7 - Functions and T-Tests](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7)
+   - [Week 8 - Hypothesis Testing and Statistical Analysis](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8)
    - [Final Project Workspace](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-final-project) (Optional Alternative to Final Exam)
 3. **No software installation needed!**
 
