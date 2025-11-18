@@ -1,0 +1,515 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+\definecolor{orangestat}{RGB}{249,115,22}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 8 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{ttestbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{chibox}{
+    colback=redstat!10,
+    colframe=redstat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Hypothesis Testing and Statistical Analysis}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 8 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize November 2024}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 8 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8}{\textcolor{primarygreen}{\underline{Week 8 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 8: Hypothesis Testing and Statistical Analysis}
+
+This week, we dive deep into \textbf{hypothesis testing methods} - essential skills for making statistical inferences in agricultural and biological research. You'll learn one-sample tests, paired t-tests, and chi-square analysis for comprehensive data analysis!
+
+\section{One-Sample T-Tests}
+
+\subsection{When to Use One-Sample T-Tests}
+
+One-sample t-tests compare a sample mean against a known or hypothesized population value, such as testing if crop yield meets a target standard.
+
+\subsubsection{One-Sample T-Test Formula}
+
+\begin{formulabox}
+\textbf{One-Sample T-Test:}
+$$t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}}$$
+Where:\\
+\texttt{$\overline{x}$} = sample mean\\
+\texttt{$\mu_0$} = hypothesized population mean\\
+\texttt{$s$} = sample standard deviation\\
+\texttt{$n$} = sample size\\[0.3cm]
+\textbf{Degrees of Freedom:} $df = n - 1$\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(data, mu = hypothesized\_value)}\\
+\texttt{t.test(data, mu = 4, alternative = "two.sided")}\\
+\texttt{t.test(data, mu = 4, alternative = "greater")}\\
+\texttt{t.test(data, mu = 4, alternative = "less")}
+\end{formulabox}
+
+\section{Two-Sample T-Tests (Independent and Paired)}
+
+\subsection{Independent Two-Sample T-Tests}
+
+Compare means between two independent groups using Welch's t-test for unequal variances.
+
+\subsubsection{Independent T-Test Formula}
+
+\begin{ttestbox}
+\textbf{Two-Sample T-Test (Welch's):}
+$$t = \frac{\overline{x_1} - \overline{x_2}}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$$
+Where:\\
+\texttt{$\overline{x_1}, \overline{x_2}$} = sample means\\
+\texttt{$s_1, s_2$} = sample standard deviations\\
+\texttt{$n_1, n_2$} = sample sizes\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(group1, group2, var.equal = FALSE)}\\
+\texttt{t.test(group1, group2, alternative = "two.sided")}
+\end{ttestbox}
+
+\subsection{Paired T-Tests}
+
+For before/after measurements or matched pairs where observations are dependent.
+
+\subsubsection{Paired T-Test Formula}
+
+\begin{ttestbox}
+\textbf{Paired T-Test:}
+$$t = \frac{\overline{d}}{s_d/\sqrt{n}}$$
+Where:\\
+\texttt{$\overline{d}$} = mean of differences\\
+\texttt{$s_d$} = standard deviation of differences\\
+\texttt{$n$} = number of pairs\\[0.3cm]
+\textbf{Agricultural Example:}\\
+Biodiversity before and after wildfire on same plots\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(before, after, paired = TRUE)}\\
+\texttt{t.test(before, after, paired = TRUE, alternative = "less")}
+\end{ttestbox}
+
+\needspace{5\baselineskip}
+\section{Hypothesis Testing Methods}
+
+\subsection{Three Approaches to Hypothesis Testing}
+
+All methods give the same conclusion but offer different perspectives.
+
+\subsubsection{Method Comparison}
+
+\begin{formulabox}
+\textbf{1. Critical Value Method:}\\
+Compare $|t_{stat}|$ with $t_{critical}$\\
+If $|t_{stat}| > t_{critical}$ → Reject $H_0$\\[0.3cm]
+\textbf{2. P-Value Method:}\\
+Compare p-value with $\alpha$ (significance level)\\
+If p-value $< \alpha$ → Reject $H_0$\\[0.3cm]
+\textbf{3. R t.test() Function:}\\
+Automatically calculates test statistic, p-value, and confidence interval\\
+Provides complete statistical output\\[0.3cm]
+\textbf{P-Value Calculation (Two-tailed):}
+$$p = 2 \times P(T > |t_{stat}|)$$
+\textbf{Critical Value:}
+$$t_{critical} = t_{\alpha/2, df}$$
+\end{formulabox}
+
+\section{Chi-Square Tests}
+
+\subsection{Chi-Square Test Applications}
+
+Chi-square tests analyze categorical data for goodness of fit and independence.
+
+\subsubsection{Chi-Square Formulas}
+
+\begin{chibox}
+\textbf{Chi-Square Test Statistic:}
+$$\chi^2 = \sum \frac{(O - E)^2}{E}$$
+Where:\\
+\texttt{O} = observed frequency\\
+\texttt{E} = expected frequency\\[0.3cm]
+\textbf{Goodness of Fit Test:}\\
+Tests if observed frequencies match expected distribution\\
+Example: Testing if dice is fair\\
+$df = k - 1$ (k = number of categories)\\[0.3cm]
+\textbf{Test of Independence:}\\
+Tests if two categorical variables are independent\\
+Example: Gender vs fruit preference\\
+$df = (r-1)(c-1)$ (r = rows, c = columns)\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{chisq.test(observed, p = expected\_proportions)}\\
+\texttt{chisq.test(contingency\_table)}
+\end{chibox}
+
+\needspace{5\baselineskip}
+\section{Assignment 8 Overview}
+
+\subsection{Assignment Structure (15 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Data Import and Visualization (3 points)}
+    \begin{itemize}
+        \item Load biodiversity data and check distributions (1 point)
+        \item Create boxplots and interpret patterns (2 points)
+    \end{itemize}
+    
+    \item \textbf{Part 2: Hypothesis Testing (9 points)}
+    \begin{itemize}
+        \item Test if wildfire significantly affected biodiversity (3 points)
+        \item Test if wildfire significantly increased biodiversity (3 points)
+        \item Test if wildfire significantly reduced biodiversity (3 points)
+    \end{itemize}
+    
+    \item \textbf{Part 3: Analysis Limitations (3 points)}
+    \begin{itemize}
+        \item Discuss limitations of statistical analysis approach (3 points)
+    \end{itemize}
+\end{enumerate}
+
+\needspace{5\baselineskip}
+\section{Environmental Applications}
+
+\begin{infobox}
+\textbf{Real-World Hypothesis Testing Applications:}
+\begin{itemize}
+    \item \textbf{Wildfire Impact Studies} - Assess ecological effects using before/after data
+    \item \textbf{Treatment Effectiveness} - Test agricultural interventions with paired designs
+    \item \textbf{Biodiversity Research} - Compare species richness across conditions
+    \item \textbf{Climate Change Studies} - Analyze environmental parameter changes
+    \item \textbf{Conservation Evaluation} - Test effectiveness of protection measures
+    \item \textbf{Soil Health Assessment} - Compare management practices effects
+    \item \textbf{Water Quality Monitoring} - Test for changes in contamination levels
+    \item \textbf{Crop Performance} - Evaluate variety trials and treatment effects
+\end{itemize}
+\end{infobox}
+
+\section{Hypothesis Formation Guidelines}
+
+\subsection{Proper Hypothesis Setup}
+
+\subsubsection{Hypothesis Types and Examples}
+
+\begin{ttestbox}
+\textbf{Two-Sided Hypotheses:}\\
+$H_0: \mu_{before} = \mu_{after}$ (no change)\\
+$H_1: \mu_{before} \ne \mu_{after}$ (any change)\\
+Use when: Testing for any effect (increase or decrease)\\[0.3cm]
+\textbf{One-Sided Hypotheses (Greater):}\\
+$H_0: \mu_{before} \leq \mu_{after}$ (no increase)\\
+$H_1: \mu_{before} > \mu_{after}$ (increase occurred)\\
+Use when: Testing for specific directional effect\\[0.3cm]
+\textbf{One-Sided Hypotheses (Less):}\\
+$H_0: \mu_{before} \ge \mu_{after}$ (no decrease)\\
+$H_1: \mu_{before} < \mu_{after}$ (decrease occurred)\\
+Use when: Testing for reduction or decline\\[0.3cm]
+\textbf{Environmental Example:}\\
+"Has wildfire significantly reduced biodiversity?"\\
+$H_0$: Biodiversity unchanged or increased\\
+$H_1$: Biodiversity decreased after wildfire
+\end{ttestbox}
+
+\section{Statistical Interpretation}
+
+\subsection{Understanding P-Values and Confidence Intervals}
+
+\subsubsection{Interpretation Guidelines}
+
+\begin{formulabox}
+\textbf{P-Value Interpretation:}\\
+p-value = Probability of observing test statistic this extreme\\
+or more extreme, assuming $H_0$ is true\\[0.3cm]
+\textbf{Decision Rules:}\\
+If p < $\alpha$ (0.05) → Reject $H_0$ (significant result)\\
+If p $\ge$ $\alpha$ (0.05) → Fail to reject $H_0$ (not significant)\\[0.3cm]
+\textbf{Confidence Interval Interpretation:}\\
+95\% CI for difference: We are 95\% confident the true\\
+difference lies within this interval\\
+If CI excludes 0 → Significant difference\\
+If CI includes 0 → No significant difference\\[0.3cm]
+\textbf{Effect Size Considerations:}\\
+Statistical significance $\ne$ Practical importance\\
+Consider magnitude of difference in real-world context\\
+Large samples can detect tiny, meaningless differences
+\end{formulabox}
+
+\section{Data Analysis Workflow}
+
+\subsection{Step-by-Step Hypothesis Testing}
+
+\begin{enumerate}
+    \item \textbf{Data Exploration}
+    \begin{itemize}
+        \item Load and examine data structure
+        \item Check for missing values and outliers
+        \item Create visualizations (histograms, boxplots)
+        \item Assess normality assumptions
+    \end{itemize}
+    
+    \item \textbf{Hypothesis Formation}
+    \begin{itemize}
+        \item Define research question clearly
+        \item State null and alternative hypotheses
+        \item Choose test type (one/two-sided)
+        \item Set significance level ($\alpha = 0.05$)
+    \end{itemize}
+    
+    \item \textbf{Test Selection and Execution}
+    \begin{itemize}
+        \item Choose appropriate test (one-sample, paired, independent)
+        \item Verify test assumptions
+        \item Perform statistical test using R
+        \item Calculate effect sizes if needed
+    \end{itemize}
+    
+    \item \textbf{Results Interpretation}
+    \begin{itemize}
+        \item Interpret p-values and confidence intervals
+        \item Consider practical significance
+        \item Draw conclusions in context
+        \item Discuss limitations and assumptions
+    \end{itemize}
+\end{enumerate}
+
+\section{Key Concepts Summary}
+
+\subsection{Test Selection Guide}
+
+\begin{formulabox}
+\textbf{When to Use Each Test:}\\[0.3cm]
+\textbf{One-Sample T-Test:}\\
+• Compare sample mean to known standard\\
+• Example: Does yield meet target of 60 bu/acre?\\[0.3cm]
+\textbf{Independent Two-Sample T-Test:}\\
+• Compare means between unrelated groups\\
+• Example: Organic vs conventional farming yields\\[0.3cm]
+\textbf{Paired T-Test:}\\
+• Compare before/after on same subjects\\
+• Example: Biodiversity before/after treatment\\[0.3cm]
+\textbf{Chi-Square Test:}\\
+• Analyze categorical data\\
+• Example: Disease presence across varieties\\[0.3cm]
+\textbf{Test Assumptions:}\\
+• Independence of observations\\
+• Approximate normality (t-tests)\\
+• Expected frequencies $\ge$ 5 (chi-square)
+\end{formulabox}
+
+\section{Common Analysis Limitations}
+
+\subsection{Statistical Analysis Constraints}
+
+\begin{warningbox}
+\textbf{Important Limitations to Consider:}
+\begin{itemize}
+    \item \textbf{Sample Size} - Small samples reduce power to detect effects
+    \item \textbf{Data Quality} - Measurement errors affect reliability
+    \item \textbf{Time Window} - Limited observation period may miss effects
+    \item \textbf{Single Parameter Focus} - Relying only on means ignores variability
+    \item \textbf{Normality Assumptions} - Violations can affect test validity
+    \item \textbf{Independence Assumptions} - Spatial/temporal correlation issues
+    \item \textbf{Multiple Testing} - Increased Type I error with many tests
+    \item \textbf{Confounding Variables} - Unmeasured factors affecting results
+    \item \textbf{Generalizability} - Results may not apply to other contexts
+    \item \textbf{Causation vs Correlation} - Statistical association $\ne$ causation
+\end{itemize}
+\end{warningbox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 8 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week8\_Correlation\_Analysis.ipynb}
+    \item Work through hypothesis testing examples
+    \item Complete Assignment 8 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Form appropriate null and alternative hypotheses
+    \item Perform one-sample t-tests using multiple methods
+    \item Conduct two-sample and paired t-tests appropriately
+    \item Apply chi-square tests for categorical data analysis
+    \item Interpret statistical results and draw valid conclusions
+    \item Understand limitations of statistical analyses
+    \item Choose appropriate tests for different research questions
+    \item Apply hypothesis testing to environmental research problems
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Check test assumptions before analysis (normality, independence)
+    \item Visualize data first using histograms and boxplots
+    \item Choose appropriate test type based on research question
+    \item Interpret results carefully - statistical $\ne$ practical significance
+    \item Consider limitations and discuss them in conclusions
+    \item Use paired tests for before/after or matched data
+    \item Plan hypothesis tests before seeing data
+    \item Always interpret results in scientific context
+\end{itemize}
+\end{warningbox}
+
+\section{Common Mistakes to Avoid}
+
+\begin{warningbox}
+\textbf{Avoid These Errors:}
+\begin{itemize}
+    \item Confusing paired and independent t-tests
+    \item Misinterpreting p-values as probability hypotheses are true
+    \item Using wrong alternative hypothesis direction
+    \item Ignoring test assumptions (normality, independence)
+    \item Over-interpreting non-significant results
+    \item Switching test type after seeing results
+    \item Forgetting to consider practical significance
+    \item Not discussing analysis limitations
+    \item Using inappropriate tests for data type
+    \item Making causal claims from correlational data
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 8: Hypothesis Testing and Statistical Analysis}
+\end{center}
+
+\end{document}

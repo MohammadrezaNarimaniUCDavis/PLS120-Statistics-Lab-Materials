@@ -1,0 +1,398 @@
+<h1 class="page-title">📊 Week 8: Hypothesis Testing and Statistical Analysis</h1>
+<p class="page-subtitle">Master Advanced Statistical Testing Methods 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 8 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 8!</strong> This week, we dive deep into <strong>hypothesis testing methods</strong> - essential skills for making statistical inferences in agricultural and biological research. Learn one-sample tests, paired t-tests, and chi-square analysis!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">🔬</span>
+                <span><strong>One-Sample T-Tests</strong> - Compare sample means against known values</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Two-Sample T-Tests</strong> - Compare means between independent groups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔗</span>
+                <span><strong>Paired T-Tests</strong> - Analyze before/after or matched pair data</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🎲</span>
+                <span><strong>Chi-Square Tests</strong> - Test goodness of fit and independence</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">⚖️</span>
+                <span><strong>Critical Value Method</strong> - Manual hypothesis testing approach</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>P-Value Method</strong> - Modern statistical inference approach</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 8 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 8"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for hypothesis testing.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 8 on biodiversity wildfire analysis</li>
+            <li><code>class_activity/</code> - Week 8 comprehensive tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 8 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week8_Correlation_Analysis.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore Hypothesis Testing Methods 📊</h3>
+        <p>This week we'll work with multiple datasets including iris and agricultural yield data! The notebook will guide you through:</p>
+        <ul>
+            <li>One-sample t-tests using critical value and p-value methods</li>
+            <li>Two-sample independent t-tests for group comparisons</li>
+            <li>Paired t-tests for before/after agricultural treatment analysis</li>
+            <li>Chi-square tests for categorical data analysis</li>
+            <li>Comprehensive interpretation of statistical results</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with Hypothesis Testing Concepts</h3>
+        <p>Use these interactive tools to understand hypothesis testing concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <iframe src="pages/Week8_Interactive_tool.html" 
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    style="display: block;">
+                Your browser does not support iframes.
+            </iframe>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to practice hypothesis formation and visualize statistical concepts before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">One-Sample T-Tests</h3>
+        <div class="code-block">
+            <code>t.test(data, mu = 4, alternative = "two.sided")  # Two-tailed test</code><br>
+            <code>t.test(data, mu = 4, alternative = "greater")   # One-tailed (greater)</code><br>
+            <code>t.test(data, mu = 4, alternative = "less")      # One-tailed (less)</code><br>
+            <code>qt(1 - alpha/2, df = n-1)                      # Critical t-value</code>
+        </div>
+
+        <h3 class="card-title">Two-Sample and Paired T-Tests</h3>
+        <div class="code-block">
+            <code>t.test(group1, group2, paired = FALSE)          # Independent samples</code><br>
+            <code>t.test(before, after, paired = TRUE)            # Paired samples</code><br>
+            <code>t.test(group1, group2, var.equal = FALSE)       # Welch's t-test</code><br>
+            <code>subset(data, Species == "setosa")               # Data filtering</code>
+        </div>
+
+        <h3 class="card-title">Chi-Square Tests</h3>
+        <div class="code-block">
+            <code>chisq.test(observed, p = expected/sum(expected)) # Goodness of fit</code><br>
+            <code>chisq.test(contingency_table)                   # Test of independence</code><br>
+            <code>matrix(c(data), nrow = 2, byrow = TRUE)         # Create contingency table</code><br>
+            <code>pt(t_stat, df = n-1)                            # P-value calculation</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 8: Biodiversity Wildfire Analysis</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 8.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 8 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment8.ipynb</code> to open your assignment on biodiversity analysis.</p>
+
+        <h3 class="card-title">Assignment Overview (15 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 1: Data Import & Visualization (3 points)</h4>
+                    <p>Load biodiversity data and check distributions</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🔬</span>
+                <div>
+                    <h4>Part 2A: General Effect Test (3 points)</h4>
+                    <p>Test if wildfire significantly affected biodiversity</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📈</span>
+                <div>
+                    <h4>Part 2B: Increase Test (3 points)</h4>
+                    <p>Test if wildfire significantly increased biodiversity</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📉</span>
+                <div>
+                    <h4>Part 2C: Decrease Test (3 points)</h4>
+                    <p>Test if wildfire significantly reduced biodiversity</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🤔</span>
+                <div>
+                    <h4>Part 3: Analysis Limitations (3 points)</h4>
+                    <p>Discuss limitations of the statistical analysis</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Analyze Wildfire Impact Data 🔥</h3>
+        <p>The assignment focuses on environmental research applications:</p>
+        <ul>
+            <li><strong>Biodiversity Analysis</strong> - Compare pre- and post-wildfire biodiversity indices</li>
+            <li><strong>Paired T-Tests</strong> - Use appropriate statistical methods for before/after data</li>
+            <li><strong>Directional Hypotheses</strong> - Test specific predictions about wildfire effects</li>
+            <li><strong>Critical Thinking</strong> - Evaluate limitations of statistical approaches</li>
+        </ul>
+        <p>Learn to make <strong>evidence-based environmental decisions</strong> using rigorous statistical testing!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌿 Why This Matters in Environmental Science</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🔥</span>
+                <span><strong>Wildfire Impact</strong> - Assess ecological effects of natural disturbances</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Treatment Effects</strong> - Test agricultural intervention effectiveness</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🦋</span>
+                <span><strong>Biodiversity Studies</strong> - Compare species richness across conditions</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌡️</span>
+                <span><strong>Climate Research</strong> - Analyze environmental change impacts</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🧪</span>
+                <span><strong>Experimental Design</strong> - Choose appropriate statistical tests</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">Hypothesis Testing Skills Help You:</h3>
+        <ul>
+            <li>Make rigorous statistical inferences about environmental changes</li>
+            <li>Choose appropriate tests for different data types and research questions</li>
+            <li>Interpret p-values and confidence intervals correctly</li>
+            <li>Understand limitations of statistical analyses</li>
+            <li>Communicate scientific findings with statistical support</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 8, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Form appropriate null and alternative hypotheses</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Perform one-sample t-tests using multiple methods</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Conduct two-sample and paired t-tests appropriately</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Apply chi-square tests for categorical data</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Interpret statistical results and draw valid conclusions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand limitations of statistical analyses</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>Hypothesis confusion?</strong> Remember: H₀ = no effect, H₁ = there is an effect</li>
+            <li><strong>Paired vs independent?</strong> Use paired for before/after or matched data</li>
+            <li><strong>P-value interpretation?</strong> p < 0.05 suggests rejecting null hypothesis</li>
+            <li><strong>Alternative direction?</strong> "less" tests if first < second, "greater" tests first > second</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>T-Test Assumptions:</strong> Check normality and independence of data</li>
+            <li><strong>Chi-Square Requirements:</strong> Expected frequencies should be ≥ 5</li>
+            <li><strong>Effect Size:</strong> Consider practical significance beyond statistical significance</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Check assumptions</strong> - Verify data meets test requirements</li>
+            <li><strong>Visualize first</strong> - Use histograms and boxplots to understand data</li>
+            <li><strong>Choose correct test</strong> - Match test type to research question</li>
+            <li><strong>Interpret carefully</strong> - Statistical significance ≠ practical importance</li>
+            <li><strong>Consider limitations</strong> - Think about what your analysis cannot tell you</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>?function</kbd>
+                <span>Get help for any R function</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 8!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 8 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy hypothesis testing! 🔬📊</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 8: Hypothesis Testing and Statistical Analysis</em></p>
+    </div>
+</div>
