@@ -60,6 +60,8 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 8 - Hypothesis Testing and Statistical Analysis:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8
 
+**Week 9 - Tree Age Estimation Methods:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week9
+
 **R Statistical Playground (Explore & Experiment):** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-playground
 
 ---
@@ -204,10 +206,17 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Wildfire impact analysis using statistical testing
    - Understanding analysis limitations
 
-9. **Week 9-10**: 🔒 *Coming Soon*
+9. **Week 9**: Tree Age Estimation Methods ✅ *Available*
+   - Confidence intervals for means
+   - Method comparison techniques
+   - Independent vs paired t-tests
+   - Statistical decision-making
+   - Manual calculations and R functions
+   - Complete solutions provided
+
+10. **Week 10**: 🔒 *Coming Soon*
    - ANOVA and Multiple Comparisons
    - Regression Analysis
-   - Correlation Analysis
 
 ### 📋 Assessment
 - **Mid-term Exam:** 100 points (22.2%)
@@ -259,6 +268,7 @@ By completing this course, students will be able to:
    - [Week 6 - Confidence Intervals](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6)
    - [Week 7 - Functions and T-Tests](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7)
    - [Week 8 - Hypothesis Testing and Statistical Analysis](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8)
+   - [Week 9 - Tree Age Estimation Methods](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week9)
    - [R Statistical Playground](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-playground) (Explore & Experiment)
 3. **No software installation needed!**
 

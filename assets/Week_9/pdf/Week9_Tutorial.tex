@@ -1,0 +1,380 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+\definecolor{orangestat}{RGB}{249,115,22}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 9 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{methodbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} Tree Age Estimation Methods}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 9 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize November 2024}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large Interactive Binder Environment}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Access Week 9 lab materials:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week9}{\textcolor{primarygreen}{\underline{Week 9 Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Week 9: Tree Age Estimation Methods}
+
+This week focuses on \textbf{method comparison techniques} using real tree age data. You'll master confidence intervals, understand the difference between independent and paired t-tests, and learn to make statistical decisions in agricultural research contexts.
+
+\section{Confidence Intervals}
+
+\subsection{Understanding Confidence Intervals}
+
+Confidence intervals provide a range of plausible values for a population parameter based on sample data.
+
+\subsubsection{Confidence Interval Formula}
+
+\begin{formulabox}
+\textbf{95\% Confidence Interval for Mean:}
+$$CI = \overline{x} \pm t_{\alpha/2, df} \times \frac{s}{\sqrt{n}}$$
+Where:\\
+\texttt{$\overline{x}$} = sample mean\\
+\texttt{$t_{\alpha/2, df}$} = critical t-value\\
+\texttt{$s$} = sample standard deviation\\
+\texttt{$n$} = sample size\\
+\texttt{$df = n - 1$} = degrees of freedom\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(data)\$conf.int}\\
+\texttt{mean(data)} $\pm$ \texttt{qt(0.975, df=n-1) * sd(data)/sqrt(n)}
+\end{formulabox}
+
+\section{Method Comparison}
+
+\subsection{Independent vs Paired Comparisons}
+
+Understanding when to use each approach is crucial for valid statistical inference.
+
+\subsubsection{Independent Samples}
+
+\begin{methodbox}
+\textbf{Independent Two-Sample t-test:}\\
+Use when comparing two separate groups\\
+Example: Method A on trees 1-5, Method B on trees 6-10\\[0.3cm]
+\textbf{Formula:}
+$$t = \frac{\overline{x_1} - \overline{x_2}}{SE_{diff}}$$
+Where: $SE_{diff} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(method\_A, method\_B, paired = FALSE)}
+\end{methodbox}
+
+\subsubsection{Paired Samples}
+
+\begin{methodbox}
+\textbf{Paired t-test:}\\
+Use when same subjects measured with both methods\\
+Example: Both methods applied to same 10 trees\\[0.3cm]
+\textbf{Formula:}
+$$t = \frac{\overline{d}}{s_d/\sqrt{n}}$$
+Where: $\overline{d}$ = mean of differences, $s_d$ = SD of differences\\[0.3cm]
+\textbf{R Implementation:}\\
+\texttt{t.test(method\_A, method\_B, paired = TRUE)}\\
+\texttt{differences <- method\_A - method\_B}\\
+\texttt{t.test(differences)}
+\end{methodbox}
+
+\section{Assignment 9 Overview}
+
+\subsection{Dataset: Tree Age Methods}
+
+Compare two techniques for estimating tree age on 10 trees:
+\begin{itemize}
+    \item Method A: Traditional ring counting
+    \item Method B: Modern imaging technique
+    \item Same trees measured with both methods (paired design)
+\end{itemize}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Question A: Means and Confidence Intervals (4 points)}
+    \begin{itemize}
+        \item Calculate means for both methods
+        \item Compute 95\% confidence intervals
+        \item Include manual calculations
+    \end{itemize}
+    
+    \item \textbf{Question B: CI Interpretation (2 points)}
+    \begin{itemize}
+        \item Analyze confidence interval overlap
+        \item Draw conclusions about method differences
+    \end{itemize}
+    
+    \item \textbf{Question C: Difference Analysis (4 points)}
+    \begin{itemize}
+        \item Calculate mean difference between methods
+        \item Determine 95\% CI for the difference
+        \item Use pooled variance approach
+    \end{itemize}
+    
+    \item \textbf{Question D: Significance Assessment (2 points)}
+    \begin{itemize}
+        \item Interpret CI for difference
+        \item Determine statistical significance
+    \end{itemize}
+    
+    \item \textbf{Question E: Independent t-test (4 points)}
+    \begin{itemize}
+        \item Perform two-sample t-test
+        \item Manual t-statistic calculation
+        \item Hypothesis testing decision
+    \end{itemize}
+    
+    \item \textbf{Question F: Paired t-test (4 points)}
+    \begin{itemize}
+        \item Perform paired samples analysis
+        \item Calculate differences array
+        \item Compare with independent test results
+    \end{itemize}
+\end{enumerate}
+
+\section{Key Statistical Concepts}
+
+\subsection{Confidence Interval Interpretation}
+
+\begin{formulabox}
+\textbf{Interpreting Confidence Intervals:}\\[0.3cm]
+\textbf{Individual CIs:}\\
+We are 95\% confident the true mean lies within the interval\\[0.3cm]
+\textbf{Overlapping CIs:}\\
+Suggests no significant difference between methods\\
+However, overlap doesn't guarantee non-significance\\[0.3cm]
+\textbf{CI for Difference:}\\
+If CI includes 0 → No significant difference\\
+If CI excludes 0 → Significant difference\\[0.3cm]
+\textbf{Example Interpretation:}\\
+Method A: 95\% CI (22.3, 26.5)\\
+Method B: 95\% CI (19.9, 24.1)\\
+Difference: 95\% CI (-0.4, 5.2) includes 0 → Not significant
+\end{formulabox}
+
+\subsection{Test Selection Guide}
+
+\begin{warningbox}
+\textbf{When to Use Each Test:}
+\begin{itemize}
+    \item \textbf{Independent t-test:} Different subjects in each group
+    \item \textbf{Paired t-test:} Same subjects measured twice
+    \item \textbf{One-sample t-test:} Compare sample to known value
+\end{itemize}
+\textbf{Tree Age Example:}\\
+Since both methods were used on the same trees, paired t-test is appropriate. However, we also demonstrate independent t-test for comparison.
+\end{warningbox}
+
+\section{Manual Calculations}
+
+\subsection{Step-by-Step Calculations}
+
+\subsubsection{Confidence Interval Calculation}
+
+\begin{formulabox}
+\textbf{Example: Method A Confidence Interval}\\[0.3cm]
+Given: $n = 10$, $\overline{x} = 24.4$, $s = 2.95$\\[0.3cm]
+\textbf{Step 1:} Calculate standard error\\
+$SE = \frac{s}{\sqrt{n}} = \frac{2.95}{\sqrt{10}} = 0.93$\\[0.3cm]
+\textbf{Step 2:} Find t-critical value\\
+$t_{0.025, 9} = 2.262$ (from t-table)\\[0.3cm]
+\textbf{Step 3:} Calculate margin of error\\
+$ME = t \times SE = 2.262 \times 0.93 = 2.10$\\[0.3cm]
+\textbf{Step 4:} Construct interval\\
+$CI = 24.4 \pm 2.10 = (22.30, 26.50)$
+\end{formulabox}
+
+\section{Special Features This Week}
+
+\subsection{Complete Solutions Provided}
+
+\begin{infobox}
+\textbf{Learning by Running Code:}
+\begin{itemize}
+    \item \textbf{All code cells} contain complete working solutions
+    \item \textbf{Manual calculations} alongside R functions
+    \item \textbf{Step-by-step explanations} in comments
+    \item \textbf{Decision logic} with if/else statements
+    \item \textbf{Formatted output} for easy interpretation
+\end{itemize}
+\textbf{Educational Benefits:}
+\begin{itemize}
+    \item See immediate results by running cells
+    \item Compare manual vs automated calculations
+    \item Understand statistical decision-making process
+    \item Learn proper result interpretation
+\end{itemize}
+\end{infobox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 9 Binder environment
+    \item Navigate to \texttt{assignment} folder
+    \item Open \texttt{Assignment9.ipynb}
+    \item Run each code cell to see complete solutions
+    \item Learn by observing calculations and interpretations
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Calculate and interpret confidence intervals for means
+    \item Compare two measurement methods statistically
+    \item Choose between independent and paired t-tests appropriately
+    \item Perform manual statistical calculations
+    \item Interpret confidence intervals for differences
+    \item Make statistical decisions based on evidence
+    \item Understand the relationship between CIs and hypothesis tests
+    \item Apply method comparison techniques to agricultural research
+\end{itemize}
+
+\section{Tips for Success}
+
+\begin{warningbox}
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Run each code cell sequentially to see the complete analysis
+    \item Pay attention to manual calculations vs R function results
+    \item Understand when confidence intervals suggest significance
+    \item Note the difference between independent and paired test results
+    \item Focus on proper interpretation of statistical output
+    \item Consider practical significance alongside statistical significance
+\end{itemize}
+\end{warningbox}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{Week 9: Tree Age Estimation Methods}
+\end{center}
+
+\end{document}

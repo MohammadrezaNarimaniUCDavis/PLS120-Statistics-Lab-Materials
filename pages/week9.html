@@ -1,0 +1,252 @@
+<h1 class="page-title">🌳 Week 9: Tree Age Estimation Methods</h1>
+<p class="page-subtitle">Master Confidence Intervals and Method Comparison 📊</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week9" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 9 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 9!</strong> This week focuses on <strong>method comparison techniques</strong> using tree age estimation data. Learn confidence intervals, independent vs paired t-tests, and statistical decision-making!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>Confidence Intervals</strong> - Calculate and interpret 95% CI for means</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🌳</span>
+                <span><strong>Method Comparison</strong> - Compare two tree aging techniques</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔬</span>
+                <span><strong>Independent t-tests</strong> - Compare means between groups</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔗</span>
+                <span><strong>Paired t-tests</strong> - Analyze measurements on same subjects</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>Manual Calculations</strong> - Understand the math behind functions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">⚖️</span>
+                <span><strong>Statistical Decisions</strong> - Interpret results and draw conclusions</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 9 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 9"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all packages for statistical analysis.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Assignment 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter interface. In the <strong>left panel</strong>, click on the <code>assignment/</code> folder to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open Assignment 9 📖</h3>
+        <p>Inside the <code>assignment</code> folder, <strong>double-click</strong> on <code>Assignment9.ipynb</code> to open the interactive assignment.</p>
+
+        <h3 class="card-title">Step 4: Learn by Running Code 🔬</h3>
+        <p>This assignment includes <strong>complete solutions</strong>! Simply run each code cell to see:</p>
+        <ul>
+            <li>Tree age data analysis with two different methods</li>
+            <li>Confidence interval calculations (manual + R functions)</li>
+            <li>Independent and paired t-test comparisons</li>
+            <li>Statistical interpretation and decision-making</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">Confidence Intervals</h3>
+        <div class="code-block">
+            <code>mean(data)                                    # Calculate mean</code><br>
+            <code>sd(data)                                      # Standard deviation</code><br>
+            <code>t.test(data)$conf.int                         # 95% confidence interval</code><br>
+            <code>qt(0.975, df = n-1)                           # t-critical value</code>
+        </div>
+
+        <h3 class="card-title">Method Comparison</h3>
+        <div class="code-block">
+            <code>t.test(method_A, method_B, paired = FALSE)    # Independent t-test</code><br>
+            <code>t.test(method_A, method_B, paired = TRUE)     # Paired t-test</code><br>
+            <code>mean(method_A) - mean(method_B)               # Difference in means</code><br>
+            <code>differences <- method_A - method_B            # Calculate differences</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 9: Tree Age Methods (20 points)</h2>
+    <div class="card">
+        <h3 class="card-title">Dataset: Tree Age Estimation</h3>
+        <p>Compare two different methods for estimating tree age on <strong>10 trees</strong>:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Question A (4 pts): Means & Confidence Intervals</h4>
+                    <p>Calculate means and 95% CI for both methods</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🔍</span>
+                <div>
+                    <h4>Question B (2 pts): CI Interpretation</h4>
+                    <p>Analyze confidence interval overlap</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📈</span>
+                <div>
+                    <h4>Question C (4 pts): Difference Analysis</h4>
+                    <p>Calculate mean difference and its CI</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">⚖️</span>
+                <div>
+                    <h4>Question D (2 pts): Significance Assessment</h4>
+                    <p>Interpret CI for statistical significance</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🔬</span>
+                <div>
+                    <h4>Question E (4 pts): Independent t-test</h4>
+                    <p>Two-sample t-test analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🔗</span>
+                <div>
+                    <h4>Question F (4 pts): Paired t-test</h4>
+                    <p>Paired samples analysis and comparison</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Special Features This Week</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">✅</span>
+                <span><strong>Complete Solutions</strong> - All code cells contain working answers</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🧮</span>
+                <span><strong>Manual Calculations</strong> - See the math behind R functions</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">📚</span>
+                <span><strong>Learn by Running</strong> - Execute cells to see results</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🎯</span>
+                <span><strong>Decision Logic</strong> - Understand statistical reasoning</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Assignment 📥</h3>
+        <ol>
+            <li><strong>Save notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb:</strong> File → Download</li>
+            <li><strong>Export HTML:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>Submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML Report</h4>
+                    <p>Your completed assignment with all outputs</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Questions</h3>
+        <ul>
+            <li><strong>Confidence intervals overlapping?</strong> This suggests no significant difference</li>
+            <li><strong>Paired vs independent?</strong> Use paired when same subjects measured twice</li>
+            <li><strong>Manual calculations?</strong> All formulas are provided in the code</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 9!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week9" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 9 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Learn statistical methods through hands-on practice! 🌳📊</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 9: Tree Age Estimation Methods</em></p>
+    </div>
+</div>
