@@ -1,0 +1,419 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{array}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{anovacolor}{RGB}{34,139,34}
+\definecolor{purplestat}{RGB}{147,51,234}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - Week 10 Tutorial}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{formulabox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{anovabox}{
+    colback=anovacolor!10,
+    colframe=anovacolor,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{regressionbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} ANOVA and Linear Regression Analysis}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Week 10 Tutorial Guide}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize December 2025}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt]
+\centering
+\textbf{\Large Course Website}
+
+All course materials available at:
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{Course Website Link}
+
+\textbf{\Large Interactive Binder Environment}
+
+Access Week 10 lab materials:
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week10}{Week 10 Binder Link}
+\end{tcolorbox}
+
+\section{Welcome to Week 10: ANOVA and Linear Regression}
+
+This week, we explore \textbf{Analysis of Variance (ANOVA)} and \textbf{Linear Regression} - powerful statistical methods for comparing multiple groups and modeling relationships between variables in agricultural research.
+
+\section{Analysis of Variance (ANOVA)}
+
+\subsection{When to Use ANOVA}
+
+ANOVA compares means across multiple groups simultaneously, such as testing different diet treatments on pig growth or comparing crop yields across varieties.
+
+\subsection{ANOVA Components and Formulas}
+
+\begin{anovabox}
+\textbf{ANOVA Table Structure:}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Source} & \textbf{SS} & \textbf{df} & \textbf{MS} & \textbf{F} \\
+\hline
+Between Groups & SSB & $k-1$ & MSB & $MSB/MSE$ \\
+Within Groups & SSE & $N-k$ & MSE & \\
+Total & SST & $N-1$ & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Sum of Squares Formulas:}
+
+$SSB = \sum_{i=1}^{k} n_i(\bar{x}_i - \bar{x})^2$ (Between groups)
+
+$SSE = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2$ (Within groups)
+
+$SST = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x})^2$ (Total)
+
+\textbf{Mean Squares:}
+
+$MSB = \frac{SSB}{k-1}$ (Between groups mean square)
+
+$MSE = \frac{SSE}{N-k}$ (Error mean square)
+
+\textbf{F-Statistic:}
+
+$F = \frac{MSB}{MSE}$ (Ratio of between to within group variation)
+\end{anovabox}
+
+\subsection{ANOVA Hypotheses}
+
+\begin{formulabox}
+\textbf{ANOVA Hypotheses:}
+
+\textbf{Null Hypothesis ($H_0$):} All group means are equal
+
+$H_0: \mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k$
+
+\textbf{Alternative Hypothesis ($H_1$):} At least one group mean differs
+
+$H_1:$ Not all $\mu_i$ are equal
+
+\textbf{Decision Rule:}
+
+If $F > F_{critical}$ or $p < \alpha$ $\rightarrow$ Reject $H_0$
+
+If $F \leq F_{critical}$ or $p \geq \alpha$ $\rightarrow$ Fail to reject $H_0$
+
+\textbf{R Implementation:}
+
+\texttt{model <- lm(response \textasciitilde{} factor, data)}
+
+\texttt{anova(model)}
+
+\texttt{summary(model)}
+\end{formulabox}
+
+\section{Manual ANOVA Calculations}
+
+\subsection{Step-by-Step ANOVA Construction}
+
+Building ANOVA tables from scratch helps understand the underlying statistical concepts.
+
+\begin{anovabox}
+\textbf{Manual ANOVA Steps:}
+
+\textbf{1. Calculate Group Means:}
+
+$\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{ij}}{n_i}$ for each group $i$
+
+\textbf{2. Calculate Overall Mean:}
+
+$\bar{x} = \frac{\sum_{i=1}^{k} \sum_{j=1}^{n_i} x_{ij}}{N}$ where $N = \sum n_i$
+
+\textbf{3. Calculate Sum of Squares:}
+
+SSB: Weighted squared deviations of group means from overall mean
+
+SST: Squared deviations of all observations from overall mean
+
+SSE: SST - SSB (or sum of within-group squared deviations)
+
+\textbf{4. Calculate Degrees of Freedom:}
+
+Between: $df_1 = k - 1$ (number of groups - 1)
+
+Within: $df_2 = N - k$ (total observations - number of groups)
+
+Total: $df_3 = N - 1$ (total observations - 1)
+
+\textbf{5. Calculate Mean Squares and F-statistic:}
+
+$MSB = SSB / df_1$, $MSE = SSE / df_2$
+
+$F = MSB / MSE$
+\end{anovabox}
+
+\section{Linear Regression Analysis}
+
+\subsection{Simple Linear Regression}
+
+Linear regression models the relationship between a continuous predictor and response variable.
+
+\begin{regressionbox}
+\textbf{Simple Linear Regression Model:}
+
+$y = \beta_0 + \beta_1 x + \epsilon$
+
+Where:
+
+$y$ = response variable (dependent)
+
+$x$ = predictor variable (independent)
+
+$\beta_0$ = intercept (y-value when x = 0)
+
+$\beta_1$ = slope (change in y per unit change in x)
+
+$\epsilon$ = random error term
+
+\textbf{Least Squares Estimates:}
+
+$\hat{\beta}_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$
+
+$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
+
+\textbf{Correlation Coefficient:}
+
+$r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \sum(y_i - \bar{y})^2}}$
+
+\textbf{R-squared (Coefficient of Determination):}
+
+$R^2 = r^2$ = Proportion of variance explained by the model
+
+\textbf{R Implementation:}
+
+\texttt{model <- lm(y \textasciitilde{} x, data)}
+
+\texttt{summary(model)}
+
+\texttt{cor(x, y)}
+\end{regressionbox}
+
+\subsection{Multiple Linear Regression}
+
+\begin{regressionbox}
+\textbf{Multiple Linear Regression Model:}
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \epsilon$
+
+\textbf{Categorical Predictors:}
+
+When using factors (like Species), R creates dummy variables:
+
+Reference category (baseline)
+
+Coefficients represent differences from reference
+
+\textbf{Model Interpretation:}
+
+Each $\beta_i$ represents change in y per unit change in $x_i$
+
+Holding all other variables constant
+
+Intercept is y-value when all predictors = 0
+
+\textbf{R Implementation:}
+
+\texttt{model <- lm(y \textasciitilde{} x1 + x2 + factor, data)}
+
+\texttt{model <- lm(Petal.Width \textasciitilde{} Species, data)}
+
+\texttt{model <- lm(Petal.Width \textasciitilde{} Petal.Length, data)}
+\end{regressionbox}
+
+\section{Assignment 10 Overview}
+
+\subsection{Assignment Structure (20 points total)}
+
+\begin{enumerate}
+    \item \textbf{Part 1: Data Loading and Study Design (6 points)}
+    \begin{itemize}
+        \item Identify treatment, response variable, and experimental unit (3 points)
+        \item Formulate null and alternative hypotheses (2 points)
+        \item Load and examine pig weight data (1 point)
+    \end{itemize}
+    
+    \item \textbf{Part 2: ANOVA Table Calculations (7 points)}
+    \begin{itemize}
+        \item Calculate sum of squares (SSB, SSE, SST) (2 points)
+        \item Calculate degrees of freedom (1 point)
+        \item Calculate mean squares and F-statistic (2 points)
+        \item Complete ANOVA table (2 points)
+    \end{itemize}
+    
+    \item \textbf{Part 3: Statistical Interpretation and Conclusions (7 points)}
+    \begin{itemize}
+        \item Interpret F-statistic and p-value (3 points)
+        \item Draw conclusions about diet effects (2 points)
+        \item Discuss practical implications (2 points)
+    \end{itemize}
+\end{enumerate}
+
+\section{Agricultural Applications}
+
+\begin{infobox}
+\textbf{Real-World ANOVA and Regression Applications:}
+\begin{itemize}
+    \item \textbf{Variety Trials} - Compare crop performance across multiple varieties
+    \item \textbf{Treatment Comparisons} - Test fertilizer, pesticide, or management effects
+    \item \textbf{Feed Efficiency Studies} - Analyze animal growth under different diets
+    \item \textbf{Soil Management} - Compare tillage or amendment effects on soil health
+    \item \textbf{Environmental Factors} - Model relationships between climate and yield
+    \item \textbf{Quality Assessment} - Analyze factors affecting product quality
+    \item \textbf{Breeding Programs} - Compare genetic lines or breeding methods
+    \item \textbf{Economic Analysis} - Model cost-benefit relationships in agriculture
+\end{itemize}
+\end{infobox}
+
+\section{Getting Started}
+
+\begin{enumerate}
+    \item Launch Week 10 Binder environment
+    \item Navigate to \texttt{class\_activity} folder
+    \item Open \texttt{Week10\_ANOVA\_Regression.ipynb}
+    \item Work through ANOVA and regression examples
+    \item Complete Assignment 10 in \texttt{assignment} folder
+\end{enumerate}
+
+\section{Learning Objectives}
+
+By the end of this week, you will be able to:
+\begin{itemize}
+    \item Build ANOVA tables from scratch with manual calculations
+    \item Understand sum of squares, degrees of freedom, and F-statistics
+    \item Perform one-way ANOVA using R functions
+    \item Fit and interpret simple and multiple linear regression models
+    \item Check assumptions for ANOVA and regression analyses
+    \item Choose appropriate statistical methods for different research questions
+    \item Interpret statistical output in agricultural research context
+    \item Understand the relationship between ANOVA and regression
+\end{itemize}
+
+\section{Need Help?}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}
+
+Email: mnarimani@ucdavis.edu
+
+Department of Biological and Agricultural Engineering, UC Davis
+
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)
+
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\vfill
+
+\begin{center}
+\textit{Last updated: December 2025 | PLS 120 - Applied Statistics in Agriculture | UC Davis}
+
+\textit{Week 10: ANOVA and Linear Regression Analysis}
+\end{center}
+
+\end{document}

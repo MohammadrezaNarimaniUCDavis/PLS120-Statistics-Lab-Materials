@@ -214,9 +214,12 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
    - Manual calculations and R functions
    - Complete solutions provided
 
-10. **Week 10**: 🔒 *Coming Soon*
-   - ANOVA and Multiple Comparisons
-   - Regression Analysis
+10. **Week 10**: ANOVA and Linear Regression ✅ *Available*
+   - Analysis of Variance (ANOVA) theory and manual calculations
+   - One-way ANOVA for comparing multiple groups
+   - Linear regression modeling (simple and multiple)
+   - Statistical interpretation and agricultural applications
+   - Pig diet study and treatment comparison analysis
 
 ### 📋 Assessment
 - **Mid-term Exam:** 100 points (22.2%)

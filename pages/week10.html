@@ -1,0 +1,382 @@
+<h1 class="page-title">📊 Week 10: ANOVA and Linear Regression</h1>
+<p class="page-subtitle">Master Advanced Statistical Modeling Methods 🎯</p>
+
+<div class="section">
+    <div class="card">
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week10" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 10 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p><strong>Welcome to Week 10!</strong> This week, we explore <strong>Analysis of Variance (ANOVA)</strong> and <strong>Linear Regression</strong> - powerful statistical methods for comparing multiple groups and modeling relationships between variables in agricultural research!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 What You'll Learn This Week</h2>
+    <div class="card">
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">📊</span>
+                <span><strong>ANOVA Theory</strong> - Compare means across multiple groups simultaneously</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🧮</span>
+                <span><strong>Manual ANOVA</strong> - Build ANOVA tables from scratch with calculations</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">📈</span>
+                <span><strong>Simple Regression</strong> - Model relationships between continuous variables</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🔗</span>
+                <span><strong>Multiple Regression</strong> - Handle multiple predictors and categorical factors</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">🐷</span>
+                <span><strong>Agricultural Applications</strong> - Pig diet study and treatment comparisons</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">⚖️</span>
+                <span><strong>Statistical Interpretation</strong> - F-statistics, R-squared, and model diagnostics</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🚀 Getting Started: Step-by-Step Guide</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Launch Week 10 Binder Environment 🌐</h3>
+        <p>Click the <strong>"Launch Week 10"</strong> button above to start your R environment. This will take <strong>2-5 minutes</strong> to load with all necessary packages for ANOVA and regression analysis.</p>
+
+        <h3 class="card-title">Step 2: Navigate to Class Activity 📚</h3>
+        <p>Once Binder loads, you'll see the Jupyter Notebook interface. In the <strong>left panel</strong>, you'll see:</p>
+        <ul>
+            <li><code>assignment/</code> - Assignment 10 on pig diet ANOVA analysis</li>
+            <li><code>class_activity/</code> - Week 10 comprehensive tutorial</li>
+            <li>Various files (README.md, runtime.txt, etc.)</li>
+        </ul>
+        <p><strong>Click on the <code>class_activity</code> folder</strong> to access this week's content.</p>
+
+        <h3 class="card-title">Step 3: Open the Week 10 Lab Notebook 📖</h3>
+        <p>Inside the <code>class_activity</code> folder, <strong>double-click</strong> on <code>Week10_ANOVA_Regression.ipynb</code> to open the interactive lab notebook.</p>
+
+        <h3 class="card-title">Step 4: Explore ANOVA and Regression Methods 📊</h3>
+        <p>This week we'll work with iris and pig weight datasets! The notebook will guide you through:</p>
+        <ul>
+            <li>Building ANOVA tables manually with sum of squares calculations</li>
+            <li>One-way ANOVA for comparing multiple treatment groups</li>
+            <li>Simple linear regression for continuous variable relationships</li>
+            <li>Multiple regression with categorical and continuous predictors</li>
+            <li>Model diagnostics and assumption checking</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Interactive Learning Tools</h2>
+    <div class="card">
+        <h3 class="card-title">Practice with ANOVA and Regression Concepts</h3>
+        <p>Use these interactive tools to understand statistical modeling concepts before working with R code:</p>
+        
+        <div style="border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin: 20px 0;">
+            <!-- Interactive tool iframe will be added here later -->
+            <div style="padding: 40px; text-align: center; background-color: #f9fafb; color: #6b7280;">
+                <p><strong>Interactive Tool Coming Soon!</strong></p>
+                <p>ANOVA and Regression visualization tools will be available here.</p>
+            </div>
+        </div>
+        
+        <p><em>💡 Tip: Use these tools to practice ANOVA concepts and visualize regression relationships before applying them in your R notebook!</em></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🧮 Key R Functions This Week</h2>
+    <div class="card">
+        <h3 class="card-title">ANOVA Analysis</h3>
+        <div class="code-block">
+            <code>model <- lm(response ~ factor, data)           # Fit ANOVA model</code><br>
+            <code>anova(model)                                  # ANOVA table</code><br>
+            <code>summary(model)                                # Detailed output</code><br>
+            <code>mean(data$variable)                           # Calculate means</code>
+        </div>
+
+        <h3 class="card-title">Linear Regression</h3>
+        <div class="code-block">
+            <code>model <- lm(y ~ x, data)                      # Simple regression</code><br>
+            <code>model <- lm(y ~ x1 + x2 + factor, data)      # Multiple regression</code><br>
+            <code>summary(model)                                # Regression output</code><br>
+            <code>cor(x, y)                                     # Correlation coefficient</code>
+        </div>
+
+        <h3 class="card-title">Manual ANOVA Calculations</h3>
+        <div class="code-block">
+            <code>sum((group_mean - overall_mean)^2 * n)       # Sum of squares between</code><br>
+            <code>sum((data - overall_mean)^2)                 # Total sum of squares</code><br>
+            <code>SSE <- SST - SSB                              # Sum of squares error</code><br>
+            <code>F_value <- MSB / MSE                          # F-statistic</code>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📝 Assignment 10: Pig Diet ANOVA Analysis</h2>
+    <div class="card">
+        <h3 class="card-title">Step 1: Access Assignment Folder 📋</h3>
+        <p>From the main directory, <strong>click on the <code>assignment</code> folder</strong> to access Assignment 10.</p>
+
+        <h3 class="card-title">Step 2: Open Assignment 10 Notebook 📄</h3>
+        <p><strong>Double-click</strong> on <code>Assignment10.ipynb</code> to open your assignment on pig diet analysis.</p>
+
+        <h3 class="card-title">Assignment Overview (20 points total)</h3>
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">🔬</span>
+                <div>
+                    <h4>Part 1: Study Design (6 points)</h4>
+                    <p>Identify treatment, response variable, experimental unit, and hypotheses</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">🧮</span>
+                <div>
+                    <h4>Part 2: ANOVA Calculations (7 points)</h4>
+                    <p>Build complete ANOVA table with manual calculations</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">📊</span>
+                <div>
+                    <h4>Part 3: Statistical Interpretation (7 points)</h4>
+                    <p>Interpret F-statistic, p-value, and draw conclusions</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="card-title">Step 3: Analyze Pig Diet Data 🐷</h3>
+        <p>The assignment focuses on agricultural research applications:</p>
+        <ul>
+            <li><strong>Diet Comparison</strong> - Compare pig weights across 4 different diet treatments</li>
+            <li><strong>Manual ANOVA</strong> - Calculate sum of squares, degrees of freedom, F-statistics</li>
+            <li><strong>Statistical Inference</strong> - Test hypotheses about diet effectiveness</li>
+            <li><strong>Practical Implications</strong> - Discuss results in agricultural context</li>
+        </ul>
+        <p>Learn to make <strong>evidence-based agricultural decisions</strong> using rigorous statistical modeling!</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌾 Why This Matters in Agricultural Science</h2>
+    <div class="card">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🐷</span>
+                <span><strong>Feed Efficiency</strong> - Compare animal growth under different diets</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌱</span>
+                <span><strong>Variety Trials</strong> - Test crop performance across multiple varieties</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🧪</span>
+                <span><strong>Treatment Effects</strong> - Analyze fertilizer and management impacts</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🌡️</span>
+                <span><strong>Environmental Modeling</strong> - Relate climate factors to yield</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">📈</span>
+                <span><strong>Economic Analysis</strong> - Model cost-benefit relationships</span>
+            </div>
+        </div>
+
+        <h3 class="card-title">ANOVA and Regression Skills Help You:</h3>
+        <ul>
+            <li>Compare multiple treatments simultaneously with proper statistical control</li>
+            <li>Model complex relationships between agricultural variables</li>
+            <li>Make data-driven decisions about farming practices</li>
+            <li>Understand which factors most influence crop and animal performance</li>
+            <li>Design efficient experiments for agricultural research</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">💾 Saving Your Work</h2>
+    <div class="card">
+        <div class="warning-box">
+            <p><strong>⚠️ Important:</strong> Binder environments are temporary! Always save your work locally.</p>
+        </div>
+
+        <h3 class="card-title">Download Your Notebook 📥</h3>
+        <p>When you're done working, save your progress:</p>
+        
+        <ol>
+            <li><strong>Save your notebook:</strong> File → Save</li>
+            <li><strong>Download .ipynb file:</strong> File → Download</li>
+            <li><strong>Export HTML/PDF:</strong> File → Save and Export Notebook As → HTML</li>
+        </ol>
+
+        <h3 class="card-title">Continue Your Progress Later 🔄</h3>
+        <p>To resume your work:</p>
+        <ol>
+            <li>Launch Binder again</li>
+            <li>Click <strong>Upload</strong> button</li>
+            <li>Upload your saved <code>.ipynb</code> file</li>
+            <li>Continue where you left off!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">📤 Submission Requirements</h2>
+    <div class="card">
+        <p>For Assignment 10, submit <strong>TWO files</strong> to UC Davis Canvas:</p>
+        
+        <div class="submission-grid">
+            <div class="submission-item">
+                <span class="submission-icon">📄</span>
+                <div>
+                    <h4>HTML/PDF Report</h4>
+                    <p>Your completed assignment with all outputs and analysis</p>
+                </div>
+            </div>
+            <div class="submission-item">
+                <span class="submission-icon">💾</span>
+                <div>
+                    <h4>.ipynb File</h4>
+                    <p>Your notebook code as backup</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <p><strong>Due Date:</strong> Check Canvas for assignment deadline</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎯 Learning Objectives</h2>
+    <div class="card">
+        <p>By the end of this week, you will be able to:</p>
+        
+        <div class="learning-grid">
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Build ANOVA tables from scratch with manual calculations</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Understand sum of squares, degrees of freedom, and F-statistics</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Perform one-way ANOVA using R functions</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Fit and interpret simple and multiple linear regression models</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Check assumptions for ANOVA and regression analyses</span>
+            </div>
+            <div class="learning-item">
+                <span class="learning-icon">✅</span>
+                <span>Choose appropriate statistical methods for research questions</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">❓ Need Help?</h2>
+    <div class="card">
+        <h3 class="card-title">📧 Contact Information</h3>
+        <div class="contact-info">
+            <p><strong>Mohammadreza Narimani</strong><br>
+            📧 mnarimani@ucdavis.edu<br>
+            🏫 Department of Biological and Agricultural Engineering, UC Davis</p>
+        </div>
+
+        <h3 class="card-title">🔧 Common Issues</h3>
+        <ul>
+            <li><strong>ANOVA vs t-test?</strong> Use ANOVA when comparing 3+ groups</li>
+            <li><strong>Sum of squares confusion?</strong> SST = SSB + SSE always</li>
+            <li><strong>F-statistic interpretation?</strong> Large F suggests group differences</li>
+            <li><strong>Regression assumptions?</strong> Check linearity, normality, equal variance</li>
+        </ul>
+
+        <h3 class="card-title">📚 Additional Resources</h3>
+        <ul>
+            <li><strong>ANOVA Assumptions:</strong> Independence, normality, equal variances</li>
+            <li><strong>Regression Diagnostics:</strong> Use residual plots to check assumptions</li>
+            <li><strong>Model Selection:</strong> Consider R-squared and practical significance</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🌟 Tips for Success</h2>
+    <div class="card">
+        <h3 class="card-title">💡 Best Practices</h3>
+        <ul>
+            <li><strong>Visualize first</strong> - Use boxplots for ANOVA, scatterplots for regression</li>
+            <li><strong>Check assumptions</strong> - Verify data meets model requirements</li>
+            <li><strong>Understand concepts</strong> - Know what each statistic represents</li>
+            <li><strong>Practice calculations</strong> - Manual work builds understanding</li>
+            <li><strong>Interpret practically</strong> - Consider real-world significance</li>
+        </ul>
+
+        <h3 class="card-title">⚡ Keyboard Shortcuts</h3>
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>Shift + Enter</kbd>
+                <span>Run current cell and move to next</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Ctrl + Enter</kbd>
+                <span>Run current cell and stay in place</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Tab</kbd>
+                <span>Auto-complete function names</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>?function</kbd>
+                <span>Get help for any R function</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">🎉 Ready to Start?</h2>
+    <div class="card">
+        <p>Click the Binder badge below to launch Week 10!</p>
+        
+        <div class="binder-launch-center">
+            <a href="https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week10" 
+               target="_blank" class="binder-button-large">
+                <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+                <span>Launch Week 10 Interactive Environment</span>
+            </a>
+        </div>
+        
+        <p class="center-text"><strong>Happy statistical modeling! 📊🐷</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <p class="footer-text"><em>Last updated: December 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis<br>
+        Week 10: ANOVA and Linear Regression Analysis</em></p>
+    </div>
+</div>
