@@ -1,0 +1,662 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{needspace}
+
+% Colors
+\definecolor{primarygreen}{RGB}{46,125,50}
+\definecolor{accentgreen}{RGB}{76,175,80}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bluestat}{RGB}{59,130,246}
+\definecolor{redstat}{RGB}{239,68,68}
+\definecolor{purplestat}{RGB}{147,51,234}
+\definecolor{orangestat}{RGB}{249,115,22}
+
+% Header and footer
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primarygreen}{\textbf{PLS 120 - R Statistical Playground}}}
+\fancyhead[R]{\textcolor{primarygreen}{UC Davis}}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{primarygreen}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primarygreen}}{}{0em}{}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=lightgray,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=accentgreen!10,
+    colframe=primarygreen,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{playgroundbox}{
+    colback=bluestat!10,
+    colframe=bluestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{experimentbox}{
+    colback=purplestat!10,
+    colframe=purplestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\newtcolorbox{discoverybox}{
+    colback=orangestat!10,
+    colframe=orangestat,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{primarygreen} PLS 120: Applied Statistics in Agricultural Sciences}
+    
+    \vspace{1cm}
+    
+    {\Large\color{primarygreen} R Statistical Playground}
+    
+    \vspace{2cm}
+    
+    \includegraphics[width=0.3\textwidth]{../../images/logos/Home_Page_Logo.png}
+    
+    \vspace{2cm}
+    
+    {\large\bfseries Explore, Experiment, and Discover}
+    
+    \vspace{1cm}
+    
+    {\large Mohammadreza Narimani}\\
+    {\normalsize Department of Biological and Agricultural Engineering}\\
+    {\normalsize University of California, Davis}
+    
+    \vspace{1cm}
+    
+    {\normalsize mnarimani@ucdavis.edu}
+    
+    \vfill
+    
+    {\normalsize November 2024}
+\end{titlepage}
+
+{\small \tableofcontents}
+
+\section{Important Links}
+
+\begin{tcolorbox}[colback=accentgreen!20, colframe=primarygreen, boxrule=2pt, arc=5pt, title={\textbf{\Large Essential Course Resources}}]
+\centering
+\textbf{\Large Course Website}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{All course materials available at:}}\\[0.3cm]
+\href{https://mohammadrezanarimaniucdavis.github.io/PLS120-Statistics-Lab-Materials/}{\textcolor{primarygreen}{\underline{Course Website Link}}}\\[0.8cm]
+
+\textbf{\Large R Statistical Playground}\\[0.5cm]
+\textcolor{primarygreen}{\textbf{Launch your exploration environment:}}\\[0.3cm]
+\href{https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-playground}{\textcolor{primarygreen}{\underline{Playground Binder Link}}}
+\end{tcolorbox}
+
+\section{Welcome to Your Statistical Laboratory}
+
+Welcome to the \textbf{R Statistical Playground} - your personal space for statistical exploration and discovery! This interactive environment is designed for students who want to go beyond the structured weekly assignments and dive deeper into the fascinating world of statistics.
+
+\begin{playgroundbox}
+\textbf{What is the R Statistical Playground?}\\[0.3cm]
+The playground is a cloud-based R environment where you can:
+\begin{itemize}
+    \item \textbf{Experiment} with statistical concepts freely
+    \item \textbf{Explore} your own datasets
+    \item \textbf{Test} new ideas and hypotheses
+    \item \textbf{Learn} through hands-on practice
+    \item \textbf{Discover} insights in agricultural data
+\end{itemize}
+\end{playgroundbox}
+
+\section{Getting Started}
+
+\subsection{Launching Your Playground}
+
+\begin{enumerate}
+    \item Click the \textbf{Playground Binder Link} above
+    \item Wait 2-5 minutes for the environment to load
+    \item Open \texttt{R\_Statistical\_Playground.ipynb}
+    \item Start exploring!
+\end{enumerate}
+
+\subsection{No Installation Required}
+
+Everything you need is pre-installed and ready to use:
+\begin{itemize}
+    \item \textbf{R 4.3} - Latest statistical computing environment
+    \item \textbf{40+ Packages} - All essential statistical libraries
+    \item \textbf{Jupyter Interface} - Interactive notebook environment
+    \item \textbf{Sample Data} - Built-in datasets for practice
+\end{itemize}
+
+\section{What You Can Explore}
+
+\subsection{Statistical Concepts}
+
+\begin{experimentbox}
+\textbf{Experiment with Core Concepts:}
+\begin{itemize}
+    \item \textbf{Descriptive Statistics} - Means, medians, standard deviations
+    \item \textbf{Probability Distributions} - Normal, t, chi-square distributions
+    \item \textbf{Hypothesis Testing} - t-tests, ANOVA, chi-square tests
+    \item \textbf{Confidence Intervals} - Understanding uncertainty
+    \item \textbf{Regression Analysis} - Linear and multiple regression
+    \item \textbf{Correlation Analysis} - Relationships between variables
+    \item \textbf{Data Visualization} - Creating compelling plots
+    \item \textbf{Sampling Methods} - Bootstrap and simulation techniques
+\end{itemize}
+\end{experimentbox}
+
+\subsection{Research Applications}
+
+\begin{discoverybox}
+\textbf{Real-World Applications to Explore:}
+\begin{itemize}
+    \item \textbf{Agricultural Experiments} - Crop yield analysis, treatment comparisons
+    \item \textbf{Environmental Studies} - Climate data, biodiversity assessments
+    \item \textbf{Quality Control} - Process monitoring, defect analysis
+    \item \textbf{Survey Research} - Opinion polls, market research
+    \item \textbf{Biological Research} - Growth studies, genetic analysis
+    \item \textbf{Economic Analysis} - Price trends, market behavior
+    \item \textbf{Social Sciences} - Behavioral studies, demographic analysis
+    \item \textbf{Engineering} - Reliability testing, performance optimization
+\end{itemize}
+\end{discoverybox}
+
+\section{Your Statistical Toolkit}
+
+\subsection{Pre-Installed Packages}
+
+All these powerful R packages are ready for your exploration:
+
+\subsubsection{Data Manipulation \& Import}
+\begin{playgroundbox}
+\textbf{Data Handling:}\\
+\texttt{dplyr} - Data manipulation and transformation\\
+\texttt{tidyr} - Data tidying and reshaping\\
+\texttt{readr} - Fast CSV file reading\\
+\texttt{readxl} - Excel file import\\
+\texttt{data.table} - High-performance data operations
+\end{playgroundbox}
+
+\subsubsection{Visualization}
+\begin{playgroundbox}
+\textbf{Creating Beautiful Plots:}\\
+\texttt{ggplot2} - Grammar of graphics for elegant visualizations\\
+\texttt{plotly} - Interactive plots and dashboards\\
+\texttt{corrplot} - Correlation matrix visualizations\\
+\texttt{pheatmap} - Heatmaps for complex data patterns
+\end{playgroundbox}
+
+\subsubsection{Statistical Analysis}
+\begin{playgroundbox}
+\textbf{Advanced Statistics:}\\
+\texttt{car} - Companion to Applied Regression\\
+\texttt{agricolae} - Agricultural experimental design\\
+\texttt{multcomp} - Multiple comparisons procedures\\
+\texttt{emmeans} - Estimated marginal means\\
+\texttt{broom} - Tidy statistical output
+\end{playgroundbox}
+
+\subsubsection{Hypothesis Testing \& Modeling}
+\begin{playgroundbox}
+\textbf{Statistical Testing:}\\
+\texttt{lmtest} - Linear model diagnostic tests\\
+\texttt{nortest} - Normality testing procedures\\
+\texttt{lawstat} - Robust statistical methods\\
+\texttt{MASS} - Modern Applied Statistics functions
+\end{playgroundbox}
+
+\section{Exploration Ideas}
+
+\subsection{Beginner Explorations}
+
+\begin{experimentbox}
+\textbf{Start with These Ideas:}
+\begin{enumerate}
+    \item \textbf{Built-in Dataset Analysis}
+    \begin{itemize}
+        \item Explore the \texttt{iris} dataset - flower measurements
+        \item Analyze \texttt{mtcars} - automobile performance data
+        \item Investigate \texttt{diamonds} - gemstone characteristics
+    \end{itemize}
+    
+    \item \textbf{Statistical Concept Testing}
+    \begin{itemize}
+        \item Generate random data and test normality
+        \item Compare different sampling methods
+        \item Visualize the Central Limit Theorem
+    \end{itemize}
+    
+    \item \textbf{Visualization Experiments}
+    \begin{itemize}
+        \item Create different plot types for the same data
+        \item Experiment with color schemes and themes
+        \item Build interactive plots with plotly
+    \end{itemize}
+\end{enumerate}
+\end{experimentbox}
+
+\subsection{Intermediate Challenges}
+
+\begin{experimentbox}
+\textbf{Level Up Your Skills:}
+\begin{enumerate}
+    \item \textbf{Hypothesis Testing Practice}
+    \begin{itemize}
+        \item Design and conduct your own t-tests
+        \item Compare different statistical test approaches
+        \item Explore Type I and Type II errors
+    \end{itemize}
+    
+    \item \textbf{Regression Modeling}
+    \begin{itemize}
+        \item Build predictive models with multiple variables
+        \item Compare linear vs. polynomial regression
+        \item Assess model assumptions and diagnostics
+    \end{itemize}
+    
+    \item \textbf{Data Simulation}
+    \begin{itemize}
+        \item Generate synthetic agricultural datasets
+        \item Simulate experimental designs
+        \item Test statistical power under different scenarios
+    \end{itemize}
+\end{enumerate}
+\end{experimentbox}
+
+\subsection{Advanced Projects}
+
+\begin{discoverybox}
+\textbf{Push Your Boundaries:}
+\begin{enumerate}
+    \item \textbf{Research Question Investigation}
+    \begin{itemize}
+        \item Formulate your own research hypotheses
+        \item Design appropriate statistical analyses
+        \item Interpret results in scientific context
+    \end{itemize}
+    
+    \item \textbf{Method Comparison Studies}
+    \begin{itemize}
+        \item Compare different statistical approaches
+        \item Evaluate robustness under various conditions
+        \item Document advantages and limitations
+    \end{itemize}
+    
+    \item \textbf{Real Data Analysis}
+    \begin{itemize}
+        \item Import your own datasets
+        \item Conduct comprehensive statistical analysis
+        \item Create publication-quality reports
+    \end{itemize}
+\end{enumerate}
+\end{discoverybox}
+
+\section{Learning Through Experimentation}
+
+\subsection{The Playground Philosophy}
+
+\begin{infobox}
+\textbf{Embrace the Learning Process:}
+\begin{itemize}
+    \item \textbf{Make Mistakes} - Errors are learning opportunities
+    \item \textbf{Ask "What If?"} - Test your statistical intuition
+    \item \textbf{Compare Methods} - Try different approaches to the same problem
+    \item \textbf{Visualize Everything} - Plots reveal hidden patterns
+    \item \textbf{Document Discoveries} - Keep track of interesting findings
+    \item \textbf{Share Insights} - Discuss findings with classmates
+    \item \textbf{Stay Curious} - Follow interesting tangents
+    \item \textbf{Think Critically} - Question assumptions and results
+\end{itemize}
+\end{infobox}
+
+\subsection{Effective Exploration Strategies}
+
+\begin{playgroundbox}
+\textbf{Maximize Your Learning:}
+\begin{enumerate}
+    \item \textbf{Start Simple} - Begin with basic concepts before advancing
+    \item \textbf{Build Gradually} - Add complexity step by step
+    \item \textbf{Test Assumptions} - Verify what you think you know
+    \item \textbf{Seek Patterns} - Look for consistent relationships
+    \item \textbf{Challenge Results} - Ask if findings make sense
+    \item \textbf{Connect Concepts} - Link new learning to previous knowledge
+    \item \textbf{Apply Context} - Consider real-world implications
+    \item \textbf{Reflect Often} - Think about what you've learned
+\end{enumerate}
+\end{playgroundbox}
+
+\section{Bringing Your Own Data}
+
+\subsection{Data Import Options}
+
+The playground supports various data formats:
+
+\begin{playgroundbox}
+\textbf{Supported File Types:}
+\begin{itemize}
+    \item \textbf{CSV Files} - \texttt{read.csv("filename.csv")}
+    \item \textbf{Excel Files} - \texttt{read\_excel("filename.xlsx")}
+    \item \textbf{Text Files} - \texttt{read.table("filename.txt")}
+    \item \textbf{R Data Files} - \texttt{load("filename.RData")}
+    \item \textbf{JSON Files} - \texttt{fromJSON("filename.json")}
+\end{itemize}
+\end{playgroundbox}
+
+\subsection{Data Upload Process}
+
+\begin{enumerate}
+    \item Click the \textbf{Upload} button in the left panel
+    \item Select your data file from your computer
+    \item Wait for upload to complete
+    \item Use appropriate R function to load data
+    \item Begin your analysis!
+\end{enumerate}
+
+\section{Saving Your Discoveries}
+
+\subsection{Important: Binder is Temporary!}
+
+\begin{warningbox}
+\textbf{Remember to Save Your Work:}
+\begin{itemize}
+    \item Binder sessions are temporary and will be deleted
+    \item Always download your notebook before closing
+    \item Save interesting code snippets for future use
+    \item Export visualizations and results
+    \item Document important findings
+\end{itemize}
+\end{warningbox}
+
+\subsection{Export Options}
+
+\begin{playgroundbox}
+\textbf{Ways to Save Your Work:}
+\begin{enumerate}
+    \item \textbf{Download Notebook} - File → Download as → Notebook (.ipynb)
+    \item \textbf{Export HTML} - File → Download as → HTML (.html)
+    \item \textbf{Save Plots} - Right-click plots to save images
+    \item \textbf{Copy Code} - Select and copy useful code snippets
+    \item \textbf{Export Data} - Save processed datasets for future use
+\end{enumerate}
+\end{playgroundbox}
+
+\section{Research Ideas by Field}
+
+\subsection{Agricultural Sciences}
+
+\begin{discoverybox}
+\textbf{Agricultural Research Questions:}
+\begin{itemize}
+    \item How do different fertilizer treatments affect crop yield?
+    \item What factors influence soil pH across different regions?
+    \item How does weather variability impact harvest timing?
+    \item What's the relationship between plant density and productivity?
+    \item How do organic vs. conventional methods compare?
+    \item What factors predict pest outbreak severity?
+    \item How does irrigation timing affect water use efficiency?
+    \item What variables influence post-harvest quality?
+\end{itemize}
+\end{discoverybox}
+
+\subsection{Environmental Sciences}
+
+\begin{discoverybox}
+\textbf{Environmental Research Questions:}
+\begin{itemize}
+    \item How has local temperature changed over decades?
+    \item What factors influence biodiversity in different habitats?
+    \item How do pollution levels vary across urban areas?
+    \item What predicts species abundance in ecosystems?
+    \item How do conservation efforts impact wildlife populations?
+    \item What factors influence water quality in watersheds?
+    \item How does land use change affect carbon storage?
+    \item What variables predict ecosystem resilience?
+\end{itemize}
+\end{discoverybox}
+
+\section{Statistical Concepts to Explore}
+
+\subsection{Fundamental Concepts}
+
+\begin{experimentbox}
+\textbf{Core Statistical Ideas:}
+\begin{itemize}
+    \item \textbf{Central Tendency} - Mean, median, mode behavior
+    \item \textbf{Variability} - Standard deviation, variance, range
+    \item \textbf{Distribution Shapes} - Normal, skewed, bimodal patterns
+    \item \textbf{Outliers} - Detection methods and impact assessment
+    \item \textbf{Correlation} - Strength and direction of relationships
+    \item \textbf{Causation} - Distinguishing from correlation
+    \item \textbf{Sampling} - Random vs. systematic approaches
+    \item \textbf{Bias} - Sources and mitigation strategies
+\end{itemize}
+\end{experimentbox}
+
+\subsection{Advanced Topics}
+
+\begin{experimentbox}
+\textbf{Deeper Statistical Exploration:}
+\begin{itemize}
+    \item \textbf{Power Analysis} - Sample size determination
+    \item \textbf{Effect Sizes} - Practical vs. statistical significance
+    \item \textbf{Multiple Testing} - Controlling Type I error rates
+    \item \textbf{Non-parametric Methods} - Robust alternatives
+    \item \textbf{Bootstrap Methods} - Resampling techniques
+    \item \textbf{Model Selection} - Choosing appropriate analyses
+    \item \textbf{Assumption Checking} - Validating test requirements
+    \item \textbf{Interaction Effects} - Complex variable relationships
+\end{itemize}
+\end{experimentbox}
+
+\section{Collaboration and Sharing}
+
+\subsection{Learning Together}
+
+\begin{infobox}
+\textbf{Collaborative Learning Opportunities:}
+\begin{itemize}
+    \item Share interesting findings with classmates
+    \item Discuss different approaches to the same problem
+    \item Compare results from different analytical methods
+    \item Help each other troubleshoot coding challenges
+    \item Exchange ideas for research questions
+    \item Peer review each other's analyses
+    \item Create study groups for advanced topics
+    \item Present discoveries to the class
+\end{itemize}
+\end{infobox}
+
+\subsection{Building Your Portfolio}
+
+\begin{playgroundbox}
+\textbf{Document Your Journey:}
+\begin{itemize}
+    \item Keep a collection of interesting analyses
+    \item Save well-commented code examples
+    \item Create a library of useful functions
+    \item Document lessons learned from mistakes
+    \item Build a portfolio of visualizations
+    \item Record insights about statistical methods
+    \item Maintain a list of research questions
+    \item Track your skill development progress
+\end{itemize}
+\end{playgroundbox}
+
+\section{Troubleshooting and Tips}
+
+\subsection{Common Issues and Solutions}
+
+\begin{warningbox}
+\textbf{Troubleshooting Guide:}
+\begin{itemize}
+    \item \textbf{Binder Won't Load} - Try refreshing or clearing browser cache
+    \item \textbf{Package Errors} - Use \texttt{install.packages("package\_name")}
+    \item \textbf{Data Import Issues} - Check file format and path
+    \item \textbf{Memory Problems} - Restart kernel or reduce data size
+    \item \textbf{Plot Not Showing} - Ensure proper syntax and data
+    \item \textbf{Code Errors} - Check for typos and missing parentheses
+    \item \textbf{Slow Performance} - Simplify analysis or restart session
+    \item \textbf{Lost Work} - Always save frequently!
+\end{itemize}
+\end{warningbox}
+
+\subsection{Best Practices}
+
+\begin{playgroundbox}
+\textbf{Maximize Your Success:}
+\begin{itemize}
+    \item Start each session by loading required libraries
+    \item Comment your code to remember your thinking
+    \item Use meaningful variable names
+    \item Save your work frequently
+    \item Test code with small examples first
+    \item Visualize data before analyzing
+    \item Check assumptions before applying tests
+    \item Interpret results in context
+\end{itemize}
+\end{playgroundbox}
+
+\section{Beyond the Playground}
+
+\subsection{Continuing Your Statistical Journey}
+
+\begin{discoverybox}
+\textbf{Next Steps in Your Learning:}
+\begin{itemize}
+    \item \textbf{Advanced Courses} - Multivariate statistics, experimental design
+    \item \textbf{Specialized Software} - SAS, SPSS, Python for data science
+    \item \textbf{Research Projects} - Apply skills to real research questions
+    \item \textbf{Internships} - Gain practical experience in data analysis
+    \item \textbf{Conferences} - Present findings at scientific meetings
+    \item \textbf{Publications} - Contribute to peer-reviewed literature
+    \item \textbf{Professional Development} - Statistical consulting, data science
+    \item \textbf{Lifelong Learning} - Stay current with new methods
+\end{itemize}
+\end{discoverybox}
+
+\subsection{Career Applications}
+
+\begin{infobox}
+\textbf{Statistical Skills in Your Future:}
+\begin{itemize}
+    \item \textbf{Research Scientist} - Design and analyze experiments
+    \item \textbf{Data Analyst} - Extract insights from complex datasets
+    \item \textbf{Quality Control} - Monitor and improve processes
+    \item \textbf{Consultant} - Provide statistical expertise to organizations
+    \item \textbf{Policy Analyst} - Inform decisions with data
+    \item \textbf{Agricultural Extension} - Translate research for practitioners
+    \item \textbf{Environmental Monitoring} - Track ecosystem changes
+    \item \textbf{Business Intelligence} - Support strategic planning
+\end{itemize}
+\end{infobox}
+
+\section{Getting Help}
+
+\subsection{Support Resources}
+
+\begin{infobox}
+\textbf{When You Need Assistance:}
+\begin{itemize}
+    \item \textbf{Course Materials} - Review weekly tutorials and examples
+    \item \textbf{R Documentation} - Use \texttt{?function\_name} for help
+    \item \textbf{Online Resources} - Stack Overflow, R-bloggers, RStudio guides
+    \item \textbf{Textbooks} - Statistical methods and R programming guides
+    \item \textbf{Video Tutorials} - YouTube channels for R and statistics
+    \item \textbf{Study Groups} - Collaborate with classmates
+    \item \textbf{Office Hours} - Meet with instructor or TA
+    \item \textbf{Online Forums} - R community support groups
+\end{itemize}
+\end{infobox}
+
+\subsection{Contact Information}
+
+\begin{infobox}
+\textbf{Mohammadreza Narimani}\\
+Email: mnarimani@ucdavis.edu\\
+Department of Biological and Agricultural Engineering, UC Davis\\
+Office Hours: Thursdays 10 AM - 12 PM (Zoom)\\
+Zoom Link: \href{https://ucdavis.zoom.us/j/99533096447}{Join Office Hours}
+\end{infobox}
+
+\section{Final Thoughts}
+
+The R Statistical Playground is more than just a computing environment - it's your gateway to statistical thinking and data-driven discovery. Every great statistician started with curiosity and a willingness to experiment. Use this space to:
+
+\begin{discoverybox}
+\textbf{Embrace Your Statistical Journey:}
+\begin{itemize}
+    \item \textbf{Be Curious} - Ask questions about everything you see
+    \item \textbf{Stay Patient} - Learning statistics takes time and practice
+    \item \textbf{Think Critically} - Always question your results and methods
+    \item \textbf{Enjoy Discovery} - Celebrate insights and "aha!" moments
+    \item \textbf{Share Knowledge} - Teach others what you learn
+    \item \textbf{Keep Exploring} - There's always more to discover
+    \item \textbf{Apply Learning} - Use statistics to solve real problems
+    \item \textbf{Never Stop Learning} - Statistics is a lifelong journey
+\end{itemize}
+\end{discoverybox}
+
+Remember: The best way to learn statistics is by doing statistics. This playground gives you the freedom to explore, experiment, and discover at your own pace. Make mistakes, ask questions, and most importantly - have fun with data!
+
+\vfill
+
+\begin{center}
+\textit{Last updated: November 2024 | PLS 120 - Applied Statistics in Agriculture | UC Davis}\\
+\textit{R Statistical Playground - Explore, Experiment, and Discover}
+\end{center}
+
+\end{document}

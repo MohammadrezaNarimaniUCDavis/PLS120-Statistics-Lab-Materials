@@ -60,7 +60,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 
 **Week 8 - Hypothesis Testing and Statistical Analysis:** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8
 
-**Final Project Workspace (Optional Alternative to Final Exam):** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-final-project
+**R Statistical Playground (Explore & Experiment):** https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-playground
 
 ---
 
@@ -106,7 +106,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 │   │   └── pdf/           # LaTeX/PDF materials
 │   ├── Week_8/            # week 8 specific materials
 │   │   └── pdf/           # LaTeX/PDF materials
-│   └── Final_Project/     # final project materials
+│   └── Playground/       # R statistical playground materials
 │       └── pdf/           # LaTeX/PDF tutorial
 ├── assignment/            # homework assignments
 │   ├── Assignment1.ipynb  # week 1 assignment
@@ -213,8 +213,7 @@ The goal is to provide a comprehensive, modern learning platform using **Binder*
 - **Mid-term Exam:** 100 points (22.2%)
 - **Weekly Assignments:** 200 points (44.4%) - 10 assignments @ 20 points each
 - **Final Assessment:** 150 points (33.3%)
-  - **Option 1:** Traditional Final Exam
-  - **Option 2:** Final Project Workspace (Optional)
+  - **Traditional Final Exam**
 - **Total:** 450 points
 
 ---
@@ -260,7 +259,7 @@ By completing this course, students will be able to:
    - [Week 6 - Confidence Intervals](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week6)
    - [Week 7 - Functions and T-Tests](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week7)
    - [Week 8 - Hypothesis Testing and Statistical Analysis](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-week8)
-   - [Final Project Workspace](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-final-project) (Optional Alternative to Final Exam)
+   - [R Statistical Playground](https://mybinder.org/v2/gh/MohammadrezaNarimaniUCDavis/PLS120-Statistics-Lab-Materials/binder-playground) (Explore & Experiment)
 3. **No software installation needed!**
 
 ### For Developers:
