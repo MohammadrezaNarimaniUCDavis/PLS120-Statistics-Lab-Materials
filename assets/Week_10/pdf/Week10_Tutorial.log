@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  2 DEC 2025 00:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  2 DEC 2025 00:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -676,7 +676,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.120 \newpage
                [1]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 204.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 202.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -684,7 +684,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 [2{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
 
 [3]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 336.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 334.
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -702,15 +702,15 @@ Package rerunfilecheck Info: File `Week10_Tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 5AEA53F8933164F655579E1AF84C0FFC;3029.
  ) 
 Here is how much of TeX's memory you used:
- 24055 strings out of 473579
- 454310 string characters out of 5732263
+ 24054 strings out of 473579
+ 454291 string characters out of 5732263
  832085 words of memory out of 5000000
- 46525 multiletter control sequences out of 15000+600000
+ 46524 multiletter control sequences out of 15000+600000
  599564 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,11n,101p,533b,675s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Week10_Tutorial.pdf (7 pages, 2183920 bytes).
+Output written on Week10_Tutorial.pdf (7 pages, 2184004 bytes).
 PDF statistics:
  230 PDF objects out of 1000 (max. 8388607)
  187 compressed objects within 2 object streams
