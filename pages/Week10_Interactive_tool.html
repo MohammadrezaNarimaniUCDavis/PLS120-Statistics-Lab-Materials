@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 PLS 120: Week 10 - ANOVA Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ucd-green': '#16a085',
+                        'ucd-dark': '#2d8659',
+                        'ucd-light': '#48c9b0'
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .btn-animate {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-full"><!-- ANOVA Overview Card -->
+  <section class="py-8 bg-white">
+   <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8 shadow-lg card-hover">
+      <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">🎯 What is ANOVA?</h2>
+      <div class="grid md:grid-cols-3 gap-6 mb-6">
+       <div class="bg-white p-6 rounded-lg shadow text-center">
+        <div class="text-3xl mb-3">
+         📊
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2">What</h3>
+        <p class="text-sm text-gray-600">ANOVA compares means across 3+ groups simultaneously</p>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow text-center">
+        <div class="text-3xl mb-3">
+         🧮
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2">Formula</h3>
+        <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-lg"><code class="text-xl font-bold text-purple-700">F = MSB/MSE</code>
+        </div>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow text-center">
+        <div class="text-3xl mb-3">
+         ⏰
+        </div>
+        <h3 class="font-bold text-gray-800 mb-2">When</h3>
+        <p class="text-sm text-gray-600">Use when comparing multiple treatments (vs t-test for 2 groups)</p>
+       </div>
+      </div>
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+       <h4 class="font-bold text-yellow-700 mb-2">💡 Key Concept</h4>
+       <p class="text-sm text-yellow-700">ANOVA tests if at least one group mean differs from the others. It's more efficient than multiple t-tests and controls for Type I error accumulation.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- ANOVA Table Visual -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📋 ANOVA Table Structure</h2>
+    <div class="max-w-5xl mx-auto">
+     <div class="bg-gradient-to-br from-purple-50 to-blue-100 rounded-lg p-8 shadow-lg card-hover">
+      <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead>
+          <tr class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+           <th class="px-6 py-4 text-left font-bold">Source</th>
+           <th class="px-6 py-4 text-center font-bold">SS</th>
+           <th class="px-6 py-4 text-center font-bold">df</th>
+           <th class="px-6 py-4 text-center font-bold">MS</th>
+           <th class="px-6 py-4 text-center font-bold">F</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="bg-blue-50 hover:bg-blue-100 transition-colors">
+           <td class="px-6 py-4 font-semibold text-blue-700">Between Groups</td>
+           <td class="px-6 py-4 text-center font-mono">SSB</td>
+           <td class="px-6 py-4 text-center font-mono">k - 1</td>
+           <td class="px-6 py-4 text-center font-mono bg-yellow-100">MSB</td>
+           <td class="px-6 py-4 text-center font-mono bg-green-100 font-bold">F-stat</td>
+          </tr>
+          <tr class="bg-purple-50 hover:bg-purple-100 transition-colors">
+           <td class="px-6 py-4 font-semibold text-purple-700">Within Groups</td>
+           <td class="px-6 py-4 text-center font-mono">SSE</td>
+           <td class="px-6 py-4 text-center font-mono">N - k</td>
+           <td class="px-6 py-4 text-center font-mono bg-yellow-100">MSE</td>
+           <td class="px-6 py-4 text-center text-gray-400">—</td>
+          </tr>
+          <tr class="bg-gray-100 hover:bg-gray-200 transition-colors">
+           <td class="px-6 py-4 font-semibold text-gray-700">Total</td>
+           <td class="px-6 py-4 text-center font-mono">SST</td>
+           <td class="px-6 py-4 text-center font-mono">N - 1</td>
+           <td class="px-6 py-4 text-center text-gray-400">—</td>
+           <td class="px-6 py-4 text-center text-gray-400">—</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+      <div class="mt-6 grid md:grid-cols-3 gap-4">
+       <div class="bg-blue-100 p-4 rounded-lg">
+        <h5 class="font-bold text-blue-700 mb-2">Between Groups (SSB)</h5>
+        <p class="text-sm text-blue-600">Variation due to treatment differences</p>
+       </div>
+       <div class="bg-purple-100 p-4 rounded-lg">
+        <h5 class="font-bold text-purple-700 mb-2">Within Groups (SSE)</h5>
+        <p class="text-sm text-purple-600">Random variation within groups (error)</p>
+       </div>
+       <div class="bg-green-100 p-4 rounded-lg">
+        <h5 class="font-bold text-green-700 mb-2">F-Statistic</h5>
+        <p class="text-sm text-green-600">Ratio of treatment to error variation</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Interactive Calculator -->
+  <section class="py-12 bg-gradient-to-br from-green-50 to-emerald-100">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🧮 Interactive ANOVA Calculator</h2>
+    <div class="max-w-6xl mx-auto">
+     <div class="bg-white rounded-lg shadow-lg p-8">
+      <div class="text-center mb-6">
+       <h3 class="text-2xl font-bold text-ucd-green mb-2">🌾 Agricultural Fertilizer Trial</h3>
+       <p class="text-gray-600">Compare crop yields across three treatments</p>
+      </div><!-- Group Controls -->
+      <div class="grid lg:grid-cols-3 gap-6 mb-8"><!-- Control Group -->
+       <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border-2 border-gray-300">
+        <h4 class="text-xl font-bold text-gray-700 mb-4 text-center">🌱 Control</h4>
+        <div class="space-y-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1"> Mean Yield: <span id="control-mean-value" class="font-bold">55.0</span> </label> <input type="range" id="control-mean" min="40" max="80" step="0.5" value="55" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1"> Sample Size: <span id="control-n-value" class="font-bold">20</span> </label> <input type="range" id="control-n" min="10" max="30" value="20" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1"> Std Dev: <span id="control-sd-value" class="font-bold">8.0</span> </label> <input type="range" id="control-sd" min="5" max="15" step="0.5" value="8" class="w-full" oninput="updateANOVA()">
+         </div>
+        </div>
+       </div><!-- Treatment A -->
+       <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border-2 border-blue-300">
+        <h4 class="text-xl font-bold text-blue-700 mb-4 text-center">💧 Treatment A</h4>
+        <div class="space-y-4">
+         <div><label class="block text-sm font-medium text-blue-700 mb-1"> Mean Yield: <span id="treatmentA-mean-value" class="font-bold">62.0</span> </label> <input type="range" id="treatmentA-mean" min="40" max="80" step="0.5" value="62" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-blue-700 mb-1"> Sample Size: <span id="treatmentA-n-value" class="font-bold">18</span> </label> <input type="range" id="treatmentA-n" min="10" max="30" value="18" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-blue-700 mb-1"> Std Dev: <span id="treatmentA-sd-value" class="font-bold">7.5</span> </label> <input type="range" id="treatmentA-sd" min="5" max="15" step="0.5" value="7.5" class="w-full" oninput="updateANOVA()">
+         </div>
+        </div>
+       </div><!-- Treatment B -->
+       <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border-2 border-green-300">
+        <h4 class="text-xl font-bold text-green-700 mb-4 text-center">🌿 Treatment B</h4>
+        <div class="space-y-4">
+         <div><label class="block text-sm font-medium text-green-700 mb-1"> Mean Yield: <span id="treatmentB-mean-value" class="font-bold">68.0</span> </label> <input type="range" id="treatmentB-mean" min="40" max="80" step="0.5" value="68" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-green-700 mb-1"> Sample Size: <span id="treatmentB-n-value" class="font-bold">22</span> </label> <input type="range" id="treatmentB-n" min="10" max="30" value="22" class="w-full" oninput="updateANOVA()">
+         </div>
+         <div><label class="block text-sm font-medium text-green-700 mb-1"> Std Dev: <span id="treatmentB-sd-value" class="font-bold">9.0</span> </label> <input type="range" id="treatmentB-sd" min="5" max="15" step="0.5" value="9" class="w-full" oninput="updateANOVA()">
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="text-center mb-8"><button onclick="generateRandomData()" class="bg-ucd-green text-white px-8 py-3 rounded-lg btn-animate font-semibold text-lg"> 🎲 Generate New Random Data </button>
+      </div><!-- ANOVA Results -->
+      <div id="anova-results" class="space-y-6"><!-- Will be populated by JavaScript -->
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Quiz Section -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎯 Practice Quiz</h2>
+    <div class="max-w-3xl mx-auto">
+     <div class="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-lg shadow-lg p-6">
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-indigo-700">Question <span id="current-question">1</span> of 2</h3>
+        <div class="text-sm text-indigo-600">
+         Progress: <span id="quiz-progress">0%</span>
+        </div>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3">
+        <div id="progress-bar" class="bg-indigo-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+       </div>
+      </div>
+      <div id="quiz-content"><!-- Quiz questions will be loaded here -->
+      </div>
+      <div class="mt-6 flex justify-between"><button id="prev-btn" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded btn-animate" disabled>Previous</button> <button id="next-btn" onclick="nextQuestion()" class="bg-indigo-500 text-white px-6 py-2 rounded btn-animate">Next</button>
+      </div>
+      <div id="quiz-results" class="mt-6 hidden"><!-- Results will be shown here -->
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Key Takeaways -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">🎓 Key Takeaways</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+     <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg shadow card-hover border-l-4 border-blue-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        📊
+       </div>
+       <h3 class="text-xl font-bold text-blue-700">ANOVA vs T-Test</h3>
+      </div>
+      <ul class="text-blue-600 text-sm space-y-1">
+       <li>• Use ANOVA for 3+ groups</li>
+       <li>• T-test only for 2 groups</li>
+       <li>• Controls Type I error</li>
+       <li>• More efficient analysis</li>
+      </ul>
+     </div>
+     <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg shadow card-hover border-l-4 border-green-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        🧮
+       </div>
+       <h3 class="text-xl font-bold text-green-700">F-Statistic</h3>
+      </div>
+      <ul class="text-green-600 text-sm space-y-1">
+       <li>• Ratio of MSB to MSE</li>
+       <li>• Larger F = more difference</li>
+       <li>• Compare to F-critical</li>
+       <li>• Use p-value for decision</li>
+      </ul>
+     </div>
+     <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg shadow card-hover border-l-4 border-purple-500">
+      <div class="text-center mb-4">
+       <div class="text-4xl mb-2">
+        🌾
+       </div>
+       <h3 class="text-xl font-bold text-purple-700">Agricultural Uses</h3>
+      </div>
+      <ul class="text-purple-600 text-sm space-y-1">
+       <li>• Compare fertilizer types</li>
+       <li>• Evaluate crop varieties</li>
+       <li>• Test irrigation methods</li>
+       <li>• Analyze treatment effects</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Quiz questions
+        const quizQuestions = [
+            {
+                question: "When should you use ANOVA instead of multiple t-tests?",
+                options: [
+                    "When you have large sample sizes",
+                    "When comparing 3+ groups simultaneously",
+                    "When the data is normally distributed",
+                    "When all groups have equal variances"
+                ],
+                correct: 1,
+                explanation: "ANOVA is designed to compare means across 3 or more groups simultaneously. Using multiple t-tests increases the risk of Type I error, while ANOVA controls for this."
+            },
+            {
+                question: "What does a significant F-statistic indicate?",
+                options: [
+                    "All group means are exactly equal",
+                    "At least one group mean differs from the others",
+                    "The largest group is significantly different",
+                    "The data follows a normal distribution"
+                ],
+                correct: 1,
+                explanation: "A significant F-statistic tells us that at least one group mean is different from the others. It doesn't tell us which specific groups differ - that requires post-hoc tests."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let quizAnswers = [];
+
+        // Utility function for normal random
+        function normalRandom(mean = 0, sd = 1) {
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random();
+            while(v === 0) v = Math.random();
+            return mean + sd * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        }
+
+        // Get F critical value (approximation)
+        function getFCritical(df1, df2, alpha = 0.05) {
+            // Simplified F-critical values for α = 0.05
+            if (df1 === 2) {
+                if (df2 >= 50) return 3.15;
+                if (df2 >= 40) return 3.23;
+                if (df2 >= 30) return 3.32;
+                if (df2 >= 20) return 3.49;
+                if (df2 >= 15) return 3.68;
+                return 3.89;
+            }
+            return 3.15; // Default approximation
+        }
+
+        // Approximate F distribution CDF (for p-value)
+        function fCDF(f, df1, df2) {
+            // Very rough approximation for educational purposes
+            if (f < 1) return 0.5;
+            if (f < 2) return 0.75;
+            if (f < 3) return 0.90;
+            if (f < 4) return 0.95;
+            if (f < 5) return 0.97;
+            return 0.99;
+        }
+
+        // Update ANOVA calculations
+        function updateANOVA() {
+            // Get all values
+            const groups = ['control', 'treatmentA', 'treatmentB'];
+            const data = {};
+            
+            groups.forEach(group => {
+                const mean = parseFloat(document.getElementById(`${group}-mean`).value);
+                const n = parseInt(document.getElementById(`${group}-n`).value);
+                const sd = parseFloat(document.getElementById(`${group}-sd`).value);
+                
+                document.getElementById(`${group}-mean-value`).textContent = mean.toFixed(1);
+                document.getElementById(`${group}-n-value`).textContent = n;
+                document.getElementById(`${group}-sd-value`).textContent = sd.toFixed(1);
+                
+                data[group] = { mean, n, sd };
+            });
+            
+            // Calculate grand mean
+            const totalN = data.control.n + data.treatmentA.n + data.treatmentB.n;
+            const grandMean = (data.control.mean * data.control.n + 
+                              data.treatmentA.mean * data.treatmentA.n + 
+                              data.treatmentB.mean * data.treatmentB.n) / totalN;
+            
+            // Calculate SSB (Between Groups)
+            const ssb = data.control.n * Math.pow(data.control.mean - grandMean, 2) +
+                       data.treatmentA.n * Math.pow(data.treatmentA.mean - grandMean, 2) +
+                       data.treatmentB.n * Math.pow(data.treatmentB.mean - grandMean, 2);
+            
+            // Calculate SSE (Within Groups / Error)
+            const sse = (data.control.n - 1) * Math.pow(data.control.sd, 2) +
+                       (data.treatmentA.n - 1) * Math.pow(data.treatmentA.sd, 2) +
+                       (data.treatmentB.n - 1) * Math.pow(data.treatmentB.sd, 2);
+            
+            // Calculate SST (Total)
+            const sst = ssb + sse;
+            
+            // Degrees of freedom
+            const k = 3; // number of groups
+            const dfBetween = k - 1;
+            const dfWithin = totalN - k;
+            const dfTotal = totalN - 1;
+            
+            // Mean Squares
+            const msb = ssb / dfBetween;
+            const mse = sse / dfWithin;
+            
+            // F-statistic
+            const fStat = msb / mse;
+            
+            // Get critical value and p-value
+            const fCritical = getFCritical(dfBetween, dfWithin, 0.05);
+            const pValue = 1 - fCDF(fStat, dfBetween, dfWithin);
+            const significant = fStat > fCritical;
+            
+            // Display results
+            displayANOVAResults({
+                ssb, sse, sst,
+                dfBetween, dfWithin, dfTotal,
+                msb, mse,
+                fStat, fCritical, pValue,
+                significant,
+                grandMean,
+                data
+            });
+        }
+
+        function displayANOVAResults(results) {
+            const { ssb, sse, sst, dfBetween, dfWithin, dfTotal, msb, mse, fStat, fCritical, pValue, significant, grandMean, data } = results;
+            
+            document.getElementById('anova-results').innerHTML = `
+                <!-- ANOVA Table -->
+                <div class="bg-gradient-to-br from-purple-50 to-blue-100 p-6 rounded-lg">
+                    <h4 class="text-xl font-bold text-purple-700 mb-4 text-center">📋 ANOVA Table</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white rounded-lg overflow-hidden shadow">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+                                    <th class="px-4 py-3 text-left">Source</th>
+                                    <th class="px-4 py-3 text-center">SS</th>
+                                    <th class="px-4 py-3 text-center">df</th>
+                                    <th class="px-4 py-3 text-center">MS</th>
+                                    <th class="px-4 py-3 text-center">F</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-blue-50">
+                                    <td class="px-4 py-3 font-semibold text-blue-700">Between Groups</td>
+                                    <td class="px-4 py-3 text-center font-mono">${ssb.toFixed(2)}</td>
+                                    <td class="px-4 py-3 text-center font-mono">${dfBetween}</td>
+                                    <td class="px-4 py-3 text-center font-mono bg-yellow-100 font-bold">${msb.toFixed(2)}</td>
+                                    <td class="px-4 py-3 text-center font-mono bg-green-100 font-bold text-lg">${fStat.toFixed(3)}</td>
+                                </tr>
+                                <tr class="bg-purple-50">
+                                    <td class="px-4 py-3 font-semibold text-purple-700">Within Groups</td>
+                                    <td class="px-4 py-3 text-center font-mono">${sse.toFixed(2)}</td>
+                                    <td class="px-4 py-3 text-center font-mono">${dfWithin}</td>
+                                    <td class="px-4 py-3 text-center font-mono bg-yellow-100 font-bold">${mse.toFixed(2)}</td>
+                                    <td class="px-4 py-3 text-center text-gray-400">—</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="px-4 py-3 font-semibold text-gray-700">Total</td>
+                                    <td class="px-4 py-3 text-center font-mono">${sst.toFixed(2)}</td>
+                                    <td class="px-4 py-3 text-center font-mono">${dfTotal}</td>
+                                    <td class="px-4 py-3 text-center text-gray-400">—</td>
+                                    <td class="px-4 py-3 text-center text-gray-400">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Statistics Summary -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h5 class="font-bold text-blue-700 mb-4">📊 Test Statistics</h5>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center bg-white p-3 rounded">
+                                <span class="text-sm text-gray-700">F-statistic:</span>
+                                <span class="text-xl font-bold text-blue-600">${fStat.toFixed(3)}</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-white p-3 rounded">
+                                <span class="text-sm text-gray-700">F-critical (α=0.05):</span>
+                                <span class="text-xl font-bold text-orange-600">${fCritical.toFixed(3)}</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-white p-3 rounded">
+                                <span class="text-sm text-gray-700">P-value:</span>
+                                <span class="text-xl font-bold text-purple-600">${pValue < 0.001 ? '<0.001' : pValue.toFixed(4)}</span>
+                            </div>
+                            <div class="bg-gray-100 p-3 rounded">
+                                <div class="text-xs text-gray-600 mb-1">Comparison:</div>
+                                <div class="text-sm font-mono text-center">
+                                    ${fStat.toFixed(3)} ${fStat > fCritical ? '>' : '<'} ${fCritical.toFixed(3)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h5 class="font-bold text-green-700 mb-4">📈 Group Means</h5>
+                        <div class="space-y-3">
+                            <div class="bg-gray-100 p-3 rounded flex justify-between items-center">
+                                <span class="text-sm text-gray-700">🌱 Control:</span>
+                                <span class="font-bold text-gray-700">${data.control.mean.toFixed(1)}</span>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded flex justify-between items-center">
+                                <span class="text-sm text-blue-700">💧 Treatment A:</span>
+                                <span class="font-bold text-blue-700">${data.treatmentA.mean.toFixed(1)}</span>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded flex justify-between items-center">
+                                <span class="text-sm text-green-700">🌿 Treatment B:</span>
+                                <span class="font-bold text-green-700">${data.treatmentB.mean.toFixed(1)}</span>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded flex justify-between items-center">
+                                <span class="text-sm text-purple-700">Grand Mean:</span>
+                                <span class="font-bold text-purple-700">${grandMean.toFixed(1)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decision -->
+                <div class="text-center p-8 rounded-lg ${significant ? 'bg-green-100 border-4 border-green-400' : 'bg-red-100 border-4 border-red-400'}">
+                    <div class="text-6xl mb-4">${significant ? '✅' : '❌'}</div>
+                    <div class="text-3xl font-bold ${significant ? 'text-green-700' : 'text-red-700'} mb-3">
+                        ${significant ? 'Reject H₀' : 'Fail to Reject H₀'}
+                    </div>
+                    <div class="text-lg ${significant ? 'text-green-600' : 'text-red-600'} mb-4">
+                        ${significant ? 
+                            `At least one group mean differs significantly (p ${pValue < 0.001 ? '<0.001' : '= ' + pValue.toFixed(4)})` :
+                            `No significant differences detected among groups (p ${pValue.toFixed(4)})`}
+                    </div>
+                    <div class="bg-white bg-opacity-50 p-4 rounded-lg max-w-2xl mx-auto">
+                        <p class="text-sm ${significant ? 'text-green-700' : 'text-red-700'}">
+                            ${significant ? 
+                                '🎉 <strong>Conclusion:</strong> There is strong evidence that at least one fertilizer treatment produces significantly different yields compared to the others. Post-hoc tests would be needed to determine which specific groups differ.' :
+                                '📊 <strong>Conclusion:</strong> The fertilizer treatments do not show statistically significant differences in crop yield. Any observed differences could be due to random variation.'}
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Visual Comparison -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-100 p-6 rounded-lg">
+                    <h5 class="font-bold text-indigo-700 mb-4 text-center">📊 Visual Comparison</h5>
+                    <div class="grid grid-cols-3 gap-4">
+                        ${['control', 'treatmentA', 'treatmentB'].map((group, idx) => {
+                            const colors = ['gray', 'blue', 'green'];
+                            const labels = ['🌱 Control', '💧 Treatment A', '🌿 Treatment B'];
+                            const maxHeight = Math.max(data.control.mean, data.treatmentA.mean, data.treatmentB.mean);
+                            const height = (data[group].mean / maxHeight) * 100;
+                            
+                            return `
+                                <div class="text-center">
+                                    <div class="text-xs font-semibold text-${colors[idx]}-700 mb-1">
+                                        ${data[group].mean.toFixed(1)}
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 h-48 flex flex-col justify-end">
+                                        <div class="bg-${colors[idx]}-400 rounded-t transition-all duration-500" style="height: ${height}%"></div>
+                                    </div>
+                                    <div class="mt-2 text-sm font-semibold text-${colors[idx]}-700">${labels[idx]}</div>
+                                    <div class="text-xs text-gray-600">n=${data[group].n}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate random data
+        function generateRandomData() {
+            const baseYield = 50 + Math.random() * 15;
+            const effectA = Math.random() * 15;
+            const effectB = Math.random() * 20;
+            
+            document.getElementById('control-mean').value = (baseYield + normalRandom(0, 2)).toFixed(1);
+            document.getElementById('control-n').value = 15 + Math.floor(Math.random() * 15);
+            document.getElementById('control-sd').value = (6 + Math.random() * 6).toFixed(1);
+            
+            document.getElementById('treatmentA-mean').value = (baseYield + effectA + normalRandom(0, 2)).toFixed(1);
+            document.getElementById('treatmentA-n').value = 15 + Math.floor(Math.random() * 15);
+            document.getElementById('treatmentA-sd').value = (6 + Math.random() * 6).toFixed(1);
+            
+            document.getElementById('treatmentB-mean').value = (baseYield + effectB + normalRandom(0, 2)).toFixed(1);
+            document.getElementById('treatmentB-n').value = 15 + Math.floor(Math.random() * 15);
+            document.getElementById('treatmentB-sd').value = (6 + Math.random() * 6).toFixed(1);
+            
+            updateANOVA();
+        }
+
+        // Quiz functions
+        function loadQuizQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            const selectedAnswer = quizAnswers[currentQuestionIndex];
+            
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    <div class="space-y-2">
+                        ${question.options.map((option, index) => `
+                            <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer ${selectedAnswer === index ? 'bg-indigo-50 border-indigo-400' : ''}">
+                                <input type="radio" name="answer" value="${index}" ${selectedAnswer === index ? 'checked' : ''} class="mr-3">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            updateQuizProgress();
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                quizAnswers[currentQuestionIndex] = parseInt(selectedAnswer.value);
+            }
+            
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuizQuestion();
+            }
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('quiz-progress').textContent = `${Math.round(progress)}%`;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Finish' : 'Next';
+        }
+
+        function showQuizResults() {
+            let correct = 0;
+            quizQuestions.forEach((question, index) => {
+                if (quizAnswers[index] === question.correct) correct++;
+            });
+            
+            const percentage = (correct / quizQuestions.length) * 100;
+            
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">Quiz Complete!</h3>
+                    <div class="text-6xl mb-4">${percentage === 100 ? '🎉' : percentage >= 50 ? '👍' : '📚'}</div>
+                    <p class="text-xl mb-4">You scored ${correct} out of ${quizQuestions.length} (${percentage.toFixed(0)}%)</p>
+                    <div class="text-left mt-6 space-y-4">
+                        ${quizQuestions.map((question, index) => `
+                            <div class="border rounded p-4 ${quizAnswers[index] === question.correct ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}">
+                                <p class="font-semibold mb-2">Q${index + 1}: ${question.question}</p>
+                                <p class="text-sm text-gray-600 mb-2">Your answer: ${question.options[quizAnswers[index] !== undefined ? quizAnswers[index] : 0]}</p>
+                                ${quizAnswers[index] !== question.correct ? `<p class="text-sm text-gray-600 mb-2">Correct answer: ${question.options[question.correct]}</p>` : ''}
+                                <p class="text-sm text-blue-600"><strong>Explanation:</strong> ${question.explanation}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('prev-btn').style.display = 'none';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateANOVA();
+            loadQuizQuestion();
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a7efb85d20d2716',t:'MTc2NDcyMjExMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
